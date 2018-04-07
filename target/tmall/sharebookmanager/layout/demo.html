@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>差异退货报表</title>
+    <style type="text/css">
+        body > div {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body > div > form > .form-group > label {
+            width: 80px;
+            text-align: center;
+        }
+
+        .form-control, .select2-selection--single {
+            min-width: 160px;
+            max-width: 160px;
+        }
+         a{
+            text-decoration:none;
+            cursor:pointer
+        }
+    </style>
+<link rel="stylesheet" type="text/css" href="../static_index/heanesUI/css/heanesUI.css">
+<link rel="stylesheet" type="text/css" href="../static_index/heanesUI/css/common.css">
+</head>
+<body>
+    <div id="differentialReturnList" class="panel panel-default" style="padding-right: 0px;">
+        <div>
+            <form id="form_differentialReturn_q" class="form-inline" role="form"
+                  onkeydown="if(event.keyCode==13){return false;}">
+
+                <div class="form-group">
+                    <label for="startDeliveryDate" style="width: 90px;">配送日期</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" style="width: 147px;"
+                               id="startDeliveryDate" name="startDeliveryDate"
+                               placeholder="配送日期(开始)"> <span class="input-group-addon"><i
+                            class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endDeliveryDate" style="width: 90px;">至</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" style="width: 147px;"
+                               id="endDeliveryDate" name="endDeliveryDate" placeholder="配送日期(结束)">
+                        <span class="input-group-addon"><i
+                                class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label onclick="$(this).next().focus();">供应商ID</label> <input
+                        name="purchaseID" type="text" class="form-control" placeholder="ID查询"/>
+                </div>
+                <div class="form-group">
+                    <label onclick="$(this).next().focus();">供应商名称</label> <input
+                        name="purchaseName" type="text" class="form-control" placeholder="名称模糊查询"/>
+                </div>
+                <div class="form-group">
+                    <label onclick="$(this).next().focus();">商品名称</label> <input
+                        name="skuName" type="text" class="form-control" placeholder="商品名称模糊查询"/>
+                </div>
+                <div class="form-group">
+                    <label onclick="$(this).next().focus();">SKU ID</label> <input
+                        name="skuId" type="text" class="form-control" placeholder="SKU ID"/>
+                </div>
+                <div class="form-group">
+                    <label onclick="$(this).next().focus();">SSU ID</label> <input
+                        name="ssuId" type="text" class="form-control" placeholder="SSU ID"/>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">查询
+                    </button>&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-success" id="exportBtn">导出</button>
+                </div>
+            </form>
+        </div>
+        <div id="panel-body">
+            <table  id="mainTable"></table>
+        </div>
+    </div>
+       <div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+           <div class="modal-dialog" dialog-width="900px" style="width:900px">
+               <div class="modal-content">
+                   <div class="modal-header">
+                      <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                       <h4 class="modal-title" id="modalTitle">分剩明细</h4>
+                   </div>
+                   <div class="modal-body">
+                            <table id="detailTable"></table>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+<script type="text/javascript">
+/*
+    $('#startDeliveryDate').val(getNowDate());
+    $('#endDeliveryDate').val(getNowDate(1));
+    $('#startDeliveryDate').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        language: "zh-CN"
+    });
+
+    $('#endDeliveryDate').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        language: "zh-CN"
+    });
+
+    //初始化配送日期
+    function getNowDate(isNext) {
+        var d = new Date();
+        var timestamp = d.getTime();
+        console.log("timestamp:" + timestamp);
+        var hour = d.getHours();
+        if (hour >= 12) {
+            d = new Date(timestamp);
+        }
+        if (isNext && hour > 12) {
+            timestamp += 86400000;
+            console.log("timestamp2:" + timestamp);
+            d = new Date(timestamp);
+        }
+        var year = d.getFullYear() + "";
+        var month = d.getMonth() + 1 + "";
+        var day = d.getDate() + "";
+        return year + "-" + ((month.length == 1) ? ("0" + month) : month)
+            + "-" + ((day.length == 1) ? ("0" + day) : day);
+    }
+
+
+
+    $('#formSearchBtn').on('click', function () {
+        $('#mainTable').bootstrapTable('refresh');
+    });
+    var $table = $("#mainTable");
+    $table.bootstrapTable({
+        url: '',
+        toolbar: "#toolbar_differentialReturn",
+        showColumns: false,
+        method:'post',
+        dataType: "json",
+        sidePagination : "server",
+        pagination : true,
+        sortOrder:"asc",
+        pageList : [10,15,25,50,100,'all'],
+        pageNumber:1,
+        pageSize :10,
+        totalField : "total_records",
+        dataField: 'data',
+        queryParamsType : "page",
+        queryParams: function (params) {
+            var newParams = convertSerializeArrayToObject($("#form_differentialReturn_q").serializeArray());
+            newParams = $.extend(true, {}, params, newParams);
+            return newParams;
+        },
+        columns: [
+            {
+                checkbox: true
+            },
+            {
+                field: 'id',
+                title: 'id',
+                align: "center",
+                visible:false,
+
+            },
+            {
+                field: 'deliveryDateFormative',
+                title: '配送日期',
+                align: "center",
+                width: "25px",
+                formatter: formatterToValue
+
+            },
+            {
+                field: "purchaseNo",
+                title: "采购单号",
+                align: "center",
+                formatter: formatterToValue
+            },
+            {
+                field: "skuId",
+                title: "SKU ID",
+                align: "center",
+                width: "20px",
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'ssuId',
+                title: 'SSU ID',
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'skuName',
+                title: '商品名称',
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'purchaseId',
+                title: '供应商ID',
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'purchaseName',
+                title: '供应商名称',
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'class1Name',
+                title: '一级分类',
+                formatter: formatterToValue
+            }, {
+                align: "center",
+                field: 'receiveNum',
+                title: '收货量',
+            }, {
+                align: "center",
+                field: 'sortingNum',
+                title: '越库分拣量',
+            }, {
+                align: "center",
+                field: 'returnNum',
+                title: '越库分剩量',
+                formatter :function(value, row, index) {
+                    if(value>0){
+                        return [ "<a  class='record-detail'>",''+value+'','</a>' ].join('');
+                    }else{
+                        return value;
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog(e, value, row, index);
+                    }
+                }
+            },{
+                align: "center",
+                field: 'differenceNum',
+                title: '差异量',
+            }]
+    });
+
+    $("#detailTable").bootstrapTable(
+        {
+            toolbar: "#toolbar_differentialReturnDetail",
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var idParam={fApplyId:id};
+                var newParams = $.extend(true,{},params,idParam);
+                return newParams;
+            },
+            columns : [
+              {
+                    align: "center",
+                    field : 'packingNo',
+                    title : '包裹码',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'containerCode',
+                    title : '容器',
+                    formatter: formatterToValue
+                },
+
+                {
+                    align: "center",
+                    field : 'returnNum',
+                    title : '数量',
+                },
+                {
+                    align: "center",
+                    field : 'unit',
+                    title : '操作人',
+                    formatter: function (value, row, index) {
+                        var shipment='系统';
+                        if(row.cU){
+                            shipment=row.cU + '-' + row.cUname;
+                        }
+                    return shipment;
+                }
+                },{
+                    align: "center",
+                    field : 'cTFormative',
+                    title : '操作时间',
+                    formatter: formatterToValue
+                }]
+        });
+
+    //弹出层
+    var id=0;
+    function detailTableDialog(e, value, row, index){
+
+        $('#modal_detailTable').modal("show");
+        id=row.id;
+        $('#detailTable').bootstrapTable('refresh',{
+            url: '',
+            query:{
+                fApplyId:id
+            }
+        });
+    }
+    function convertSerializeArrayToObject(array) {
+        var obj = {};
+        for(var i = 0, length = array.length; i<length; i++){
+            obj[array[i]['name']] =array[i]['value'];
+        }
+        return obj;
+    }
+    //导出
+    $('#exportBtn').on('click', function () {
+        // 1. 未勾选时导出全部
+        var selectedRecords = $('#mainTable').bootstrapTable("getSelections");
+        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
+        if(dataNum===0){
+            return true;
+        }else{
+            if (selectedRecords.length === 0) {
+                $.confirm({
+                    title: '导出确认',
+                    confirmButton: "确认",
+                    cancelButton: "取消",
+                    content: '你未勾选记录，将会导出全部?',
+                    confirm: function(){
+                        var $form = $('#form_differentialReturn_q').clone();
+                        $form.attr({'action':'/differentialReturn/exportAll',"method":"post"});
+                        $('body').append($form);
+                        $form.hide();
+                        $form.submit();
+                        $form.remove();
+                        return true;
+                    }
+                });
+                return true;
+            }else{
+                // 勾选时按勾选的导出
+                var $exportForm = $("<form></form>");
+                $exportForm.attr({
+                    "style":"display:none",
+                    "action":"/differentialReturn/export",
+                    "method":"post",
+                });
+                var reportJson = JSON.stringify($table.bootstrapTable('getSelections'));
+                var $idCheckbox = $("<input type='text' name='reportJson' value='"+reportJson+"'/>")
+                $idCheckbox.appendTo($exportForm);
+                console.log($exportForm);
+                $(document.body).append($exportForm);
+                $exportForm.submit();
+                $exportForm.remove();
+            }
+        }
+    });
+    function formatterToValue(value, row, index) {
+        if(value && value!=null && value !="1970"){
+
+        }else{
+            value="-";
+        }
+        return value;
+    }*/
+</script>
+</body>
+</html>

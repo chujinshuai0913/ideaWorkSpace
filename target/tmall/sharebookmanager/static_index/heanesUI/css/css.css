@@ -1,0 +1,82 @@
+body{color:#222}
+/**
+ * @doc 页面前端常用样式
+ * @author fanggang
+ * @time 2017-06-24 14:49:40 周六
+ */
+.date-picker{width:144px !important;}
+/* 数据列表头部的处理按钮 */
+.data-list-handle{margin:18px 0;}
+.data-list-handle .handle-btn:first-child{margin-left:10px}
+.data-list-handle .handle-btn:not(:last-child){margin-right:10px}
+
+/* 数据列表中的样式 */
+.table tbody tr td p{margin:0;}
+.record-handle.handle-detail{color:#0000ff;cursor:pointer;}
+
+/* 弹出层中的样式 */
+.modal{background-color:rgba(0,0,0,0.5);}
+.modal .modal-content-title{font-size:16px;}
+.modal .modal-handle{margin:20px 0;padding-right:16px;overflow:hidden;}
+.modal .modal-handle [type="button"]:not(:last-child){margin-right:10px}
+.modal .modal-handle .handle-right{float:right;}
+
+.sorting-detail-modal{min-width:800px;}
+
+/**
+ * @doc 收货确认单
+ * @author Heanes
+ * @time 2017-07-08 17:37:22 周六
+ */
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a4{width:1134px;height:800px;margin:0 auto}
+/**
+ * @doc A5纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a5{width:1134px;height:800px;margin:0 auto}
+.print-paper{outline:0;box-shadow:0 1px 15px rgba(0,0,0,0.5);animation:glow 1s ease-in-out;-webkit-animation-duration:1s;-webkit-animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;-webkit-animation-direction:alternate}
+.print-paper-footer{position:absolute;width:100%;bottom:30px}
+.receipts-delivered-print{padding:30px 50px 50px}
+.receipts-delivered-print .print-paper-content{position:relative;height:100%}
+.receipts-delivered-print .receipts-title{display:table;width:100%}
+.receipts-delivered-print .receipts-title .cell{display:table-cell;width:33.333%;vertical-align:middle}
+.receipts-delivered-print .receipts-title .cell .self-service-phone{font-size:20px}
+.receipts-delivered-print .receipts-title .cell h1{font-size:22px}
+.receipts-delivered-print .receipts-delivery-info{display:table;width:100%;margin-bottom:20px}
+.receipts-delivered-print .receipts-delivery-info .cell{display:table-cell;width:33.333%}
+.receipts-delivered-print .receipts-delivery-info .cell .h2-field{font-size:22px;font-weight:600}
+.receipts-delivered-print .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px}
+.receipts-delivered-print .cell dl.data-dl{margin-bottom:8px}
+.receipts-delivered-print .cell dl.data-dl{display:table}
+.receipts-delivered-print .cell dl.data-dl dt{min-width:70px;text-align:right;font-weight:normal}
+.receipts-delivered-print .cell dl.data-dl dt,.receipts-delivered-print .cell dl.data-dl dd{display:table-cell}
+.receipts-delivered-print .receipts-summary .cell{display:table-cell;width:20%}
+.receipts-signature{margin-bottom:20px}
+.receipts-delivered-print .receipts-remark{color:#555}
+.receipts-delivered-print .receipts-remark .remark-content{font-weight:normal;font-size:13px}
+.print-handle{margin-top:30px;text-align:center}
+/**
+ * @doc 退正库单
+ * @author Heanes
+ * @time 2017-10-27 11:55:40 周五
+ */
+.receipts-delivered-print .print-paper-name{text-align:center}
+.receipts-delivered-print .qrcode-wrap{text-align:center}
+.receipts-delivered-print .qrcode-show{display:inline-block;width:60px;height:60px}
+.receipts-delivered-print .dispatch-data-table thead th{text-align:center}
+.receipts-delivered-print .dispatch-data-table td:nth-child(1){width:50px;text-align:center}
+.receipts-delivered-print .dispatch-data-table td:nth-child(2){width:120px}
+.receipts-delivered-print .dispatch-data-table td:nth-child(3){width:100px}
+.receipts-delivered-print .dispatch-data-table td:nth-child(4){width:100px}
+.receipts-delivered-print .dispatch-data-table td:nth-child(5){width:280px}
+.receipts-delivered-print .dispatch-data-table td:nth-child(6){width:160px}
+.receipts-delivered-print .dispatch-info table{line-height:30px}
+.receipts-delivered-print .dispatch-info table.separate-average-3 td{width:33.333%}
+/*# sourceMappingURL=css.css.map */
+

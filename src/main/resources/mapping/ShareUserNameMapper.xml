@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sharebook.mapper.ShareUserNameMapper" >
+  <resultMap id="BaseResultMap" type="sharebook.model.ShareUserName" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone_number" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="school_code" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="integral" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="registered_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="login_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ban_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="delete_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ban_longtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_name, real_name, phone_number, school_code, status, integral, registered_time, 
+    login_time, ban_time, delete_time, c_u, c_t, ban_longtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="sharebook.model.ShareUserNameExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from share_username
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_username
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from share_username
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="sharebook.model.ShareUserNameExample" >
+    delete from share_username
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="sharebook.model.ShareUserName" >
+    insert into share_username (id, user_name, real_name, 
+      phone_number, school_code, status, 
+      integral, registered_time, login_time, 
+      ban_time, delete_time, c_u, 
+      c_t, ban_longtime)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=BIGINT}, #{schoolCode,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{integral,jdbcType=INTEGER}, #{registeredTime,jdbcType=INTEGER}, #{loginTime,jdbcType=INTEGER}, 
+      #{banTime,jdbcType=INTEGER}, #{deleteTime,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, 
+      #{cT,jdbcType=INTEGER}, #{banLongtime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="sharebook.model.ShareUserName" >
+    insert into share_username
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="schoolCode != null" >
+        school_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="registeredTime != null" >
+        registered_time,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="banTime != null" >
+        ban_time,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="cU != null" >
+        c_u,
+      </if>
+      <if test="cT != null" >
+        c_t,
+      </if>
+      <if test="banLongtime != null" >
+        ban_longtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=BIGINT},
+      </if>
+      <if test="schoolCode != null" >
+        #{schoolCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="registeredTime != null" >
+        #{registeredTime,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=INTEGER},
+      </if>
+      <if test="banTime != null" >
+        #{banTime,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="banLongtime != null" >
+        #{banLongtime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="sharebook.model.ShareUserNameExample" resultType="java.lang.Integer" >
+    select count(*) from share_username
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update share_username
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumber != null" >
+        phone_number = #{record.phoneNumber,jdbcType=BIGINT},
+      </if>
+      <if test="record.schoolCode != null" >
+        school_code = #{record.schoolCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.integral != null" >
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.registeredTime != null" >
+        registered_time = #{record.registeredTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginTime != null" >
+        login_time = #{record.loginTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.banTime != null" >
+        ban_time = #{record.banTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleteTime != null" >
+        delete_time = #{record.deleteTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.cU != null" >
+        c_u = #{record.cU,jdbcType=INTEGER},
+      </if>
+      <if test="record.cT != null" >
+        c_t = #{record.cT,jdbcType=INTEGER},
+      </if>
+      <if test="record.banLongtime != null" >
+        ban_longtime = #{record.banLongtime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update share_username
+    set id = #{record.id,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=BIGINT},
+      school_code = #{record.schoolCode,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      integral = #{record.integral,jdbcType=INTEGER},
+      registered_time = #{record.registeredTime,jdbcType=INTEGER},
+      login_time = #{record.loginTime,jdbcType=INTEGER},
+      ban_time = #{record.banTime,jdbcType=INTEGER},
+      delete_time = #{record.deleteTime,jdbcType=INTEGER},
+      c_u = #{record.cU,jdbcType=INTEGER},
+      c_t = #{record.cT,jdbcType=INTEGER},
+      ban_longtime = #{record.banLongtime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="sharebook.model.ShareUserName" >
+    update share_username
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=BIGINT},
+      </if>
+      <if test="schoolCode != null" >
+        school_code = #{schoolCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="registeredTime != null" >
+        registered_time = #{registeredTime,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=INTEGER},
+      </if>
+      <if test="banTime != null" >
+        ban_time = #{banTime,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        c_u = #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        c_t = #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="banLongtime != null" >
+        ban_longtime = #{banLongtime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sharebook.model.ShareUserName" >
+    update share_username
+    set user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=BIGINT},
+      school_code = #{schoolCode,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      registered_time = #{registeredTime,jdbcType=INTEGER},
+      login_time = #{loginTime,jdbcType=INTEGER},
+      ban_time = #{banTime,jdbcType=INTEGER},
+      delete_time = #{deleteTime,jdbcType=INTEGER},
+      c_u = #{cU,jdbcType=INTEGER},
+      c_t = #{cT,jdbcType=INTEGER},
+      ban_longtime = #{banLongtime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/**
+ * @doc 收货确认单
+ * @author Heanes
+ * @time 2017-07-08 17:37:22 周六
+ */
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+@media print{.no-print{display:none}
+}.print-end-page{page-break-after:always}
+.print-list-handle{width:886px;margin:0 auto}
+.print-list-handle .to-print{margin-bottom:20px;text-align:right}
+.receipts-delivered-paper{padding:10px}
+/**
+ * @doc 横向打印
+ */
+@page{/*size:landscape;*/}
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a4{width:836px;height:1110px;margin:0 auto}
+/**
+ * @doc A5纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a5{width:836px;height:550px;margin:0 auto}
+.print-paper{outline:0;box-shadow:0 1px 15px rgba(0,0,0,0.5);animation:glow 1s ease-in-out;-webkit-animation-duration:1s;-webkit-animation-timing-function:ease-in-out;-webkit-animation-iteration-count:infinite;-webkit-animation-direction:alternate;background-color:#fff;page-break-after:always}
+.print-paper-footer{position:absolute;width:100%;bottom:20px}
+.receipts-delivered-print{padding:30px 50px;font-size:14px}
+.print-paper-content{position:relative;height:100%;/*min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;*/
+    padding-bottom:130px;page-break-after:always}
+.print-paper-header h1{margin-bottom:0}
+.print-paper-header .receipts-title{display:table;width:100%;margin-bottom:10px}
+.print-paper-header .receipts-title .cell{display:table-cell;width:33.333%;vertical-align:middle}
+.print-paper-header .receipts-title .cell .self-service-phone{font-size:18px}
+.print-paper-header .receipts-title .cell h1{font-size:18px}
+.print-paper-header .receipts-delivery-info{display:table;width:100%;margin-bottom:20px}
+.print-paper-header .receipts-delivery-info .cell{display:table-cell;width:33.333%;vertical-align:top}
+.print-paper-header .receipts-delivery-info .cell .h2-field{font-size:18px;font-weight:600}
+.print-paper-header .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px}
+.print-paper-header .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px}
+.receipts-data-table{font-size:13px}
+.receipts-data-table table{table-layout:fixed;font-size:12px}
+.receipts-data-table table thead th{text-align:center}
+.receipts-data-table table td:nth-child(1){width:30px;text-align:center}
+.receipts-data-table table td:nth-child(2){width:110px}
+.receipts-data-table table td:nth-child(3){width:230px}
+.receipts-data-table table td:nth-child(4){width:70px}
+.receipts-data-table table td:nth-child(5){width:70px}
+.receipts-data-table table td:nth-child(6){width:70px}
+.receipts-data-table table td:nth-child(7){width:70px}
+.receipts-data-table table tbody th,.receipts-data-table table tbody td{padding:4px;word-break:break-all;white-space:nowrap;overflow:hidden}
+.bar-code .receipts-title .cell{vertical-align:top}
+.bar-code .receipts-delivery-info .cell{vertical-align:bottom}
+.cell dl.data-dl{margin-bottom:8px}
+.cell dl.data-dl:last-child{margin-bottom:0}
+.cell dl.data-dl{display:table}
+.cell dl.data-dl dt{min-width:70px;text-align:right;font-weight:normal}
+.cell dl.data-dl dt,.cell dl.data-dl dd{display:table-cell}
+.receipts-summary,.receipts-signature{display:table;width:100%}
+.receipts-summary .cell,.receipts-signature .cell{display:table-cell;line-height:36px;white-space:nowrap}
+.receipts-summary .cell.col6,.receipts-signature .cell.col6{width:16.65%}
+.receipts-summary .cell:not(:first-child),.receipts-signature .cell:not(:first-child){text-align:center}
+.receipts-summary .need-pay-info,.receipts-signature .need-pay-info{font-size:20px;font-weight:600;white-space:nowrap}
+.print-paper-content .receipts-remark{color:#555}
+.print-paper-content .receipts-remark .remark-content{display:table;width:100%;font-weight:normal;font-size:12px}
+.print-paper-content .receipts-remark .remark-content .remark{display:table-cell;max-width:50%}
+.print-handle{width:836px;text-align:right;margin:0 auto 20px}
+/**
+ * @doc 退正库单
+ * @author Heanes
+ * @time 2017-10-27 11:55:40 周五
+ */
+.print-paper-content{}
+.print-paper-content table{margin:0 auto}
+.print-paper-content .print-paper-name{text-align:center;margin:0}
+.print-paper-content .qrcode-wrap{text-align:center}
+.print-paper-content .qrcode-wrap .qrcode-show{display:inline-block;width:60px;height:60px}
+.print-paper-content .barcode-wrap{text-align:center}
+.print-paper-content .dispatch-data-table{font-size:12px}
+.print-paper-content .dispatch-data-table table{font-size:12px}
+.print-paper-content .dispatch-data-table table thead th{text-align:center}
+.print-paper-content .dispatch-data-table table td:nth-child(1){width:40px;text-align:center}
+.print-paper-content .dispatch-data-table table td:nth-child(2){width:80px}
+.print-paper-content .dispatch-data-table table td:nth-child(3){width:80px}
+.print-paper-content .dispatch-data-table table td:nth-child(4){width:80px}
+.print-paper-content .dispatch-data-table table td:nth-child(5){width:240px}
+.print-paper-content .dispatch-data-table table td:nth-child(6){width:90px}
+.print-paper-content .dispatch-data-table table tbody th,.print-paper-content .dispatch-data-table table tbody td{padding:4px;white-space:nowrap;overflow:hidden}
+.print-paper-content .dispatch-info table{font-size:14px;line-height:24px}
+.print-paper-content .dispatch-info table.separate-average-3 td{width:33.333%}
+.print-paper-content .print-paper-pager{position:absolute;right:0;letter-spacing:3px}
+.print-group{width:886px;margin:0 auto 10px;padding:10px;border:1px solid #ddd}
+.print-group .print-group-handle{width:886px;border-bottom:1px solid #ddd;margin-bottom:10px}

@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<head>
+	<link rel="stylesheet" href="../lib/jqwidgets-3.9.1/css/jqx.base.css" type="text/css" />
+	<link rel="stylesheet" href="../lib/jqwidgets-3.9.1/css/jqx.bootstrap.css" type="text/css" />
+    <script type="text/javascript" src="../lib/jqwidgets-3.9.1/js/jqxcore.js"></script>
+    <script type="text/javascript" src="../lib/jqwidgets-3.9.1/js/jqxtabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // create jqxTabs.
+            $('#jqxTabs').jqxTabs({
+            	theme:"bootstrap",
+            	width:'100%',
+            	autoHeight: true,
+            	showCloseButtons: true ,
+            	scrollPosition:'both',
+            	scrollStep:150,
+            	reorder:true
+            });
+            //隐藏首页删除按钮
+            $('#jqxTabs').jqxTabs('hideCloseButtonAt', 0); 
+            //tab选择事件 关联导航树
+            $('#jqxTabs').bind('selected', function (event) {
+                var item = event.args.item;
+                var treeview_tab_id = $('#jqxTabs').jqxTabs('getContentAt', item).find('div.treeview-tab-node').attr('id');
+                if(treeview_tab_id.indexOf("tab_node_")!=-1){
+                	var treeview_node_id = treeview_tab_id.substring("tab_node_".length);
+                	if(treeview_node_id){
+                		$('#tree').treeview('selectNode', [ Number(treeview_node_id), { silent: true } ]);
+                	}
+                }
+            });
+        });
+    </script>
+</head>
+<div id='jqxTabs' style="border:none!important;">
+     <ul style="margin-left: 30px;" id="indexTabs">
+     		<li>首页</li>
+     </ul>
+     <div>
+   		<div id="tab_node_0" class="treeview-tab-node">
+		   	
+   		</div>
+     </div>
+</div>

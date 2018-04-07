@@ -1,0 +1,192 @@
+[
+  {
+    "text": "分拣",
+    "href": "",
+    "nodes": [
+      {
+        "text": "越库",
+        "href": "",
+        "nodes": [
+          {
+            "text": "采购单查询",
+            "href": "../purchaseOrder/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "收货明细查询",
+            "href": "../receiveDetail/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "差异退货查询",
+            "href": "../differentialReturn/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "采购收货调整单查询",
+            "href": "../purchaseReceiveAdjust/list.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "收货",
+        "href": "",
+        "nodes": [
+          {
+            "text": "支线收货查询",
+            "href": "../stationReceive/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "支线上架查询",
+            "href": "../stationPutaway/list.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "库存",
+        "href": "",
+        "nodes": [
+          {
+            "text": "分拣中心库存",
+            "href": "../stock/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "分拣库存流水",
+            "href": "{{protocol}}//dms-stats.{{env}}.yunshanmeicai.com/dmsStockRecordQuery/index.mc",
+            "outsideLink": true,
+            "nodes": []
+          },
+          {
+            "text": "分拣库存调整审批",
+            "href": "../stockAdjust/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "分拣库存调整查询",
+            "href": "../stockAdjust/listByDay.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "分拣",
+        "href": "",
+        "nodes": [
+          {
+            "text": "分拣任务查询",
+            "href": "../dmsSortingTaskQuery/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "分拣订单查询",
+            "href": "../dmsOrderItemQuery/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "分拣明细查询",
+            "href": "{{protocol}}//dms-stats.{{env}}.yunshanmeicai.com/dmsSortingDetailQuery/index.mc",
+            "outsideLink": true,
+            "nodes": []
+          },
+           {
+            "text": "分拣任务释放",
+            "href": "../sortingLock/index.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "收货确认单",
+        "href": "",
+        "nodes": [
+          {
+            "text": "按线打印",
+            "href": "../dmsPrintRouteReceipt/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "按门店打印",
+            "href": "../dmsPrintCompanyReceipt/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "打印服务",
+            "href": "../printService/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "打印模版",
+            "href": "../printTemplate/list.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "客退",
+        "href": "",
+        "nodes": [
+          {
+            "text": "客退入库单查询",
+            "href": "../dmsCompanyReturn/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "客退收货明细查询",
+            "href": "../dmsCompanyReturnContainer/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "客退上架单查询",
+            "href": "../dmsCompanyReturnPutawayTask/list.mc",
+            "nodes": []
+          },
+          {
+            "text": "客退上架明细查询",
+            "href": "../dmsCompanyReturnPutawayTask/listDetail.mc",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "text": "退正库",
+        "href": "",
+        "nodes": [
+          {
+            "text": "自动分剩退正库配置",
+            "href": "../autoReturnConfigs/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "站点退正库单",
+            "href": "../dmsReturnTask/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "分剩退正库单",
+            "href": "../returnOrder/returnOrderList.mc",
+            "nodes": []
+          },
+          {
+            "text": "分剩退货调整审批",
+            "href": "../returnOrder/treatList.mc",
+            "nodes": []
+          },
+          {
+            "text": "供应商退货单",
+            "href": "../supplierReturnOrder/index.mc",
+            "nodes": []
+          },
+          {
+            "text": "分剩退正库上架明细",
+            "href": "../putwayDetail/list.mc",
+            "nodes": []
+          }
+        ]
+      }
+    ]
+  }
+]
