@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.BookGiftMapper" >
+  <resultMap id="BaseResultMap" type="common.model.BookGift" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sku_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="seller_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src4" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="upload_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="deal_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="useable_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="use_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pre_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="import_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="import_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pricingunit" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="book_type2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_type1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_type_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="book_type_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional_type1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional_type2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional_type_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional_type_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sku_id, seller_id, book_name, remark, src1, src2, src3, src4, status, upload_time, 
+    deal_time, useable_num, use_num, pre_num, state, c_u, c_t, print_user, print_time, 
+    import_user, import_time, export_user, export_time, flag, pricingunit, book_type2, 
+    book_type1, book_type_name2, book_type_name1, professional_type1, professional_type2, 
+    professional_type_name1, professional_type_name2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_gift
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book_gift
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.BookGift" >
+    insert into book_gift (id, sku_id, seller_id, 
+      book_name, remark, src1, 
+      src2, src3, src4, status, 
+      upload_time, deal_time, useable_num, 
+      use_num, pre_num, state, 
+      c_u, c_t, print_user, 
+      print_time, import_user, import_time, 
+      export_user, export_time, flag, 
+      pricingunit, book_type2, book_type1, 
+      book_type_name2, book_type_name1, professional_type1, 
+      professional_type2, professional_type_name1, 
+      professional_type_name2)
+    values (#{id,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, 
+      #{bookName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{src1,jdbcType=VARCHAR}, 
+      #{src2,jdbcType=VARCHAR}, #{src3,jdbcType=VARCHAR}, #{src4,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{uploadTime,jdbcType=INTEGER}, #{dealTime,jdbcType=INTEGER}, #{useableNum,jdbcType=INTEGER}, 
+      #{useNum,jdbcType=INTEGER}, #{preNum,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{cU,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, #{printUser,jdbcType=INTEGER}, 
+      #{printTime,jdbcType=INTEGER}, #{importUser,jdbcType=INTEGER}, #{importTime,jdbcType=INTEGER}, 
+      #{exportUser,jdbcType=INTEGER}, #{exportTime,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
+      #{pricingunit,jdbcType=VARCHAR}, #{bookType2,jdbcType=INTEGER}, #{bookType1,jdbcType=INTEGER}, 
+      #{bookTypeName2,jdbcType=VARCHAR}, #{bookTypeName1,jdbcType=VARCHAR}, #{professionalType1,jdbcType=INTEGER}, 
+      #{professionalType2,jdbcType=INTEGER}, #{professionalTypeName1,jdbcType=VARCHAR}, 
+      #{professionalTypeName2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.BookGift" >
+    insert into book_gift
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="src1 != null" >
+        src1,
+      </if>
+      <if test="src2 != null" >
+        src2,
+      </if>
+      <if test="src3 != null" >
+        src3,
+      </if>
+      <if test="src4 != null" >
+        src4,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+      <if test="useableNum != null" >
+        useable_num,
+      </if>
+      <if test="useNum != null" >
+        use_num,
+      </if>
+      <if test="preNum != null" >
+        pre_num,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="cU != null" >
+        c_u,
+      </if>
+      <if test="cT != null" >
+        c_t,
+      </if>
+      <if test="printUser != null" >
+        print_user,
+      </if>
+      <if test="printTime != null" >
+        print_time,
+      </if>
+      <if test="importUser != null" >
+        import_user,
+      </if>
+      <if test="importTime != null" >
+        import_time,
+      </if>
+      <if test="exportUser != null" >
+        export_user,
+      </if>
+      <if test="exportTime != null" >
+        export_time,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit,
+      </if>
+      <if test="bookType2 != null" >
+        book_type2,
+      </if>
+      <if test="bookType1 != null" >
+        book_type1,
+      </if>
+      <if test="bookTypeName2 != null" >
+        book_type_name2,
+      </if>
+      <if test="bookTypeName1 != null" >
+        book_type_name1,
+      </if>
+      <if test="professionalType1 != null" >
+        professional_type1,
+      </if>
+      <if test="professionalType2 != null" >
+        professional_type2,
+      </if>
+      <if test="professionalTypeName1 != null" >
+        professional_type_name1,
+      </if>
+      <if test="professionalTypeName2 != null" >
+        professional_type_name2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="src1 != null" >
+        #{src1,jdbcType=VARCHAR},
+      </if>
+      <if test="src2 != null" >
+        #{src2,jdbcType=VARCHAR},
+      </if>
+      <if test="src3 != null" >
+        #{src3,jdbcType=VARCHAR},
+      </if>
+      <if test="src4 != null" >
+        #{src4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=INTEGER},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=INTEGER},
+      </if>
+      <if test="useableNum != null" >
+        #{useableNum,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="preNum != null" >
+        #{preNum,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="printUser != null" >
+        #{printUser,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="importUser != null" >
+        #{importUser,jdbcType=INTEGER},
+      </if>
+      <if test="importTime != null" >
+        #{importTime,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null" >
+        #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null" >
+        #{exportTime,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pricingunit != null" >
+        #{pricingunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType2 != null" >
+        #{bookType2,jdbcType=INTEGER},
+      </if>
+      <if test="bookType1 != null" >
+        #{bookType1,jdbcType=INTEGER},
+      </if>
+      <if test="bookTypeName2 != null" >
+        #{bookTypeName2,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTypeName1 != null" >
+        #{bookTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalType1 != null" >
+        #{professionalType1,jdbcType=INTEGER},
+      </if>
+      <if test="professionalType2 != null" >
+        #{professionalType2,jdbcType=INTEGER},
+      </if>
+      <if test="professionalTypeName1 != null" >
+        #{professionalTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTypeName2 != null" >
+        #{professionalTypeName2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.BookGift" >
+    update book_gift
+    <set >
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="src1 != null" >
+        src1 = #{src1,jdbcType=VARCHAR},
+      </if>
+      <if test="src2 != null" >
+        src2 = #{src2,jdbcType=VARCHAR},
+      </if>
+      <if test="src3 != null" >
+        src3 = #{src3,jdbcType=VARCHAR},
+      </if>
+      <if test="src4 != null" >
+        src4 = #{src4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=INTEGER},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=INTEGER},
+      </if>
+      <if test="useableNum != null" >
+        useable_num = #{useableNum,jdbcType=INTEGER},
+      </if>
+      <if test="useNum != null" >
+        use_num = #{useNum,jdbcType=INTEGER},
+      </if>
+      <if test="preNum != null" >
+        pre_num = #{preNum,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        c_u = #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        c_t = #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="printUser != null" >
+        print_user = #{printUser,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        print_time = #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="importUser != null" >
+        import_user = #{importUser,jdbcType=INTEGER},
+      </if>
+      <if test="importTime != null" >
+        import_time = #{importTime,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null" >
+        export_user = #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null" >
+        export_time = #{exportTime,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit = #{pricingunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType2 != null" >
+        book_type2 = #{bookType2,jdbcType=INTEGER},
+      </if>
+      <if test="bookType1 != null" >
+        book_type1 = #{bookType1,jdbcType=INTEGER},
+      </if>
+      <if test="bookTypeName2 != null" >
+        book_type_name2 = #{bookTypeName2,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTypeName1 != null" >
+        book_type_name1 = #{bookTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalType1 != null" >
+        professional_type1 = #{professionalType1,jdbcType=INTEGER},
+      </if>
+      <if test="professionalType2 != null" >
+        professional_type2 = #{professionalType2,jdbcType=INTEGER},
+      </if>
+      <if test="professionalTypeName1 != null" >
+        professional_type_name1 = #{professionalTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTypeName2 != null" >
+        professional_type_name2 = #{professionalTypeName2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.BookGift" >
+    update book_gift
+    set sku_id = #{skuId,jdbcType=INTEGER},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      src1 = #{src1,jdbcType=VARCHAR},
+      src2 = #{src2,jdbcType=VARCHAR},
+      src3 = #{src3,jdbcType=VARCHAR},
+      src4 = #{src4,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=INTEGER},
+      deal_time = #{dealTime,jdbcType=INTEGER},
+      useable_num = #{useableNum,jdbcType=INTEGER},
+      use_num = #{useNum,jdbcType=INTEGER},
+      pre_num = #{preNum,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      c_u = #{cU,jdbcType=INTEGER},
+      c_t = #{cT,jdbcType=INTEGER},
+      print_user = #{printUser,jdbcType=INTEGER},
+      print_time = #{printTime,jdbcType=INTEGER},
+      import_user = #{importUser,jdbcType=INTEGER},
+      import_time = #{importTime,jdbcType=INTEGER},
+      export_user = #{exportUser,jdbcType=INTEGER},
+      export_time = #{exportTime,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      pricingunit = #{pricingunit,jdbcType=VARCHAR},
+      book_type2 = #{bookType2,jdbcType=INTEGER},
+      book_type1 = #{bookType1,jdbcType=INTEGER},
+      book_type_name2 = #{bookTypeName2,jdbcType=VARCHAR},
+      book_type_name1 = #{bookTypeName1,jdbcType=VARCHAR},
+      professional_type1 = #{professionalType1,jdbcType=INTEGER},
+      professional_type2 = #{professionalType2,jdbcType=INTEGER},
+      professional_type_name1 = #{professionalTypeName1,jdbcType=VARCHAR},
+      professional_type_name2 = #{professionalTypeName2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryBookGiftCount" resultType="java.lang.Integer" parameterType="common.query.BookGiftQuery">
+    SELECT count(*)
+    FROM book_gift
+    WHERE 1=1
+    <if test="status!=null" >   AND status=#{status}   </if>
+    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
+    <if test="sellerIds != null" >
+      AND  seller_id
+      <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+  <select id="queryBookGiftList" resultMap="BaseResultMap" parameterType="common.query.BookGiftQuery">
+    SELECT *
+    FROM book_gift
+    WHERE 1=1
+    <if test="status!=null" >   AND status=#{status}   </if>
+    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
+    <if test="sellerIds!= null" >
+      AND  seller_id
+      <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <update id="updateBookGiftStatus" >
+    update book_auction
+    set status = #{status},c_u = #{userId}, c_t = #{cTime}
+    where id = #{id}
+  </update>
+</mapper>

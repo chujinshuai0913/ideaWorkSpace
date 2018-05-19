@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common.mapper.BookGiftRecMapper">
+  <resultMap id="BaseResultMap" type="common.model.BookGiftRec">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gift_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gift_time" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="success" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cU" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cT" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gift_id, gift_time, num, success, cU, cT, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_gift_rec
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_gift_rec
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.BookGiftRec">
+    insert into book_gift_rec (id, gift_id, gift_time, 
+      num, success, cU, cT, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{giftId,jdbcType=INTEGER}, #{giftTime,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{success,jdbcType=INTEGER}, #{cu,jdbcType=INTEGER}, #{ct,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.BookGiftRec">
+    insert into book_gift_rec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="giftTime != null">
+        gift_time,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="success != null">
+        success,
+      </if>
+      <if test="cu != null">
+        cU,
+      </if>
+      <if test="ct != null">
+        cT,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="giftTime != null">
+        #{giftTime,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="success != null">
+        #{success,jdbcType=INTEGER},
+      </if>
+      <if test="cu != null">
+        #{cu,jdbcType=INTEGER},
+      </if>
+      <if test="ct != null">
+        #{ct,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.BookGiftRec">
+    update book_gift_rec
+    <set>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="giftTime != null">
+        gift_time = #{giftTime,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="success != null">
+        success = #{success,jdbcType=INTEGER},
+      </if>
+      <if test="cu != null">
+        cU = #{cu,jdbcType=INTEGER},
+      </if>
+      <if test="ct != null">
+        cT = #{ct,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.BookGiftRec">
+    update book_gift_rec
+    set gift_id = #{giftId,jdbcType=INTEGER},
+      gift_time = #{giftTime,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      success = #{success,jdbcType=INTEGER},
+      cU = #{cu,jdbcType=INTEGER},
+      cT = #{ct,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getBookGiftRecList" parameterType="common.query.BookGiftRecQuery" resultMap="BaseResultMap">
+      SELECT *
+      FROM book_gift_rec
+      WHERE 1=1
+    <if test="giftTime != null" >   AND  gift_time = #{giftTime}   </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getBookGiftRecCount" parameterType="common.query.BookGiftRecQuery" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM book_gift_rec
+    WHERE 1=1
+    <if test="giftTime != null" >   AND  gift_time = #{giftTime}   </if>
+  </select>
+</mapper>

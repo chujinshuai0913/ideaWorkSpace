@@ -1,0 +1,44 @@
+body{color:#222}
+/**
+ * @doc 页面前端常用样式
+ * @author fanggang
+ * @time 2017-06-24 14:49:40 周六
+ */
+.date-picker{width:144px !important;}
+/* 数据列表头部的处理按钮 */
+.data-list-handle{margin:18px 0;}
+.data-list-handle .handle-btn:first-child{margin-left:10px}
+.data-list-handle .handle-btn:not(:last-child){margin-right:10px}
+
+/* 数据列表中的样式 */
+.table tbody tr td p{margin:0;}
+.record-handle.handle-detail{color:#0000ff;cursor:pointer;}
+
+/* 弹出层中的样式 */
+.modal{background-color:rgba(0,0,0,0.5);}
+.modal .modal-content-title{font-size:16px;}
+.modal .modal-handle{margin:20px 0;padding-right:16px;overflow:hidden;}
+.modal .modal-handle [type="button"]:not(:last-child){margin-right:10px}
+.modal .modal-handle .handle-right{float:right;}
+
+.sorting-detail-modal{min-width:800px;}
+
+.print-help-tips{
+    color: green;
+    padding-left:10px;
+    cursor: pointer;
+}
+.print-help-icon{
+    border-radius: 50%;
+    background-color: #bce89b;
+    width: 24px;
+    display: inline-block;
+    height: 24px;
+    text-align: center;
+    color: green;
+    cursor: pointer;
+}
+.help-content img {
+    max-width: 100%;
+}
+

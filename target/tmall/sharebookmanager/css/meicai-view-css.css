@@ -1,0 +1,45 @@
+body{
+	padding-top: 10px;
+}
+table tr td{
+	word-break:break-all;
+}
+.form-group{
+	margin-top:10px;
+}
+.form-inline .form-group label{
+	width:87px;
+	text-align: center;
+	margin-left: 20px;
+}
+
+select{
+	min-width:184px;
+}
+
+
+.panel-body{
+	padding-bottom: 0px;
+}
+#addOrUpdateModal table>tbody>tr>td{
+	border-top:0px;
+}
+.table-add-or-update>tbody>tr>td{
+	border-top:0px;
+}
+.badge{
+	background-color: red;position:absolute; top:-5px; right:-10px;
+}
+.label>span{
+	border: 0px;
+}
+.label2>span {
+	border: 0px;
+	float: left;
+}
+.table-add-or-update tr td{
+	height: 50px;
+}
+/*
+<span class="form-control" style="box-shadow:inset 0 0 0;">
+*/

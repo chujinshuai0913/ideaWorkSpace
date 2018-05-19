@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.BookAuctionMapper" >
+  <resultMap id="BaseResultMap" type="common.model.BookAuction" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="seller_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="auction_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="pricingunit" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buyer_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="deal_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src4" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="upload_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fail_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_type2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_type1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="book_type_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="book_type_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional_type1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional_type2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional_type_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional_type_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, seller_id, book_id, auction_name, price, pricingunit, buyer_id, deal_price, remark, 
+    src1, src2, src3, src4, upload_time, start_time, end_time, state, status, fail_reason, 
+    c_u, c_t, book_type2, book_type1, book_type_name2, book_type_name1, professional_type1, 
+    professional_type2, professional_type_name1, professional_type_name2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_auction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book_auction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.BookAuction" >
+    insert into book_auction (id, seller_id, book_id, 
+      auction_name, price, pricingunit, 
+      buyer_id, deal_price, remark, 
+      src1, src2, src3, src4, 
+      upload_time, start_time, end_time, 
+      state, status, fail_reason, 
+      c_u, c_t, book_type2, 
+      book_type1, book_type_name2, book_type_name1, 
+      professional_type1, professional_type2, professional_type_name1, 
+      professional_type_name2)
+    values (#{id,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+      #{auctionName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{pricingunit,jdbcType=VARCHAR}, 
+      #{buyerId,jdbcType=INTEGER}, #{dealPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{src1,jdbcType=VARCHAR}, #{src2,jdbcType=VARCHAR}, #{src3,jdbcType=VARCHAR}, #{src4,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=INTEGER}, #{startTime,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{failReason,jdbcType=VARCHAR}, 
+      #{cU,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, #{bookType2,jdbcType=INTEGER}, 
+      #{bookType1,jdbcType=INTEGER}, #{bookTypeName2,jdbcType=VARCHAR}, #{bookTypeName1,jdbcType=VARCHAR}, 
+      #{professionalType1,jdbcType=INTEGER}, #{professionalType2,jdbcType=INTEGER}, #{professionalTypeName1,jdbcType=VARCHAR}, 
+      #{professionalTypeName2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.BookAuction" >
+    insert into book_auction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="auctionName != null" >
+        auction_name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="dealPrice != null" >
+        deal_price,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="src1 != null" >
+        src1,
+      </if>
+      <if test="src2 != null" >
+        src2,
+      </if>
+      <if test="src3 != null" >
+        src3,
+      </if>
+      <if test="src4 != null" >
+        src4,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failReason != null" >
+        fail_reason,
+      </if>
+      <if test="cU != null" >
+        c_u,
+      </if>
+      <if test="cT != null" >
+        c_t,
+      </if>
+      <if test="bookType2 != null" >
+        book_type2,
+      </if>
+      <if test="bookType1 != null" >
+        book_type1,
+      </if>
+      <if test="bookTypeName2 != null" >
+        book_type_name2,
+      </if>
+      <if test="bookTypeName1 != null" >
+        book_type_name1,
+      </if>
+      <if test="professionalType1 != null" >
+        professional_type1,
+      </if>
+      <if test="professionalType2 != null" >
+        professional_type2,
+      </if>
+      <if test="professionalTypeName1 != null" >
+        professional_type_name1,
+      </if>
+      <if test="professionalTypeName2 != null" >
+        professional_type_name2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="auctionName != null" >
+        #{auctionName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricingunit != null" >
+        #{pricingunit,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="dealPrice != null" >
+        #{dealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="src1 != null" >
+        #{src1,jdbcType=VARCHAR},
+      </if>
+      <if test="src2 != null" >
+        #{src2,jdbcType=VARCHAR},
+      </if>
+      <if test="src3 != null" >
+        #{src3,jdbcType=VARCHAR},
+      </if>
+      <if test="src4 != null" >
+        #{src4,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cU != null" >
+        #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="bookType2 != null" >
+        #{bookType2,jdbcType=INTEGER},
+      </if>
+      <if test="bookType1 != null" >
+        #{bookType1,jdbcType=INTEGER},
+      </if>
+      <if test="bookTypeName2 != null" >
+        #{bookTypeName2,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTypeName1 != null" >
+        #{bookTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalType1 != null" >
+        #{professionalType1,jdbcType=INTEGER},
+      </if>
+      <if test="professionalType2 != null" >
+        #{professionalType2,jdbcType=INTEGER},
+      </if>
+      <if test="professionalTypeName1 != null" >
+        #{professionalTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTypeName2 != null" >
+        #{professionalTypeName2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.BookAuction" >
+    update book_auction
+    <set >
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null" >
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="auctionName != null" >
+        auction_name = #{auctionName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit = #{pricingunit,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="dealPrice != null" >
+        deal_price = #{dealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="src1 != null" >
+        src1 = #{src1,jdbcType=VARCHAR},
+      </if>
+      <if test="src2 != null" >
+        src2 = #{src2,jdbcType=VARCHAR},
+      </if>
+      <if test="src3 != null" >
+        src3 = #{src3,jdbcType=VARCHAR},
+      </if>
+      <if test="src4 != null" >
+        src4 = #{src4,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cU != null" >
+        c_u = #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null" >
+        c_t = #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="bookType2 != null" >
+        book_type2 = #{bookType2,jdbcType=INTEGER},
+      </if>
+      <if test="bookType1 != null" >
+        book_type1 = #{bookType1,jdbcType=INTEGER},
+      </if>
+      <if test="bookTypeName2 != null" >
+        book_type_name2 = #{bookTypeName2,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTypeName1 != null" >
+        book_type_name1 = #{bookTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalType1 != null" >
+        professional_type1 = #{professionalType1,jdbcType=INTEGER},
+      </if>
+      <if test="professionalType2 != null" >
+        professional_type2 = #{professionalType2,jdbcType=INTEGER},
+      </if>
+      <if test="professionalTypeName1 != null" >
+        professional_type_name1 = #{professionalTypeName1,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTypeName2 != null" >
+        professional_type_name2 = #{professionalTypeName2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.BookAuction" >
+    update book_auction
+    set seller_id = #{sellerId,jdbcType=INTEGER},
+      book_id = #{bookId,jdbcType=INTEGER},
+      auction_name = #{auctionName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      pricingunit = #{pricingunit,jdbcType=VARCHAR},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      deal_price = #{dealPrice,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      src1 = #{src1,jdbcType=VARCHAR},
+      src2 = #{src2,jdbcType=VARCHAR},
+      src3 = #{src3,jdbcType=VARCHAR},
+      src4 = #{src4,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      c_u = #{cU,jdbcType=INTEGER},
+      c_t = #{cT,jdbcType=INTEGER},
+      book_type2 = #{bookType2,jdbcType=INTEGER},
+      book_type1 = #{bookType1,jdbcType=INTEGER},
+      book_type_name2 = #{bookTypeName2,jdbcType=VARCHAR},
+      book_type_name1 = #{bookTypeName1,jdbcType=VARCHAR},
+      professional_type1 = #{professionalType1,jdbcType=INTEGER},
+      professional_type2 = #{professionalType2,jdbcType=INTEGER},
+      professional_type_name1 = #{professionalTypeName1,jdbcType=VARCHAR},
+      professional_type_name2 = #{professionalTypeName2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryBookAuctionCount" resultType="java.lang.Integer" parameterType="common.query.BookAuctionQuery">
+    SELECT count(*)
+    FROM book_auction
+    WHERE 1=1
+    <if test="status!=null" >   AND status=#{status}   </if>
+    <if test="endTime != null  ">   <![CDATA[ AND end_time <= #{endTime} ]]> </if>
+    <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
+    <if test="sellerIds != null" >
+      AND  seller_id
+      <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+  <select id="queryBookAuctionList" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
+    SELECT *
+    FROM book_auction
+    WHERE 1=1
+    <if test="status!=null" >   AND status=#{status}   </if>
+    <if test="endTime != null  ">   <![CDATA[ AND end_time <= #{endTime} ]]> </if>
+    <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
+    <if test="sellerIds != null" >
+      AND  seller_id
+      <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <update id="updateBookAuctionStatus" >
+    update book_auction
+    set status = #{status},c_u = #{userId}, c_t = #{cTime}
+    where id = #{id}
+  </update>
+</mapper>

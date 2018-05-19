@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.RecordBorrowMapper" >
+  <resultMap id="BaseResultMap" type="common.model.RecordBorrow" >
+    <constructor >
+      <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="auction_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="total_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="real_end_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="return_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="total_deposit" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="return_deposit" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="pricingunit" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="common.model.RecordBorrow" >
+    insert into record_borrow (id, auction_id, user_id, 
+      total_price, start_time, end_time, 
+      real_end_time, num, return_num, 
+      total_deposit, return_deposit, pricingunit
+      )
+    values (#{id,jdbcType=INTEGER}, #{auctionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{startTime,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, 
+      #{realEndTime,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{returnNum,jdbcType=INTEGER}, 
+      #{totalDeposit,jdbcType=DECIMAL}, #{returnDeposit,jdbcType=DECIMAL}, #{pricingunit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.RecordBorrow" >
+    insert into record_borrow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="auctionId != null" >
+        auction_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="realEndTime != null" >
+        real_end_time,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="returnNum != null" >
+        return_num,
+      </if>
+      <if test="totalDeposit != null" >
+        total_deposit,
+      </if>
+      <if test="returnDeposit != null" >
+        return_deposit,
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="auctionId != null" >
+        #{auctionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="realEndTime != null" >
+        #{realEndTime,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="returnNum != null" >
+        #{returnNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalDeposit != null" >
+        #{totalDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDeposit != null" >
+        #{returnDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="pricingunit != null" >
+        #{pricingunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getRecordBorrowList" parameterType="common.query.RecordBorrowQuery" resultMap="BaseResultMap">
+    select *
+    from record_borrow
+    where  1=1
+    <if test="auctionId != null" >   AND  auction_id = #{auctionId,jdbcType=INTEGER}   </if>
+    <if test="userIds != null" >
+      AND user_id in
+      <foreach collection="userIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getRecordBorrowCount" parameterType="common.query.RecordSellingQuery"  resultType="java.lang.Integer">
+    select count(*)
+    from record_borrow
+    where  1=1
+    <if test="auctionId != null" >   AND  auction_id = #{auctionId,jdbcType=INTEGER}   </if>
+    <if test="userIds != null" >
+      AND user_id in
+      <foreach collection="userIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+  </select>
+</mapper>

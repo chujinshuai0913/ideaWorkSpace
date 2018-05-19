@@ -1,0 +1,163 @@
+[
+  {
+    "text": "常用",
+    "href": "",
+    "nodes": [
+      {
+        "text": "网站用户管理",
+        "href": "",
+        "nodes": [
+          {
+            "text": "用户信息",
+            "href": "sharebookmanager/jsp/sharebookuser.jsp",
+            "nodes": [
+            ]
+          },
+           {
+            "text": "异常用户查询",
+            "href": "sharebookmanager/jsp/abnormalsharebookuser.jsp",
+            "nodes": [
+            ]
+          }
+        ]
+      },
+      {
+        "text": "后台用户管理",
+        "href": "",
+        "nodes": [
+          {
+            "text": "用户信息",
+            "href": "sharebookmanager/jsp/usermanager.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "角色管理",
+            "href": "sharebookmanager/jsp/sharerole.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "权限管理",
+            "href": "",
+            "nodes": [
+            ]
+          }
+        ]
+      },
+      {
+        "text": "书籍管理",
+        "href": "",
+        "nodes": [
+          {
+            "text": "书籍信息",
+            "href": "sharebookmanager/jsp/book.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "售卖书籍",
+            "href": "sharebookmanager/jsp/bookselling.jsp",
+            "nodes": [
+            ]
+          }
+          ,{
+            "text": "租借书籍",
+            "href": "sharebookmanager/jsp/bookborrow.jsp",
+            "nodes": [
+            ]
+          }
+           ,{
+            "text": "赠予书籍",
+            "href": "sharebookmanager/jsp/bookgift.jsp",
+            "nodes": [
+            ]
+          } ,{
+            "text": "竞拍书籍",
+            "href": "sharebookmanager/jsp/bookauction.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "回收书籍",
+            "href": "sharebookmanager/jsp/bookgiftrec.jsp",
+            "nodes": [
+            ]
+          }
+        ]
+      },
+      {
+        "text": "基本信息",
+        "href": "",
+        "nodes": [
+         {
+            "text": "学生/教师信息",
+            "href": "sharebookmanager/jsp/studenteacher.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "专业信息",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "书单信息",
+            "href": "sharebookmanager/jsp/booklist.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "图书分类",
+            "href": "sharebookmanager/jsp/bookclass.jsp",
+            "nodes": [
+            ]
+          }
+        ]
+      },
+      {
+        "text": "活动组织",
+        "href": "",
+        "nodes": [
+          {
+            "text": "活动规划",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "信息发布",
+            "href": "",
+            "nodes": [
+            ]
+          }
+        ]
+      },
+      {
+        "text": "统计报表",
+        "href": "",
+        "nodes": [
+          {
+            "text": "访问热度",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "专业热爱",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "异常用户",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "拍卖统计",
+            "href": "",
+            "nodes": [
+            ]
+          },{
+            "text": "成交统计",
+            "href": "",
+            "nodes": [
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

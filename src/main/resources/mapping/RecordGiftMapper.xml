@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.RecordGiftMapper" >
+  <resultMap id="BaseResultMap" type="common.model.RecordGift" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="selling_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buyer" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="failure_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="complete_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, selling_id, buyer, total, order_time, status, failure_reason, complete_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record_gift
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record_gift
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.RecordGift" >
+    insert into record_gift (id, selling_id, buyer, 
+      total, order_time, status, 
+      failure_reason, complete_time)
+    values (#{id,jdbcType=INTEGER}, #{sellingId,jdbcType=INTEGER}, #{buyer,jdbcType=INTEGER}, 
+      #{total,jdbcType=INTEGER}, #{orderTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{failureReason,jdbcType=VARCHAR}, #{completeTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.RecordGift" >
+    insert into record_gift
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sellingId != null" >
+        selling_id,
+      </if>
+      <if test="buyer != null" >
+        buyer,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failureReason != null" >
+        failure_reason,
+      </if>
+      <if test="completeTime != null" >
+        complete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sellingId != null" >
+        #{sellingId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null" >
+        #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failureReason != null" >
+        #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null" >
+        #{completeTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.RecordGift" >
+    update record_gift
+    <set >
+      <if test="sellingId != null" >
+        selling_id = #{sellingId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null" >
+        buyer = #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failureReason != null" >
+        failure_reason = #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null" >
+        complete_time = #{completeTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.RecordGift" >
+    update record_gift
+    set selling_id = #{sellingId,jdbcType=INTEGER},
+      buyer = #{buyer,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      failure_reason = #{failureReason,jdbcType=VARCHAR},
+      complete_time = #{completeTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getRecordGiftList" parameterType="common.query.RecordGiftQuery" resultMap="BaseResultMap">
+    select *
+    from record_gift
+    WHERE 1=1
+    <if test="sellingId != null" >   AND  selling_id = #{sellingId,jdbcType=INTEGER}   </if>
+    <if test="buyers != null" >
+      AND buyer in
+      <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getRecordGiftCount" parameterType="common.query.RecordGiftQuery"  resultType="java.lang.Integer">
+    select count(*)
+    from record_gift
+    WHERE 1=1
+    <if test="sellingId != null" >   AND  selling_id = #{sellingId,jdbcType=INTEGER}   </if>
+    <if test="buyers != null" >
+      AND buyer in
+      <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+  </select>
+</mapper>

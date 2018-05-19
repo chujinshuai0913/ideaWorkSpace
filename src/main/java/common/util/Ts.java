@@ -8,9 +8,9 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import common.model.UserShare;
 import org.springframework.util.StringUtils;
-import sharebook.constant.Constant;
-import sharebook.model.User;
+import common.constant.ConstantsUtils;
 
 public class Ts {
 	public static boolean hv(String ps) {
@@ -21,8 +21,8 @@ public class Ts {
 		return new Date();
 	}
 
-	public static User getUser(HttpSession session) {
-		return (User) session.getAttribute(Constant.USER_SESSION);
+	public static UserShare getUser(HttpSession session) {
+		return (UserShare) session.getAttribute(ConstantsUtils.UserCode.USER_SESSION);
 	}
 
 	public static int pageCount(double cnt, double pageSize) {

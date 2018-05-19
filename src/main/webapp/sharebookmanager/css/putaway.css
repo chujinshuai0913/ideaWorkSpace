@@ -1,0 +1,62 @@
+.contentTable td {
+	height: 55px;
+}
+.row div{
+	height: 55px;
+}
+.inputBeautiful {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	padding: 3px;
+	background-color: #efeff4;
+	border-color: #CDB79E;
+	border-radius: 0px;
+	text-align: center;
+	padding: 5px;
+	width: 50%;
+}
+
+.divBeautiful {
+	width: 60%;
+	float: left;
+	text-align: center;
+}
+
+.messageBeautiful {
+	position: absolute;
+	top: 0px;
+	z-index: 9999;
+	background: #821818;
+	height: 45px;
+	width: 100%;
+	line-height: 45px;
+	text-align: center;
+	opacity: 0.85;
+}
+
+.messageBeautiful2 {
+	position: absolute;
+	right: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 0px 6px;
+	width: 30px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.row_1{
+	margin-left:auto;
+	height: 40px;
+	background:#fff;
+}
+.row_2{
+	margin-left:auto;
+	border:1px solid #CCC;
+	border-top:0 none;
+	border-left:0 none;
+	border-right:0 none;
+	height: 40px;
+	background:#fff
+}

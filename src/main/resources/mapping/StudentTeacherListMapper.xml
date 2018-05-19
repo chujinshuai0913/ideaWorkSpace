@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.StudentTeacherListMapper" >
+  <resultMap id="BaseResultMap" type="common.model.StudentTeacherList" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="id_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="st_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professional1_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="professional2_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="grade" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, id_number, st_name, professional1, professional2, professional1_name, professional2_name, 
+    grade, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_teacher_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student_teacher_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.StudentTeacherList" >
+    insert into student_teacher_list (id, id_number, st_name, 
+      professional1, professional2, professional1_name, 
+      professional2_name, grade, time
+      )
+    values (#{id,jdbcType=INTEGER}, #{idNumber,jdbcType=INTEGER}, #{stName,jdbcType=VARCHAR}, 
+      #{professional1,jdbcType=INTEGER}, #{professional2,jdbcType=INTEGER}, #{professional1Name,jdbcType=VARCHAR}, 
+      #{professional2Name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.StudentTeacherList" >
+    insert into student_teacher_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="stName != null" >
+        st_name,
+      </if>
+      <if test="professional1 != null" >
+        professional1,
+      </if>
+      <if test="professional2 != null" >
+        professional2,
+      </if>
+      <if test="professional1Name != null" >
+        professional1_name,
+      </if>
+      <if test="professional2Name != null" >
+        professional2_name,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=INTEGER},
+      </if>
+      <if test="stName != null" >
+        #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="professional1 != null" >
+        #{professional1,jdbcType=INTEGER},
+      </if>
+      <if test="professional2 != null" >
+        #{professional2,jdbcType=INTEGER},
+      </if>
+      <if test="professional1Name != null" >
+        #{professional1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="professional2Name != null" >
+        #{professional2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.StudentTeacherList" >
+    update student_teacher_list
+    <set >
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=INTEGER},
+      </if>
+      <if test="stName != null" >
+        st_name = #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="professional1 != null" >
+        professional1 = #{professional1,jdbcType=INTEGER},
+      </if>
+      <if test="professional2 != null" >
+        professional2 = #{professional2,jdbcType=INTEGER},
+      </if>
+      <if test="professional1Name != null" >
+        professional1_name = #{professional1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="professional2Name != null" >
+        professional2_name = #{professional2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.StudentTeacherList" >
+    update student_teacher_list
+    set id_number = #{idNumber,jdbcType=INTEGER},
+      st_name = #{stName,jdbcType=VARCHAR},
+      professional1 = #{professional1,jdbcType=INTEGER},
+      professional2 = #{professional2,jdbcType=INTEGER},
+      professional1_name = #{professional1Name,jdbcType=VARCHAR},
+      professional2_name = #{professional2Name,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      time = #{time,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getStudentTeacherList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from student_teacher_list
+    where id_number= #{schoolCode}
+  </select>
+</mapper>

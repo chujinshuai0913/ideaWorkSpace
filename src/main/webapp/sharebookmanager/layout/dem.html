@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+<script type="text/javascript" src="../static/heanesUI/js/resource/jquery.2.2.4.min.js"></script>
+<script type="text/javascript" src="../static/jquery-2.1.4/jquery.min.js" ></script>
+<script type="text/javascript" src="../static/bootstrap-table-1.9.1/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="../static/bootstrap-table-1.9.1/js/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../static/bootstrap-datepicker-1.5.0/js/bootstrap-datepicker.js" ></script>
+<link rel="stylesheet" href="../static/bootstrap-3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../static/bootstrap-datepicker-1.5.0/css/bootstrap-datepicker.css" />
+<link rel="stylesheet" href="../static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
+    <style type="text/css">
+        body > div {
+            margin: 0px;
+            padding: 0px;
+        }
+        .form-group {
+        	margin-top: 20px;
+        	margin-left: 20px;
+        	margin-right: -5px;
+        }
+        body > div > form > .form-group > label {
+            width: 90px;
+            text-align: center;
+        }
+
+        .form-control, .select2-selection--single {
+            min-width: 160px;
+            max-width: 160px;
+        }
+         a{
+            text-decoration:none;
+            cursor:pointer
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="differentialReturnList" class="panel panel-default" style="padding-right: 0px;">
+        <div>
+            <form id="form_differentialReturn_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                  onkeydown="if(event.keyCode==13){return false;}">
+
+                <div class="form-group" style="margin-left: 30px;">
+                    <label for="startDeliveryDate" style="width:60px;">配送日期</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" style="width: 147px;"
+                               id="startDeliveryDate" name="startDeliveryDate"
+                               placeholder="配送日期(开始)"> <span class="input-group-addon"><i
+                            class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endDeliveryDate" style="width: 30px;">至</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" style="width: 147px;"
+                               id="endDeliveryDate" name="endDeliveryDate" placeholder="配送日期(结束)">
+                        <span class="input-group-addon"><i
+                                class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label onclick="$(this).next().focus();">供应商ID</label> <input
+                        name="purchaseID" type="text" class="form-control" placeholder="ID查询"/>
+                </div>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label onclick="$(this).next().focus();">供应商名称</label> <input
+                        name="purchaseName" type="text" class="form-control" placeholder="名称模糊查询"/>
+                </div>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label onclick="$(this).next().focus();">商品名称</label> <input
+                        name="skuName" type="text" class="form-control" placeholder="商品名称模糊查询"/>
+                </div>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label onclick="$(this).next().focus();">SKU ID</label> <input
+                        name="skuId" type="text" class="form-control" placeholder="SKU ID"/>
+                </div>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label onclick="$(this).next().focus();">SSU ID</label> <input
+                        name="ssuId" type="text" class="form-control" placeholder="SSU ID"/>
+                </div>
+               <!-- <div class="form-group" style="display:inherit;margin-left: 30px;">-->
+               <div class="form-group" style="margin-left: 30px;">
+               	
+                    <label></label>
+                    <button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">查询
+                    </button>&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-success" id="exportBtn">导出</button>
+                </div>
+            </form>
+        </div>
+        <div id="panel-body" style="width: 98%;margin: auto;">
+            <table  id="mainTable"></table>
+        </div>
+    </div>
+       <div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+           <div class="modal-dialog" dialog-width="900px" style="width:900px">
+               <div class="modal-content">
+                   <div class="modal-header">
+                      <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                       <h4 class="modal-title" id="modalTitle">分剩明细</h4>
+                   </div>
+                   <div class="modal-body">
+                            <table id="detailTable"></table>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+<script type="text/javascript">
+
+ 
+
+
+
+    $('#formSearchBtn').on('click', function () {
+        $('#mainTable').bootstrapTable('refresh');
+    });
+    var $table = $("#mainTable");
+    $table.bootstrapTable({
+        toolbar: "#toolbar_differentialReturn",
+        showColumns: false,
+        method:'get',
+        dataType: "json",
+        sidePagination : "client",
+        pagination : true,
+        sortOrder:"asc",
+        pageList : [10,15,25,50,100,'all'],
+        pageNumber:1,
+        pageSize :2,
+        totalField : 10,
+        dataField: 'data',
+        queryParamsType : "page",
+        columns: [{  
+				        field: 'id',  
+				        title: 'Item ID'  ,
+				        align: "center"
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name1'  
+				    }, {  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name2'  
+				    },{  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name3'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name4'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name5'  
+				    },{  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name6'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name7'
+				    }, {  
+				         field: 'name',  
+				          align: "center",
+				        title: 'Item Name8'
+				    },{  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name9' 
+				    }, {  
+				      field: 'name',  
+				          align: "center",
+				        title: 'Item Name10'  
+				    }, {  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name11'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name12'  
+				    }, {  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name13'  
+				    },{  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name14'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name15'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name16'  
+				    },{  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name17'
+				    }, {  
+				        field: 'name',  
+				          align: "center",
+				        title: 'Item Name18'
+				    }, {  
+				         field: 'name',  
+				          align: "center",
+				        title: 'Item Name19'
+				    },{  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name20' 
+				    }, {  
+				      field: 'name',  
+				          align: "center",
+				        title: 'Item Name21'  
+				    }, {  
+				       field: 'name',  
+				          align: "center",
+				        title: 'Item Name22'
+				    }],  
+				    data: [{  
+				        id: 1,  
+				        name: 'Item 1',  
+				        price: '$1'  
+				    }, {  
+				        id: 2,  
+				        name: 'Item 2',  
+				        price: '$2'  
+				    },{  
+				        id: 1,  
+				        name: 'Item 1',  
+				        price: '$1'  
+				    }, {  
+				        id: 2,  
+				        name: 'Item 2',  
+
+				    },{  
+				        id: 1,  
+				        name: 'Item 1',  
+
+				    }, {  
+				        id: 2,  
+				        name: 'Item 2',  
+
+				    },{  
+				        id: 1,  
+				        name: 'Item 1',  
+
+				    }, {  
+				        id: 2,  
+				        name: 'Item 2',  
+
+				    }]  
+    });
+
+  
+</script>
+</body>
+</html>

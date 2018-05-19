@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.TypeProfessional1Mapper" >
+  <resultMap id="BaseResultMap" type="common.model.TypeProfessional1" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="import_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="import_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="class_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, print_user, print_time, import_user, import_time, export_user, export_time, class_name1, 
+    c_t, c_u, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from type_professional1
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from type_professional1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.TypeProfessional1" >
+    insert into type_professional1 (id, print_user, print_time, 
+      import_user, import_time, export_user, 
+      export_time, class_name1, c_t, 
+      c_u, status)
+    values (#{id,jdbcType=INTEGER}, #{printUser,jdbcType=INTEGER}, #{printTime,jdbcType=INTEGER}, 
+      #{importUser,jdbcType=INTEGER}, #{importTime,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER}, 
+      #{exportTime,jdbcType=INTEGER}, #{className1,jdbcType=VARCHAR}, #{cT,jdbcType=INTEGER}, 
+      #{cU,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.TypeProfessional1" >
+    insert into type_professional1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="printUser != null" >
+        print_user,
+      </if>
+      <if test="printTime != null" >
+        print_time,
+      </if>
+      <if test="importUser != null" >
+        import_user,
+      </if>
+      <if test="importTime != null" >
+        import_time,
+      </if>
+      <if test="exportUser != null" >
+        export_user,
+      </if>
+      <if test="exportTime != null" >
+        export_time,
+      </if>
+      <if test="className1 != null" >
+        class_name1,
+      </if>
+      <if test="cT != null" >
+        c_t,
+      </if>
+      <if test="cU != null" >
+        c_u,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="printUser != null" >
+        #{printUser,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="importUser != null" >
+        #{importUser,jdbcType=INTEGER},
+      </if>
+      <if test="importTime != null" >
+        #{importTime,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null" >
+        #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null" >
+        #{exportTime,jdbcType=INTEGER},
+      </if>
+      <if test="className1 != null" >
+        #{className1,jdbcType=VARCHAR},
+      </if>
+      <if test="cT != null" >
+        #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.TypeProfessional1" >
+    update type_professional1
+    <set >
+      <if test="printUser != null" >
+        print_user = #{printUser,jdbcType=INTEGER},
+      </if>
+      <if test="printTime != null" >
+        print_time = #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="importUser != null" >
+        import_user = #{importUser,jdbcType=INTEGER},
+      </if>
+      <if test="importTime != null" >
+        import_time = #{importTime,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null" >
+        export_user = #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null" >
+        export_time = #{exportTime,jdbcType=INTEGER},
+      </if>
+      <if test="className1 != null" >
+        class_name1 = #{className1,jdbcType=VARCHAR},
+      </if>
+      <if test="cT != null" >
+        c_t = #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="cU != null" >
+        c_u = #{cU,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.TypeProfessional1" >
+    update type_professional1
+    set print_user = #{printUser,jdbcType=INTEGER},
+      print_time = #{printTime,jdbcType=INTEGER},
+      import_user = #{importUser,jdbcType=INTEGER},
+      import_time = #{importTime,jdbcType=INTEGER},
+      export_user = #{exportUser,jdbcType=INTEGER},
+      export_time = #{exportTime,jdbcType=INTEGER},
+      class_name1 = #{className1,jdbcType=VARCHAR},
+      c_t = #{cT,jdbcType=INTEGER},
+      c_u = #{cU,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryTypeProfessional1List" parameterType="common.model.TypeProfessional1" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from type_professional1
+    where status=1
+    <if test="id != null">
+      AND id= #{id}
+    </if>
+    <if test="sortName != null  ">
+      ORDER BY ${sortName} ${sortOrder}
+    </if>
+  </select>
+  <select id="queryTypeProfessional1ById" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select
+      class_name1
+    from type_professional1
+    where status=1 AND id=#{id}
+  </select>
+</mapper>

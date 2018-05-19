@@ -37,8 +37,9 @@
             targetPackage     指定生成的model生成所在的包名
             targetProject     指定在该项目下所在的路径
         -->
-        <javaModelGenerator targetPackage="sharebook.model"
+      <javaModelGenerator targetPackage="common.model"
                             targetProject="src/main/java">
+
 
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
@@ -61,27 +62,18 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator targetPackage="sharebook.mapper"
+        <javaClientGenerator targetPackage="common.mapper"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
-        <table tableName="user" domainObjectName="User"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="book_gift_rec" domainObjectName="BookGiftRec"
+                                    enableCountByExample="false" enableUpdateByExample="false"
+                                    enableDeleteByExample="false" enableSelectByExample="false"
+                                    selectByExampleQueryId="false">
         </table>
 
-        <table tableName="book" domainObjectName="Book"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-        </table>
-        <table tableName="share_username" domainObjectName="ShareUserName"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-        </table>
+
     </context>
 </generatorConfiguration>

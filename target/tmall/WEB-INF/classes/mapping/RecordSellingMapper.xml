@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common.mapper.RecordSellingMapper">
+  <resultMap id="BaseResultMap" type="common.model.RecordSelling">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="selling_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="buyer" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="total" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_time" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="failure_reason" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="complete_time" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="priceunit" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, selling_id, buyer, total, order_time, status, failure_reason, complete_time, 
+    total_price, priceunit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record_selling
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record_selling
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.RecordSelling">
+    insert into record_selling (id, selling_id, buyer, 
+      total, order_time, status, 
+      failure_reason, complete_time, total_price, 
+      priceunit)
+    values (#{id,jdbcType=INTEGER}, #{sellingId,jdbcType=INTEGER}, #{buyer,jdbcType=INTEGER}, 
+      #{total,jdbcType=INTEGER}, #{orderTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{failureReason,jdbcType=VARCHAR}, #{completeTime,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{priceunit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.RecordSelling">
+    insert into record_selling
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sellingId != null">
+        selling_id,
+      </if>
+      <if test="buyer != null">
+        buyer,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="failureReason != null">
+        failure_reason,
+      </if>
+      <if test="completeTime != null">
+        complete_time,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="priceunit != null">
+        priceunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sellingId != null">
+        #{sellingId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null">
+        #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failureReason != null">
+        #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null">
+        #{completeTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="priceunit != null">
+        #{priceunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.RecordSelling">
+    update record_selling
+    <set>
+      <if test="sellingId != null">
+        selling_id = #{sellingId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null">
+        buyer = #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failureReason != null">
+        failure_reason = #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null">
+        complete_time = #{completeTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="priceunit != null">
+        priceunit = #{priceunit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.RecordSelling">
+    update record_selling
+    set selling_id = #{sellingId,jdbcType=INTEGER},
+      buyer = #{buyer,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      failure_reason = #{failureReason,jdbcType=VARCHAR},
+      complete_time = #{completeTime,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      priceunit = #{priceunit,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getRecordsellingBuyer" parameterType="common.query.RecordSellingQuery" resultMap="BaseResultMap">
+  select
+  buyer,sum(total) as total
+  from record_selling
+  where  status=2
+  <if test="scompleteTime != null ">    AND complete_time &gt;= #{scompleteTime}        </if>
+  <if test="ecompleteTime != null  ">   <![CDATA[ AND registered_time <= #{ecompleteTime} ]]> </if>
+  GROUP BY  buyer
+  HAVING sum(total)&gt;10
+</select>
+  <select id="getRecordsellingList" parameterType="common.query.RecordSellingQuery" resultMap="BaseResultMap">
+    select *
+    from record_selling
+    where  1=1
+    <if test="sellingId != null" >   AND  selling_id = #{sellingId,jdbcType=INTEGER}   </if>
+    <if test="buyers != null" >
+       AND buyer in
+      <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getRecordsellingCount" parameterType="common.query.RecordSellingQuery"  resultType="java.lang.Integer">
+    select count(*)
+    from record_selling
+    where  1=1
+    <if test="sellingId != null" >   AND  selling_id = #{sellingId,jdbcType=INTEGER}   </if>
+    <if test="buyers != null" >
+      AND buyer in
+      <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+  </select>
+
+</mapper>

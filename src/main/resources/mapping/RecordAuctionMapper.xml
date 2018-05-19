@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common.mapper.RecordAuctionMapper" >
+  <resultMap id="BaseResultMap" type="common.model.RecordAuction" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="auction_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="auction_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="pricingunit" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, auction_id, user_id, auction_time, price, pricingunit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record_aucticon
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record_aucticon
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.model.RecordAuction" >
+    insert into record_aucticon (id, auction_id, user_id, 
+      auction_time, price, pricingunit
+      )
+    values (#{id,jdbcType=INTEGER}, #{auctionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{auctionTime,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{pricingunit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.RecordAuction" >
+    insert into record_aucticon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="auctionId != null" >
+        auction_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="auctionTime != null" >
+        auction_time,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="auctionId != null" >
+        #{auctionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="auctionTime != null" >
+        #{auctionTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricingunit != null" >
+        #{pricingunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.RecordAuction" >
+    update record_aucticon
+    <set >
+      <if test="auctionId != null" >
+        auction_id = #{auctionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="auctionTime != null" >
+        auction_time = #{auctionTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricingunit != null" >
+        pricingunit = #{pricingunit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.RecordAuction" >
+    update record_aucticon
+    set auction_id = #{auctionId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      auction_time = #{auctionTime,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      pricingunit = #{pricingunit,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getRecordAuctionList" parameterType="common.query.RecordAuctionQuery" resultMap="BaseResultMap">
+    select *
+    from record_aucticon
+    where  1=1
+    <if test="auctionId != null" >   AND  auction_id = #{auctionId,jdbcType=INTEGER}   </if>
+    <if test="userIds != null" >
+      AND user_id in
+      <foreach collection="userIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getRecordAuctionCount" parameterType="common.query.RecordSellingQuery"  resultType="java.lang.Integer">
+    select count(*)
+    from record_aucticon
+    where  1=1
+    <if test="auctionId != null" >   AND  auction_id = #{auctionId,jdbcType=INTEGER}   </if>
+    <if test="userIds != null" >
+      AND user_id in
+      <foreach collection="userIds" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test=" id!= null" >   AND  id = #{id} </if>
+  </select>
+
+</mapper>
