@@ -192,4 +192,23 @@
     from type_book2
     where status=1 AND id=#{id}
   </select>
+
+  <select id="queryTypeBook2Lists" parameterType="common.query.TypeBook2Query" resultMap="BaseResultMap">
+    select *
+    from type_book2
+    where 1=1
+    <if test="status != null">  AND status= #{status} </if>
+    <if test="id != null">  AND id= #{id} </if>
+    <if test="className2 != null and className2 !=''">  <![CDATA[	AND class_name2 LIKE CONCAT(CONCAT('%',#{className2}),'%')	]]> </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="queryTypeBook2Count" parameterType="common.query.TypeBook2Query" resultType="java.lang.Integer">
+    select count(*)
+    from type_book2
+    where 1=1
+    <if test="status != null">  AND status= #{status} </if>
+    <if test="id != null">  AND id= #{id} </if>
+    <if test="className2 != null and className2 !=''">  <![CDATA[	AND class_name2 LIKE CONCAT(CONCAT('%',#{className2}),'%')	]]> </if>
+  </select>
 </mapper>

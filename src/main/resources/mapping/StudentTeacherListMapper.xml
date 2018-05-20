@@ -147,4 +147,36 @@
     from student_teacher_list
     where id_number= #{schoolCode}
   </select>
+
+  <select id="getStudentTeacherListCount" resultType="java.lang.Integer" parameterType="common.query.StudentTeacherQuery" >
+    SELECT count(*)
+    FROM student_teacher_list
+    WHERE 1=1
+    <if test="idNumber != null" >
+      AND  id_number = #{idNumber,jdbcType=BIGINT}
+    </if>
+    <if test="time != null" >
+      AND  time = #{time,jdbcType=INTEGER}
+    </if>
+    <if test="stName != null and stName !=''">  <![CDATA[	AND st_name LIKE CONCAT(CONCAT('%',#{stName}),'%')	]]> </if>
+    <if test="professional1Name != null and professional1Name !=''">  <![CDATA[	AND professional1_name LIKE CONCAT(CONCAT('%',#{professional1Name}),'%')	]]> </if>
+    <if test="professional2Name != null and professional2Name !=''">  <![CDATA[	AND professional2_name LIKE CONCAT(CONCAT('%',#{professional2Name}),'%')	]]> </if>
+  </select>
+
+  <select id="getStudentTeacherLists" resultMap="BaseResultMap" parameterType="common.query.StudentTeacherQuery" >
+    SELECT *
+    FROM student_teacher_list
+    WHERE 1=1
+    <if test="idNumber != null" >
+      AND  id_number = #{idNumber,jdbcType=BIGINT}
+    </if>
+    <if test="time != null" >
+      AND  time = #{time,jdbcType=INTEGER}
+    </if>
+    <if test="stName != null and stName !=''">  <![CDATA[	AND st_name LIKE CONCAT(CONCAT('%',#{stName}),'%')	]]> </if>
+    <if test="professional1Name != null and professional1Name !=''">  <![CDATA[	AND professional1_name LIKE CONCAT(CONCAT('%',#{professional1Name}),'%')	]]> </if>
+    <if test="professional2Name != null and professional2Name !=''">  <![CDATA[	AND professional2_name LIKE CONCAT(CONCAT('%',#{professional2Name}),'%')	]]> </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
 </mapper>

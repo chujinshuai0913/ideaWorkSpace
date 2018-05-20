@@ -5,6 +5,7 @@ import common.constant.ConstantsUtils;
 import common.model.*;
 import common.query.*;
 import common.service.BookService;
+import common.service.ClassTypeService;
 import common.util.DateUtils;
 import common.util.ListResult;
 import common.util.ServiceResult;
@@ -28,6 +29,9 @@ public class BookManagerController {
 
     @Autowired
     private  UserService userService;
+
+    @Autowired
+    private ClassTypeService classTypeService;
 
     /***
      *
@@ -806,5 +810,83 @@ public class BookManagerController {
             return successMap;
         }
     }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/bookclass1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> bookclass1Data(HttpServletResponse response, @RequestBody String strJson) {
 
+
+        logger.info("BookManagerController.bookclass1Data---------->"+strJson);
+        TypeBook1Query query = JSONObject.parseObject(strJson, TypeBook1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+
+            ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeBook1ListCount(query));
+            List<TypeBook1> list  = new ArrayList<>();
+            long total = 0;
+            if(countRes.getSuccess()  && countRes.getBody() > 0){
+                total = countRes.getBody();
+                query.setSortName("class_name1");
+                query.setSortOrder("desc");
+                ServiceResult<List<TypeBook1>> result = new ServiceResult<>(classTypeService.getTypeBook1Lists(query));
+                if(result.getSuccess()) {
+                    list = result.getBody();
+                }else{
+                    successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
+                    return successMap;
+                }
+            }
+            ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.bookListData---------->",e);
+            successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/bookclass2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> bookclass2Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.bookclass2Data---------->"+strJson);
+        TypeBook2Query query = JSONObject.parseObject(strJson, TypeBook2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeBook2ListCount(query));
+            List<TypeBook2> list  = new ArrayList<>();
+            long total = 0;
+            if(countRes.getSuccess()  && countRes.getBody() > 0){
+                total = countRes.getBody();
+                query.setSortName("class_name2");
+                query.setSortOrder("desc");
+                ServiceResult<List<TypeBook2>> result = new ServiceResult<>(classTypeService.getTypeBook2Lists(query));
+                if(result.getSuccess()) {
+                    list = result.getBody();
+                }else{
+                    successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
+                    return successMap;
+                }
+            }
+            ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.bookListData---------->",e);
+            successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
 }

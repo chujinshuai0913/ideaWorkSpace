@@ -28,6 +28,8 @@ public class StudentTeacherQuery extends QueryParam {
 
     private Integer time;
 
+    private String strTime;
+
     private Integer schoolCode;
     private Integer workId;
 
@@ -117,5 +119,13 @@ public class StudentTeacherQuery extends QueryParam {
 
     public void setWorkId(Integer workId) {
         this.workId = workId;
+    }
+
+    public String getStrTime() {
+        return strTime;
+    }
+
+    public void setStrTime(String strTime) {
+        this.strTime = strTime;
     }
 }

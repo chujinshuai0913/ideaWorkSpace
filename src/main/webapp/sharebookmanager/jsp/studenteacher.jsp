@@ -51,49 +51,35 @@
     <div>
         <form id="form_sharebookuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
               onkeydown="if(event.keyCode==13){return false;}">
-
-
             <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">姓名</label> <input
-                    name="username" type="text" class="form-control" placeholder="姓名模糊查询"/>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">手机号</label> <input
-                    name="phoneNumber" type="text" class="form-control" placeholder="手机号"/>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">学号/工号</label> <input
-                    name="workId" type="text" class="form-control" placeholder="学号/工号"/>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">角色</label>
-                <select  name="roleId" type="text" class="form-control">
-                    <option value="">全部</option>
-                    <option value="1"> 超级管理员</option>
-                    <option value="2"> 运营管理员</option>
-                    <option value="3"> 业务管理员</option>
-                </select>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label for="startSignDate" style="width:60px;">注册日期</label>
+                <label for="strTime" style="width:60px;">认证日期</label>
                 <div class="input-group date">
                     <input type="text" class="form-control" style="width: 147px;"
-                           id="startSignDate" name="startSignDate"
-                           placeholder="注册日期(开始)"> <span class="input-group-addon"><i
+                           id="strTime" name="strTime"
+                           placeholder="认证日期"> <span class="input-group-addon"><i
                         class="glyphicon glyphicon-th"></i></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="endSignDate" style="width: 30px;">至</label>
-                <div class="input-group date">
-                    <input type="text" class="form-control" style="width: 147px;"
-                           id="endSignDate" name="endSignDate" placeholder="注册日期(结束)">
-                    <span class="input-group-addon"><i
-                            class="glyphicon glyphicon-th"></i></span>
-                </div>
+            <div class="form-group" style="margin-left: 50px;">
+
+                <label onclick="$(this).next().focus();">姓名</label> <input
+                    name="stName" type="text" class="form-control" placeholder="姓名模糊查询"/>
+            </div>
+            <div class="form-group" style="margin-left: 50px;">
+                <label onclick="$(this).next().focus();">学号/工号</label> <input
+                    name="idNumber" type="text" class="form-control" placeholder="学号/工号"/>
+            </div>
+            <div class="form-group" style="margin-left: 50px;">
+
+                <label onclick="$(this).next().focus();">学院</label> <input
+                    name="professional1Name" type="text" class="form-control" placeholder="学院模糊查询"/>
+            </div>
+            <div class="form-group" style="margin-left: 50px;">
+
+                <label onclick="$(this).next().focus();">专业</label> <input
+                    name="professional2Name" type="text" class="form-control" placeholder="专业模糊查询"/>
             </div>
             <div class="form-group" style="margin-left: 30px;">
-
                 <label></label>
                 <button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
                         formaction="javascript:void(0);">查询
@@ -107,29 +93,10 @@
         <table  id="mainTable"></table>
     </div>
 </div>
-<div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-    <div class="modal-dialog" dialog-width="900px" style="width:900px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                <h4 class="modal-title" id="modalTitle">认证信息</h4>
-            </div>
-            <div class="modal-body">
-                <table id="detailTable"></table>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <script type="text/javascript">
-    $('#startSignDate').val(getNowDate());
-    $('#endSignDate').val(getNowDate(1));
-    $('#startSignDate').datepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true,
-        language: "zh-CN"
-    });
-    $('#endSignDate').datepicker({
+    $('#strTime').val(getNowDate());
+    $('#strTime').datepicker({
         format: 'yyyy-mm-dd',
         autoclose: true,
         language: "zh-CN"
@@ -165,7 +132,7 @@
     var $table = $("#mainTable");
     $table.bootstrapTable({
         toolbar: "#toolbar_sharebookuser",
-        url: '/ideaWorkSpace/usersharemanager/userlistData',
+        url: '/ideaWorkSpace/usersharemanager/studenteacherlist',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -194,16 +161,8 @@
 
             },
             {
-                field: 'username',
+                field: 'stName',
                 title: '姓名',
-                align: "center",
-                class:'W30',
-                formatter: formatterToValue
-
-            },
-            {
-                field: 'phoneNumber',
-                title: '电话',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
@@ -211,56 +170,29 @@
             }
             ,
             {
-                field: 'workId',
+                field: 'idNumber',
                 title: '学号/工号',
                 align: "center",
                 class:'W30',
-                formatter :function(value, row, index) {
-                    if(value>0){
-                        return [ "<a  class='record-detail'>",''+value+'','</a>' ].join('');
-                    }else{
-                        return value;
-                    }
-                },
-                events: {
-                    'click .record-detail': function (e, value, row, index) {
-                        detailTableDialog(e, value, row, index);
-                    }
-                }
-
+                formatter :formatterToValue,
             }, {
-                field: 'lTime',
-                title: '上次登录时间',
+                field: 'professional1Name',
+                title: '学院',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
 
             },{
-                field: 'loginNum',
-                title: '登录次数',
+                field: 'professional2Name',
+                title: '专业',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
 
             },
             {
-                field: 'role',
-                title: '角色',
-                align: "center",
-                class:'W30',
-                formatter: formatterToValue
-
-            },
-            {
-                field: 'sTime',
-                title: '注册时间',
-                align: "center",
-                class:'W30',
-                formatter: formatterToValue
-
-            },{
-                field: 'dTime',
-                title: '注销时间',
+                field: 'strT',
+                title: '认证时间',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
@@ -268,79 +200,6 @@
             }
         ]
     });
-    $("#detailTable").bootstrapTable(
-        {
-            toolbar: "#toolbar_sharebookuserDetail",
-            method:'post',
-            dataType: "json",
-            sidePagination : "server",
-            pagination : true,
-            queryParamsType : "page",
-            pageList : [5,10,15,20,'all'],
-            pageNumber:1,
-            pageSize :5,
-            totalField : "total_records",
-            dataField: 'data',
-            queryParams: function (params) {
-                var idParam={workId:workId};
-                var newParams = $.extend(true,{},params,idParam);
-                return newParams;
-            },
-            columns : [
-                {
-                    align: "center",
-                    field : 'idNumber',
-                    title : '学号/工号',
-                    formatter: formatterToValue
-                },
-                {
-                    align: "center",
-                    field : 'stName',
-                    title : '姓名',
-                    formatter: formatterToValue
-                },
-                {
-                    align: "center",
-                    field : 'professional1Name',
-                    title : '学院',
-                },
-                {
-                    align: "center",
-                    field : 'professional2Name',
-                    title : '专业',
-                },
-                {
-                    align: "center",
-                    field : 'grade',
-                    title : '年级',
-                },
-                {
-                    align: "center",
-                    field : 'time',
-                    title : '认证时间',
-                    formatter :function(value, row, index) {
-                        if(value>0){
-                            return new Date(parseInt(value) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ")
-                        }else{
-                            return value;
-                        }
-                    }
-                }]
-        });
-
-    //弹出层
-    var workId=0;
-    function detailTableDialog(e, value, row, index){
-
-        $('#modal_detailTable').modal("show");
-        workId=row.workId;
-        $('#detailTable').bootstrapTable('refresh',{
-            url: '/ideaWorkSpace/usershare/userlistDetail',
-            query:{
-                workId:workId
-            }
-        });
-    }
     function convertSerializeArrayToObject(array) {
         var obj = {};
         for(var i = 0, length = array.length; i<length; i++){
@@ -356,49 +215,6 @@
         }
         return value;
     }
-    //导出
-    $('#exportBtn').on('click', function () {
-        // 1. 未勾选时导出全部
-        var selectedRecords = $('#mainTable').bootstrapTable("getSelections");
-        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
-        if(dataNum===0){
-            return true;
-        }else{
-            if (selectedRecords.length === 0) {
-                $.confirm({
-                    title: '导出确认',
-                    confirmButton: "确认",
-                    cancelButton: "取消",
-                    content: '你未勾选记录，将会导出全部?',
-                    confirm: function(){
-                        var $form = $('#form_sharebookuser_q').clone();
-                        $form.attr({'action':'/usershare/exportShareUserAll',"method":"post"});
-                        $('body').append($form);
-                        $form.hide();
-                        $form.submit();
-                        $form.remove();
-                        return true;
-                    }
-                });
-                return true;
-            }else{
-                // 勾选时按勾选的导出
-                var $exportForm = $("<form></form>");
-                $exportForm.attr({
-                    "style":"display:none",
-                    "action":"/usershare/exportShareUser",
-                    "method":"post",
-                });
-                var reportJson = JSON.stringify($table.bootstrapTable('getSelections'));
-                var $idCheckbox = $("<input type='text' name='reportJson' value='"+reportJson+"'/>")
-                $idCheckbox.appendTo($exportForm);
-                console.log($exportForm);
-                $(document.body).append($exportForm);
-                $exportForm.submit();
-                $exportForm.remove();
-            }
-        }
-    });
 
 </script>
 </body>

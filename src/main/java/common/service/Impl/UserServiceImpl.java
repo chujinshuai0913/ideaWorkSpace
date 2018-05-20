@@ -6,10 +6,12 @@ import common.constant.UserShareCodeEum;
 import common.mapper.*;
 import common.model.*;
 import common.query.RecordSellingQuery;
+import common.query.StudentTeacherQuery;
 import common.query.UserManagerQuery;
 import common.query.UserShareQuery;
 import common.util.DateUtils;
 import common.util.ServiceResult;
+import common.vo.StudenteacherVo;
 import common.vo.UserManagerVo;
 import common.vo.UserShareVo;
 import org.apache.log4j.Logger;
@@ -369,6 +371,46 @@ public class UserServiceImpl implements UserService{
     @Override
     public ServiceResult<Boolean> updateRole(UserManagerQuery userManagerQuery) {
         return  new ServiceResult<>(userManagerMapper.updateRole(userManagerQuery));
+    }
+
+    @Override
+    public ServiceResult<Integer> queryStudenteacherCount(StudentTeacherQuery query) {
+        return  new ServiceResult<>(studentTeacherListMapper.getStudentTeacherListCount(query));
+    }
+
+    @Override
+    public ServiceResult<List<StudenteacherVo>> queryStudenteacherList(StudentTeacherQuery query) {
+        try {
+            List<StudenteacherVo> studenteacherVos=new ArrayList<>();
+            ServiceResult<List<StudentTeacherList>> serviceResult=new ServiceResult<>(studentTeacherListMapper.getStudentTeacherLists(query));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                for (StudentTeacherList studentTeacherList:serviceResult.getBody()) {
+                    StudenteacherVo studenteacherVo= new StudenteacherVo();
+                    studenteacherVos.add(this.getStudenteacherVo(studenteacherVo,studentTeacherList));
+                }
+            }
+            return new ServiceResult<>(studenteacherVos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public StudenteacherVo getStudenteacherVo(StudenteacherVo studenteacherVo, StudentTeacherList studenteacher) {
+        try{
+            studenteacherVo = JSONObject.parseObject(JSONObject.toJSONString(studenteacher),StudenteacherVo.class);
+            studenteacherVo.setStrT("");
+
+            if(studenteacher.getTime()!=null&&studenteacher.getTime()>0)
+            {
+                studenteacherVo.setStrT(DateUtils.getDateStringByTimeStamp(studenteacher.getTime(),DateUtils.YMD));
+            }
+            return studenteacherVo;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new StudenteacherVo();
+        }
     }
 
 }

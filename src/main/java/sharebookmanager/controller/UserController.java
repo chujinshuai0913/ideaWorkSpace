@@ -11,26 +11,20 @@
 package sharebookmanager.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import common.model.Abnormal;
-import common.model.StudentTeacherList;
-import common.model.UserShare;
+import common.query.BookGiftRecQuery;
 import common.query.StudentTeacherQuery;
 import common.query.UserManagerQuery;
-import common.query.UserShareQuery;
 import common.service.UserService;
 import common.util.DateUtils;
 import common.util.ListResult;
 import common.util.ServiceResult;
 import common.util.StringUtils;
+import common.vo.BookGiftRecVo;
+import common.vo.StudenteacherVo;
 import common.vo.UserManagerVo;
-import common.vo.UserShareVo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -154,6 +148,50 @@ public class UserController {
                         logger.error("角色修改失败", e);
                         succMap.put("resultMassage", "角色修改失败");
                         return succMap;
+                }
+        }
+        /***
+         *
+         * @param response
+         * @param strJson
+         * @return
+         */
+        @RequestMapping(value = "/studenteacherlist", method = RequestMethod.POST)
+        @ResponseBody
+        public Map<String, ?> studenteacherlistData(HttpServletResponse response, @RequestBody String strJson) {
+
+
+                logger.info("BookManagerController.studenteacherlistData---------->"+strJson);
+                StudentTeacherQuery query = JSONObject.parseObject(strJson, StudentTeacherQuery.class);
+                Map<String,Object> successMap = new HashMap<String,Object>();
+                try{
+                        if(StringUtils.isNotEmpty(query.getStrTime())){
+                                query.setTime(DateUtils.getAppointedTimeIntValue(query.getStrTime(), DateUtils.YMD));
+                        }else{
+                                query.setTime(DateUtils.getTimesmorning(new Date()));
+                        }
+                        ServiceResult<Integer> countRes = userService.queryStudenteacherCount(query);
+                        List<StudenteacherVo> list  = new ArrayList<>();
+                        long total = 0;
+                        if(countRes.getSuccess()  && countRes.getBody() > 0){
+                                total = countRes.getBody();
+                                query.setSortName("time");
+                                query.setSortOrder("desc");
+                                ServiceResult<List<StudenteacherVo>> result = userService.queryStudenteacherList(query);
+                                if(result.getSuccess()) {
+                                        list = result.getBody();
+                                }else{
+                                        successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
+                                        return successMap;
+                                }
+                        }
+                        ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
+                        return results.toMap();
+
+                }catch(Exception e){
+                        logger.error("BookManagerController.bookListData---------->",e);
+                        successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+                        return successMap;
                 }
         }
 

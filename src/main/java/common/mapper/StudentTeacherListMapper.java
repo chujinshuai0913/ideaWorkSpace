@@ -1,7 +1,10 @@
 package common.mapper;
 
 import common.model.StudentTeacherList;
+import common.query.StudentTeacherQuery;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StudentTeacherListMapper {
     int deleteByPrimaryKey(Integer id);
@@ -17,4 +20,7 @@ public interface StudentTeacherListMapper {
     int updateByPrimaryKey(StudentTeacherList record);
 
     StudentTeacherList getStudentTeacherList(@Param("schoolCode") Integer schoolCode);
+
+    List<StudentTeacherList> getStudentTeacherLists(StudentTeacherQuery query);
+   int getStudentTeacherListCount(StudentTeacherQuery query);
 }

@@ -4,6 +4,8 @@ import common.model.TypeBook1;
 import common.model.TypeBook2;
 import common.model.TypeProfessional1;
 import common.model.TypeProfessional2;
+import common.query.TypeBook1Query;
+import common.query.TypeBook2Query;
 
 import java.util.List;
 
@@ -20,6 +22,15 @@ public interface ClassTypeService {
 
   /*  查询图书一级分类列表*/
   List<TypeBook1> queryTypeBook1List(TypeBook1 typeBook1);
+
+  List<TypeBook1> getTypeBook1Lists(TypeBook1Query query);
+
+  int getTypeBook1ListCount(TypeBook1Query query);
+
+  List<TypeBook2> getTypeBook2Lists(TypeBook2Query query);
+
+  int getTypeBook2ListCount(TypeBook2Query query);
+
 
   /*  查询图书一级分类*/
   TypeBook1 queryTypeBook1(TypeBook1 typeBook1);

@@ -2,6 +2,8 @@ package common.mapper;
 
 import common.model.TypeBook1;
 import common.model.TypeBook2;
+import common.query.TypeBook1Query;
+import common.query.TypeBook2Query;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,4 +24,8 @@ public interface TypeBook2Mapper {
     List<TypeBook2> queryTypeBook2List(TypeBook2 typeBook2);
 
     String queryTypeBook2ById(@Param("id") int id );
+
+    List<TypeBook2> queryTypeBook2Lists(TypeBook2Query query);
+
+    int queryTypeBook2Count(TypeBook2Query query);
 }

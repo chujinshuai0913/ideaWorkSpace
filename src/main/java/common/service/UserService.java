@@ -4,9 +4,11 @@ package common.service;
 import common.model.Abnormal;
 import common.model.StudentTeacherList;
 import common.model.UserShare;
+import common.query.StudentTeacherQuery;
 import common.query.UserManagerQuery;
 import common.query.UserShareQuery;
 import common.util.ServiceResult;
+import common.vo.StudenteacherVo;
 import common.vo.UserManagerVo;
 import common.vo.UserShareVo;
 import org.apache.ibatis.annotations.Param;
@@ -61,4 +63,12 @@ public interface UserService {
     /*修改用户角色*/
     ServiceResult<Boolean> updateRole(UserManagerQuery UserManagerQuery);
 
+    /*查看用户总数*/
+    ServiceResult<Integer> queryStudenteacherCount(StudentTeacherQuery query);
+
+    /*查询网站管理用户列表*/
+    ServiceResult<List<StudenteacherVo>>  queryStudenteacherList(StudentTeacherQuery query);
+
+
+    StudenteacherVo getStudenteacherVo(StudenteacherVo studenteacherVo,StudentTeacherList studenteacher);
 }

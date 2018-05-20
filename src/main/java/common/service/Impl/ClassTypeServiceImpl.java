@@ -8,6 +8,8 @@ import common.model.TypeBook1;
 import common.model.TypeBook2;
 import common.model.TypeProfessional1;
 import common.model.TypeProfessional2;
+import common.query.TypeBook1Query;
+import common.query.TypeBook2Query;
 import common.service.ClassTypeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,25 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     }
 
     @Override
+    public List<TypeBook1> getTypeBook1Lists(TypeBook1Query query) {
+        return typeBook1Mapper.queryTypeBook1Lists(query);
+    }
+
+    @Override
+    public int getTypeBook1ListCount(TypeBook1Query query) {
+        return typeBook1Mapper.queryTypeBook1Count(query);
+    }
+
+    @Override
+    public List<TypeBook2> getTypeBook2Lists(TypeBook2Query query) {
+        return typeBook2Mapper.queryTypeBook2Lists(query);
+    }
+
+    @Override
+    public int getTypeBook2ListCount(TypeBook2Query query) {
+        return typeBook2Mapper.queryTypeBook2Count(query);
+    }
+    @Override
     public TypeBook1 queryTypeBook1(TypeBook1 typeBook1) {
         return null;
     }
@@ -61,7 +82,7 @@ public class ClassTypeServiceImpl implements ClassTypeService {
 
     @Override
     public int insertTypeBook1(TypeBook1 typeBook1) {
-        return 0;
+        return typeBook1Mapper.insert(typeBook1);
     }
 
     @Override
@@ -71,7 +92,7 @@ public class ClassTypeServiceImpl implements ClassTypeService {
 
     @Override
     public int updateTypeBook1(TypeBook1 typeBook1) {
-        return 0;
+        return typeBook1Mapper.updateByPrimaryKeySelective(typeBook1);
     }
 
     @Override

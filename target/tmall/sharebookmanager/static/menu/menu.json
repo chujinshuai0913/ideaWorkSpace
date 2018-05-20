@@ -88,7 +88,7 @@
         "nodes": [
          {
             "text": "学生/教师信息",
-            "href": "",
+            "href": "sharebookmanager/jsp/studenteacher.jsp",
             "nodes": [
             ]
           },{

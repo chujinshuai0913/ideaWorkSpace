@@ -68,7 +68,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="book_gift_rec" domainObjectName="BookGiftRec"
+        <table tableName="student_teacher_list" domainObjectName="StudenTeacherList"
                                     enableCountByExample="false" enableUpdateByExample="false"
                                     enableDeleteByExample="false" enableSelectByExample="false"
                                     selectByExampleQueryId="false">
