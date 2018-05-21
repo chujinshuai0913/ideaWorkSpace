@@ -103,9 +103,10 @@
                             <option value="2">禁用</option>
                         </select>
                     </div>
+                    <input name="classId1" id="classId2" type="text" class="form-control" style="display: none" />
                     <div class="form-group" style="margin-left: 30px;">
                         <label></label>
-                        <button type="button" id="formSellSearchBtn" class="btn btn-primary" data-style="zoom-in"
+                        <button type="button" id="formClass2SearchBtn" class="btn btn-primary" data-style="zoom-in"
                                 formaction="javascript:void(0);">查询
                         </button>&nbsp;&nbsp;
                         <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
@@ -132,7 +133,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                     <h4 class="modal-title" >一级分类</h4>
-                    <form id="form_insertClass_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                    <form id="form_insertClass1_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
                           onkeydown="if(event.keyCode==13){return false;}">
                         <div class="form-group" style="margin-left: 50px;">
                             <label onclick="$(this).next().focus();">一级分类名称</label>
@@ -159,6 +160,7 @@
                       onkeydown="if(event.keyCode==13){return false;}">
                     <div class="form-group" style="margin-left: 50px;">
                         <label onclick="$(this).next().focus();">二级分类名称</label>
+                        <input name="classId1" id="classId1" type="text" class="form-control" style="display: none" />
                         <input name="className2" type="text" class="form-control" placeholder="分类名称"/>
                     </div>
                     <div class="form-group" style="margin-left: 30px; display: inherit">
@@ -265,13 +267,14 @@
             totalField : "total_records",
             dataField: 'data',
             queryParams: function (params) {
-                var idParam={sellingId:sellingId};
                 var userParams=convertSerializeArrayToObject($("#form_sell_q").serializeArray());
-                var oldParams = $.extend(true,{},params,idParam);
-                var newParams = $.extend(true,{},oldParams,userParams);
+                var newParams = $.extend(true,{},params,userParams);
                 return newParams;
             },
             columns : [
+                {
+                    checkbox: true
+                },
                 {
                     field: 'id',
                     title: 'id',
@@ -311,20 +314,19 @@
     function detailTableDialog(e, value, row, index){
         $('#modal_detailTable').modal("show");
         id=row.id;
+        $('#classId1').val(id);
+        $('#classId2').val(id);
         $('#detailTable').bootstrapTable('refresh',{
             url: '/ideaWorkSpace/book/bookclass2',
             query:{
-                id:id
+                classId1:id
             }
         });
     }
 
-    $('#formSellSearchBtn').on('click', function () {
+    $('#formClass2SearchBtn').on('click', function () {
         $('#detailTable').bootstrapTable('refresh',{
-            url: '/ideaWorkSpace/book/bookclass2',
-            query:{
-                id:id
-            }
+            url: '/ideaWorkSpace/book/bookclass2'
         });
     });
     function convertSerializeArrayToObject(array) {
@@ -353,8 +355,8 @@
         var ids = [];
         var flag = true;
         $.each(selected,function(index,item){
-            if(item.status != 1){
-                alert("只能操作待审批过的数据！")
+            if(item.status != 2){
+                alert("只能操作禁用的数据！")
                 flag = false;
                 return false;
             }else{
@@ -369,7 +371,7 @@
             }
             var params = {ids:ids};
             $.ajax({
-                url: "/ideaWorkSpace/book/auditBookSelling",    //请求的url地址
+                url: "/ideaWorkSpace/book/auditClass1",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 data: JSON.stringify(params),    //参数值
                 type: "POST",   //请求方式
@@ -413,7 +415,7 @@
         var flag = true;
         $.each(selected,function(index,item){
             if(item.status != 1){
-                alert("只能操作待审批过的数据！")
+                alert("只能操作已经启用的数据！")
                 flag = false;
                 return false;
             }else{
@@ -429,7 +431,65 @@
             }
             var params = {ids:ids};
             $.ajax({
-                url: "/ideaWorkSpace/book/auditNotBookSelling",    //请求的url地址
+                url: "/ideaWorkSpace/book/auditNotClass1",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#mainTable').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+    //审核通过
+    function auditedClass2(){
+        var selected = $('#detailTable').bootstrapTable("getSelections");
+        var dataNum=$('#detailTable').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+            if(item.status != 2){
+                alert("只能操作禁用的数据！")
+                flag = false;
+                return false;
+            }else{
+                ids[index] = item.id;
+            }
+        });
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/book/auditClass2",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 data: JSON.stringify(params),    //参数值
                 type: "POST",   //请求方式
@@ -461,6 +521,139 @@
         }
     }
 
+    //驳回
+    function rejectClass2(){
+        var selected = $('#detailTable').bootstrapTable("getSelections");
+        var dataNum=$('#detailTable').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+            if(item.status != 1){
+                alert("只能操作已经启用的数据！")
+                flag = false;
+                return false;
+            }else{
+                ids[index] = item.id;
+            }
+        });
+
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/book/auditNotClass2",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#mainTable').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
+    /*新建*/
+
+    $('#insert1').on('click',function(){
+        $.ajax({
+            url: "/ideaWorkSpace/book/insertclass1",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            data: JSON.stringify($.extend(true, {},convertSerializeArrayToObject($("#form_insertClass1_q").serializeArray()))),
+            type: "POST",   //请求方式
+            contentType:"text/html;charset=utf-8",
+            beforeSend: function() {
+            },
+            success: function(data) {
+                try {
+                    if(data){
+                        console.log(JSON.stringify(data));
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        console.log(jsonData.resultMassage );
+                        if(jsonData.resultMassage == 'ok'){
+                            alert("插入成功!")
+                            $("#form_insertClass1_q")[0].reset();
+                            $('#modal_insertSearchBtn').modal("hide");
+                            $('#mainTable').bootstrapTable('refresh');
+                        }else{
+                            alert(jsonData.resultMassage);
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+    $('#insert2').on('click',function(){
+        $.ajax({
+            url: "/ideaWorkSpace/book/insertclass2",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            data: JSON.stringify($.extend(true, {},convertSerializeArrayToObject($("#form_insertClass2_q").serializeArray()))),
+            type: "POST",   //请求方式
+            contentType:"text/html;charset=utf-8",
+            beforeSend: function() {
+            },
+            success: function(data) {
+                try {
+                    if(data){
+                        console.log(JSON.stringify(data));
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        console.log(jsonData.resultMassage );
+                        if(jsonData.resultMassage == 'ok'){
+                            alert("插入成功!")
+                            $("#form_insertClass2_q")[0].reset();
+                            $('#modal_insertClass2').modal("hide");
+                            $('#detailTable').bootstrapTable('refresh',{
+                                url: '/ideaWorkSpace/book/bookclass2'
+                            });
+                        }else{
+                            alert(jsonData.resultMassage);
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 </script>
 </body>
 </html>

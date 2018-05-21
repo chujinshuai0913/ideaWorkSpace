@@ -93,7 +93,7 @@
             ]
           },{
             "text": "专业信息",
-            "href": "",
+            "href": "sharebookmanager/jsp/professionalclass.jsp",
             "nodes": [
             ]
           },{
@@ -115,12 +115,12 @@
         "nodes": [
           {
             "text": "活动规划",
-            "href": "",
+            "href": "sharebookmanager/jsp/shareactivity.jsp",
             "nodes": [
             ]
           },{
             "text": "信息发布",
-            "href": "",
+            "href": "sharebookmanager/jsp/shareannouncement.jsp",
             "nodes": [
             ]
           }
@@ -130,29 +130,9 @@
         "text": "统计报表",
         "href": "",
         "nodes": [
-          {
-            "text": "访问热度",
-            "href": "",
-            "nodes": [
-            ]
-          },{
-            "text": "专业热爱",
-            "href": "",
-            "nodes": [
-            ]
-          },{
-            "text": "异常用户",
-            "href": "",
-            "nodes": [
-            ]
-          },{
-            "text": "拍卖统计",
-            "href": "",
-            "nodes": [
-            ]
-          },{
-            "text": "成交统计",
-            "href": "",
+         {
+            "text": "交易统计分析",
+            "href": "sharebookmanager/jsp/tradestatistics.jsp",
             "nodes": [
             ]
           }

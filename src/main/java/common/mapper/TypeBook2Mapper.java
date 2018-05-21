@@ -11,7 +11,7 @@ import java.util.List;
 public interface TypeBook2Mapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(TypeBook2 record);
+    int insert(TypeBook2Query query);
 
     int insertSelective(TypeBook2 record);
 
@@ -28,4 +28,10 @@ public interface TypeBook2Mapper {
     List<TypeBook2> queryTypeBook2Lists(TypeBook2Query query);
 
     int queryTypeBook2Count(TypeBook2Query query);
+
+    int queryTypeBook2ByName(TypeBook2Query query);
+
+    /*书籍审核*/
+    int updateBookClass2Status(@Param("id") int id, @Param("status")  int status,@Param("cU") int cU,@Param("cTime") int cTime);
+
 }

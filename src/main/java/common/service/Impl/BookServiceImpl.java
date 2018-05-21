@@ -36,7 +36,6 @@ import java.util.List;
  * @since 1.0.0
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class BookServiceImpl implements BookService {
     private static final Logger logger = Logger.getLogger(BookServiceImpl.class);
 

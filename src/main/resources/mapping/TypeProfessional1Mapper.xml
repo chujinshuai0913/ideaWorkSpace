@@ -30,7 +30,7 @@
     delete from type_professional1
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.TypeProfessional1" >
+  <insert id="insert" parameterType="common.query.TypeProfessional1Query" >
     insert into type_professional1 (id, print_user, print_time, 
       import_user, import_time, export_user, 
       export_time, class_name1, c_t, 
@@ -181,4 +181,33 @@
     from type_professional1
     where status=1 AND id=#{id}
   </select>
+  <select id="queryTypeProfessional1Lists" parameterType="common.query.TypeProfessional1Query" resultMap="BaseResultMap">
+    select *
+    from type_professional1
+    where 1=1
+    <if test="status != null">  AND status= #{status} </if>
+    <if test="id != null">  AND id= #{id} </if>
+    <if test="className1 != null and className1 !=''">  <![CDATA[	AND class_name1 LIKE CONCAT(CONCAT('%',#{className1}),'%')	]]> </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="queryTypeProfessional1Count" parameterType="common.query.TypeProfessional1Query" resultType="java.lang.Integer">
+    select count(*)
+    from type_professional1
+    where 1=1
+    <if test="status != null">  AND status= #{status} </if>
+    <if test="id != null">  AND id= #{id} </if>
+    <if test="className1 != null and className1 !=''">  <![CDATA[	AND class_name1 LIKE CONCAT(CONCAT('%',#{className1}),'%')	]]> </if>
+  </select>
+  <select id="queryTypeProfessional1ByName"  parameterType="common.query.TypeProfessional1Query" resultType="java.lang.Integer">
+    select count(*)
+    from type_professional1
+    where class_name1=#{className1}
+  </select>
+  <update id="updateTypeProfessional1Status" >
+    update type_professional1
+    set status = #{status},c_u = #{cU}, c_t = #{cTime}
+    where id = #{id}
+  </update>
+
 </mapper>

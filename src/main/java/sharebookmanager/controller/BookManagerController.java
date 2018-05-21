@@ -827,13 +827,13 @@ public class BookManagerController {
         try{
 
             ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeBook1ListCount(query));
-            List<TypeBook1> list  = new ArrayList<>();
+            List<TypeBook1Vo> list  = new ArrayList<>();
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("class_name1");
+                query.setSortName("c_t");
                 query.setSortOrder("desc");
-                ServiceResult<List<TypeBook1>> result = new ServiceResult<>(classTypeService.getTypeBook1Lists(query));
+                ServiceResult<List<TypeBook1Vo>> result = classTypeService.getTypeBook1Lists(query);
                 if(result.getSuccess()) {
                     list = result.getBody();
                 }else{
@@ -856,6 +856,88 @@ public class BookManagerController {
      * @param strJson
      * @return
      */
+    @RequestMapping(value = "/insertclass1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> insertclass1Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.insertclass1Data---------->"+strJson);
+        TypeBook1Query query = JSONObject.parseObject(strJson, TypeBook1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setcU(1);
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setStatus(2);
+            if(StringUtils.isEmpty(query.getClassName1())) {
+                successMap.put("resultMassage", "分类名称不能为空！");
+                return successMap;
+            }
+            ServiceResult<Integer> serviceResult = new ServiceResult<>(classTypeService.queryTypeBook1ByName(query));
+            if(serviceResult.getSuccess()&& serviceResult.getBody()>0){
+                successMap.put("resultMassage", "该分类已存在！");
+            }else{
+                ServiceResult<Integer> result = new ServiceResult<>(classTypeService.insertTypeBook1(query));
+                if(result.getSuccess()&& result.getBody()==1){
+                    successMap.put("resultMassage", "ok");
+                }else{
+                    successMap.put("resultMassage", "新建失败");
+                }
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertclass1Data---------->",e);
+            successMap.put("resultMassage", "新建失败!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/insertclass2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> insertclass2Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.insertclass2Data---------->"+strJson);
+        TypeBook2Query query = JSONObject.parseObject(strJson, TypeBook2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setcU(1);
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setStatus(2);
+            if(StringUtils.isEmpty(query.getClassName2())) {
+                successMap.put("resultMassage", "分类名称不能为空！");
+                return successMap;
+            }
+            ServiceResult<Integer> serviceResult = new ServiceResult<>(classTypeService.queryTypeBook2ByName(query));
+            if(serviceResult.getSuccess()&& serviceResult.getBody()>0){
+                successMap.put("resultMassage", "该分类已存在！");
+            }else{
+                ServiceResult<Integer> result = new ServiceResult<>(classTypeService.insertTypeBook2(query));
+                if(result.getSuccess()&& result.getBody()==1){
+                    successMap.put("resultMassage", "ok");
+                }else{
+                    successMap.put("resultMassage", "新建失败");
+                }
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertclass2Data---------->",e);
+            successMap.put("resultMassage", "新建失败!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
     @RequestMapping(value = "/bookclass2", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, ?> bookclass2Data(HttpServletResponse response, @RequestBody String strJson) {
@@ -866,13 +948,13 @@ public class BookManagerController {
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
             ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeBook2ListCount(query));
-            List<TypeBook2> list  = new ArrayList<>();
+            List<TypeBook2Vo> list  = new ArrayList<>();
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("class_name2");
+                query.setSortName("c_t");
                 query.setSortOrder("desc");
-                ServiceResult<List<TypeBook2>> result = new ServiceResult<>(classTypeService.getTypeBook2Lists(query));
+                ServiceResult<List<TypeBook2Vo>> result = classTypeService.getTypeBook2Lists(query);
                 if(result.getSuccess()) {
                     list = result.getBody();
                 }else{
@@ -886,6 +968,396 @@ public class BookManagerController {
         }catch(Exception e){
             logger.error("BookManagerController.bookListData---------->",e);
             successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditClass1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditClass1(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditClass1---------->"+strJson);
+        TypeBook1Query query = JSONObject.parseObject(strJson,TypeBook1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateBookClass1Status(query.getIds(),1,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "启用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.auditClass1---------->",e);
+            successMap.put("resultMassage", "启用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditClass2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditClass2(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditClass2---------->"+strJson);
+        TypeBook2Query query = JSONObject.parseObject(strJson,TypeBook2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateBookClass2Status(query.getIds(),1,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "启用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController2---------->",e);
+            successMap.put("resultMassage", "启用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditNotClass2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditNotClass2(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditNotClass2---------->"+strJson);
+        TypeBook2Query query = JSONObject.parseObject(strJson,TypeBook2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateBookClass2Status(query.getIds(),2,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "禁用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController2---------->",e);
+            successMap.put("resultMassage", "禁用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditNotClass1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditNotClass1(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditNotClass1---------->"+strJson);
+        TypeBook1Query query = JSONObject.parseObject(strJson,TypeBook1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateBookClass1Status(query.getIds(),2,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "禁用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController1---------->",e);
+            successMap.put("resultMassage", "禁用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/bookpro1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> proclass1Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.proclass1Data---------->"+strJson);
+        TypeProfessional1Query query = JSONObject.parseObject(strJson, TypeProfessional1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+
+            ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeProfessional1ListCount(query));
+            List<TypeProfessional1Vo> list  = new ArrayList<>();
+            long total = 0;
+            if(countRes.getSuccess()  && countRes.getBody() > 0){
+                total = countRes.getBody();
+                query.setSortName("c_t");
+                query.setSortOrder("desc");
+                ServiceResult<List<TypeProfessional1Vo>> result = classTypeService.getTypeProfessional1Lists(query);
+                if(result.getSuccess()) {
+                    list = result.getBody();
+                }else{
+                    successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
+                    return successMap;
+                }
+            }
+            ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.bookListData---------->",e);
+            successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/insertpro1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> insertpro1Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.insertpro1Data---------->"+strJson);
+        TypeProfessional1Query query = JSONObject.parseObject(strJson, TypeProfessional1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setcU(1);
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setStatus(2);
+            if(StringUtils.isEmpty(query.getClassName1())) {
+                successMap.put("resultMassage", "分类名称不能为空！");
+                return successMap;
+            }
+            ServiceResult<Integer> serviceResult = new ServiceResult<>(classTypeService.queryTypeProfessional1ByName(query));
+            if(serviceResult.getSuccess()&& serviceResult.getBody()>0){
+                successMap.put("resultMassage", "该分类已存在！");
+            }else{
+                ServiceResult<Integer> result = new ServiceResult<>(classTypeService.insertTypeProfessional1(query));
+                if(result.getSuccess()&& result.getBody()==1){
+                    successMap.put("resultMassage", "ok");
+                }else{
+                    successMap.put("resultMassage", "新建失败");
+                }
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertclass1Data---------->",e);
+            successMap.put("resultMassage", "新建失败!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/insertpro2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> insertpro2Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.insertpro2Data---------->"+strJson);
+        TypeProfessional2Query query = JSONObject.parseObject(strJson, TypeProfessional2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setcU(1);
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setStatus(2);
+            if(StringUtils.isEmpty(query.getClassName2())) {
+                successMap.put("resultMassage", "分类名称不能为空！");
+                return successMap;
+            }
+            ServiceResult<Integer> serviceResult = new ServiceResult<>(classTypeService.queryTypeProfessional2ByName(query));
+            if(serviceResult.getSuccess()&& serviceResult.getBody()>0){
+                successMap.put("resultMassage", "该分类已存在！");
+            }else{
+                ServiceResult<Integer> result = new ServiceResult<>(classTypeService.insertTypeProfessional2(query));
+                if(result.getSuccess()&& result.getBody()==1){
+                    successMap.put("resultMassage", "ok");
+                }else{
+                    successMap.put("resultMassage", "新建失败");
+                }
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertclass2Data---------->",e);
+            successMap.put("resultMassage", "新建失败!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/bookpro2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> bookpro2Data(HttpServletResponse response, @RequestBody String strJson) {
+
+
+        logger.info("BookManagerController.bookclass2Data---------->"+strJson);
+        TypeProfessional2Query query = JSONObject.parseObject(strJson, TypeProfessional2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            ServiceResult<Integer> countRes = new ServiceResult<>(classTypeService.getTypeProfessional2ListCount(query));
+            List<TypeProfessional2Vo> list  = new ArrayList<>();
+            long total = 0;
+            if(countRes.getSuccess()  && countRes.getBody() > 0){
+                total = countRes.getBody();
+                query.setSortName("c_t");
+                query.setSortOrder("desc");
+                ServiceResult<List<TypeProfessional2Vo>> result = classTypeService.getTypeProfessional2Lists(query);
+                if(result.getSuccess()) {
+                    list = result.getBody();
+                }else{
+                    successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
+                    return successMap;
+                }
+            }
+            ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.bookListData---------->",e);
+            successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditpro1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditpro1(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditClass1---------->"+strJson);
+        TypeProfessional1Query query = JSONObject.parseObject(strJson,TypeProfessional1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateTypeProfessional1Status(query.getIds(),1,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "启用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController.auditClass1---------->",e);
+            successMap.put("resultMassage", "启用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditpro2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditpro2(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditClass2---------->"+strJson);
+        TypeProfessional2Query query = JSONObject.parseObject(strJson,TypeProfessional2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateTypeProfessional2Status(query.getIds(),1,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "启用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController2---------->",e);
+            successMap.put("resultMassage", "启用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditNotpro2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditNotpro2(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditNotClass2---------->"+strJson);
+        TypeProfessional2Query query = JSONObject.parseObject(strJson,TypeProfessional2Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateTypeProfessional2Status(query.getIds(),2,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "禁用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController2---------->",e);
+            successMap.put("resultMassage", "禁用失败，请稍后重试!");
+            return successMap;
+        }
+    }
+
+    /***
+     *
+     * @param response
+     * @param strJson
+     * @return
+     */
+    @RequestMapping(value = "/auditNotpro1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, ?> auditNotpro1(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.auditNotClass1---------->"+strJson);
+        TypeProfessional1Query query = JSONObject.parseObject(strJson,TypeProfessional1Query.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        int cU=1;
+        try{
+            ServiceResult<Integer> serviceResult = classTypeService.updateTypeProfessional1Status(query.getIds(),2,cU,DateUtils.getNowTimeStamp());
+            if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
+                successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+            } else {
+                successMap.put("resultMassage", "禁用失败");
+            }
+            return successMap;
+
+        }catch(Exception e){
+            logger.error("BookManagerController1---------->",e);
+            successMap.put("resultMassage", "禁用失败，请稍后重试!");
             return successMap;
         }
     }

@@ -10,6 +10,8 @@
  */
 package common.query;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -40,6 +42,16 @@ public class TypeBook1Query extends QueryParam {
     private Integer cU;
 
     private Integer status;
+
+    private   List<Integer> ids;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
 
     public Integer getId() {
         return id;

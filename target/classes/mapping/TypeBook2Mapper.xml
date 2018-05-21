@@ -31,7 +31,7 @@
     delete from type_book2
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.TypeBook2" >
+  <insert id="insert" parameterType="common.query.TypeBook2Query" >
     insert into type_book2 (id, class_id1, class_name2, 
       print_user, print_time, import_user, 
       import_time, export_user, export_time, 
@@ -196,7 +196,7 @@
   <select id="queryTypeBook2Lists" parameterType="common.query.TypeBook2Query" resultMap="BaseResultMap">
     select *
     from type_book2
-    where 1=1
+    where class_id1=#{classId1}
     <if test="status != null">  AND status= #{status} </if>
     <if test="id != null">  AND id= #{id} </if>
     <if test="className2 != null and className2 !=''">  <![CDATA[	AND class_name2 LIKE CONCAT(CONCAT('%',#{className2}),'%')	]]> </if>
@@ -206,9 +206,19 @@
   <select id="queryTypeBook2Count" parameterType="common.query.TypeBook2Query" resultType="java.lang.Integer">
     select count(*)
     from type_book2
-    where 1=1
+    where class_id1 = #{classId1}
     <if test="status != null">  AND status= #{status} </if>
     <if test="id != null">  AND id= #{id} </if>
     <if test="className2 != null and className2 !=''">  <![CDATA[	AND class_name2 LIKE CONCAT(CONCAT('%',#{className2}),'%')	]]> </if>
   </select>
+  <select id="queryTypeBook2ByName"  parameterType="common.query.TypeBook2Query" resultType="java.lang.Integer">
+        select count(*)
+        from type_book2
+        where class_name2=#{className2}
+   </select>
+    <update id="updateBookClass2Status" >
+        update type_book2
+        set status = #{status},c_u = #{cU}, c_t = #{cTime}
+        where id = #{id}
+    </update>
 </mapper>

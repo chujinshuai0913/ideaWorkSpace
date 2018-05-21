@@ -30,7 +30,7 @@
     delete from type_book1
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.TypeBook1" >
+  <insert id="insert" parameterType="common.query.TypeBook1Query" >
     insert into type_book1 (id, class_name1, print_user, 
       print_time, import_user, import_time, 
       export_user, export_time, c_t, 
@@ -198,4 +198,14 @@
     <if test="id != null">  AND id= #{id} </if>
     <if test="className1 != null and className1 !=''">  <![CDATA[	AND class_name1 LIKE CONCAT(CONCAT('%',#{className1}),'%')	]]> </if>
   </select>
+  <select id="queryTypeBook1ByName"  parameterType="common.query.TypeBook1Query" resultType="java.lang.Integer">
+    select count(*)
+    from type_book1
+    where class_name1=#{className1}
+  </select>
+  <update id="updateBookClass1Status" >
+    update type_book1
+    set status = #{status},c_u = #{cU}, c_t = #{cTime}
+    where id = #{id}
+  </update>
 </mapper>

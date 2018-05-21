@@ -28,7 +28,6 @@ import java.util.List;
  * @author jinshuai
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService{
 
     private static final Logger logger = Logger.getLogger(UserServiceImpl.class);

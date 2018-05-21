@@ -6,6 +6,13 @@ import common.model.TypeProfessional1;
 import common.model.TypeProfessional2;
 import common.query.TypeBook1Query;
 import common.query.TypeBook2Query;
+import common.query.TypeProfessional1Query;
+import common.query.TypeProfessional2Query;
+import common.util.ServiceResult;
+import common.vo.TypeBook1Vo;
+import common.vo.TypeBook2Vo;
+import common.vo.TypeProfessional1Vo;
+import common.vo.TypeProfessional2Vo;
 
 import java.util.List;
 
@@ -23,11 +30,11 @@ public interface ClassTypeService {
   /*  查询图书一级分类列表*/
   List<TypeBook1> queryTypeBook1List(TypeBook1 typeBook1);
 
-  List<TypeBook1> getTypeBook1Lists(TypeBook1Query query);
+  ServiceResult<List<TypeBook1Vo>> getTypeBook1Lists(TypeBook1Query query);
 
   int getTypeBook1ListCount(TypeBook1Query query);
 
-  List<TypeBook2> getTypeBook2Lists(TypeBook2Query query);
+  ServiceResult<List<TypeBook2Vo>> getTypeBook2Lists(TypeBook2Query query);
 
   int getTypeBook2ListCount(TypeBook2Query query);
 
@@ -38,8 +45,14 @@ public interface ClassTypeService {
   /*  查询图书一级分类*/
   String queryTypeBook1ById(int id);
 
+  int queryTypeBook1ByName(TypeBook1Query query);
 
-  int insertTypeBook1(TypeBook1 typeBook1);
+  int queryTypeBook2ByName(TypeBook2Query query);
+
+  int queryTypeProfessional1ByName(TypeProfessional1Query query);
+
+  int queryTypeProfessional2ByName(TypeProfessional2Query query);
+  int insertTypeBook1(TypeBook1Query query);
   int insertTypeBook1List(List<TypeBook1> typeBook1List);
   int updateTypeBook1(TypeBook1 typeBook1);
   int updateTypeBook1List(List<TypeBook1> typeBook1List);
@@ -53,7 +66,7 @@ public interface ClassTypeService {
   /*  查询图书二级分类*/
   String queryTypeBook2ById(int id);
 
-  int insertTypeBook2(TypeBook2 typeBook2);
+  int insertTypeBook2(TypeBook2Query query);
   int insertTypeBook2List(List<TypeBook2> typeBook2List);
   int updateTypeBook2(TypeBook2 typeBook2);
   int updateTypeBook2List(List<TypeBook2> typeBook2List);
@@ -63,10 +76,19 @@ public interface ClassTypeService {
   /*  查询学院*/
   TypeProfessional1 queryTypeProfessional1(TypeProfessional1 typeProfessional1);
 
+
+  ServiceResult<List<TypeProfessional1Vo>> getTypeProfessional1Lists(TypeProfessional1Query query);
+
+  int getTypeProfessional1ListCount(TypeProfessional1Query query);
+
+  ServiceResult<List<TypeProfessional2Vo>> getTypeProfessional2Lists(TypeProfessional2Query query);
+
+  int getTypeProfessional2ListCount(TypeProfessional2Query query);
+
   /*  学院*/
   String queryTypeProfessional1ById(int id);
 
-  int insertTypeProfessional1(TypeProfessional1 typeProfessional1);
+  int insertTypeProfessional1(TypeProfessional1Query query);
   int insertTypeProfessional1List(List<TypeBook1> typeProfessional1List);
   int updateTypeProfessional1(TypeProfessional1 typProfessional1);
   int updateTypeProfessional1List(List<TypeProfessional1> typProfessional1List);
@@ -79,8 +101,17 @@ public interface ClassTypeService {
   /*  专业*/
   String queryTypeProfessional2ById(int id);
 
-  int insertTypeProfessional2(TypeProfessional2 typeProfessional2);
+  int insertTypeProfessional2(TypeProfessional2Query query);
   int insertTypeProfessional2List(List<TypeProfessional2> typeProfessional2List);
   int updateTypeProfessional2(TypeProfessional2 typProfessional2);
   int updateTypeProfessional2List(List<TypeProfessional2> typProfessional2List);
+
+   ServiceResult<Integer> updateBookClass1Status(List<Integer> ids,int status,int cU,int cTime);
+
+  ServiceResult<Integer> updateBookClass2Status(List<Integer> ids,int status,int cU,int cTime);
+
+
+  ServiceResult<Integer> updateTypeProfessional1Status(List<Integer> ids,int status,int cU,int cTime);
+
+  ServiceResult<Integer> updateTypeProfessional2Status(List<Integer> ids,int status,int cU,int cTime);
 }

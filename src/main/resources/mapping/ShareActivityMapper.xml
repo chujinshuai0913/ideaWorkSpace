@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common.mapper.ShareActivityMapper">
+  <resultMap id="BaseResultMap" type="common.model.ShareActivity">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="activity_room" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="activity_time" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cU" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cT" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_delete" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="export_user" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="export_time" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, activity_room, activity_time, remark, cU, cT, is_delete, export_user, export_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from share_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from share_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="common.query.ShareActivityQuery">
+    insert into share_activity (id, name, activity_room, 
+      activity_time, remark, cU, 
+      cT, is_delete, export_user, 
+      export_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{activityRoom,jdbcType=VARCHAR}, 
+      #{activityTime,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{cu,jdbcType=INTEGER}, 
+      #{ct,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER}, 
+      #{exportTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.ShareActivity">
+    insert into share_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="activityRoom != null">
+        activity_room,
+      </if>
+      <if test="activityTime != null">
+        activity_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="cu != null">
+        cU,
+      </if>
+      <if test="ct != null">
+        cT,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="exportUser != null">
+        export_user,
+      </if>
+      <if test="exportTime != null">
+        export_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="activityRoom != null">
+        #{activityRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        #{activityTime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cu != null">
+        #{cu,jdbcType=INTEGER},
+      </if>
+      <if test="ct != null">
+        #{ct,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null">
+        #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null">
+        #{exportTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.ShareActivity">
+    update share_activity
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="activityRoom != null">
+        activity_room = #{activityRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        activity_time = #{activityTime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cu != null">
+        cU = #{cu,jdbcType=INTEGER},
+      </if>
+      <if test="ct != null">
+        cT = #{ct,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="exportUser != null">
+        export_user = #{exportUser,jdbcType=INTEGER},
+      </if>
+      <if test="exportTime != null">
+        export_time = #{exportTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.ShareActivity">
+    update share_activity
+    set name = #{name,jdbcType=VARCHAR},
+      activity_room = #{activityRoom,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      cU = #{cu,jdbcType=INTEGER},
+      cT = #{ct,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      export_user = #{exportUser,jdbcType=INTEGER},
+      export_time = #{exportTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getShareActivityCount" parameterType="common.query.ShareActivityQuery" resultType="java.lang.Integer">
+    select count(*)
+    from share_activity
+    where  1=1
+    <if test="isDelete != null  ">    AND is_delete = #{isDelete}        </if>
+    <if test="sTime != null  ">    AND activity_time >= #{sTime}        </if>
+    <if test="fTime != null  ">   <![CDATA[ AND activity_time <= #{fTime} ]]> </if>
+    <if test="name != null and name !=''">  <![CDATA[	AND name LIKE CONCAT(CONCAT('%',#{name}),'%')	]]> </if>
+  </select>
+  <select id="getShareActivityList" parameterType="common.query.ShareActivityQuery" resultMap="BaseResultMap">
+    select *
+    from share_activity
+    where  1=1
+    <if test="isDelete != null  ">    AND is_delete = #{isDelete}        </if>
+    <if test="sTime != null  ">    AND activity_time >= #{sTime}        </if>
+    <if test="fTime != null  ">   <![CDATA[ AND activity_time <= #{fTime} ]]> </if>
+    <if test="name != null and name !=''">  <![CDATA[	AND name LIKE CONCAT(CONCAT('%',#{name}),'%')	]]> </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <update id="updateShareActivityStatus" >
+    update share_activity
+    set is_delete = #{isDelete},cU = #{cU}, cT = #{cTime}
+    where id = #{id}
+  </update>
+
+  <select id="getShareActivityByActivityRoom" parameterType="common.query.ShareActivityQuery" resultType="java.lang.Integer">
+    select count(*)
+    from share_activity
+    where activity_room = #{activityRoom} AND activity_time = #{activityTime}
+  </select>
+</mapper>
