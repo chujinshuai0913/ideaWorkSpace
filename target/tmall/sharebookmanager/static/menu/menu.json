@@ -131,7 +131,22 @@
         "href": "",
         "nodes": [
          {
-            "text": "交易统计分析",
+            "text": "交易量统计",
+            "href": "sharebookmanager/jsp/tradestatistics.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "交易时间统计",
+            "href": "sharebookmanager/jsp/tradestatistics.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "畅销图书统计",
+            "href": "sharebookmanager/jsp/booktenstatistics.jsp",
+            "nodes": [
+            ]
+          },{
+            "text": "专业最喜爱图书统计",
             "href": "sharebookmanager/jsp/tradestatistics.jsp",
             "nodes": [
             ]

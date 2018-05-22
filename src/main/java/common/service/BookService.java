@@ -33,6 +33,7 @@ public interface BookService {
     */
     ServiceResult<List<BookVo>>  queryBookList(BookQuery bookQuery);
 
+    ServiceResult<Integer> insertBook(BookQuery query);
     /*
     * 查询书籍总数count
     */
@@ -193,4 +194,6 @@ public interface BookService {
     ServiceResult<Integer> queryBookGiftRecCount(BookGiftRecQuery query);
 
     ServiceResult<List<BookGiftRecVo>> queryBookGiftRecList(BookGiftRecQuery query);
+
+    ServiceResult<BookVo> queryBookListTopTen(BookQuery query);
 }

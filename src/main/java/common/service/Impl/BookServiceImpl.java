@@ -106,6 +106,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public ServiceResult<Integer> insertBook(BookQuery query) {
+        return new ServiceResult<>(bookMapper.insert(query));
+    }
+
+    @Override
     public ServiceResult<Integer> queryBookCount(BookQuery bookQuery) {
         return new ServiceResult<>(bookMapper.queryBookCount(bookQuery));
     }
@@ -1104,5 +1109,13 @@ public class BookServiceImpl implements BookService {
             logger.error(e.getMessage(),e);
             return new ServiceResult<>(11,e.getMessage());
         }
+    }
+
+    @Override
+    public ServiceResult<BookVo> queryBookListTopTen(BookQuery query){
+        List<Book> bookList = bookMapper.queryBookListTopTen(query);
+        BookVo bookVo=new BookVo();
+        bookVo.setList(bookList);
+        return new ServiceResult<>(bookVo);
     }
 }

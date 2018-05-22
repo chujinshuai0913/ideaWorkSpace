@@ -14,6 +14,7 @@ package common.vo;
 import common.model.Book;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -39,6 +40,15 @@ public class BookVo extends Book implements Serializable {
 
     private String prUser;
 
+    private List<Book> list;
+
+    public List<Book> getList() {
+        return list;
+    }
+
+    public void setList(List<Book> list) {
+        this.list = list;
+    }
 
     private String iUser;
     public String getpTime() {

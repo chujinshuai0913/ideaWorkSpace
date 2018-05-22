@@ -9,7 +9,7 @@ import java.util.List;
 public interface BookMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Book record);
+    int insert(BookQuery record);
 
     int insertSelective(Book record);
 
@@ -24,6 +24,10 @@ public interface BookMapper {
      */
     List<Book> queryBookList(BookQuery bookQuery);
 
+    /*
+     * 查询十大畅销书籍book
+     */
+    List<Book> queryBookListTopTen(BookQuery bookQuery);
 
     /** 查询书籍总数count*/
 
