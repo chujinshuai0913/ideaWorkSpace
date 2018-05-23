@@ -37,6 +37,9 @@ public interface ShareManagerService {
 
     ServiceResult<List<ShareActivityVo>> getShareActivityVoList(ShareActivityQuery query);
 
+    ServiceResult<List<ShareAnnouncement>> getShareAnnouncementImgList(ShareAnnouncementQuery query);
+
+    ServiceResult<List<Integer>> getShareAnnouncementImgCount(ShareAnnouncementQuery query);
     ServiceResult<Integer> getShareActivityCount(ShareActivityQuery query);
 
     ServiceResult<Integer> updateShareActivityStatus( List<Integer> ids, int isDelete,int cU,int cTime);

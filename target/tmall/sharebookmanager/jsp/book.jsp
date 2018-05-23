@@ -70,12 +70,12 @@
 
             <div class="form-group" style="margin-left: 50px;">
                 <label onclick="$(this).next().focus();">学院</label>
-                <input type="text" name="professionalType1"  class="form-control" placeholder="学院"/>
+                <input type="text" name="professionalTypeName1"  class="form-control" placeholder="学院"/>
 
             </div>
             <div class="form-group" style="margin-left: 50px;">
                 <label onclick="$(this).next().focus();">专业</label>
-                <input type="text" name="professionalType2"  class="form-control" placeholder="专业"/>
+                <input type="text" name="professionalTypeName2"  class="form-control" placeholder="专业"/>
 
             <%-- <select  name="status" type="text" class="form-control" placeholder="专业">
                     <option value="">全部</option>

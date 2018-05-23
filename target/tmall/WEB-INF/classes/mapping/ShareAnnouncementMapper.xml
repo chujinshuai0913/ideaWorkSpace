@@ -184,4 +184,21 @@
     from share_announcement
     where  src=#{src}
   </select>
+
+  <select id="getShareAnnouncementImgList" parameterType="common.query.ShareAnnouncementQuery" resultMap="BaseResultMap">
+    select *
+    from share_announcement
+    where is_delete = 2 AND  unix_timestamp() &lt;end_time
+    ORDER BY upload_time,end_time ASC, cT ASC
+    limit #{pageSize}
+  </select>
+  <select id="getShareAnnouncementImgCount" parameterType="common.query.ShareAnnouncementQuery" resultType="java.lang.Integer">
+    select count(*)
+    from share_announcement
+    where is_delete = 2 AND  unix_timestamp()&lt;end_time
+    GROUP BY upload_time
+    ORDER BY upload_time ASC
+    limit #{pageSize}
+  </select>
+
 </mapper>

@@ -21,7 +21,7 @@ public interface TypeBook2Mapper {
 
     int updateByPrimaryKey(TypeBook2 record);
 
-    List<TypeBook2> queryTypeBook2List(TypeBook2 typeBook2);
+    List<TypeBook2> queryTypeBook2List(TypeBook2Query typeBook2);
 
     String queryTypeBook2ById(@Param("id") int id );
 

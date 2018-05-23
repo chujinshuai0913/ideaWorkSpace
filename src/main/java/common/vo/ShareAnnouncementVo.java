@@ -12,6 +12,8 @@ package common.vo;
 
 import common.model.ShareAnnouncement;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -30,6 +32,16 @@ public class ShareAnnouncementVo extends ShareAnnouncement {
     private String cUser;
 
     private String cTime;
+
+    private List<ShareAnnouncement> list;
+
+    public List<ShareAnnouncement> getList() {
+        return list;
+    }
+
+    public void setList(List<ShareAnnouncement> list) {
+        this.list = list;
+    }
 
     public String geteTime() {
         return eTime;

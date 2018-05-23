@@ -163,7 +163,7 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="queryTypeBook1List" parameterType="common.model.TypeBook1" resultMap="BaseResultMap">
+  <select id="queryTypeBook1List" parameterType="common.query.TypeBook1Query" resultMap="BaseResultMap">
     select *
     from type_book1
     where status=1
@@ -173,6 +173,7 @@
     <if test="sortName != null  ">
       ORDER BY ${sortName} ${sortOrder}
     </if>
+    <if test="pageSize &gt;0 "> limit #{pageSize} </if>
   </select>
   <select id="queryTypeBook1ById" parameterType="java.lang.Integer" resultType="java.lang.String">
     select

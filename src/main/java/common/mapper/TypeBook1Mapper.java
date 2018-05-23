@@ -19,7 +19,7 @@ public interface TypeBook1Mapper {
 
     int updateByPrimaryKey(TypeBook1 record);
 
-    List<TypeBook1> queryTypeBook1List(TypeBook1 typeBook1);
+    List<TypeBook1> queryTypeBook1List(TypeBook1Query query);
 
     List<TypeBook1> queryTypeBook1Lists(TypeBook1Query query);
 

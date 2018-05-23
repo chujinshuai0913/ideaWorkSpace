@@ -174,11 +174,12 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="queryTypeBook2List" parameterType="common.model.TypeBook2" resultMap="BaseResultMap">
+  <select id="queryTypeBook2List" parameterType="common.query.TypeBook2Query" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from type_book2
     where status=1
+    <if test="classId1 != null">   AND class_id1=#{classId1}</if>
     <if test="id != null">
       AND id= #{id}
     </if>

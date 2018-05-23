@@ -1,12 +1,25 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="basePath" value="${pageContext.request.contextPath}" scope="page"></c:set>
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8" />
 		<title>燕鸣书屋</title>
-		<link rel="stylesheet" type="text/css" href="../css/index.css">
-		<link rel="stylesheet" href="../css/bookClassification.css" />
-		<script src="../js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="${basePath}/sharebook/css/bookClassification.css" />
+		<link rel="stylesheet" href="${basePath}/sharebook/css/owl.carousel.min.css" />
+		<link rel="stylesheet" href="${basePath}/sharebook/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/index.css">
+		<link rel="stylesheet" href="${basePath}/sharebook/css/dl_b.css"/>
+		<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/shufflingStyle.css">
+		<script src="${basePath}/sharebook/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="${basePath}/sharebook/js/carousel.js"></script>
+		<script type="text/javascript" src="${basePath}/sharebook/js/zturn.js"></script>
+		<script type="text/javascript" src="${basePath}/sharebook/js/owl.carousel.min.js"></script>
+
 	</head>
 	<body>
 		<div class="homePage">
@@ -24,7 +37,7 @@
 				</div>
 				<div class="headPagebody">
 					<div class="headPagebody_left">
-						<img src="../img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer" "  alt="燕鸣书屋 " />
+						<img src="../img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"  alt="燕鸣书屋 " />
 					</div>
 					<div class="headPagebody_none ">
 						<form  action=" " method="get "  id="myform ">
@@ -54,12 +67,12 @@
 				<div class="navwrap ">
 					<div class="navwrap_text ">
 						<div class="navLeft ">
-						   <a style="color: white; " href="bookClassification.html">全部图书分类</a><span><img src="../img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
+						   <a style="color: white; " href="${basePath}/sharebook/jsp/bookClassification.jsp">全部图书分类</a><span><img src="../img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
 					     </div> 	
 						<div class="navwrap_text_right ">
 							<ul>
-								<li><a href="shareindex.jsp">首页</a></li>
-								<li><a href="bookClassification.html">普通分类</a></li>
+								<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
+								<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
 								<li><a href="# ">按专业分类</a></li>
 								<li><a href="# ">书籍竞拍</a></li>
 								<li><a href="# ">资料共享</a></li>

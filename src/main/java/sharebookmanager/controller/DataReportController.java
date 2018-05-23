@@ -11,6 +11,7 @@
 package sharebookmanager.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import common.constant.ConstantsUtils;
 import common.model.Book;
 import common.query.BookQuery;
 import common.service.BookService;
@@ -37,26 +38,22 @@ import java.util.Map;
  */
 @RestController("DataReportController")
 @RequestMapping("/dataReport")
-
 public class DataReportController {
 
     private static  final Logger logger = Logger.getLogger(DataReportController.class);
     @Autowired
     private BookService bookService;
 
-    /***
-     *查询指标事件规则
-     * @param response
-     * @param strJson
-     * @return
-     */
+
     @RequestMapping(value = "/bookten", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, ?> bookten(HttpServletResponse response, @RequestBody String strJson) {
 
         BookQuery query = JSONObject.parseObject(strJson,BookQuery.class);
         logger.info("DataReportController.bookten------->"+query);
-
+        query.setPageSize(ConstantsUtils.BookTop.BookTopNum);
+        query.setSortName("use_num");
+        query.setSortOrder("DESC");
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
             BookVo books=new BookVo();

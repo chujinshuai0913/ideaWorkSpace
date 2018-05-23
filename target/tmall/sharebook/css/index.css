@@ -521,6 +521,17 @@ a {
 	color: white;
 	font-size: 18px;
 }
+
+.fenlei ul {
+	overflow: hidden;
+}
+
+.fenlei ul li {
+	overflow: hidden;
+	height: 40px;
+	border-bottom: 1px solid #EEEEEE;
+}
+
 .navLeft {
 	float: left;
 	width: 20%;
@@ -530,52 +541,7 @@ a {
 	line-height: 40px;
 	cursor: pointer;
 }
-.fenlei {
-	width: 100%;
-	height: 700px;
-	position: absolute;
-	background: #FFFFFF;
-	top: 40;
-	left: 0;
-	color: black;
-	border: 1PX solid #EEEEEE;
-	
-}
 
-.fenlei ul {
-	overflow: hidden;
-}
-
-.fenlei ul li {
-	overflow: hidden;
-	height: 79px;
-	border-bottom: 1px solid #EEEEEE;
-}
-
-.fenleiLeft {
-	overflow: hidden;
-}
-
-.fenleiLeft dt {
-	width: 40px;
-	height: 30px;
-	padding: 3px 2px 0 15px;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.fenleiLeft dd {
-	float: left;
-	width: 150px;
-	font-size: 14px;
-	padding-left:15px ;
-	overflow: hidden;
-}
-
-.fenleiLeft dd a {
-	margin: 3px 0 -10px 3px;
-	float: left;
-}
 .fenleiright {
 	width: 0px;
 	height: 600px;
@@ -584,14 +550,35 @@ a {
 	background: #FFFFFF;
 	position: relative;
 	top: 0px;
-	left: 239px;
+	left: 263px;
 	overflow: hidden;
 	z-index: 10;
 }
-.flright {
-	height: 80px;
-	padding: 20px 0 0 20px;
+
+
+.fenlei {
+	width: 60%;
+	height: 700px;
+	position: absolute;
+	background: #FFFFFF;
+	top: 40px;
+	right: 0px;
+	left: 80px;
+	color: black;
+	border: 1PX solid #EEEEEE;
+}
+
+.fenleiLeft {
 	overflow: hidden;
+}
+
+.fenleiLeft dt {
+	font: 16px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	padding: 3px 2px 0 15px;
+	text-align: center;
 }
 
 .flright dt {
@@ -605,7 +592,7 @@ a {
 }
 
 .flright dd {
-	height: 80px;
+	height: 580px;
 	overflow: hidden;
 	font-size: 14px;
 	position: relative;
@@ -615,8 +602,8 @@ a {
 .flright dd a {
 	float: left;
 	padding-right: 20px;
-	height: 20px;
-	line-height: 20px;
+	height: 30px;
+	line-height: 30px;
 }
 
 .navwrap_text_right {

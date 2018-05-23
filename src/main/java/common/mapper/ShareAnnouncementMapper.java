@@ -28,4 +28,9 @@ public interface ShareAnnouncementMapper {
 
     int getShareAnnouncementBySrc( @Param("src") String src);
 
+    List<ShareAnnouncement> getShareAnnouncementImgList(ShareAnnouncementQuery query);
+
+    List<Integer> getShareAnnouncementImgCount(ShareAnnouncementQuery query);
+
+
 }

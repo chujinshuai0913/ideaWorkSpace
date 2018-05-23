@@ -422,14 +422,16 @@
     WHERE 1=1
     <if test="professionalType1 != null" >   AND  professional_type1 = #{professionalType1,jdbcType=INTEGER}   </if>
     <if test="professionalType2 != null" >   AND  professional_type2 = #{professionalType2,jdbcType=INTEGER}   </if>
-    <if test="isbn != null" >   AND  ISBN = #{isbn} </if>
     <if test="press != null and press !=''">  <![CDATA[	AND press LIKE CONCAT(CONCAT('%',#{press}),'%')	]]> </if>
     <if test="bookName != null and bookName !=''">  <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
     <if test="author != null and author !=''">  <![CDATA[	AND author LIKE CONCAT(CONCAT('%',#{author}),'%')	]]> </if>
     <if test="professionalTypeName1 != null and professionalTypeName1 !=''">  <![CDATA[	AND professional_type_name1 LIKE CONCAT(CONCAT('%',#{professionalTypeName1}),'%')	]]> </if>
     <if test="professionalTypeName2 != null and professionalTypeName2 !=''">  <![CDATA[	AND professional_type_name2 LIKE CONCAT(CONCAT('%',#{professionalTypeName2}),'%')	]]> </if>
-     ORDER BY use_num desc
-     limit 10
+    <if test="bookTypeName1 != null and bookTypeName1 !=''">  <![CDATA[	AND book_type_name1 LIKE CONCAT(CONCAT('%',#{bookTypeName1}),'%')	]]> </if>
+    <if test="bookTypeName2 != null and bookTypeName2 !=''">  <![CDATA[	AND book_type_name2 LIKE CONCAT(CONCAT('%',#{bookTypeName2}),'%')	]]> </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageSize &gt;0 "> limit #{pageSize}</if>
+
   </select>
   <select id="queryBookCount" resultType="java.lang.Integer" parameterType="common.query.BookQuery" >
     SELECT count(*)

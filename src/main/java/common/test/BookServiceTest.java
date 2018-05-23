@@ -44,14 +44,14 @@ public class BookServiceTest {
         System.out.print(bookService.queryBookList(bookQuery));
     }
       /*图书分类*/
-    @Test
-    public void queryTypeBook1List (){
-        TypeBook1 typeBook1=new TypeBook1();
-        typeBook1.setId(1);
-        typeBook1.setStatus(ConstantsUtils.TypeBookClass.TYPE_CLASS_STATUS);
-        typeBook1.setSortOrder("id");
-        System.out.print(classTypeService.queryTypeBook1List(typeBook1));
-    }
+//    @Test
+//    public void queryTypeBook1List (){
+//        TypeBook1 typeBook1=new TypeBook1();
+//        typeBook1.setId(1);
+//        typeBook1.setStatus(ConstantsUtils.TypeBookClass.TYPE_CLASS_STATUS);
+//        typeBook1.setSortOrder("id");
+//        System.out.print(classTypeService.queryTypeBook1List(typeBook1));
+//    }
 
 
 }

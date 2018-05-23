@@ -44,5 +44,24 @@ public class ConstantsUtils {
 		public  static final int SEMESTER_UP=1;//上学期
 		public  static final int SEMESTER_DOWN=2;//下学期
 	}
+	public static class  ShareAnnouncementImgNum {
+		public  static final int NUM = 5;//显示图片数量
 
+	}
+	public static class  BookHotNum {
+		public  static final int BookHotNum = 8;//近期热销书籍
+
+	}
+    public static class  BookTop {
+        public  static final int BookTopNum = 10;//热销书籍
+        public  static final int BookTopIndexNum =16;//首页图书推荐书记数目
+		public  static final int BookTopProNum =12;//首页图书推荐书记数目
+
+    }
+	public static class  BookClassTop {
+		public  static final int BookClass1TopNum = 18;//显示图书分类的数目
+		public  static final int BookClass2TopNum =50;//首页图书推荐书记数目
+		public  static final int BookPro1TopNum = 10;//显示图书分类的数目
+		public  static final int BookPro2TopNum =50;//首页图书推荐书记数目
+	}
 }

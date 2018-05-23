@@ -219,65 +219,6 @@
 
         });
 
-        //
-        //     //初始化echarts
-        //     function chushihua(myChart){
-        //         var option = {
-        //             title:{
-        //                 text:'交易数据统计'
-        //             },
-        //             series:[{
-        //                 name:'访问量',
-        //                 type:'pie',
-        //                 radius:'90%',
-        //                 data:[
-        //                     {value:0,name:'无'},
-        //                 ]
-        //             }]
-        //         };
-        //
-        //         myChart.setOption(option);
-        //     }
-        //
-        // //从数据库读取数据赋值给echarts
-        // function fuzhi(myChart){
-        //     $.ajax({
-        //         contentType : "application/json",
-        //         type : "GET",
-        //         url : "info.html",
-        //         dataType : "json",
-        //         success : function(data) {
-        //             //创建一个数组，用来装对象传给series.data，因为series.data里面不能直接鞋for循环
-        //             var servicedata=[];
-        //
-        //             for(var i=0;i<data.length;i++){
-        //                 var obj=new Object();
-        //                 obj.name=data[i].username;
-        //                 obj.value=data[i].age;
-        //                 servicedata[i]=obj;
-        //             }
-        //
-        //             myChart.setOption({
-        //                 title:{
-        //                     text:'ECharts 数据统计'
-        //                 },
-        //                 series:[{
-        //                     name:'访问量',
-        //                     type:'pie',
-        //                     radius:'60%',
-        //                     data:servicedata,
-        //                 }]
-        //
-        //             });
-        //
-        //         }
-        //     });
-        // }
-        //
-        // //初始化echarts实例
-        // var myChart = echarts.init(document.getElementById('main1'));
-        // chushihua(myChart);
-        // fuzhi(myChart);
         function convertSerializeArrayToObject(array) {
             var obj = {};
             for(var i = 0, length = array.length; i<length; i++){

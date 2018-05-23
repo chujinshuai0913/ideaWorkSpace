@@ -49,8 +49,8 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     private TypeProfessional1Mapper typeProfessional1Mapper ;
 
     @Override
-    public List<TypeBook1> queryTypeBook1List(TypeBook1 typeBook1) {
-        return typeBook1Mapper.queryTypeBook1List(typeBook1);
+    public ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query) {
+        return new ServiceResult<>(typeBook1Mapper.queryTypeBook1List(query));
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ClassTypeServiceImpl implements ClassTypeService {
         return typeBook2Mapper.queryTypeBook2Count(query);
     }
     @Override
-    public TypeBook1 queryTypeBook1(TypeBook1 typeBook1) {
+    public TypeBook1 queryTypeBook1(TypeBook1Query query) {
         return null;
     }
 
@@ -194,8 +194,8 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     }
 
     @Override
-    public List<TypeBook2> queryTypeBook2List(TypeBook2 typeBook2) {
-        return typeBook2Mapper.queryTypeBook2List(typeBook2);
+    public ServiceResult<List<TypeBook2>> queryTypeBook2List(TypeBook2Query typeBook2) {
+        return new ServiceResult<>(typeBook2Mapper.queryTypeBook2List(typeBook2));
     }
 
     @Override
@@ -229,8 +229,8 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     }
 
     @Override
-    public List<TypeProfessional1> queryTypeProfessional1List(TypeProfessional1 typeProfessional1) {
-        return typeProfessional1Mapper.queryTypeProfessional1List(typeProfessional1);
+    public ServiceResult<List<TypeProfessional1>> queryTypeProfessional1List(TypeProfessional1Query typeProfessional1) {
+        return new ServiceResult<>(typeProfessional1Mapper.queryTypeProfessional1List(typeProfessional1));
     }
 
     @Override
@@ -354,8 +354,8 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     }
 
     @Override
-    public List<TypeProfessional2> queryTypeProfessional2List(TypeProfessional2 typeProfessional2) {
-        return typeProfessional2Mapper.queryTypeProfessional2List(typeProfessional2);
+    public ServiceResult<List<TypeProfessional2>> queryTypeProfessional2List(TypeProfessional2Query typeProfessional2) {
+        return new ServiceResult<>(typeProfessional2Mapper.queryTypeProfessional2List(typeProfessional2));
     }
 
     @Override

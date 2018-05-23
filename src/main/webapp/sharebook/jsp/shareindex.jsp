@@ -12,15 +12,71 @@
 	<link rel="stylesheet" href="${basePath}/sharebook/css/owl.carousel.min.css" />
 	<link rel="stylesheet" href="${basePath}/sharebook/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/index.css">
-	<link rel="stylesheet" href="/ideaWorkSpace/sharebook/css/dl_b.css"/>
-	<link rel="stylesheet" type="text/css" href="/ideaWorkSpace/sharebook/css/shufflingStyle.css">
-	<script src="/ideaWorkSpace/sharebook/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/ideaWorkSpace/sharebook/js/carousel.js"></script>
-	<script type="text/javascript" src="/ideaWorkSpace/sharebook/js/zturn.js"></script>
-	<script type="text/javascript" src="/ideaWorkSpace/sharebook/js/owl.carousel.min.js"></script>
+	<link rel="stylesheet" href="${basePath}/sharebook/css/dl_b.css"/>
+	<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/shufflingStyle.css">
+	<script src="${basePath}/sharebook/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="${basePath}/sharebook/js/carousel.js"></script>
+	<script type="text/javascript" src="${basePath}/sharebook/js/zturn.js"></script>
+	<script type="text/javascript" src="${basePath}/sharebook/js/owl.carousel.min.js"></script>
 </head>
 <style>
+	.flright {
+		height: 580px;
+		padding: 20px 0 0 20px;
+		overflow: hidden;
+	}
+    .navLeft {
+        float: left;
+        width: 20%;
+        height: 40px;
+        position: relative;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+    }
 
+    .fenleiright {
+        width: 0px;
+        height: 600px;
+        border: 1px solid #EEEEEE;
+        border-left: 0;
+        background: #FFFFFF;
+        position: relative;
+        top: 0px;
+        left: 263px;
+        overflow: hidden;
+        z-index: 10;
+    }
+
+    .fenlei {
+        width: 60%;
+        height: 700px;
+        position: absolute;
+        background: #FFFFFF;
+        top: 40px;
+        right: 0px;
+        left: 100px;
+        color: black;
+        border: 1PX solid #EEEEEE;
+    }
+
+    .fenleiLeft {
+        overflow: hidden;
+    }
+
+    .fenleiLeft dt {
+        font: 16px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;;
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        padding: 3px 2px 0 15px;
+        text-align: center;
+    }
+    .fenlei ul li {
+        overflow: hidden;
+        height: 40px;
+        border-bottom: 1px solid #EEEEEE;
+    }
 </style>
 <body>
 
@@ -71,152 +127,23 @@
 		<div class="navwrap ">
 			<div class="navwrap_text ">
 				<div class="navLeft ">
-					<a style="color: white; " href="bookClassification.html">全部图书分类</a><span><img src="/ideaWorkSpace/sharebook/img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
+					<a style="color: white; margin-left: 110px" href="${basePath}/sharebook/jsp/bookClassification.jsp">全部图书分类</a><span><img src="/ideaWorkSpace/sharebook/img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
 					<div class="fenlei ">
-						<ul>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
-							<li>
-								<dl class="fenleiLeft ">
-									<dt>男人</dt>
-									<dd>
-										<a href="javascript:; ">男鞋</a>
-										<a href="javascript:; ">男裤</a>
-										<a href="javascript:; ">手表</a>
-										<a href="javascript:; ">男卫衣</a>
-										<a href="javascript:; ">nb男鞋</a>
-										<a href="javascript:; ">打底衫</a>
-									</dd>
-								</dl>
-							</li>
+						<ul id="index1F">
 						</ul>
 					</div>
 					<div class="fenleiright ">
 						<dl class="flright ">
-							<dt>上衣</dt>
+							<dt></dt>
 							<dd>
-								<a href="javascript:; ">白衬衫 </a>
-								<a href="javascript:; ">潮牌</a>
-								<a href="javascript:; ">雪纺衫</a>
-								<a href="javascript:; ">班服</a>
-								<a href="javascript:; ">宽松上衣</a>
-								<a href="javascript:; ">胖人装</a>
-								<a href="javascript:; ">棉衬衫</a>
-								<a href="javascript:; ">学院风</a>
-								<a href="javascript:; "> 中长款装</a>
-								<a href="javascript:; ">白衬衫 </a>
-							</dd>
-						</dl>
-						<dl class="flright ">
-							<dt>上衣</dt>
-							<dd>
-								<a href="javascript:; ">白衬衫 </a>
-								<a href="javascript:; ">潮牌</a>
-								<a href="javascript:; ">雪纺衫</a>
-								<a href="javascript:; ">班服</a>
-								<a href="javascript:; ">宽松上衣</a>
-								<a href="javascript:; ">胖人装</a>
-								<a href="javascript:; ">棉衬衫</a>
-								<a href="javascript:; ">学院风</a>
-								<a href="javascript:; "> 中长款装</a>
-								<a href="javascript:; ">白衬衫 </a>
 							</dd>
 						</dl>
 					</div>
 				</div>
 				<div class="navwrap_text_right ">
 					<ul>
-						<li><a href="shareindex.jsp">首页</a></li>
-						<li><a href="bookClassification.html">按图书分类</a></li>
+						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
+						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">按图书分类</a></li>
 						<li><a href="# ">按专业分类</a></li>
 						<li><a href="# ">书籍</a></li>
 						<li><a href="# ">资料共享</a></li>
@@ -235,201 +162,42 @@
 					<div class="a-content ">
 						<div class="carousel-content ">
 							<ul class="carousel ">
-								<li><img src="/ideaWorkSpace/sharebook/img/pic1.png "></li>
-								<li><img src="/ideaWorkSpace/sharebook/img/pic2.png "></li>
-								<li><img src="/ideaWorkSpace/sharebook/img/pic3.png "></li>
-								<li><img src="/ideaWorkSpace/sharebook/img/pic4.png "></li>
-								<li><img src="/ideaWorkSpace/sharebook/img/pic5.png "></li>
 							</ul>
 							<ul class="img-index "></ul>
-							<div class="carousel-prev "><img src="/ideaWorkSpace/sharebook/img/left1.png "></div>
-							<div class="carousel-next "><img src="/ideaWorkSpace/sharebook/img/right1.png "></div>
+							<div class="carousel-prev "><img src="${basePath}/sharebook/img/left1.png "></div>
+							<div class="carousel-next "><img src="${basePath}/sharebook/img/right1.png "></div>
 						</div>
 					</div>
 				</div>
 				<div class="bodyPagefirst_none_down ">
 					<div class="bodyPagefirst_none_down_up ">
-						<img src="/ideaWorkSpace/sharebook/img/音量.png " />
+						<img src="${basePath}/sharebook/img/音量.png " />
 						<p>图书推荐</p>
 					</div>
 					<div class="bodyPagefirst_none_down_body ">
-						<div class="mhn-slide owl-carousel ">
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
-							<div class="mhn-item ">
-								<div class="mhn-inner ">
-									<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-									<div class="mhn-text ">
-										<h4>啊弥陀佛么么哒</h4>
-										<p>大冰</p>
-										<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-									</div>
-								</div>
-							</div>
+						<div id="booktop" class="mhn-slide owl-carousel ">
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bodyPagefirst_right ">
 				<div class="bodyPagefirst_right_title ">
-					<img src="/ideaWorkSpace/sharebook/img/勋章.png " /><p>近期热销榜</p>
+					<img src="${basePath}/sharebook/img/勋章.png " /><p>近期热销榜</p>
 				</div>
 				<div class="bodyPagefirst_right_content ">
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/1.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/3.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/4.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/5.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/1.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/3.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/5.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
-					<a href="# ">
-						<div class="bodyPagefirst_right_content_grid ">
-							<div class="bodyPagefirst_right_content_left ">
-								<img src="/ideaWorkSpace/sharebook/img/1.jpg " alt="11 " />
-							</div>
-							<div class="bodyPagefirst_right_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span></p>
-							</div>
-						</div>
-					</a>
+
 				</div>
 			</div>
 		</div>
 		<div id="1F" class="bodyPagesecond ">
 			<div class="bodyPagethreehead ">
 				<div class="bodyPagethreehead_text " >
-					<img src="/ideaWorkSpace/sharebook/img/分类推荐.png "/>
+					<img src="${basePath}/sharebook/img/分类推荐.png "/>
 					<p>图书分类推荐</p>
 				</div>
 				<div class="bodyPagethreehead_nav ">
-					<ul>
+					<ul id="FA">
 						<li class="bodyPagesecond_nav_li1 ">青春文学  </li>
 						<li class="bodyPagesecond_nav_li2 ">小说</li>
 						<li class="bodyPagesecond_nav_li3 ">人物传记</li>
@@ -441,520 +209,16 @@
 			</div>
 			<div class="bodyPagesecondbody ">
 				<div class="bodyPagesecondbody_1">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagesecondbody_2 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagesecondbody_3 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagesecondbody_4 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagesecondbody_5 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagesecondbody_6 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 			</div>
 
@@ -966,7 +230,7 @@
 					<p>专业分类推荐</p>
 				</div>
 				<div class="bodyPagethreehead_nav ">
-					<ul>
+					<ul id="FB">
 						<li class="bodyPagethree_nav_li1 "> 软件工程</li>
 						<li class="bodyPagethree_nav_li2 "> 电气自动化</li>
 						<li class="bodyPagethree_nav_li3 "> 通信工程</li>
@@ -978,520 +242,12 @@
 			</div>
 			<div class="bodyPagethreebody ">
 				<div class="bodyPagethreebody_1 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagethreebody_2 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagethreebody_3 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-				</div>
-				<div class="bodyPagethreebody_4 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-				</div>
-				<div class="bodyPagethreebody_5 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 				<div class="bodyPagethreebody_6 ">
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/3.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic1.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic2.png ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/pic3.png">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/2.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/1.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/4.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
-					<div class="bodyPagebook">
-						<img src="/ideaWorkSpace/sharebook/img/5.jpg ">
-						<div class="bodyPagebook_text ">
-							<h4>啊弥陀佛么么哒</h4>
-							<p><span class="moneyRed ">23.39￥</span> <span class="money ">39.99￥</span></p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -1501,188 +257,6 @@
 		<div style="position: relative;width: 100%; height: 200px;margin-left: 38px;">
 			<div class="pictureSlider">
 				<ul id="zturn">
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li><li class="poster-item  zturn-item" >
-					<p class="xxgy">狼图腾</p>
-					<div class="for_btn">
-						<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-					</div>
-					<div class="students_star">
-						<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-						</p>
-						<div class="zwjs">
-							简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-						</div>
-					</div>
-				</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
-					<li class="poster-item  zturn-item" >
-						<p class="xxgy">狼图腾</p>
-						<div class="for_btn">
-							<img src="/ideaWorkSpace/sharebook/img/a1.png" width="100%">
-						</div>
-						<div class="students_star">
-							<p class="cell_list">作者:<span class="darks">王刚</span>价格:<span class="darks" >23.39￥</span>
-							</p>
-							<div class="zwjs">
-								简介:<span>是向别人展示你自我介绍好不好,甚至直接关系到你给别人的第一印象的好坏及以后自我介绍是向别人展示你自我介绍好不好</span>
-							</div>
-						</div>
-					</li>
 				</ul>
 			</div></div>
 	</div>
@@ -1695,9 +269,471 @@
 </div>
 <div id="bottom" class="footerPage" style="margin-top: 10px;"></div>
 </body>
-<script type="text/javascript " src="/ideaWorkSpace/sharebook/js/index.js " ></script>
 <script type="text/javascript ">
-	alert(${mb});
+	$(function () {
+
+
+    //轮播图
+	// imgCycleOnload();
+        $.ajax({
+            type : "post",
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/imgcycle",    //请求发送到TestServlet处
+            data: {id:1},
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        list = JSON.parse(JSON.stringify(data.data));
+                        if(list.length>0){
+                            list.forEach(function (item) {
+                             $(".bodyPagefirst_none_up").find(".carousel").append("<li><img src='${basePath}/sharebook/img/shareactivity/"+item.src+"'></li>");
+                            })
+                            imgCycle();
+						}
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+
+        //
+        // function bookAjax(pageSize,sortName,sortOrder ) {
+			//
+        // }
+		//近期热销榜
+        $.ajax({
+            type : "post",
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/bookhot",    //请求发送到TestServlet处
+            data: {id:1},
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        list = JSON.parse(JSON.stringify(data.data));
+                        if(list.length>0){
+                            list.forEach(function (item) {
+                                $(".bodyPagefirst_right_content").append("<a href='# '>" +
+									"<div class='bodyPagefirst_right_content_grid '><div class='bodyPagefirst_right_content_left'>" +
+									" <img src='${basePath}/sharebook/img/book/"+item.src+"' alt='11' /></div><div class='bodyPagefirst_right_content_right'>" +
+									"<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></div></a>");
+                            })
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
+
+        //图书推荐榜
+        $.ajax({
+            type : "post",
+            async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/booktop",    //请求发送到TestServlet处
+            data: {id:1},
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        list = JSON.parse(JSON.stringify(data.data));
+                        if(list.length>0){
+                            list.forEach(function (item) {
+                                $("#booktop").append("<div class='mhn-item'> <div class='mhn-inner' ><img style='margin-left: 10px;' src='${basePath}/sharebook/img/"+item.src+"'><div class='mhn-text'>" +
+                                    " <h4>"+item.bookName+"</h4><p>"+item.author+"</p><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div></div>");
+                            })
+                            bookTopA();
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
+
+        //专业书籍推荐
+		var professionalTypeName2="";
+        var list=[];
+		proBookTopUser(professionalTypeName2);
+		function proBookTopUser(professionalTypeName2) {
+		    list=proBookTopA(professionalTypeName2);
+            console.log(proBookTopA(professionalTypeName2));
+		    console.log(list);
+            list.forEach(function (item) {
+                $("#zturn").append("<li class='poster-item  zturn-item'> <p class='xxgy'>"+item.bookName+"</p><div class='for_btn'>" +
+                    "<img src='${basePath}/sharebook/img/"+item.src+"'width='100%'></div><div class='students_star'>" +
+                    " <p class='cell_list'>作者:<span class='darks'>"+item.author+"</span>价格:<span class='darks' >"+item.pricing+"￥</span></p><div class='zwjs'>" +
+                    " 简介:<span>"+item.introduce+"</span></div></div></li>");
+            })
+            var aa=new zturn({
+                id:"zturn",
+                opacity:0.9,
+                width:300,
+                Awidth:900,
+                scale:0.9
+            })
+        }
+        function proBookTop(professionalTypeName2,num) {
+            list=proBookTopA(professionalTypeName2);
+            console.log(proBookTopA(professionalTypeName2));
+            console.log(list);
+            $(".bodyPagethreebody_"+num+"").find(".bodyPagebook").remove();
+            list.forEach(function (item) {
+                $(".bodyPagethreebody_"+num+"")
+                $(".bodyPagethreebody_"+num+"").append("<div class='bodyPagebook'><img src='${basePath}/sharebook/img/"+item.src+"'> <div class='bodyPagebook_text'>" +
+                    "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div>");
+            })
+        }
+       //分专业推荐图书
+		$("#FB").find('li').mouseover(function() {
+            num= $(this).index()+1;
+            proBookTop($(this).text(),num);
+        });
+
+        function proBookTopA(professionalTypeName2){
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
+                data: JSON.stringify($.extend(true, {},{professionalTypeName2:professionalTypeName2})),
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+                              return list;
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+        }
+//分类推荐图书
+        $("#FA").find('li').mouseover(function() {
+            num= $(this).index()+1;
+            pro2BookTop($(this).text(),num);
+        });
+        function pro2BookTop(bookTypeName2,num) {
+            list=proBookTopB(bookTypeName2);
+            console.log(proBookTopB(bookTypeName2));
+            console.log(list);
+            $(".bodyPagesecondbody_"+num+"").find(".bodyPagebook").remove();
+            list.forEach(function (item) {
+                $(".bodyPagesecondbody_"+num+"").append("<div class='bodyPagebook'><img src='${basePath}/sharebook/img/"+item.src+"'> <div class='bodyPagebook_text'>" +
+                    "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div>");
+            })
+        }
+        function proBookTopB(bookTypeName2){
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
+                data: JSON.stringify($.extend(true, {},{bookTypeName2:bookTypeName2})),
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+                                return list;
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+        }
+
+
+
+//首页图书分类
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/bookclassinformation",    //请求发送到TestServlet处
+                data: {id:1},
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+
+                                $("#index1F").find("li").remove();
+                                list.forEach(function (item) {
+                                    $("#index1F").append("<li><dl class='fenleiLeft'><dt>"+item.className1+"</dt> <dt class='dt_value' style='display: none'>"+item.id+"</dt></dl></li>");
+                                })
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+    //首页图书二类
+        $("#index1F").find('li').mouseover(function() {
+            Class2BookTop($(this).find('.fenleiLeft').find('.dt_value').text());
+        });
+        function Class2BookTop(classId1) {
+            list=Class2BookTopAjax(classId1);
+            console.log(Class2BookTopAjax(classId1));
+            console.log(list);
+            $(".flright").find("a").remove();
+            list.forEach(function (item) {
+                $(".flright").find("dd").append("<a href='javascript:;'>"+item.className2+"<span class='class2_value' style='display: none'>"+item.id+"</span></a>");
+            })
+        }
+        function Class2BookTopAjax(classId1){
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/bookclass2information",    //请求发送到TestServlet处
+                data: JSON.stringify($.extend(true, {},{classId1:classId1})),
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+                                return list;
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+        }
+
+
+        function imgCycle() {
+                $(".carousel-content ").carousel({
+                    carousel : ".carousel ",//轮播图容器
+                    indexContainer : ".img-index ",//下标容器
+                    prev : ".carousel-prev ",//左按钮
+                    next : ".carousel-next ",//右按钮
+                    timing : 3000,//自动播放间隔
+                    animateTime : 700,//动画时间
+                    autoPlay : true,//是否自动播放 true/false
+                    direction : "left ",//滚动方向 right/left
+                });
+
+                $(".carousel-content ").hover(function(){
+                    $(".carousel-prev,.carousel-next ").fadeIn(300);
+                },function(){
+                    $(".carousel-prev,.carousel-next ").fadeOut(300);
+                });
+
+                $(".carousel-prev ").hover(function(){
+                    $(this).find("img ").attr("src ","./img/left2.png ");
+                },function(){
+                    $(this).find("img ").attr("src ","./img/left1.png ");
+                });
+                $(".carousel-next ").hover(function(){
+                    $(this).find("img ").attr("src ","./img/right2.png ");
+                },function(){
+                    $(this).find("img ").attr("src ","./img/right1.png ");
+                });
+        }
+
+        $('.fenlei ul li').mouseenter(function() {
+            $(this).siblings().css('background', '#F5F5F5');
+            $('.fenleiright').fadeTo(0, 0.8).stop().animate({
+                'width': '700px'
+            }, 300);
+        }).mouseleave(function() {
+            $(this).siblings().css('background', '#ffffff');
+        });
+        $('.navLeft').mouseleave(function() {
+
+            $('.fenleiright').stop().animate({
+                'width': '0px'
+            }, 300);
+
+        })
+        function bookTopA() {
+            $('.mhn-slide').owlCarousel({
+                nav:true,
+                //loop:true,
+                slideBy:'page',
+                rewind:false,
+                responsive:{
+                    0:{items:1},
+                    480:{items:2},
+                    600:{items:3},
+                    1000:{items:4}
+                },
+                smartSpeed:70,
+                onInitialized:function(e){
+                    $(e.target).find('img').each(function(){
+                        if(this.complete){
+                            $(this).closest('.mhn-inner').find('.loader-circle').hide();
+                            $(this).closest('.mhn-inner').find('.mhn-img').css('background-image','url('+$(e.target).attr('src')+')');
+                        }else{
+                            $(this).bind('load',function(e){
+                                $(e.target).closest('.mhn-inner').find('.loader-circle').hide();
+                                $(e.target).closest('.mhn-inner').find('.mhn-img').css('background-image','url('+$(e.target).attr('src')+')');
+                            });
+                        }
+                    });
+                },
+                navText:['<svg viewBox="0 0 24 24 "><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z "></path></svg>','<svg viewBox="0 0 24 24 "><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z "></path></svg>']
+            });
+        }
+
+
+        function submitForm(){
+            var form = document.getElementById("myform ");
+            form.submit();
+        }
+
+
+        $(".bodyPagesecond_nav_li1").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_1").css("display","block");
+                $(".bodyPagesecondbody_1").siblings().css("display","none");
+            });
+        $(".bodyPagesecond_nav_li2").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_2").css("display","block");
+                $(".bodyPagesecondbody_2").siblings().css("display","none");
+            });
+        $(".bodyPagesecond_nav_li3").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_3").css("display","block");
+                $(".bodyPagesecondbody_3").siblings().css("display","none");
+            });
+        $(".bodyPagesecond_nav_li4").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_4").css("display","block");
+                $(".bodyPagesecondbody_4").siblings().css("display","none");
+            });
+        $(".bodyPagesecond_nav_li5").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_5").css("display","block");
+                $(".bodyPagesecondbody_5").siblings().css("display","none");
+            });
+        $(".bodyPagesecond_nav_li6").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagesecondbody_6").css("display","block");
+                $(".bodyPagesecondbody_6").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li1").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_1").css("display","block");
+                $(".bodyPagethreebody_1").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li2").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_2").css("display","block");
+                $(".bodyPagethreebody_2").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li3").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_3").css("display","block");
+                $(".bodyPagethreebody_3").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li4").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_4").css("display","block");
+                $(".bodyPagethreebody_4").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li5").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_5").css("display","block");
+                $(".bodyPagethreebody_5").siblings().css("display","none");
+            });
+        $(".bodyPagethree_nav_li6").hover(
+            function(){
+                $(this).css("color","red");
+                $(this).siblings().css("color","black");
+                $(".bodyPagethreebody_6").css("display","block");
+                $(".bodyPagethreebody_6").siblings().css("display","none");
+            });
+
+    })
+
+
+
 </script>
+
 
 </html>

@@ -83,6 +83,21 @@ public class ShareManagerServiceImpl implements ShareManagerService {
         }
     }
 
+    @Override
+    public ServiceResult<List<ShareAnnouncement>> getShareAnnouncementImgList(ShareAnnouncementQuery query) {
+        try {
+            return  new ServiceResult<>(shareAnnouncementMapper.getShareAnnouncementImgList(query));
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<List<Integer>> getShareAnnouncementImgCount(ShareAnnouncementQuery query) {
+        return new ServiceResult<>(shareAnnouncementMapper.getShareAnnouncementImgCount(query));
+    }
+
     private ShareActivityVo getShareActivityVo(ShareActivityVo shareActivityVo, ShareActivity shareActivity){
         try {
             shareActivityVo = JSONObject.parseObject(JSONObject.toJSONString(shareActivity),ShareActivityVo.class);

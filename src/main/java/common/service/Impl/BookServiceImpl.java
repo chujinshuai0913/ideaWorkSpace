@@ -221,7 +221,7 @@ public class BookServiceImpl implements BookService {
                bookVo.setProfessionalTypeName1(typeProfessional1Mapper.queryTypeProfessional1ById(book.getProfessionalType1()));
            }
            if (book.getProfessionalType2()!=null&&book.getProfessionalType2()>0){
-               bookVo.setProfessionalTypeName1(typeProfessional2Mapper.queryTypeProfessional2ById(book.getProfessionalType2()));
+               bookVo.setProfessionalTypeName2(typeProfessional2Mapper.queryTypeProfessional2ById(book.getProfessionalType2()));
            }
            if (book.getExportUser()!=null&&book.getExportUser()>0){
                ServiceResult<UserManager> result=new ServiceResult<>(userManagerMapper.queryUserShareManagerById(book.getExportUser()));

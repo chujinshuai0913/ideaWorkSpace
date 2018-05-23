@@ -174,7 +174,7 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="queryTypeProfessional2List" parameterType="common.model.TypeProfessional2" resultMap="BaseResultMap">
+  <select id="queryTypeProfessional2List" parameterType="common.query.TypeProfessional2Query" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from type_professional2
@@ -185,6 +185,7 @@
     <if test="sortName != null  ">
       ORDER BY ${sortName} ${sortOrder}
     </if>
+    <if test="pageSize &gt;0 "> limit #{pageSize} </if>
   </select>
   <select id="queryTypeProfessional2ById" parameterType="java.lang.Integer" resultType="java.lang.String">
     select

@@ -22,7 +22,7 @@ public interface TypeProfessional1Mapper {
     int updateByPrimaryKeySelective(TypeProfessional1 record);
 
     int updateByPrimaryKey(TypeProfessional1 record);
-    List<TypeProfessional1> queryTypeProfessional1List(TypeProfessional1 typeProfessional1);
+    List<TypeProfessional1> queryTypeProfessional1List(TypeProfessional1Query typeProfessional1);
 
     String queryTypeProfessional1ById(@Param("id") int id );
 

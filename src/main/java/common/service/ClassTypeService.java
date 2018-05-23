@@ -28,7 +28,7 @@ import java.util.List;
 public interface ClassTypeService {
 
   /*  查询图书一级分类列表*/
-  List<TypeBook1> queryTypeBook1List(TypeBook1 typeBook1);
+  ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query);
 
   ServiceResult<List<TypeBook1Vo>> getTypeBook1Lists(TypeBook1Query query);
 
@@ -40,7 +40,7 @@ public interface ClassTypeService {
 
 
   /*  查询图书一级分类*/
-  TypeBook1 queryTypeBook1(TypeBook1 typeBook1);
+  TypeBook1 queryTypeBook1(TypeBook1Query query);
 
   /*  查询图书一级分类*/
   String queryTypeBook1ById(int id);
@@ -58,7 +58,7 @@ public interface ClassTypeService {
   int updateTypeBook1List(List<TypeBook1> typeBook1List);
 
   /*  查询图书二级分类*/
-  List<TypeBook2> queryTypeBook2List(TypeBook2 typeBook2);
+  ServiceResult<List<TypeBook2>> queryTypeBook2List(TypeBook2Query query);
 
   /*  查询图书二级分类*/
   TypeBook2 queryTypeBook2(TypeBook2 typeBook2);
@@ -71,7 +71,7 @@ public interface ClassTypeService {
   int updateTypeBook2(TypeBook2 typeBook2);
   int updateTypeBook2List(List<TypeBook2> typeBook2List);
   /*  查询图书学院列表*/
-  List<TypeProfessional1> queryTypeProfessional1List(TypeProfessional1 typeProfessional1);
+  ServiceResult<List<TypeProfessional1>> queryTypeProfessional1List(TypeProfessional1Query typeProfessional1);
 
   /*  查询学院*/
   TypeProfessional1 queryTypeProfessional1(TypeProfessional1 typeProfessional1);
@@ -93,7 +93,7 @@ public interface ClassTypeService {
   int updateTypeProfessional1(TypeProfessional1 typProfessional1);
   int updateTypeProfessional1List(List<TypeProfessional1> typProfessional1List);
   /*  查询专业*/
-  List<TypeProfessional2> queryTypeProfessional2List(TypeProfessional2 typeProfessional2);
+  ServiceResult<List<TypeProfessional2>>queryTypeProfessional2List(TypeProfessional2Query typeProfessional2);
 
   /*  查询专业*/
   TypeProfessional2 queryTypeProfessional2(TypeProfessional2 typeProfessional2);
