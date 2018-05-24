@@ -65,7 +65,48 @@ public class Book {
 
     private Integer exportTime;
 
-    public Book(Integer id, Integer isbn, String bookName, String author, String press, Integer pressTime, Integer pageNumber, String src, BigDecimal pricing, String pricingunit, Integer sellerNumber, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2, Integer userableNum, Integer useNum, String introduce, Integer preNum, Integer cU, Integer printUser, Integer cT, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime) {
+    private Integer sellStatus;
+
+    private Integer borrowStatus;
+
+    private Integer giftStatus;
+
+    private Integer auctionStatus;
+
+
+    public Integer getSellStatus() {
+        return sellStatus;
+    }
+
+    public void setSellStatus(Integer sellStatus) {
+        this.sellStatus = sellStatus;
+    }
+
+    public Integer getBorrowStatus() {
+        return borrowStatus;
+    }
+
+    public void setBorrowStatus(Integer borrowStatus) {
+        this.borrowStatus = borrowStatus;
+    }
+
+    public Integer getGiftStatus() {
+        return giftStatus;
+    }
+
+    public void setGiftStatus(Integer giftStatus) {
+        this.giftStatus = giftStatus;
+    }
+
+    public Integer getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(Integer auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
+    public Book(Integer id, Integer isbn, String bookName, String author, String press, Integer pressTime, Integer pageNumber, String src, BigDecimal pricing, String pricingunit, Integer sellerNumber, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2, Integer userableNum, Integer useNum, String introduce, Integer preNum, Integer cU, Integer printUser, Integer cT, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime,Integer sellStatus,Integer borrowStatus, Integer giftStatus, Integer auctionStatus) {
         this.id = id;
         this.isbn = isbn;
         this.bookName = bookName;
@@ -97,6 +138,10 @@ public class Book {
         this.importTime = importTime;
         this.exportUser = exportUser;
         this.exportTime = exportTime;
+        this.sellStatus=sellStatus;
+        this.borrowStatus=borrowStatus;
+        this.giftStatus=giftStatus;
+        this.auctionStatus=auctionStatus;
     }
 
     public Book() {

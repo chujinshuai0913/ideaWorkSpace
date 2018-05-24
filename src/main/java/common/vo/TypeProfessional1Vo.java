@@ -10,10 +10,13 @@
  */
 package common.vo;
 
+import com.sun.scenario.effect.impl.prism.PrImage;
 import common.model.TypeProfessional1;
+import common.model.TypeProfessional2;
 import common.query.QueryParam;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -27,6 +30,16 @@ public class TypeProfessional1Vo extends TypeProfessional1 implements Serializab
     private String cUser;
 
     private String cTime;
+
+    private List<TypeProfessional2> list;
+
+    public List<TypeProfessional2> getList() {
+        return list;
+    }
+
+    public void setList(List<TypeProfessional2> list) {
+        this.list = list;
+    }
 
     public String getcUser() {
         return cUser;

@@ -25,58 +25,58 @@
 		padding: 20px 0 0 20px;
 		overflow: hidden;
 	}
-    .navLeft {
-        float: left;
-        width: 20%;
-        height: 40px;
-        position: relative;
-        text-align: center;
-        line-height: 40px;
-        cursor: pointer;
-    }
+	.navLeft {
+		float: left;
+		width: 20%;
+		height: 40px;
+		position: relative;
+		text-align: center;
+		line-height: 40px;
+		cursor: pointer;
+	}
 
-    .fenleiright {
-        width: 0px;
-        height: 600px;
-        border: 1px solid #EEEEEE;
-        border-left: 0;
-        background: #FFFFFF;
-        position: relative;
-        top: 0px;
-        left: 263px;
-        overflow: hidden;
-        z-index: 10;
-    }
+	.fenleiright {
+		width: 0px;
+		height: 600px;
+		border: 1px solid #EEEEEE;
+		border-left: 0;
+		background: #FFFFFF;
+		position: relative;
+		top: 0px;
+		left: 263px;
+		overflow: hidden;
+		z-index: 10;
+	}
 
-    .fenlei {
-        width: 60%;
-        height: 700px;
-        position: absolute;
-        background: #FFFFFF;
-        top: 40px;
-        right: 0px;
-        left: 100px;
-        color: black;
-        border: 1PX solid #EEEEEE;
-    }
+	.fenlei {
+		width: 60%;
+		height: 700px;
+		position: absolute;
+		background: #FFFFFF;
+		top: 40px;
+		right: 0px;
+		left: 100px;
+		color: black;
+		border: 1PX solid #EEEEEE;
+	}
 
-    .fenleiLeft {
-        overflow: hidden;
-    }
+	.fenleiLeft {
+		overflow: hidden;
+	}
 
-    .fenleiLeft dt {
-        font: 16px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;;
-        width: 130px;
-        height: 40px;
-        line-height: 40px;
-        padding: 3px 2px 0 15px;
-        text-align: center;
-    }
-    .fenlei ul li {
-        overflow: hidden;
-        height: 40px;
-        border-bottom: 1px solid #EEEEEE;
-    }
+	.fenleiLeft dt {
+		font: 16px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;;
+		width: 130px;
+		height: 40px;
+		line-height: 40px;
+		padding: 3px 2px 0 15px;
+		text-align: center;
+	}
+	.fenlei ul li {
+		overflow: hidden;
+		height: 40px;
+		border-bottom: 1px solid #EEEEEE;
+	}
 </style>
 <body>
 
@@ -98,13 +98,15 @@
 				<img src="/ideaWorkSpace/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"   alt="燕鸣书屋 " />
 			</div>
 			<div class="headPagebody_none ">
-				<form  action=" " method="get "  id="myform" >
+				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
 					<div class="headPagebody_none_search " >
-						<input class="headPagebody_none_search_text " name="searchName " placeholder=" 书名、作者、出版社、ISBN "/>
-						<select class="headPagebody_none_search_icon " name="searchSelect " onchange="submitForm() " >
-							<option >借书</option>
-							<option >买书</option>
-							<option >送书</option>
+						<input class="headPagebody_none_search_text " name="bookName1" type="text"  placeholder="书名" value="${requestScope.bookName1}"/>
+						<button class="headPagebody_none_search_icon"  type="submit">搜索</button>
+						<select name="classType1" name="searchSelect " class="headPagebody_none_search_select">
+							<option value="" <c:if test='${requestScope.classType1== ""}'>  selected='selected'  </c:if>>全部</option>
+							<option value="1" <c:if test='${requestScope.classType1== "1"}'>  selected='selected'  </c:if>>买卖</option>
+							<option value="2" <c:if test='${requestScope.classType1== "2"}'>  selected='selected'  </c:if>>租借</option>
+							<option value="3" <c:if test='${requestScope.classType1== "3"}'>  selected='selected'  </c:if>>赠予</option>
 						</select>
 					</div>
 				</form>
@@ -116,7 +118,6 @@
 					</div>
 					<div class="headPagebody_right_text_two ">
 						<a href="/ideaWorkSpace/sharehome/show"><p>我的书箱(<span>222</span>)</p>
-                             ${user.username}
 						</a>
 						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
 					</div>
@@ -144,8 +145,8 @@
 					<ul>
 						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">按图书分类</a></li>
-						<li><a href="# ">按专业分类</a></li>
-						<li><a href="# ">书籍</a></li>
+						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
+						<li><a href="# ">书籍竞拍</a></li>
 						<li><a href="# ">资料共享</a></li>
 					</ul>
 				</div>
@@ -270,11 +271,11 @@
 <div id="bottom" class="footerPage" style="margin-top: 10px;"></div>
 </body>
 <script type="text/javascript ">
-	$(function () {
+    $(function () {
 
 
-    //轮播图
-	// imgCycleOnload();
+        //轮播图
+        // imgCycleOnload();
         $.ajax({
             type : "post",
             async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -289,10 +290,10 @@
                         list = JSON.parse(JSON.stringify(data.data));
                         if(list.length>0){
                             list.forEach(function (item) {
-                             $(".bodyPagefirst_none_up").find(".carousel").append("<li><img src='${basePath}/sharebook/img/shareactivity/"+item.src+"'></li>");
+                                $(".bodyPagefirst_none_up").find(".carousel").append("<li><img src='${basePath}/sharebook/img/shareactivity/"+item.src+"'></li>");
                             })
                             imgCycle();
-						}
+                        }
                     }
                 } catch (e){
                     console.log(e.message);
@@ -306,11 +307,7 @@
             }
         })
 
-        //
-        // function bookAjax(pageSize,sortName,sortOrder ) {
-			//
-        // }
-		//近期热销榜
+        //近期热销榜
         $.ajax({
             type : "post",
             async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -325,10 +322,10 @@
                         list = JSON.parse(JSON.stringify(data.data));
                         if(list.length>0){
                             list.forEach(function (item) {
-                                $(".bodyPagefirst_right_content").append("<a href='# '>" +
-									"<div class='bodyPagefirst_right_content_grid '><div class='bodyPagefirst_right_content_left'>" +
-									" <img src='${basePath}/sharebook/img/book/"+item.src+"' alt='11' /></div><div class='bodyPagefirst_right_content_right'>" +
-									"<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></div></a>");
+                                $(".bodyPagefirst_right_content").append("<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> " +
+                                    "<div class='bodyPagefirst_right_content_grid '><div class='bodyPagefirst_right_content_left'>" +
+                                    " <img src='${basePath}/sharebook/img/book/"+item.src+"' alt='11' /></div><div class='bodyPagefirst_right_content_right'>" +
+                                    "<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></div></a>");
                             })
                         }
                     }
@@ -358,8 +355,8 @@
                         list = JSON.parse(JSON.stringify(data.data));
                         if(list.length>0){
                             list.forEach(function (item) {
-                                $("#booktop").append("<div class='mhn-item'> <div class='mhn-inner' ><img style='margin-left: 10px;' src='${basePath}/sharebook/img/"+item.src+"'><div class='mhn-text'>" +
-                                    " <h4>"+item.bookName+"</h4><p>"+item.author+"</p><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div></div>");
+                                $("#booktop").append("<div class='mhn-item'> <div class='mhn-inner' ><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <img style='margin-left: 10px;' src='${basePath}/sharebook/img/"+item.src+"'></a><div class='mhn-text'>" +
+                                    " <h4>"+item.bookName+"</h4><p>"+item.author+"</p><p><span class='moneyRed'>"+item.pricing+"￥</span> &nbsp;&nbsp;&nbsp;&nbsp;<span>共"+item.userableNum+" 本</span></p></div></div></div>");
                             })
                             bookTopA();
                         }
@@ -375,20 +372,13 @@
                 console.log(error);
             }})
 
-        //专业书籍推荐
-		var professionalTypeName2="";
+        //所在专业书籍推荐
+        var professionalTypeName2="";
         var list=[];
-		proBookTopUser(professionalTypeName2);
-		function proBookTopUser(professionalTypeName2) {
-		    list=proBookTopA(professionalTypeName2);
-            console.log(proBookTopA(professionalTypeName2));
-		    console.log(list);
-            list.forEach(function (item) {
-                $("#zturn").append("<li class='poster-item  zturn-item'> <p class='xxgy'>"+item.bookName+"</p><div class='for_btn'>" +
-                    "<img src='${basePath}/sharebook/img/"+item.src+"'width='100%'></div><div class='students_star'>" +
-                    " <p class='cell_list'>作者:<span class='darks'>"+item.author+"</span>价格:<span class='darks' >"+item.pricing+"￥</span></p><div class='zwjs'>" +
-                    " 简介:<span>"+item.introduce+"</span></div></div></li>");
-            })
+        /*获取当前用户的专业*/
+        proBookTopUser(professionalTypeName2);
+        function proBookTopUser(professionalTypeName2) {
+            proBookTopUserA(professionalTypeName2);
             var aa=new zturn({
                 id:"zturn",
                 opacity:0.9,
@@ -397,29 +387,12 @@
                 scale:0.9
             })
         }
-        function proBookTop(professionalTypeName2,num) {
-            list=proBookTopA(professionalTypeName2);
-            console.log(proBookTopA(professionalTypeName2));
-            console.log(list);
-            $(".bodyPagethreebody_"+num+"").find(".bodyPagebook").remove();
-            list.forEach(function (item) {
-                $(".bodyPagethreebody_"+num+"")
-                $(".bodyPagethreebody_"+num+"").append("<div class='bodyPagebook'><img src='${basePath}/sharebook/img/"+item.src+"'> <div class='bodyPagebook_text'>" +
-                    "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div>");
-            })
-        }
-       //分专业推荐图书
-		$("#FB").find('li').mouseover(function() {
-            num= $(this).index()+1;
-            proBookTop($(this).text(),num);
-        });
-
-        function proBookTopA(professionalTypeName2){
+        function proBookTopUserA(professionalTypeName2){
             $.ajax({
                 type : "post",
                 async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
                 url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
-                data: JSON.stringify($.extend(true, {},{professionalTypeName2:professionalTypeName2})),
+                data: JSON.stringify($.extend(true, {},{professionalTypeName2:professionalTypeName2,preNum:0})),
                 contentType:"text/html;charset=utf-8",
                 dataType: "json",   //返回格式为json
                 success : function(data) {
@@ -428,84 +401,11 @@
                         if (data.error_code == 0){
                             list = JSON.parse(JSON.stringify(data.data));
                             if(list.length>0){
-                              return list;
-                            }
-                        }
-                    } catch (e){
-                        console.log(e.message);
-                    }
-
-                },
-                complete: function() {
-                },
-                error: function(error) {
-                    console.log(error);
-                }})
-        }
-//分类推荐图书
-        $("#FA").find('li').mouseover(function() {
-            num= $(this).index()+1;
-            pro2BookTop($(this).text(),num);
-        });
-        function pro2BookTop(bookTypeName2,num) {
-            list=proBookTopB(bookTypeName2);
-            console.log(proBookTopB(bookTypeName2));
-            console.log(list);
-            $(".bodyPagesecondbody_"+num+"").find(".bodyPagebook").remove();
-            list.forEach(function (item) {
-                $(".bodyPagesecondbody_"+num+"").append("<div class='bodyPagebook'><img src='${basePath}/sharebook/img/"+item.src+"'> <div class='bodyPagebook_text'>" +
-                    "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span> <span>共"+item.userableNum+" 本</span></p></div></div>");
-            })
-        }
-        function proBookTopB(bookTypeName2){
-            $.ajax({
-                type : "post",
-                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
-                data: JSON.stringify($.extend(true, {},{bookTypeName2:bookTypeName2})),
-                contentType:"text/html;charset=utf-8",
-                dataType: "json",   //返回格式为json
-                success : function(data) {
-                    try {
-                        //请求成功时执行该函数内容，result即为服务器返回的json对象
-                        if (data.error_code == 0){
-                            list = JSON.parse(JSON.stringify(data.data));
-                            if(list.length>0){
-                                return list;
-                            }
-                        }
-                    } catch (e){
-                        console.log(e.message);
-                    }
-
-                },
-                complete: function() {
-                },
-                error: function(error) {
-                    console.log(error);
-                }})
-        }
-
-
-
-//首页图书分类
-            $.ajax({
-                type : "post",
-                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url : "/ideaWorkSpace/bookshare/bookclassinformation",    //请求发送到TestServlet处
-                data: {id:1},
-                contentType:"text/html;charset=utf-8",
-                dataType: "json",   //返回格式为json
-                success : function(data) {
-                    try {
-                        //请求成功时执行该函数内容，result即为服务器返回的json对象
-                        if (data.error_code == 0){
-                            list = JSON.parse(JSON.stringify(data.data));
-                            if(list.length>0){
-
-                                $("#index1F").find("li").remove();
                                 list.forEach(function (item) {
-                                    $("#index1F").append("<li><dl class='fenleiLeft'><dt>"+item.className1+"</dt> <dt class='dt_value' style='display: none'>"+item.id+"</dt></dl></li>");
+                                    $("#zturn").append("<li class='poster-item  zturn-item'> <p class='xxgy'>"+item.bookName+"</p><div class='for_btn'>" +
+                                        "<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'><img src='${basePath}/sharebook/img/"+item.src+"'width='100%'></a></div><div class='students_star'>" +
+                                        " <p class='cell_list'>作者:<span class='darks'>"+item.author+"</span>价格:<span class='darks' >"+item.pricing+"￥</span></p><div class='zwjs'>" +
+                                        " 简介:<span>"+item.introduce+"</span></div></div></li>");
                                 })
                             }
                         }
@@ -519,19 +419,118 @@
                 error: function(error) {
                     console.log(error);
                 }})
-    //首页图书二类
-        $("#index1F").find('li').mouseover(function() {
-            Class2BookTop($(this).find('.fenleiLeft').find('.dt_value').text());
-        });
-        function Class2BookTop(classId1) {
-            list=Class2BookTopAjax(classId1);
-            console.log(Class2BookTopAjax(classId1));
-            console.log(list);
-            $(".flright").find("a").remove();
-            list.forEach(function (item) {
-                $(".flright").find("dd").append("<a href='javascript:;'>"+item.className2+"<span class='class2_value' style='display: none'>"+item.id+"</span></a>");
-            })
         }
+        //分专业推荐图书
+        $("#FB").find('li').mouseover(function() {
+            num= $(this).index()+1;
+            proBookTopA($(this).text(),num);
+        });
+        function proBookTopA(professionalTypeName2,num){
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
+                data: JSON.stringify($.extend(true, {},{professionalTypeName2:professionalTypeName2,preNum:0})),
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+                                $(".bodyPagethreebody_"+num+"").find(".bodyPagebook").remove();
+                                list.forEach(function (item) {
+                                    $(".bodyPagethreebody_"+num+"")
+                                    $(".bodyPagethreebody_"+num+"").append("<div class='bodyPagebook'><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'><img src='${basePath}/sharebook/img/"+item.src+"'></a> <div class='bodyPagebook_text'>" +
+                                        "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span> &nbsp;&nbsp;&nbsp;&nbsp;<span>共"+item.userableNum+" 本</span></p></div></div>");
+                                })
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+        }
+       //分类推荐图书
+        $("#FA").find('li').mouseover(function() {
+            num= $(this).index()+1;
+            proBookTopB($(this).text(),num);
+        });
+        function proBookTopB(bookTypeName2,num){
+            $.ajax({
+                type : "post",
+                async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
+                data: JSON.stringify($.extend(true, {},{bookTypeName2:bookTypeName2,preNum:0})),
+                contentType:"text/html;charset=utf-8",
+                dataType: "json",   //返回格式为json
+                success : function(data) {
+                    try {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (data.error_code == 0){
+                            list = JSON.parse(JSON.stringify(data.data));
+                            if(list.length>0){
+                                $(".bodyPagesecondbody_"+num+"").find(".bodyPagebook").remove();
+                                list.forEach(function (item) {
+                                    $(".bodyPagesecondbody_"+num+"").append("<div class='bodyPagebook'><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'><img src='${basePath}/sharebook/img/"+item.src+"'></a><div class='bodyPagebook_text'>" +
+                                        "<h4>"+item.bookName+"</h4><p><span class='moneyRed'>"+item.pricing+"￥</span>&nbsp;&nbsp;&nbsp;&nbsp; <span>共"+item.userableNum+" 本</span></p></div></div>");
+                                })
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }})
+        }
+
+       //首页图书分类
+        $.ajax({
+            type : "post",
+            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/bookclassinformation",    //请求发送到TestServlet处
+            data: {id:1},
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        list = JSON.parse(JSON.stringify(data.data));
+                        if(list.length>0){
+
+                            $("#index1F").find("li").remove();
+                            list.forEach(function (item) {
+                                $("#index1F").append("<li><dl class='fenleiLeft'><dt>"+item.className1+"</dt> <dt class='dt_value' style='display: none'>"+item.id+"</dt></dl></li>");
+                            })
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
+        //首页图书二类
+        $("#index1F").find('li').mouseover(function() {
+            Class2BookTopAjax($(this).find('.fenleiLeft').find('.dt_value').text());
+        });
         function Class2BookTopAjax(classId1){
             $.ajax({
                 type : "post",
@@ -546,7 +545,10 @@
                         if (data.error_code == 0){
                             list = JSON.parse(JSON.stringify(data.data));
                             if(list.length>0){
-                                return list;
+                                $(".flright").find("a").remove();
+                                list.forEach(function (item) {
+                                    $(".flright").find("dd").append("<a href='javascript:;'>"+item.className2+"<span class='class2_value' style='display: none'>"+item.id+"</span></a>");
+                                })
                             }
                         }
                     } catch (e){
@@ -563,33 +565,33 @@
 
 
         function imgCycle() {
-                $(".carousel-content ").carousel({
-                    carousel : ".carousel ",//轮播图容器
-                    indexContainer : ".img-index ",//下标容器
-                    prev : ".carousel-prev ",//左按钮
-                    next : ".carousel-next ",//右按钮
-                    timing : 3000,//自动播放间隔
-                    animateTime : 700,//动画时间
-                    autoPlay : true,//是否自动播放 true/false
-                    direction : "left ",//滚动方向 right/left
-                });
+            $(".carousel-content ").carousel({
+                carousel : ".carousel ",//轮播图容器
+                indexContainer : ".img-index ",//下标容器
+                prev : ".carousel-prev ",//左按钮
+                next : ".carousel-next ",//右按钮
+                timing : 3000,//自动播放间隔
+                animateTime : 700,//动画时间
+                autoPlay : true,//是否自动播放 true/false
+                direction : "left ",//滚动方向 right/left
+            });
 
-                $(".carousel-content ").hover(function(){
-                    $(".carousel-prev,.carousel-next ").fadeIn(300);
-                },function(){
-                    $(".carousel-prev,.carousel-next ").fadeOut(300);
-                });
+            $(".carousel-content ").hover(function(){
+                $(".carousel-prev,.carousel-next ").fadeIn(300);
+            },function(){
+                $(".carousel-prev,.carousel-next ").fadeOut(300);
+            });
 
-                $(".carousel-prev ").hover(function(){
-                    $(this).find("img ").attr("src ","./img/left2.png ");
-                },function(){
-                    $(this).find("img ").attr("src ","./img/left1.png ");
-                });
-                $(".carousel-next ").hover(function(){
-                    $(this).find("img ").attr("src ","./img/right2.png ");
-                },function(){
-                    $(this).find("img ").attr("src ","./img/right1.png ");
-                });
+            $(".carousel-prev ").hover(function(){
+                $(this).find("img ").attr("src ","./img/left2.png ");
+            },function(){
+                $(this).find("img ").attr("src ","./img/left1.png ");
+            });
+            $(".carousel-next ").hover(function(){
+                $(this).find("img ").attr("src ","./img/right2.png ");
+            },function(){
+                $(this).find("img ").attr("src ","./img/right1.png ");
+            });
         }
 
         $('.fenlei ul li').mouseenter(function() {

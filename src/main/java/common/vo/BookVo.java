@@ -40,6 +40,26 @@ public class BookVo extends Book implements Serializable {
 
     private String prUser;
 
+    private BookSellingVo bookSellingVo;
+
+    private Integer selfStatus;
+
+    public Integer getSelfStatus() {
+        return selfStatus;
+    }
+
+    public void setSelfStatus(Integer selfStatus) {
+        this.selfStatus = selfStatus;
+    }
+
+    public BookSellingVo getBookSellingVo() {
+        return bookSellingVo;
+    }
+
+    public void setBookSellingVo(BookSellingVo bookSellingVo) {
+        this.bookSellingVo = bookSellingVo;
+    }
+
     private List<Book> list;
 
     public List<Book> getList() {

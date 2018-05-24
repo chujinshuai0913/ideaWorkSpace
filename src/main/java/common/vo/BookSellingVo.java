@@ -42,6 +42,16 @@ public class BookSellingVo extends BookSelling  implements Serializable {
 
     private String statusStr;
 
+    private  Integer selfStatus;
+
+    public Integer getSelfStatus() {
+        return selfStatus;
+    }
+
+    public void setSelfStatus(Integer selfStatus) {
+        this.selfStatus = selfStatus;
+    }
+
     public Long getPhoneNumber() {
         return phoneNumber;
     }

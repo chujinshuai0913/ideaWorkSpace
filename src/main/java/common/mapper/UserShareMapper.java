@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserShareMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(UserShare record);
+    int insert(UserShareQuery record);
 
     int insertSelective(UserShare record);
 
@@ -42,5 +42,4 @@ public interface UserShareMapper {
     /*修改网站用户*/
     int updateUserShare(UserShareQuery userShareQuery);
 
-    int insert(UserShareQuery userShareQuery);
 }

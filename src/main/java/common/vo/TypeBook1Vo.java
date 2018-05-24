@@ -11,8 +11,10 @@
 package common.vo;
 
 import common.model.TypeBook1;
+import common.model.TypeBook2;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -27,6 +29,16 @@ public class TypeBook1Vo extends TypeBook1 implements Serializable  {
     private String cUser;
 
     private String cTime;
+
+    private List<TypeBook2> list;
+
+    public List<TypeBook2> getList() {
+        return list;
+    }
+
+    public void setList(List<TypeBook2> list) {
+        this.list = list;
+    }
 
     public String getcUser() {
         return cUser;

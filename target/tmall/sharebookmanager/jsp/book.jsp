@@ -7,15 +7,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
-    <script type="text/javascript" src="../static/heanesUI/js/resource/jquery.2.2.4.min.js"></script>
-    <script type="text/javascript" src="../static/jquery-2.1.4/jquery.min.js" ></script>
-    <script type="text/javascript" src="../static/bootstrap-table-1.9.1/js/bootstrap-table.js"></script>
-    <script type="text/javascript" src="../static/bootstrap-table-1.9.1/js/bootstrap-table-zh-CN.min.js"></script>
-    <script type="text/javascript" src="../static/bootstrap-datepicker-1.5.0/js/bootstrap-datepicker.js" ></script>
-    <link rel="stylesheet" href="../static/bootstrap-3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../static/bootstrap-datepicker-1.5.0/css/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="../static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
-    <script type="text/javascript" src="../static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/heanesUI/js/resource/jquery.2.2.4.min.js"></script>
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/jquery-2.1.4/jquery.min.js" ></script>
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-datepicker-1.5.0/js/bootstrap-datepicker.js" ></script>
+    <link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-datepicker-1.5.0/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
+    <script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
     <style type="text/css">
         body > div {
             margin: 0px;
@@ -43,8 +43,6 @@
             width:120px !important;
         }
     </style>
-
-
 </head>
 <body>
 <div id="sharebookuserList" class="panel panel-default" style="padding-right: 0px;">
@@ -77,11 +75,11 @@
                 <label onclick="$(this).next().focus();">专业</label>
                 <input type="text" name="professionalTypeName2"  class="form-control" placeholder="专业"/>
 
-            <%-- <select  name="status" type="text" class="form-control" placeholder="专业">
-                    <option value="">全部</option>
-                    <option value="1"> 可用</option>
-                    <option value="2"> 不可用</option>
-                </select>--%>
+                <%-- <select  name="status" type="text" class="form-control" placeholder="专业">
+                        <option value="">全部</option>
+                        <option value="1"> 可用</option>
+                        <option value="2"> 不可用</option>
+                    </select>--%>
             </div>
 
             <div class="form-group" style="margin-left: 30px;">
@@ -170,7 +168,7 @@
         },
         columns: [ {
             checkbox: true
-             },
+        },
             {
                 field: 'id',
                 title: 'id',
@@ -292,7 +290,7 @@
                 title: '库存量',
                 align: "center",
                 formatter :function(value, row, index) {
-                        return row.userableNum+row.preNum;
+                    return row.userableNum+row.preNum;
                 }
 
             },{
@@ -509,8 +507,8 @@
                     field : 'num',
                     title : '库存',
                     formatter :function(value, row, index) {
-                    return row.useableNum+row.preNum;
-                }
+                        return row.useableNum+row.preNum;
+                    }
                 },
                 {
                     align: "center",
@@ -518,7 +516,7 @@
                     title : '送出量',
                     formatter: formatterToValue
                 }
-             ]
+            ]
         });
     $("#detailTable4").bootstrapTable(
         {

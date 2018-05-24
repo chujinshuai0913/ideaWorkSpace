@@ -18,6 +18,7 @@ public class BookSellingQuery extends QueryParam {
 
     private Integer skuId;
 
+    private Integer sellerId;
     private List<Integer> sellerIds;
 
     private String sellerUser;
@@ -69,6 +70,14 @@ public class BookSellingQuery extends QueryParam {
     private Integer exportTime;
 
     private String pricingunit;
+
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
 
     private List<Integer> ids;
     public Integer getId() {

@@ -85,6 +85,47 @@ public class BookQuery extends QueryParam {
 
     private Integer exportTime;
 
+    private Integer sellStatus;
+
+    private Integer borrowStatus;
+
+    private Integer giftStatus;
+
+    private Integer auctionStatus;
+
+
+    public Integer getSellStatus() {
+        return sellStatus;
+    }
+
+    public void setSellStatus(Integer sellStatus) {
+        this.sellStatus = sellStatus;
+    }
+
+    public Integer getBorrowStatus() {
+        return borrowStatus;
+    }
+
+    public void setBorrowStatus(Integer borrowStatus) {
+        this.borrowStatus = borrowStatus;
+    }
+
+    public Integer getGiftStatus() {
+        return giftStatus;
+    }
+
+    public void setGiftStatus(Integer giftStatus) {
+        this.giftStatus = giftStatus;
+    }
+
+    public Integer getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(Integer auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
     public Integer getId() {
         return id;
     }

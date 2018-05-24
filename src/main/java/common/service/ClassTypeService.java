@@ -1,9 +1,6 @@
 package common.service;
 
-import common.model.TypeBook1;
-import common.model.TypeBook2;
-import common.model.TypeProfessional1;
-import common.model.TypeProfessional2;
+import common.model.*;
 import common.query.TypeBook1Query;
 import common.query.TypeBook2Query;
 import common.query.TypeProfessional1Query;
@@ -27,6 +24,10 @@ import java.util.List;
  */
 public interface ClassTypeService {
 
+
+   /*浏览历史*/
+   ServiceResult<List<SearchHistory>> getSearchHistoryList(SearchHistory query);
+
   /*  查询图书一级分类列表*/
   ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query);
 
@@ -37,6 +38,10 @@ public interface ClassTypeService {
   ServiceResult<List<TypeBook2Vo>> getTypeBook2Lists(TypeBook2Query query);
 
   int getTypeBook2ListCount(TypeBook2Query query);
+
+  ServiceResult<List<TypeBook1Vo>> queryTypeBook12List(TypeBook1Query query);
+
+  ServiceResult<List<TypeProfessional1Vo>> queryTypeProfessional12List(TypeProfessional1Query query);
 
 
   /*  查询图书一级分类*/

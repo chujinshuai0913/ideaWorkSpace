@@ -17,6 +17,7 @@ public class ConstantsUtils {
 	public static class UserShareCode {
 		public static final int STATUS_NOT = 2;//不可用
 		public  static final int STATUS=1;//可用
+        public static final int USER_SELF_STATUS = 3;//自营商家
 	}
 	public static class BookAuditCode {
 		public static final int AUDIT_NOT = 1;//未审核
@@ -63,5 +64,19 @@ public class ConstantsUtils {
 		public  static final int BookClass2TopNum =50;//首页图书推荐书记数目
 		public  static final int BookPro1TopNum = 10;//显示图书分类的数目
 		public  static final int BookPro2TopNum =50;//首页图书推荐书记数目
+        public  static final int BookHistoryTopNum =6;//浏览历史
+	}
+	public static class  SelfBook {
+		public  static final int SELF = 1;//自营图书
+		public  static final int NOT_SELF =0;//
+
+	}
+	public static class  BookState {
+		public  static final int SELLBOOK = 1;//买卖书籍
+		public  static final int BORROWBOOK =2;//租借书籍
+		public  static final int GIFTBOOK =3;//赠予书籍
+		public  static final int AUCTIONBOOK =4;//拍卖书籍
+
+
 	}
 }

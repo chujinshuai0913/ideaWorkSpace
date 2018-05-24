@@ -39,7 +39,7 @@
     delete from user_share
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.UserShare" >
+  <insert id="insert" parameterType="common.query.UserShareQuery" >
     insert into user_share (id, user_name, real_name, 
       password, phone_number, school_code, 
       status, integral, registered_time, 
@@ -367,7 +367,10 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM user_share
-    where status=1
+    where  1=1
+    <if test="status != null" >
+    AND  status = #{status,jdbcType=BIGINT}
+    </if>
     <if test="userName != null and userName !=''">  <![CDATA[	AND user_name LIKE CONCAT(CONCAT('%',#{userName}),'%')	]]> </if>
     <if test="phoneNumber != null" >
       AND  phone_number = #{phoneNumber,jdbcType=BIGINT}

@@ -11,6 +11,7 @@
 package sharebook.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import common.constant.ConstantsUtils;
 import common.model.Abnormal;
 import common.model.StudentTeacherList;
 import common.query.StudentTeacherQuery;
@@ -146,6 +147,7 @@ public class UserShareController{
         try{
             List<Integer> userIds=new ArrayList<>();
             query.setSortName("login_time");
+            query.setStatus(ConstantsUtils.UserShareCode.STATUS);
             Map<Integer,UserShareVo> map=new HashMap<>();
             /*上周异常用户*/
             List<UserShareVo> list  = new ArrayList<UserShareVo>();

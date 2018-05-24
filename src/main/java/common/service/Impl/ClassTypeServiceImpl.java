@@ -48,6 +48,14 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     @Autowired
     private TypeProfessional1Mapper typeProfessional1Mapper ;
 
+    @Autowired
+    private SearchHistoryMapper searchHistoryMapper;
+
+    @Override
+    public ServiceResult<List<SearchHistory>> getSearchHistoryList(SearchHistory query) {
+        return new ServiceResult<>(searchHistoryMapper.getSearchHistoryList(query));
+    }
+
     @Override
     public ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query) {
         return new ServiceResult<>(typeBook1Mapper.queryTypeBook1List(query));
@@ -143,6 +151,74 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     public int getTypeBook2ListCount(TypeBook2Query query) {
         return typeBook2Mapper.queryTypeBook2Count(query);
     }
+
+    @Override
+    public ServiceResult<List<TypeBook1Vo>> queryTypeBook12List(TypeBook1Query query) {
+        try {
+            List<TypeBook1Vo> typeBook1Vos=new ArrayList<>();
+            ServiceResult<List<TypeBook1>> serviceResult=new ServiceResult<>(typeBook1Mapper.queryTypeBook1Lists(query));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                for (TypeBook1 typeBook1:serviceResult.getBody()) {
+                    TypeBook1Vo typeBook1Vo= new TypeBook1Vo();
+                    typeBook1Vos.add(this.getTypeBook12Vo(typeBook1Vo,typeBook1));
+                }
+            }
+            return new ServiceResult<>(typeBook1Vos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<List<TypeProfessional1Vo>> queryTypeProfessional12List(TypeProfessional1Query query) {
+        try {
+            List<TypeProfessional1Vo> typeProfessional1Vos=new ArrayList<>();
+            ServiceResult<List<TypeProfessional1>> serviceResult=new ServiceResult<>(typeProfessional1Mapper.queryTypeProfessional1Lists(query));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                for (TypeProfessional1 typeProfessional1:serviceResult.getBody()) {
+                    TypeProfessional1Vo typeProfessional1Vo= new TypeProfessional1Vo();
+                    typeProfessional1Vos.add(this.getTypeProfessional12Vo(typeProfessional1Vo,typeProfessional1));
+                }
+            }
+            return new ServiceResult<>(typeProfessional1Vos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    private TypeBook1Vo getTypeBook12Vo(TypeBook1Vo typeBook1Vo,TypeBook1 typeBook1){
+        try {
+            typeBook1Vo = JSONObject.parseObject(JSONObject.toJSONString(typeBook1),TypeBook1Vo.class);
+            TypeBook2Query query=new TypeBook2Query();
+            query.setClassId1(typeBook1.getId());
+                ServiceResult<List<TypeBook2>> result=new ServiceResult<>(typeBook2Mapper.queryTypeBook2Lists(query));
+                if(result.getSuccess()&&result.getBody()!=null){
+                    typeBook1Vo.setList(result.getBody());
+                }
+            return typeBook1Vo;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new TypeBook1Vo();
+        }
+    }
+    private TypeProfessional1Vo getTypeProfessional12Vo(TypeProfessional1Vo typeProfessional1Vo,TypeProfessional1 typeProfessional1){
+        try {
+            typeProfessional1Vo = JSONObject.parseObject(JSONObject.toJSONString(typeProfessional1),TypeProfessional1Vo.class);
+            TypeProfessional2Query query=new TypeProfessional2Query();
+            query.setClassId1(typeProfessional1.getId());
+            ServiceResult<List<TypeProfessional2>> result=new ServiceResult<>(typeProfessional2Mapper.queryTypeProfessional2Lists(query));
+            if(result.getSuccess()&&result.getBody()!=null){
+                typeProfessional1Vo.setList(result.getBody());
+            }
+            return typeProfessional1Vo;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new TypeProfessional1Vo();
+        }
+    }
+
     @Override
     public TypeBook1 queryTypeBook1(TypeBook1Query query) {
         return null;

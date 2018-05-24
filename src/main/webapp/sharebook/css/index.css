@@ -157,10 +157,9 @@ a {
 	border-right: 0px;
 	border-color: rgb(222, 3, 4);
 }
-
 .headPagebody_none_search_text {
 	float: left;
-	width: 320px;
+	width: 250px;
 	height: 40px;
 	border: 0px;
 	outline: none;
@@ -172,10 +171,22 @@ a {
 	position: relative;
 	left: 20px;
 }
-
-.headPagebody_none_search_icon {
+.headPagebody_none_search_select {
 	float: right;
 	width: 60px;
+	height: 37px;
+	border: 0px;
+	text-align: center;
+	color: black;
+	font-size: 16px;
+	outline: none;
+	cursor: pointer;
+	border: 0;
+	outline: none;
+}
+.headPagebody_none_search_icon {
+	float: right;
+	width: 58px;
 	height: 40px;
 	background-color: rgb(222, 3, 4);
 	border: 0px;

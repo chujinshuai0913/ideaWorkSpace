@@ -66,9 +66,7 @@
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-
-
-        <table tableName="share_activity" domainObjectName="ShareActivity"
+        <table tableName="search_history" domainObjectName="SearchHistory"
                                     enableCountByExample="false" enableUpdateByExample="false"
                                     enableDeleteByExample="false" enableSelectByExample="false"
                                     selectByExampleQueryId="false">

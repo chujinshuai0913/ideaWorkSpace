@@ -37,16 +37,18 @@
 				</div>
 				<div class="headPagebody">
 					<div class="headPagebody_left">
-						<img src="../img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"  alt="燕鸣书屋 " />
+						<img src="${basePath}/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"  alt="燕鸣书屋 " />
 					</div>
 					<div class="headPagebody_none ">
-						<form  action=" " method="get "  id="myform ">
+						<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
 							<div class="headPagebody_none_search " >
-								<input class="headPagebody_none_search_text " name="searchName " placeholder=" 书名、作者、出版社、ISBN "/>
-								<select class="headPagebody_none_search_icon " name="searchSelect " onchange="submitForm() " >
-									<option >借书</option>
-									<option >买书</option>
-									<option >送书</option>
+								<input class="headPagebody_none_search_text " name="bookName1" type="text"  placeholder="书名" value="${requestScope.bookName1}"/>
+								<button class="headPagebody_none_search_icon"  type="submit">搜索</button>
+								<select name="classType1" name="searchSelect " class="headPagebody_none_search_select">
+									<option value="" <c:if test='${requestScope.classType1== ""}'>  selected='selected'  </c:if>>全部</option>
+									<option value="1" <c:if test='${requestScope.classType1== "1"}'>  selected='selected'  </c:if>>买卖</option>
+									<option value="2" <c:if test='${requestScope.classType1== "2"}'>  selected='selected'  </c:if>>租借</option>
+									<option value="3" <c:if test='${requestScope.classType1== "3"}'>  selected='selected'  </c:if>>赠予</option>
 								</select>
 							</div>
 						</form>
@@ -54,7 +56,7 @@
 					<div class="headPagebody_right ">
 						<div class="headPagebody_right_text ">
 							<div class="headPagebody_right_text_one ">
-								<img src="../img/购物车.png " />
+								<img src="${basePath}/sharebook/img/购物车.png " />
 							</div>
 							<div class="headPagebody_right_text_two ">
 								<a href="# "><p>我的书箱(<span>222</span>)</p></a>
@@ -67,13 +69,13 @@
 				<div class="navwrap ">
 					<div class="navwrap_text ">
 						<div class="navLeft ">
-						   <a style="color: white; " href="${basePath}/sharebook/jsp/bookClassification.jsp">全部图书分类</a><span><img src="../img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
+						   <a style="color: white; " href="${basePath}/sharebook/jsp/bookClassification.jsp">全部图书分类</a><span><img src="${basePath}/sharebook/img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
 					     </div> 	
 						<div class="navwrap_text_right ">
 							<ul>
 								<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 								<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
-								<li><a href="# ">按专业分类</a></li>
+								<li><a href="${basePath}/sharebook/jsp/bookProification.jsp ">按专业分类</a></li>
 								<li><a href="# ">书籍竞拍</a></li>
 								<li><a href="# ">资料共享</a></li>
 								</ul>					
@@ -84,91 +86,100 @@
 		<div class="bodyPage_classBook">
 			<div class="bodyPage_classBook_left">
 				<div class="bodyPage_classBook_left_title">
-					<img src="../img/浏览记录.png"/><p>最近浏览图书</p>
+					<img src="${basePath}/sharebook/img/浏览记录.png"/><p>最近浏览图书</p>
 				</div>
-				 <div class="bodyPage_classBook_left_content">
-				    <a href="#">	
-				    	<div class="bodyPage_classBook_left_content_left ">
-							<img src="../img/1.jpg " alt="11 " />
-						</div>
-					    <div class="bodyPage_classBook_left_content_right ">
-							<p>狼图腾</p>
-							<p>作者：<a><span>王刚</span></a></p>
-							<p>价格：<span class="moneyRed ">23.39￥</span><span class="money">39.99￥</span></p>
-					    </div>
-					</a>  
-				 </div>
-				  <div class="bodyPage_classBook_left_content">
-				    	<a href="#">
-				    		<div class="bodyPage_classBook_left_content_left ">
-								<img src="../img/2.jpg " alt="11 " />
-							</div>
-						    <div class="bodyPage_classBook_left_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span><span class="money">39.99￥</span></p>
-						    </div>
-					    </a>
-				 </div>
-				  <div class="bodyPage_classBook_left_content">
-				    	<a href="#">
-					    	<div class="bodyPage_classBook_left_content_left ">
-								<img src="../img/pic1.png" alt="11 " />
-							</div>
-						    <div class="bodyPage_classBook_left_content_right ">
-								<p>狼图腾</p>
-								<p>作者：<span>王刚</span></p>
-								<p>价格：<span class="moneyRed ">23.39￥</span><span class="money">39.99￥</span></p>
-						    </div>
-					    </a>
-				 </div>
 			</div>
 			<div class="bodyPage_classBook_right">
 				<div class="bodyPage_classBook_right_title">
 					<p>图书分类</p>
 				</div>
 				<div class="bodyPage_classBook_right_content">
-						<div class="bodyPage_classBook_right_content_text">
-							<dl class="bodyPage_classBook_right_content_text_d">
-								<dt><span>计算机与网络</span> <span> |</span></dt>
-								<dd>
-									<a href="javascript:; "><span>编程与语言</span>(<span>222</span>)<span> |</span></a>
-									<a href="javascript:; "><span>计算机组成原理</span> (<span>333</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编译原理</span>(<span>555</span>) <span> |</span></a>
-									<a href="javascript:; "><span>网络与通信</span> (<span>444</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编程与语言</span> (<span>90</span>)<span> |</span> </a>
-								</dd>
-							</dl>
-						</div>
-						<div class="bodyPage_classBook_right_content_text">
-							<dl class="bodyPage_classBook_right_content_text_d">
-								<dt><span>计算机与网络</span> <span> |</span></dt>
-								<dd>
-									<a href="javascript:; "><span>编程与语言</span>(<span>222</span>)<span> |</span></a>
-									<a href="javascript:; "><span>计算机组成原理</span> (<span>333</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编译原理</span>(<span>555</span>) <span> |</span></a>
-									<a href="javascript:; "><span>网络与通信</span> (<span>444</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编程与语言</span> (<span>90</span>)<span> |</span> </a>
-								</dd>
-							</dl>
-						</div>
-						<div class="bodyPage_classBook_right_content_text">
-							<dl class="bodyPage_classBook_right_content_text_d">
-								<dt><span>计算机与网络</span> <span> |</span></dt>
-								<dd>
-									<a href="javascript:; "><span>编程与语言</span>(<span>222</span>)<span> |</span></a>
-									<a href="javascript:; "><span>计算机组成原理</span> (<span>333</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编译原理</span>(<span>555</span>) <span> |</span></a>
-									<a href="javascript:; "><span>网络与通信</span> (<span>444</span>)<span> |</span></a>
-									<a href="javascript:; "><span>编程与语言</span> (<span>90</span>)<span> |</span> </a>
-								</dd>
-							</dl>
-						</div>
+
 				</div>
 			</div>
 		</div>
 		<div style="width: 100%;height: 1px; clear: both;"></div>
 		<div id="bottom" class="footerPage "></div>
+		</div>
 	</body>
-	<script type="text/javascript " src="../js/index.js " ></script>
+<script>
+	//分类
+    $.ajax({
+        type : "post",
+        async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "${basePath}/bookshare/bookclass12information",    //请求发送到TestServlet处
+        data: {id:1},
+        contentType:"text/html;charset=utf-8",
+        dataType: "json",   //返回格式为json
+        success : function(data) {
+            try {
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (data.error_code == 0){
+                    list = JSON.parse(JSON.stringify(data.data));
+                    if(list.length>0){
+
+                        list.forEach(function (item) {
+                            var class2="";
+                            item.list.forEach(function (item1) { class2=class2 +"<a href='javascript:;'><span>"+item1.className2+"</span><span> |</span> </a>";})
+                            $(".bodyPage_classBook_right_content").append("<div class='bodyPage_classBook_right_content_text'><dl class='bodyPage_classBook_right_content_text_d'>"+
+                               "<dt><span>"+item.className1+"</span> <span> |</span></dt><dd>"+class2+"</dd></dl></div>");
+                        })
+                    }
+                }
+            } catch (e){
+                console.log(e.message);
+            }
+
+        },
+        complete: function() {
+        },
+        error: function(error) {
+            console.log(error);
+        }})
+
+    //浏览历史
+    $.ajax({
+        type : "post",
+        async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "${basePath}/bookshare/searchistory",    //请求发送到TestServlet处
+        data: {id:1},
+        contentType:"text/html;charset=utf-8",
+        dataType: "json",   //返回格式为json
+        success : function(data) {
+            try {
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (data.error_code == 0){
+                    list = JSON.parse(JSON.stringify(data.data));
+                    if(list.length>0){
+                        list.forEach(function (item) {
+                            $(".bodyPage_classBook_left").append("<div class='bodyPage_classBook_left_content'><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <div class='bodyPage_classBook_left_content_left'>"+
+                                "<img src='${basePath}/sharebook/img/book/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'>" +
+                            "<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></a></div>");
+                        })
+                    }
+                }
+            } catch (e){
+                console.log(e.message);
+            }
+
+        },
+        complete: function() {
+        },
+        error: function(error) {
+            console.log(error);
+        }})
+
+    /*function getDetail(id) {
+        $.ajax({
+            type : "post",
+            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/bookshare/bookdetails",
+                data: {id:id},
+                error: function(error) {
+                    console.log(error);
+                }})
+    }*/
+
+
+</script>
 </html>

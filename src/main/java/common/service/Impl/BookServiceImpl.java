@@ -272,6 +272,7 @@ public class BookServiceImpl implements BookService {
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookSelling.getSellerId()));
                 if(result.getSuccess()&&result.getBody()!=null){
                     bookSellingVo.setSellerName(result.getBody().getUserName());
+                    bookSellingVo.setSelfStatus(result.getBody().getStatus());
                     bookSellingVo.setPhoneNumber(result.getBody().getPhoneNumber());
                 }
             }

@@ -11,13 +11,7 @@ public interface BookMapper {
 
     int insert(BookQuery record);
 
-    int insertSelective(Book record);
-
     Book selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Book record);
-
-    int updateByPrimaryKey(Book record);
 
     /*
      * 查询书籍信息book
