@@ -109,7 +109,7 @@
 				<c:forEach items="${requestScope.searchResult }" var="s">
 					<div class="bodyPage_searchResult_body_text">
 						<div class="bodyPage_searchResult_body_text_left " style="margin-top: 15px;">
-							<a href='${basePath}/bookshare/bookdetails?id="${s.id}'> <img src="${basePath}/sharebook/img/${s.src}" /></a>
+							<a href='${basePath}/bookshare/bookdetails?id=${s.id}'> <img src="${basePath}/sharebook/img/${s.src}" /></a>
 						</div>
 						<div class="bodyPage_searchResult_body_text_right " style="height:145px; margin-top: 15px">
 							<p class="searchResult_bookname">${s.bookName}</p>

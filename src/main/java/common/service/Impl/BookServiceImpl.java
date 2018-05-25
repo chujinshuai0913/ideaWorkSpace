@@ -349,6 +349,7 @@ public class BookServiceImpl implements BookService {
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookBorrow.getSellerId()));
                 if(result.getSuccess()&&result.getBody()!=null){
                     bookBorrowVo.setSellerName(result.getBody().getUserName());
+                    bookBorrowVo.setSelfStatus(result.getBody().getStatus());
                     bookBorrowVo.setPhoneNumber(result.getBody().getPhoneNumber());
                 }
             }
@@ -420,6 +421,7 @@ public class BookServiceImpl implements BookService {
                 if(result.getSuccess()&&result.getBody()!=null){
                     bookAuctionVo.setSellerName(result.getBody().getUserName());
                     bookAuctionVo.setPhoneNumber(result.getBody().getPhoneNumber());
+                    bookAuctionVo.setSelfStatus(result.getBody().getStatus());
                 }
             }
             if (bookAuction.getBuyerId()!=null&&bookAuction.getBuyerId()>0){
@@ -483,6 +485,7 @@ public class BookServiceImpl implements BookService {
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookGiftVo.getSellerId()));
                 if(result.getSuccess()&&result.getBody()!=null){
                     bookGiftVo.setSellerName(result.getBody().getUserName());
+                    bookGiftVo.setSelfStatus(result.getBody().getStatus());
                     bookGiftVo.setPhoneNumber(result.getBody().getPhoneNumber());
                 }
             }
@@ -803,6 +806,66 @@ public class BookServiceImpl implements BookService {
                 }
             }
             return new ServiceResult<>(bookSellingVos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<BookSellingVo> selectSellByPrimaryKey(BookSellingQuery bookSellingQuery) {
+        try {
+            BookSellingVo bookSellingVo =new BookSellingVo();
+            ServiceResult<BookSelling> serviceResult=new ServiceResult<>(bookSellingMapper.selectByPrimaryKey(bookSellingQuery.getId()));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                      bookSellingVo= this.getBookSellingVo(serviceResult.getBody(),bookSellingVo);
+            }
+            return new ServiceResult<>(bookSellingVo) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<BookBorrowVo> selectBorrowByPrimaryKey(BookBorrowQuery bookBorrowQuery) {
+        try {
+            BookBorrowVo bookBorrowVo =new BookBorrowVo();
+            ServiceResult<BookBorrow> serviceResult=new ServiceResult<>(bookBorrowMapper.selectByPrimaryKey(bookBorrowQuery.getId()));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                bookBorrowVo= this.getBookBorrowVo(serviceResult.getBody(),bookBorrowVo);
+            }
+            return new ServiceResult<>(bookBorrowVo) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<BookGiftVo> selectGiftByPrimaryKey(BookGiftQuery bookGiftQuery) {
+        try {
+            BookGiftVo bookGiftVo =new BookGiftVo();
+            ServiceResult<BookGift> serviceResult=new ServiceResult<>(bookGiftMapper.selectByPrimaryKey(bookGiftQuery.getId()));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                bookGiftVo= this.getBookGiftVo(serviceResult.getBody(),bookGiftVo);
+            }
+            return new ServiceResult<>(bookGiftVo) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<BookAuctionVo> selectAuctionByPrimaryKey(BookAuctionQuery bookAuctionQuery) {
+        try {
+            BookAuctionVo bookAuctionVo =new BookAuctionVo();
+            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.selectByPrimaryKey(bookAuctionQuery.getId()));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                bookAuctionVo= this.getBookAuctionVo(serviceResult.getBody(),bookAuctionVo);
+            }
+            return new ServiceResult<>(bookAuctionVo) ;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             return new ServiceResult<>(11,e.getMessage());

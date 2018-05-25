@@ -46,6 +46,16 @@ public class BookGiftVo extends BookGift implements Serializable {
 
     private String flagStr;
 
+    private  Integer selfStatus;
+
+    public Integer getSelfStatus() {
+        return selfStatus;
+    }
+
+    public void setSelfStatus(Integer selfStatus) {
+        this.selfStatus = selfStatus;
+    }
+
     public String getBuyerName() {
         return buyerName;
     }

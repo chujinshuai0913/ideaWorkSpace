@@ -33,6 +33,15 @@ public class BookAuctionVo extends BookAuction implements Serializable {
 
     private  String statusStr;
 
+    private  Integer selfStatus;
+
+    public Integer getSelfStatus() {
+        return selfStatus;
+    }
+
+    public void setSelfStatus(Integer selfStatus) {
+        this.selfStatus = selfStatus;
+    }
     public String getStatusStr() {
         return statusStr;
     }

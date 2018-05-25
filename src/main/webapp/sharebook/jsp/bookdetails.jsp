@@ -10,15 +10,19 @@
 	<meta charset="utf-8" />
 	<title>燕鸣书屋</title>
 	<script src="${basePath}/sharebook/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table-zh-CN.min.js"></script>
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-datepicker-1.5.0/js/bootstrap-datepicker.js" ></script>
-	<link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
-
+	<link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="${basePath}/sharebook/css/bookdetails.css" />
+	<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/index.css">
 </head>
+<style>
+
+</style>
 <body>
 <div class="homePage">
 	<div class="headPage">
@@ -35,7 +39,7 @@
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
-				<img src="${basePath}/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer" "  alt="燕鸣书屋 " />
+				<img src="${basePath}/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"  alt="燕鸣书屋 " />
 			</div>
 			<div class="headPagebody_none ">
 				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
@@ -67,13 +71,13 @@
 		<div class="navwrap ">
 			<div class="navwrap_text ">
 				<div class="navLeft ">
-					<a style="color: white; " href="bookClassification.html">全部图书分类</a><span><img src="${basePath}/sharebook/img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
+					<a style="color: white; " href="${basePath}/sharebook/jsp/bookClassification.jsp">全部图书分类</a><span><img src="${basePath}/sharebook/img/向下.png " alt="向下 " style="position:relative;top:5px;width: 20px;height: 20px; "/></span>
 				</div>
 				<div class="navwrap_text_right ">
 					<ul>
 						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
-						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp ">按专业分类</a></li>
+						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
 						<li><a href="# ">书籍竞拍</a></li>
 						<li><a href="# ">资料共享</a></li>
 					</ul>
@@ -136,11 +140,15 @@
 				</div>
 				<div class="bodyPage_body_bookdetail_down_right">
 					<div class="bodyPage_body_bookdetail_down_right_seller">
-						<div id="sharebookuserList" class="panel panel-default" style="padding-right: 0px;">
+						<div class="panel panel-default" style="padding-right: 0px;">
 							<div>
-								<form id="form_bookuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+								<form id="form_bookuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
 									  onkeydown="if(event.keyCode==13){return false;}">
-									<div class="form-group" style="margin-left: 50px;">
+                                    <input type="text" name="id" style="display: none" value="${requestScope.bookVo.id}"/>
+									<div class="form-group" style="margin-left: 10px;">
+										<label onclick="$(this).next().focus();" style="font-size: 20px; ">售卖该书籍商家有</label>
+									</div>
+									<div class="form-group" style="margin-left: 55%">
 										<label onclick="$(this).next().focus();">交易方式</label>
 										<select  name="pageNum" type="text" class="form-control" >
 											<option value="1">买卖</option>
@@ -151,8 +159,8 @@
 									</div>
 									<div class="form-group" style="margin-left: 30px;">
 										<label></label>
-										<button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
-												formaction="javascript:void(0);">查询
+										<button type="button" id="formSearchBtn" class="btn btn-primary"  data-style="zoom-in"
+											 style="width: 100px;height: 33px;"	formaction="javascript:void(0);">查询
 										</button>
 									</div>
 								</form>
@@ -326,13 +334,33 @@
                 field: 'useNum',
                 title: '销量',
                 align: "center",
-                formatter: formatterToValue
+                formatter: function (value, row, index) {
+                if(row.state==4){
+                    return  "0";
+                }
+                else if(row.useNum){
+                    return row.useNum;
+                }else{
+                    return '-';
+                }
+
+    }
 
             },
             {
                 field: 'useableNum',
                 title: '可用库存',
                 align: "center",
+                formatter: function (value, row, index) {
+                    if(row.state==4){
+                        return  "1";
+                    }
+                    else if(row.useableNum){
+                        return row.useableNum;
+                    }else{
+                        return '-';
+                    }
+            }
             },{
                 field: 'price',
                 title: '售价',
@@ -364,31 +392,31 @@
     });
      function detailBook(e, value, row, index) {
          if(row.state=1){
-             windows.location.href="${basePath}/bookshare/bookselldetail?id="+row.id;
+             location.replace("${basePath}/bookshare/bookselldetail?id="+row.id+"");
 		 }
          if(row.state=2){
-             windows.location.href="${basePath}/bookshare/bookborrowdetail?id="+row.id;
+             location.replace("${basePath}/bookshare/bookborrowdetail?id="+row.id+"");
          }
          if(row.state=3){
-             windows.location.href="${basePath}/bookshare/bookgiftdetail?id="+row.id;
+             location.replace("${basePath}/bookshare/bookgiftdetail?id="+row.id+"");
          }
          if(row.state=4){
-             windows.location.href="${basePath}/bookshare/bookauctiondetail?id="+row.id;
+             location.replace("${basePath}/bookshare/bookauctiondetail?id="+row.id+"");
          }
      }
     function switchState(n) {
         switch(n)
         {
             case 1:
-                元
+                return "元";
                 break;
             case 2:
-                元/天
+                return  "元/天";
                 break;
             case 3:
                 break;
             case 4:
-                元
+                return  "元";
                 break;
         }
     }

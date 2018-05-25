@@ -102,8 +102,10 @@ public interface BookService {
      * 查询书籍总数count
      */
     ServiceResult<List<BookSellingVo>> queryBookSellingVoList(BookSellingQuery bookSellingQuery);
-
-
+    ServiceResult<BookSellingVo> selectSellByPrimaryKey(BookSellingQuery bookSellingQuery);
+    ServiceResult<BookBorrowVo> selectBorrowByPrimaryKey(BookBorrowQuery bookBorrowQuery);
+    ServiceResult<BookGiftVo> selectGiftByPrimaryKey(BookGiftQuery bookGiftQuery);
+    ServiceResult<BookAuctionVo> selectAuctionByPrimaryKey(BookAuctionQuery bookAuctionQuery);
     /*
      * 查询书籍总数count
      */

@@ -7,7 +7,6 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-
 	<title>燕鸣书屋</title>
 	<link rel="stylesheet" href="${basePath}/sharebook/css/owl.carousel.min.css" />
 	<link rel="stylesheet" href="${basePath}/sharebook/css/style.css" />
@@ -20,63 +19,7 @@
 	<script type="text/javascript" src="${basePath}/sharebook/js/owl.carousel.min.js"></script>
 </head>
 <style>
-	.flright {
-		height: 580px;
-		padding: 20px 0 0 20px;
-		overflow: hidden;
-	}
-	.navLeft {
-		float: left;
-		width: 20%;
-		height: 40px;
-		position: relative;
-		text-align: center;
-		line-height: 40px;
-		cursor: pointer;
-	}
 
-	.fenleiright {
-		width: 0px;
-		height: 600px;
-		border: 1px solid #EEEEEE;
-		border-left: 0;
-		background: #FFFFFF;
-		position: relative;
-		top: 0px;
-		left: 263px;
-		overflow: hidden;
-		z-index: 10;
-	}
-
-	.fenlei {
-		width: 60%;
-		height: 700px;
-		position: absolute;
-		background: #FFFFFF;
-		top: 40px;
-		right: 0px;
-		left: 100px;
-		color: black;
-		border: 1PX solid #EEEEEE;
-	}
-
-	.fenleiLeft {
-		overflow: hidden;
-	}
-
-	.fenleiLeft dt {
-		font: 16px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;;
-		width: 130px;
-		height: 40px;
-		line-height: 40px;
-		padding: 3px 2px 0 15px;
-		text-align: center;
-	}
-	.fenlei ul li {
-		overflow: hidden;
-		height: 40px;
-		border-bottom: 1px solid #EEEEEE;
-	}
 </style>
 <body>
 

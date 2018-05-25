@@ -40,7 +40,15 @@ public class BookBorrowVo extends BookBorrow implements Serializable {
     private String eTime;
 
     private Long phoneNumber;
+    private  Integer selfStatus;
 
+    public Integer getSelfStatus() {
+        return selfStatus;
+    }
+
+    public void setSelfStatus(Integer selfStatus) {
+        this.selfStatus = selfStatus;
+    }
     public String getStatusStr() {
         return statusStr;
     }

@@ -75,6 +75,16 @@ public class BookBorrowQuery extends QueryParam {
 
     private String pricingunit;
 
+    private Integer sellerId;
+
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
+
     public List<Integer> getIds() {
         return ids;
     }

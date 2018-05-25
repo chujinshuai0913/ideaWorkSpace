@@ -474,6 +474,9 @@
         #{item}
       </foreach>
     </if>
+    <if test="sellerId != null" >
+      AND  seller_id =#{sellerId}
+    </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>

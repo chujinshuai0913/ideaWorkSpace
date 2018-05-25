@@ -67,6 +67,15 @@ public class BookGiftQuery extends QueryParam {
 
     private Integer flag;
     private List<Integer> ids;
+    private Integer sellerId;
+
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
 
     public List<Integer> getIds() {
         return ids;

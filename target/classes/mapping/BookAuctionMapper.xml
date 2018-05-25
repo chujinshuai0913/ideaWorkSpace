@@ -380,7 +380,7 @@
     FROM book_auction
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="endTime != null  ">   <![CDATA[ AND end_time <= #{endTime} ]]> </if>
+    <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
     <if test="sellerIds != null" >
       AND  seller_id
@@ -388,19 +388,25 @@
         #{item}
       </foreach>
     </if>
+    <if test="sellerId != null" >
+      AND  seller_id =#{sellerId}
+    </if>
   </select>
   <select id="queryBookAuctionList" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
     SELECT *
     FROM book_auction
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="endTime != null  ">   <![CDATA[ AND end_time <= #{endTime} ]]> </if>
+    <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
     <if test="sellerIds != null" >
       AND  seller_id
       <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
         #{item}
       </foreach>
+    </if>
+    <if test="sellerId != null" >
+      AND  seller_id =#{sellerId}
     </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
