@@ -95,6 +95,8 @@
     <if test="author != null and author !=''">  <![CDATA[	AND author LIKE CONCAT(CONCAT('%',#{author}),'%')	]]> </if>
     <if test="professionalTypeName1 != null and professionalTypeName1 !=''">  <![CDATA[	AND professional_type_name1 LIKE CONCAT(CONCAT('%',#{professionalTypeName1}),'%')	]]> </if>
     <if test="professionalTypeName2 != null and professionalTypeName2 !=''">  <![CDATA[	AND professional_type_name2 LIKE CONCAT(CONCAT('%',#{professionalTypeName2}),'%')	]]> </if>
+    <if test="bookTypeName1 != null and bookTypeName1 !=''">  <![CDATA[	AND book_type_name1 LIKE CONCAT(CONCAT('%',#{bookTypeName1}),'%')	]]> </if>
+    <if test="bookTypeName2 != null and bookTypeName2 !=''">  <![CDATA[	AND book_type_name2 LIKE CONCAT(CONCAT('%',#{bookTypeName2}),'%')	]]> </if>
     <if test="sellStatus != null" >   AND  sell_status = #{sellStatus} </if>
     <if test="borrowStatus != null" >   AND  borrow_status = #{borrowStatus} </if>
     <if test="giftStatus != null" >   AND  gift_status = #{giftStatus} </if>
@@ -168,5 +170,12 @@
       #{item}
     </foreach>
   </select>
-
+<update id="upateBookUserNumRed">
+  UPDATE book SET userable_num=userable_num-#{preNum},use_num=use_num+#{preNum}
+  where id=#{id}
+</update>
+  <update id="upateBookUserNumAdd">
+    UPDATE book SET userable_num=userable_num+#{preNum}
+    where id=#{id}
+  </update>
 </mapper>

@@ -149,12 +149,12 @@
                 align: "center",
                 formatter: formatterToValue
 
-            },
+            }/*,
             {
                 field: 'remark',
                 title: '介绍',
                 align: "center",
-            },{
+            }*/,{
                 field: 'uTime',
                 title: '上传时间',
                 align: "center",

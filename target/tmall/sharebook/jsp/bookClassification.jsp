@@ -59,7 +59,7 @@
 								<img src="${basePath}/sharebook/img/购物车.png " />
 							</div>
 							<div class="headPagebody_right_text_two ">
-								<a href="# "><p>我的书箱(<span>222</span>)</p></a>
+								<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
 								<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
 							</div>
 						</div>
@@ -103,6 +103,8 @@
 		</div>
 	</body>
 <script>
+
+
 	//分类
     $.ajax({
         type : "post",
@@ -120,7 +122,7 @@
 
                         list.forEach(function (item) {
                             var class2="";
-                            item.list.forEach(function (item1) { class2=class2 +"<a href='javascript:;'><span>"+item1.className2+"</span><span> |</span> </a>";})
+                            item.list.forEach(function (item1) { class2=class2 +"<a  href='${basePath}/bookshare/classResult?bookTypeName2="+item1.className2+"'><span>"+item1.className2+"</span><span> |</span> </a>";})
                             $(".bodyPage_classBook_right_content").append("<div class='bodyPage_classBook_right_content_text'><dl class='bodyPage_classBook_right_content_text_d'>"+
                                "<dt><span>"+item.className1+"</span> <span> |</span></dt><dd>"+class2+"</dd></dl></div>");
                         })
@@ -179,7 +181,6 @@
                     console.log(error);
                 }})
     }*/
-
 
 </script>
 </html>

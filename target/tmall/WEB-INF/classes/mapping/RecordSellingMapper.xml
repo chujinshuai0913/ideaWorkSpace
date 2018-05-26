@@ -29,7 +29,7 @@
     delete from record_selling
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.RecordSelling">
+  <insert id="insert" parameterType="common.query.RecordSellingQuery">
     insert into record_selling (id, selling_id, buyer, 
       total, order_time, status, 
       failure_reason, complete_time, total_price, 
@@ -173,6 +173,9 @@
         #{item}
       </foreach>
     </if>
+    <if test="buyer!= null" >
+      AND buyer =#{buyer}
+    </if>
     <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
@@ -188,6 +191,9 @@
       <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
         #{item}
       </foreach>
+    </if>
+    <if test="buyer!= null" >
+      AND buyer =#{buyer}
     </if>
     <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
     <if test=" id!= null" >   AND  id = #{id} </if>

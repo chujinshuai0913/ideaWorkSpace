@@ -22,7 +22,6 @@ import common.vo.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +105,56 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public ServiceResult<Integer> upateBookUserNumAdd(BookQuery query) {
+        return new ServiceResult<>(bookMapper.upateBookUserNumAdd(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookUserNumRed(BookQuery query) {
+        return new ServiceResult<>(bookMapper.upateBookUserNumRed(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookSellUserNumAdd(BookSellingQuery query) {
+        return  new ServiceResult<>(bookSellingMapper.upateBookSellUserNumAdd(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookSellUserNumRed(BookSellingQuery query) {
+        return new ServiceResult<>(bookSellingMapper.upateBookSellUserNumRed(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookBorrowUserNumAdd(BookBorrowQuery query){
+        return new ServiceResult<>(bookBorrowMapper.upateBookBorrowUserNumAdd(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookBorrowUserNumRed(BookBorrowQuery query) {
+        return new ServiceResult<>(bookBorrowMapper.upateBookBorrowUserNumRed(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookGiftUserNumRed(BookGiftQuery query) {
+        return new ServiceResult<>(bookGiftMapper.upateBookGiftUserNumRed(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookGiftUserNumAdd(BookGiftQuery query) {
+        return new ServiceResult<>(bookGiftMapper.upateBookGiftUserNumAdd(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookAuctionlUserNumAdd(BookAuctionQuery query) {
+        return null;
+    }
+
+    @Override
+    public ServiceResult<Integer> upateBookAuctionUserNumRed(BookAuctionQuery query) {
+        return null;
+    }
+
+    @Override
     public ServiceResult<Integer> insertBook(BookQuery query) {
         return new ServiceResult<>(bookMapper.insert(query));
     }
@@ -113,6 +162,46 @@ public class BookServiceImpl implements BookService {
     @Override
     public ServiceResult<Integer> queryBookCount(BookQuery bookQuery) {
         return new ServiceResult<>(bookMapper.queryBookCount(bookQuery));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertSellBook(BookSellingQuery query) {
+        return new ServiceResult<>(bookSellingMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertBorrowBook(BookBorrowQuery query) {
+        return new ServiceResult<>(bookBorrowMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertGiftBook(BookGiftQuery query) {
+        return new ServiceResult<>(bookGiftMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertAuctionBook(BookAuctionQuery query) {
+        return new ServiceResult<>(bookAuctionMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertRSellBook(RecordSellingQuery query) {
+        return new ServiceResult<>(recordSellingMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertRBorrowBook(RecordBorrowQuery query) {
+        return new ServiceResult<>(recordBorrowMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertRGiftBook(RecordGiftQuery query) {
+        return new ServiceResult<>(recordGiftMapper.insert(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> insertRAuctionBook(RecordAuctionQuery query) {
+        return new ServiceResult<>(recordAuctionMapper.insert(query));
     }
 
     @Override
@@ -191,10 +280,10 @@ public class BookServiceImpl implements BookService {
     public BookVo getBookVo(Book book, BookVo bookVo) {
        try {
            bookVo = JSONObject.parseObject(JSONObject.toJSONString(book),BookVo.class);
-           bookVo.setBookTypeName1("");
-           bookVo.setBookTypeName2("");
-           bookVo.setProfessionalTypeName1("");
-           bookVo.setProfessionalTypeName2("");
+           if(book.getcT()!=null&&book.getcT()>0)
+           {
+               bookVo.setcTime(DateUtils.getDateStringByTimeStamp(book.getcT(),DateUtils.YMDHMS));
+           }
            if(book.getExportTime()!=null&&book.getExportTime()>0)
            {
                bookVo.seteTime(DateUtils.getDateStringByTimeStamp(book.getExportTime(),DateUtils.YMDHMS));
@@ -304,6 +393,10 @@ public class BookServiceImpl implements BookService {
             {
                 bookSellingVo.setStatusStr(BookStatusEnum.getNameMap().get(bookSelling.getStatus()));
             }
+            if(bookSelling.getUploadTime()!=null&&bookSelling.getUploadTime()>0)
+            {
+                bookSellingVo.setuTime(DateUtils.getDateStringByTimeStamp(bookSelling.getUploadTime(),DateUtils.YMD));
+            }
             if(bookSelling.getExportTime()!=null&&bookSelling.getExportTime()>0)
             {
                 bookSellingVo.seteTime(DateUtils.getDateStringByTimeStamp(bookSelling.getExportTime(),DateUtils.YMDHMS));
@@ -397,7 +490,10 @@ public class BookServiceImpl implements BookService {
             {
                 bookBorrowVo.setPrTime(DateUtils.getDateStringByTimeStamp(bookBorrow.getPrintTime(),DateUtils.YMDHMS));
             }
-
+            if(bookBorrow.getUploadTime()!=null&&bookBorrow.getUploadTime()>0)
+            {
+                bookBorrowVo.setuTime(DateUtils.getDateStringByTimeStamp(bookBorrow.getUploadTime(),DateUtils.YMD));
+            }
             return bookBorrowVo;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
@@ -420,10 +516,13 @@ public class BookServiceImpl implements BookService {
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookAuction.getSellerId()));
                 if(result.getSuccess()&&result.getBody()!=null){
                     bookAuctionVo.setSellerName(result.getBody().getUserName());
+                    bookAuctionVo.setSellName(result.getBody().getUserName());
+                    bookAuctionVo.setSellPhoneNumber(result.getBody().getPhoneNumber());
                     bookAuctionVo.setPhoneNumber(result.getBody().getPhoneNumber());
                     bookAuctionVo.setSelfStatus(result.getBody().getStatus());
                 }
             }
+
             if (bookAuction.getBuyerId()!=null&&bookAuction.getBuyerId()>0){
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookAuction.getSellerId()));
                 if(result.getSuccess()&&result.getBody()!=null){
@@ -459,7 +558,10 @@ public class BookServiceImpl implements BookService {
             {
                 bookAuctionVo.setuTime(DateUtils.getDateStringByTimeStamp(bookAuction.getUploadTime(),DateUtils.YMDHMS));
             }
-
+            if(bookAuction.getUploadTime()!=null&&bookAuction.getUploadTime()>0)
+            {
+                bookAuctionVo.setuTime(DateUtils.getDateStringByTimeStamp(bookAuction.getUploadTime(),DateUtils.YMD));
+            }
             return bookAuctionVo;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
@@ -517,6 +619,10 @@ public class BookServiceImpl implements BookService {
             {
                 bookGiftVo.setStatusStr(BookStatusEnum.getNameMap().get(bookGift.getStatus()));
             }
+            if(bookGift.getFlag()!=null&&bookGift.getFlag()>0)
+            {
+                bookGiftVo.setFlagStr(BookGiftFlagEnum.getNameMap().get(bookGift.getFlag()));
+            }
             if(bookGift.getExportTime()!=null&&bookGift.getExportTime()>0)
             {
                 bookGiftVo.seteTime(DateUtils.getDateStringByTimeStamp(bookGift.getExportTime(),DateUtils.YMDHMS));
@@ -537,6 +643,10 @@ public class BookServiceImpl implements BookService {
             {
                 bookGiftVo.setdTime(DateUtils.getDateStringByTimeStamp(bookGift.getDealTime(),DateUtils.YMDHMS));
             }
+            if(bookGift.getUploadTime()!=null&&bookGift.getUploadTime()>0)
+            {
+                bookGiftVo.setuTime(DateUtils.getDateStringByTimeStamp(bookGift.getUploadTime(),DateUtils.YMD));
+            }
             return bookGiftVo;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
@@ -555,10 +665,23 @@ public class BookServiceImpl implements BookService {
             recordSellingVo.setStatusStr("");
             recordSellingVo.setPhoneNumber(0L);
             if (recordSelling.getBuyer()!=null&&recordSelling.getBuyer()>0){
-                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(recordSellingVo.getBuyer()));
+                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(recordSelling.getBuyer()));
                 if(result.getSuccess()&&result.getBody()!=null){
                     recordSellingVo.setPhoneNumber(result.getBody().getPhoneNumber());
                     recordSellingVo.setBuyerName(result.getBody().getUserName());
+                }
+            }
+            if(recordSelling.getSellingId()!=null&&recordSelling.getSellingId()>0){
+                   ServiceResult<BookSelling> bookSellingVoServiceResult=new ServiceResult<>(bookSellingMapper.selectByPrimaryKey(recordSelling.getSellingId()));
+                  if(bookSellingVoServiceResult.getSuccess()&&bookSellingVoServiceResult.getBody()!=null){
+                   BookSelling bookSelling1=bookSellingVoServiceResult.getBody();
+                    ServiceResult<UserShare> result1=new ServiceResult<>(userShareMapper.getUserShareNameById(bookSelling1.getSellerId()));
+                    if(result1.getSuccess()&&result1.getBody()!=null){
+                        recordSellingVo.setSellPhoneNumber(result1.getBody().getPhoneNumber());
+                        recordSellingVo.setSellName(result1.getBody().getUserName());
+                        recordSellingVo.setBookName(bookSelling1.getBookName());
+                        recordSellingVo.setPrice(bookSelling1.getPrice()+"");
+                    }
                 }
             }
             if(recordSelling.getCompleteTime()!=null&&recordSelling.getCompleteTime()>0)
@@ -593,6 +716,18 @@ public class BookServiceImpl implements BookService {
                 if(result.getSuccess()&&result.getBody()!=null){
                     recordGiftVo.setPhoneNumber(result.getBody().getPhoneNumber());
                     recordGiftVo.setBuyerName(result.getBody().getUserName());
+                }
+            }
+            if(recordGift.getSellingId()!=null&&recordGift.getSellingId()>0){
+                ServiceResult<BookGift> bookSellingVoServiceResult=new ServiceResult<>(bookGiftMapper.selectByPrimaryKey(recordGift.getSellingId()));
+                if(bookSellingVoServiceResult.getSuccess()&&bookSellingVoServiceResult.getBody()!=null){
+                    BookGift bookGift1=bookSellingVoServiceResult.getBody();
+                    ServiceResult<UserShare> result1=new ServiceResult<>(userShareMapper.getUserShareNameById(bookGift1.getSellerId()));
+                    if(result1.getSuccess()&&result1.getBody()!=null){
+                        recordGiftVo.setSellPhoneNumber(result1.getBody().getPhoneNumber());
+                        recordGiftVo.setSellName(result1.getBody().getUserName());
+                        recordGiftVo.setBookName(bookGift1.getBookName());
+                    }
                 }
             }
             if(recordGift.getCompleteTime()!=null&&recordGift.getCompleteTime()>0)
@@ -630,6 +765,25 @@ public class BookServiceImpl implements BookService {
                     recordBorrowVo.setUserName(result.getBody().getUserName());
                 }
             }
+
+            if(recordBorrow.getAuctionId()!=null&&recordBorrow.getAuctionId()>0){
+                ServiceResult<BookBorrow> bookSellingVoServiceResult=new ServiceResult<>(bookBorrowMapper.selectByPrimaryKey(recordBorrow.getAuctionId()));
+                if(bookSellingVoServiceResult.getSuccess()&&bookSellingVoServiceResult.getBody()!=null){
+                    BookBorrow bookBorrow1=bookSellingVoServiceResult.getBody();
+                    ServiceResult<UserShare> result1=new ServiceResult<>(userShareMapper.getUserShareNameById(bookBorrow1.getSellerId()));
+                    if(result1.getSuccess()&&result1.getBody()!=null){
+                        recordBorrowVo.setSellPhoneNumber(result1.getBody().getPhoneNumber());
+                        recordBorrowVo.setSellName(result1.getBody().getUserName());
+                        recordBorrowVo.setPrice(bookBorrow1.getPrice()+"");
+                        recordBorrowVo.setBookName(bookBorrow1.getBookName());
+
+                        recordBorrowVo.setDepositPricer(bookBorrow1.getDepositPrice()+"");
+                        recordBorrowVo.setBeyondPrice(bookBorrow1.getBeyondPrice()+"");
+                    }
+
+
+                }
+            }
             if(recordBorrow.getStartTime()!=null&&recordBorrow.getStartTime()>0)
             {
                 recordBorrowVo.setsTime(DateUtils.getDateStringByTimeStamp(recordBorrow.getStartTime(),DateUtils.YMDHMS));
@@ -637,6 +791,10 @@ public class BookServiceImpl implements BookService {
             if(recordBorrow.getEndTime()!=null&&recordBorrow.getEndTime()>0)
             {
                 recordBorrowVo.seteTime(DateUtils.getDateStringByTimeStamp(recordBorrow.getEndTime(),DateUtils.YMDHMS));
+            }
+            if(recordBorrow.getRealEndTime()!=null&&recordBorrow.getRealEndTime()>0)
+            {
+                recordBorrowVo.setrTime(DateUtils.getDateStringByTimeStamp(recordBorrow.getRealEndTime(),DateUtils.YMDHMS));
             }
 
             return recordBorrowVo;
@@ -660,6 +818,19 @@ public class BookServiceImpl implements BookService {
                     recordAuctionVo.setUserName(result.getBody().getUserName());
                 }
             }
+          /*  if(recordAuction.getAuctionId()!=null&&recordAuction.getAuctionId()>0){
+                ServiceResult<BookAuction> bookSellingVoServiceResult=new ServiceResult<>(bookAuctionMapper.selectByPrimaryKey(recordAuction.getAuctionId()));
+                if(bookSellingVoServiceResult.getSuccess()&&bookSellingVoServiceResult.getBody()!=null){
+                    BookAuction bookAuction1=bookSellingVoServiceResult.getBody();
+                    ServiceResult<UserShare> result1=new ServiceResult<>(userShareMapper.getUserShareNameById(bookAuction1.getSellerId()));
+                    if(result1.getSuccess()&&result1.getBody()!=null){
+                        recordAuctionVo.setSellPhoneNumber(result1.getBody().getPhoneNumber());
+                        recordAuctionVo.setSellName(result1.getBody().getUserName());
+                    }
+
+
+                }
+            }*/
             if(recordAuction.getAuctionTime()!=null&&recordAuction.getAuctionTime()>0)
             {
                 recordAuctionVo.setaTime(DateUtils.getDateStringByTimeStamp(recordAuction.getAuctionTime(),DateUtils.YMDHMS));
@@ -790,6 +961,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Integer> getRecordAuctionIds(RecordAuctionQuery query) {
+        return recordAuctionMapper.getRecordAuctionIds(query);
+    }
+
+    @Override
     public ServiceResult<Integer> queryBookSellingCount(BookSellingQuery bookSellingQuery) {
         return new ServiceResult<>(bookSellingMapper.queryBookSellingCount(bookSellingQuery));
     }
@@ -882,6 +1058,29 @@ public class BookServiceImpl implements BookService {
         try {
             List<BookAuctionVo> bookAuctionVos=new ArrayList<>();
             ServiceResult<List<BookAuction>> serviceResult=new ServiceResult<>(bookAuctionMapper.queryBookAuctionList(bookAuctionQuery));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                for (BookAuction bookAuction:serviceResult.getBody()) {
+                    BookAuctionVo bookAuctionVo= new BookAuctionVo();
+                    bookAuctionVos.add(this.getBookAuctionVo(bookAuction,bookAuctionVo));
+                }
+            }
+            return new ServiceResult<>(bookAuctionVos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<Integer> queryBookAuctionCountByIds(BookAuctionQuery bookAuctionQuery) {
+        return new ServiceResult<>(bookAuctionMapper.queryBookAuctionCountByIds(bookAuctionQuery));
+    }
+
+    @Override
+    public ServiceResult<List<BookAuctionVo>> queryBookAutionVoListByIds(BookAuctionQuery bookAuctionQuery) {
+        try {
+            List<BookAuctionVo> bookAuctionVos=new ArrayList<>();
+            ServiceResult<List<BookAuction>> serviceResult=new ServiceResult<>(bookAuctionMapper.queryBookAuctionByIds(bookAuctionQuery));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 for (BookAuction bookAuction:serviceResult.getBody()) {
                     BookAuctionVo bookAuctionVo= new BookAuctionVo();

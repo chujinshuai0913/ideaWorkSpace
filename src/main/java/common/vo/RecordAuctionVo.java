@@ -23,6 +23,27 @@ public class RecordAuctionVo extends RecordAuction {
     /*手机*/
     private  Long phoneNumber;
 
+    //售卖书籍信息
+    private Long sellPhoneNumber;
+
+    private  String sellName;
+
+    public Long getSellPhoneNumber() {
+        return sellPhoneNumber;
+    }
+
+    public void setSellPhoneNumber(Long sellPhoneNumber) {
+        this.sellPhoneNumber = sellPhoneNumber;
+    }
+
+    public String getSellName() {
+        return sellName;
+    }
+
+    public void setSellName(String sellName) {
+        this.sellName = sellName;
+    }
+
     public String getUserName() {
         return userName;
     }

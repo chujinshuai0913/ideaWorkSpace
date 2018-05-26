@@ -190,11 +190,11 @@
 
                 }
             },
-            {
+           /* {
                 field: 'remark',
                 title: '介绍',
                 align: "center",
-            },{
+            },*/{
                 field: 'num',
                 title: '库存量',
                 align: "center",
@@ -352,13 +352,13 @@
                     field : 'statusStr',
                     title : '交易状态',
                     formatter: formatterToValue
-                },
+                }/*,
                 {
                     align: "center",
                     field : 'cTime',
                     title : '上一次交易时间',
                     formatter: formatterToValue
-                }]
+                }*/]
         });
     //弹出层
     var sellingId=0;

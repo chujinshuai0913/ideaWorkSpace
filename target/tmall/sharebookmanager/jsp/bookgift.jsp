@@ -175,12 +175,12 @@
                 align: "center",
                 formatter: formatterToValue
 
-            },
+            }/*,
             {
                 field: 'remark',
                 title: '介绍',
                 align: "center",
-            },{
+            }*/,{
                 field: 'num',
                 title: '库存量',
                 align: "center",
@@ -220,12 +220,12 @@
                 align: "center",
                 formatter: formatterToValue
 
-            }, {
+            }/*, {
                 field: 'dTime',
                 title: '上次赠书时间',
                 formatter: formatterToValue
 
-            },{
+            }*/,{
                 field: 'professionalTypeName1',
                 title: '学院',
                 align: "center",
@@ -244,14 +244,14 @@
                 align: "center",
                 formatter: formatterToValue
 
-            },
+            }/*,
             {
                 field: 'flagStr',
                 title: '是否回收',
                 align: "center",
                 formatter: formatterToValue
 
-            },
+            }*/,
             {
                 field: 'status',
                 title: '状态',

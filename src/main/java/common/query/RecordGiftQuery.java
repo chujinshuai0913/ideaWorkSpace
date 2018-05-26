@@ -18,6 +18,8 @@ public class RecordGiftQuery extends QueryParam {
 
     private List<Integer> buyers;
 
+    private  Integer buyer;
+
     private  String  buyerName;
 
     private Integer total;
@@ -32,6 +34,13 @@ public class RecordGiftQuery extends QueryParam {
 
     private String eneCompleteTime;
 
+    public Integer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Integer buyer) {
+        this.buyer = buyer;
+    }
 
     public Integer getId() {
         return id;

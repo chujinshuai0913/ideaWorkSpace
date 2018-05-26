@@ -355,13 +355,13 @@
                 },
                 {
                     align: "center",
-                    field : 'Time',
-                    title : '还书时间',
+                    field : 'eTime',
+                    title : '最晚还书时间',
                     formatter: formatterToValue
                 },
                 {
                     align: "center",
-                    field : 'cTime',
+                    field : 'rTime',
                     title : '实际还书时间',
                     formatter: formatterToValue
                 },{

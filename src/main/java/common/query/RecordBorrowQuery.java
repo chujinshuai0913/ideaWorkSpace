@@ -19,10 +19,14 @@ public class RecordBorrowQuery extends QueryParam {
 
     private List<Integer> userIds;
 
+    private Integer userId;
+
     private String userName;
 
     private  Integer phoneNumber;
 
+
+    private BigDecimal totalPrice;
 
     private Integer startTime;
 
@@ -30,11 +34,77 @@ public class RecordBorrowQuery extends QueryParam {
 
     private Integer realEndTime;
 
+    private Integer num;
+
+    private Integer returnNum;
+
+    private BigDecimal totalDeposit;
+
+    private BigDecimal returnDeposit;
+
+    private String pricingunit;
+
     private String sTime;
 
     private String eTime;
 
     private String rTime;
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Integer getReturnNum() {
+        return returnNum;
+    }
+
+    public void setReturnNum(Integer returnNum) {
+        this.returnNum = returnNum;
+    }
+
+    public BigDecimal getTotalDeposit() {
+        return totalDeposit;
+    }
+
+    public void setTotalDeposit(BigDecimal totalDeposit) {
+        this.totalDeposit = totalDeposit;
+    }
+
+    public BigDecimal getReturnDeposit() {
+        return returnDeposit;
+    }
+
+    public void setReturnDeposit(BigDecimal returnDeposit) {
+        this.returnDeposit = returnDeposit;
+    }
+
+    public String getPricingunit() {
+        return pricingunit;
+    }
+
+    public void setPricingunit(String pricingunit) {
+        this.pricingunit = pricingunit;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;

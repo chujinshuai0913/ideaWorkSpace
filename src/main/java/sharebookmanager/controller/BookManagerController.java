@@ -491,14 +491,22 @@ public class BookManagerController {
         logger.info("BookManagerController.auditBookSelling---------->"+strJson);
         BookSellingQuery query = JSONObject.parseObject(strJson,BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
+        Map<Integer,Integer> bookMap=new HashMap<>();
         int id=1;
         try{
             List<Integer> ids=new ArrayList<>();
             ServiceResult<List<BookSelling>> serviceResult1=bookService.queryBookSellingByIds(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT_NOT);
             if(serviceResult1.getSuccess()){
                 if(serviceResult1.getBody()!=null){
+                    int perNum=0;
                     for(BookSelling bookSelling:serviceResult1.getBody()){
                         ids.add(bookSelling.getId());
+                        if(bookMap.get(bookSelling.getSkuId())!=null){
+                             bookMap.put(bookSelling.getSkuId(),bookMap.get(bookSelling.getSkuId())+bookSelling.getUseableNum());
+                        }else {
+                            bookMap.put(bookSelling.getSkuId(),bookSelling.getUseableNum());
+                        }
+
                     }
                 }else{
                     successMap.put("resultMassage", "请刷新查看，书籍已被其他人审核");
@@ -506,6 +514,12 @@ public class BookManagerController {
                 ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(ids,ConstantsUtils.BookAuditCode.AUDIT,id,DateUtils.getNowTimeStamp());
                 if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                     successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
+                     BookQuery  bookQuery=new BookQuery();
+                    for (Map.Entry<Integer, Integer> entry : bookMap.entrySet()) {
+                        bookQuery.setId(entry.getKey());
+                        bookQuery.setPreNum( entry.getValue());
+                        bookService.upateBookUserNumAdd(bookQuery);
+                    }
                 } else {
                     successMap.put("resultMassage", "审核失败");
                 }

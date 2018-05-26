@@ -57,7 +57,7 @@
     delete from book_borrow
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.BookBorrow" >
+  <insert id="insert" parameterType="common.query.BookBorrowQuery" >
     insert into book_borrow (id, sku_id, seller_id, 
       book_name, price, deposit_price, 
       beyond_price, remark, src1, 
@@ -484,5 +484,14 @@
     update book_borrow
     set status = #{status},c_u = #{userId}, c_t = #{cTime}
     where id = #{id}
+  </update>
+
+  <update id="upateBookBorrowUserNumRed">
+    UPDATE book_borrow SET useable_num=useable_num-#{preNum},use_num=use_num+#{preNum}
+    where id=#{id}
+  </update>
+  <update id="upateBookBorrowUserNumAdd">
+    UPDATE book_borrow SET useable_num=useable_num+#{preNum}
+    where id=#{id}
   </update>
 </mapper>

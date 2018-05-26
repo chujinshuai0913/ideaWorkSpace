@@ -10,7 +10,7 @@ import java.util.List;
 public interface RecordAuctionMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(RecordAuction record);
+    int insert(RecordAuctionQuery record);
 
     int insertSelective(RecordAuction record);
 
@@ -23,4 +23,6 @@ public interface RecordAuctionMapper {
     List<RecordAuction> getRecordAuctionList(RecordAuctionQuery query);
 
     int getRecordAuctionCount(RecordAuctionQuery query);
+
+    List<Integer> getRecordAuctionIds(RecordAuctionQuery query);
 }

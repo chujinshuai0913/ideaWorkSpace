@@ -9,7 +9,7 @@ import java.util.List;
 public interface RecordSellingMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(RecordSelling record);
+    int insert(RecordSellingQuery record);
 
     int insertSelective(RecordSelling record);
 

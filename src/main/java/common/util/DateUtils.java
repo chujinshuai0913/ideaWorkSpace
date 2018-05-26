@@ -65,12 +65,7 @@ public class DateUtils {
         return getDayUnixTimeStamp(day);
     }
     
-    /**
-     * 获得当前系统时间戳
-     * @author  liuqiang(liuqiang@meicai.cn)
-     * 2016年3月20日
-     * @return
-     */
+
     public static Integer getNowTimeStamp() {
         Integer now = 0;
         Long time = System.currentTimeMillis() / 1000;

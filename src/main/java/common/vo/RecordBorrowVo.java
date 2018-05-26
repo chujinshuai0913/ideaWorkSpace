@@ -28,6 +28,65 @@ public class RecordBorrowVo extends RecordBorrow {
     /*手机*/
     private  Long phoneNumber;
 
+    //售卖书籍信息
+    private Long sellPhoneNumber;
+
+    private  String sellName;
+
+    private String price;
+    private  String depositPricer;
+    private  String beyondPrice;
+
+    private String bookName;
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDepositPricer() {
+        return depositPricer;
+    }
+
+    public void setDepositPricer(String depositPricer) {
+        this.depositPricer = depositPricer;
+    }
+
+    public String getBeyondPrice() {
+        return beyondPrice;
+    }
+
+    public void setBeyondPrice(String beyondPrice) {
+        this.beyondPrice = beyondPrice;
+    }
+
+    public Long getSellPhoneNumber() {
+        return sellPhoneNumber;
+    }
+
+    public void setSellPhoneNumber(Long sellPhoneNumber) {
+        this.sellPhoneNumber = sellPhoneNumber;
+    }
+
+    public String getSellName() {
+        return sellName;
+    }
+
+    public void setSellName(String sellName) {
+        this.sellName = sellName;
+    }
+
     public String getUserName() {
         return userName;
     }

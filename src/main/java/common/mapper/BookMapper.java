@@ -45,4 +45,10 @@ public interface BookMapper {
     /*  * 根据ISBNs查询书籍*/
 
     List<Book> queryBookListByISBNs(@Param("isbns") List<Integer> isbns);
+
+
+    int upateBookUserNumAdd(BookQuery query);
+
+   int upateBookUserNumRed(BookQuery query);
+
 }

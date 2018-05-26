@@ -31,7 +31,7 @@
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
-				<img src="${basePath}/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer" "  alt="燕鸣书屋 " />
+				<img src="${basePath}/sharebook/img/燕鸣书屋.png" style="width:250px;height: 100px;padding-top: 10px; cursor:pointer"  alt="燕鸣书屋 " />
 			</div>
 			<div class="headPagebody_none ">
 				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
@@ -53,7 +53,7 @@
 						<img src="${basePath}/sharebook/img/购物车.png " />
 					</div>
 					<div class="headPagebody_right_text_two ">
-						<a href="# "><p>我的书箱(<span>222</span>)</p></a>
+						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
 						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
 					</div>
 				</div>

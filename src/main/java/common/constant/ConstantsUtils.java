@@ -26,7 +26,7 @@ public class ConstantsUtils {
 	}
 	public static class BookTradeCode {
 		public static final int TRADE_NOT = 1;//未交易
-		public  static final int TRADE=2;//交易中
+		public  static final int TRADE=2;//交易完成
 		public  static final int TRADE_STOP=3;//交易失败
 	}
 	public static class BookGradeCode {
@@ -57,6 +57,7 @@ public class ConstantsUtils {
         public  static final int BookTopNum = 10;//热销书籍
         public  static final int BookTopIndexNum =16;//首页图书推荐书记数目
 		public  static final int BookTopProNum =12;//首页图书推荐书记数目
+		public  static final int BookDetailTopProNum =4;//详情页面
 
     }
 	public static class  BookClassTop {
@@ -79,4 +80,13 @@ public class ConstantsUtils {
 
 
 	}
+	public static class  BookBorrowDate {
+		public  static final int BookBorrowLongDate = 30;//最长借书30天
+	}
+    public static class  BookGiftFlag {
+	    //是否回收
+        public  static final int FLAG = 1;//是
+        public  static final int FLAG_NOT = 2;//否
+
+    }
 }

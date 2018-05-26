@@ -54,7 +54,7 @@
 						<img src="${basePath}/sharebook/img/购物车.png " />
 					</div>
 					<div class="headPagebody_right_text_two ">
-						<a href="# "><p>我的书箱(<span>222</span>)</p></a>
+						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
 						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
 					</div>
 				</div>

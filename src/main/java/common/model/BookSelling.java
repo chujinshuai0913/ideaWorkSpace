@@ -55,7 +55,23 @@ public class BookSelling {
 
     private String pricingunit;
 
-    public BookSelling(Integer id, Integer skuId, Integer sellerId, String bookName, BigDecimal price, String remark, String src1, String src2, String src3, String src4, Integer status, Integer state, Integer uploadTime, Integer dealTime, Integer useableNum, Integer useNum, Integer preNum, Integer cU, Integer cT, Integer printUser, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, String pricingunit) {
+    private Integer bookType2;
+
+    private Integer bookType1;
+
+    private String bookTypeName2;
+
+    private String bookTypeName1;
+
+    private Integer professionalType1;
+
+    private Integer professionalType2;
+
+    private String professionalTypeName1;
+
+    private String professionalTypeName2;
+
+    public BookSelling(Integer id, Integer skuId, Integer sellerId, String bookName, BigDecimal price, String remark, String src1, String src2, String src3, String src4, Integer status, Integer state, Integer uploadTime, Integer dealTime, Integer useableNum, Integer useNum, Integer preNum, Integer cU, Integer cT, Integer printUser, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, String pricingunit, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2) {
         this.id = id;
         this.skuId = skuId;
         this.sellerId = sellerId;
@@ -82,6 +98,14 @@ public class BookSelling {
         this.exportUser = exportUser;
         this.exportTime = exportTime;
         this.pricingunit = pricingunit;
+        this.bookType2 = bookType2;
+        this.bookType1 = bookType1;
+        this.bookTypeName2 = bookTypeName2;
+        this.bookTypeName1 = bookTypeName1;
+        this.professionalType1 = professionalType1;
+        this.professionalType2 = professionalType2;
+        this.professionalTypeName1 = professionalTypeName1;
+        this.professionalTypeName2 = professionalTypeName2;
     }
 
     public BookSelling() {
@@ -294,5 +318,69 @@ public class BookSelling {
 
     public void setPricingunit(String pricingunit) {
         this.pricingunit = pricingunit == null ? null : pricingunit.trim();
+    }
+
+    public Integer getBookType2() {
+        return bookType2;
+    }
+
+    public void setBookType2(Integer bookType2) {
+        this.bookType2 = bookType2;
+    }
+
+    public Integer getBookType1() {
+        return bookType1;
+    }
+
+    public void setBookType1(Integer bookType1) {
+        this.bookType1 = bookType1;
+    }
+
+    public String getBookTypeName2() {
+        return bookTypeName2;
+    }
+
+    public void setBookTypeName2(String bookTypeName2) {
+        this.bookTypeName2 = bookTypeName2 == null ? null : bookTypeName2.trim();
+    }
+
+    public String getBookTypeName1() {
+        return bookTypeName1;
+    }
+
+    public void setBookTypeName1(String bookTypeName1) {
+        this.bookTypeName1 = bookTypeName1 == null ? null : bookTypeName1.trim();
+    }
+
+    public Integer getProfessionalType1() {
+        return professionalType1;
+    }
+
+    public void setProfessionalType1(Integer professionalType1) {
+        this.professionalType1 = professionalType1;
+    }
+
+    public Integer getProfessionalType2() {
+        return professionalType2;
+    }
+
+    public void setProfessionalType2(Integer professionalType2) {
+        this.professionalType2 = professionalType2;
+    }
+
+    public String getProfessionalTypeName1() {
+        return professionalTypeName1;
+    }
+
+    public void setProfessionalTypeName1(String professionalTypeName1) {
+        this.professionalTypeName1 = professionalTypeName1 == null ? null : professionalTypeName1.trim();
+    }
+
+    public String getProfessionalTypeName2() {
+        return professionalTypeName2;
+    }
+
+    public void setProfessionalTypeName2(String professionalTypeName2) {
+        this.professionalTypeName2 = professionalTypeName2 == null ? null : professionalTypeName2.trim();
     }
 }

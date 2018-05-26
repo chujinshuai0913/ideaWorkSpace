@@ -2,6 +2,8 @@ package common.vo;
 
 import common.model.RecordSelling;
 
+import javax.print.DocFlavor;
+
 /**
  * Title: <br>
  * Description: <br>
@@ -26,6 +28,46 @@ public class RecordSellingVo extends RecordSelling {
 
     /*手机*/
     private  Long phoneNumber;
+
+    //售卖书籍信息
+    private Long sellPhoneNumber;
+
+    private  String sellName;
+
+    private  String bookName;
+
+    private String price;
+
+    public String getBookName() {
+        return bookName;
+    }
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public Long getSellPhoneNumber() {
+        return sellPhoneNumber;
+    }
+
+    public void setSellPhoneNumber(Long sellPhoneNumber) {
+        this.sellPhoneNumber = sellPhoneNumber;
+    }
+
+    public String getSellName() {
+        return sellName;
+    }
+
+    public void setSellName(String sellName) {
+        this.sellName = sellName;
+    }
 
     public String getBuyerName() {
         return buyerName;

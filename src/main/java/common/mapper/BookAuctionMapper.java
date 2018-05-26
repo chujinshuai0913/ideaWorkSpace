@@ -13,7 +13,7 @@ import java.util.List;
 public interface BookAuctionMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(BookAuction record);
+    int insert(BookAuctionQuery record);
 
     int insertSelective(BookAuction record);
 
@@ -27,6 +27,14 @@ public interface BookAuctionMapper {
 
     List<BookAuction> queryBookAuctionList(BookAuctionQuery bookAuctionQuery);
 
+    List<BookAuction> queryBookAuctionByIds(BookAuctionQuery bookAuctionQuery);
+
+
+    int queryBookAuctionCountByIds(BookAuctionQuery bookAuctionQuery);
     /*书籍审核*/
     int updateBookAuctionStatus(@Param("id") int id, @Param("status")  int status,@Param("userId") int userId,@Param("cTime") int cTime);
+//
+//    int upateBookAuctionlUserNumAdd(BookAuctionQuery query);
+//
+//    int upateBookAuctionUserNumRed(BookAuctionQuery query);
 }

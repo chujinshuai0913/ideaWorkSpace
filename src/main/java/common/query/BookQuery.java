@@ -94,6 +94,8 @@ public class BookQuery extends QueryParam {
     private Integer auctionStatus;
 
 
+
+
     public Integer getSellStatus() {
         return sellStatus;
     }

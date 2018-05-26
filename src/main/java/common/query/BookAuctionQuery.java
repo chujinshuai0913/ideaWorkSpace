@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class BookAuctionQuery extends QueryParam {
     private Integer id;
+
     private List<Integer> ids;
 
     private List<Integer> sellerIds;
@@ -61,6 +62,86 @@ public class BookAuctionQuery extends QueryParam {
     private Integer cT;
 
     private Integer sellerId;
+
+    private Integer bookType2;
+
+    private Integer bookType1;
+
+    private String bookTypeName2;
+
+    private String bookTypeName1;
+
+    private Integer professionalType1;
+
+    private Integer professionalType2;
+
+    private String professionalTypeName1;
+
+    private String professionalTypeName2;
+
+    public Integer getBookType2() {
+        return bookType2;
+    }
+
+    public void setBookType2(Integer bookType2) {
+        this.bookType2 = bookType2;
+    }
+
+    public Integer getBookType1() {
+        return bookType1;
+    }
+
+    public void setBookType1(Integer bookType1) {
+        this.bookType1 = bookType1;
+    }
+
+    public String getBookTypeName2() {
+        return bookTypeName2;
+    }
+
+    public void setBookTypeName2(String bookTypeName2) {
+        this.bookTypeName2 = bookTypeName2;
+    }
+
+    public String getBookTypeName1() {
+        return bookTypeName1;
+    }
+
+    public void setBookTypeName1(String bookTypeName1) {
+        this.bookTypeName1 = bookTypeName1;
+    }
+
+    public Integer getProfessionalType1() {
+        return professionalType1;
+    }
+
+    public void setProfessionalType1(Integer professionalType1) {
+        this.professionalType1 = professionalType1;
+    }
+
+    public Integer getProfessionalType2() {
+        return professionalType2;
+    }
+
+    public void setProfessionalType2(Integer professionalType2) {
+        this.professionalType2 = professionalType2;
+    }
+
+    public String getProfessionalTypeName1() {
+        return professionalTypeName1;
+    }
+
+    public void setProfessionalTypeName1(String professionalTypeName1) {
+        this.professionalTypeName1 = professionalTypeName1;
+    }
+
+    public String getProfessionalTypeName2() {
+        return professionalTypeName2;
+    }
+
+    public void setProfessionalTypeName2(String professionalTypeName2) {
+        this.professionalTypeName2 = professionalTypeName2;
+    }
 
     public Integer getSellerId() {
         return sellerId;

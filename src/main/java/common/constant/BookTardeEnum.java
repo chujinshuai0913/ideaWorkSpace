@@ -5,9 +5,9 @@ import java.util.Map;
 
 
 public enum BookTardeEnum {
-    TRADE(ConstantsUtils.BookTradeCode.TRADE,"交易中"),
+    TRADE(ConstantsUtils.BookTradeCode.TRADE,"交易完成"),
     TRADE_NOT(ConstantsUtils.BookTradeCode.TRADE_NOT,"未交易"),
-    TRADE_STOP(ConstantsUtils.BookTradeCode.TRADE_STOP,"交易中");
+    TRADE_STOP(ConstantsUtils.BookTradeCode.TRADE_STOP,"交易失败");
 
     private static Map<Integer, String> nameMap;
     private static Map<String, Integer> keyMap;

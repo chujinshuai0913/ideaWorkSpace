@@ -24,7 +24,7 @@
     delete from record_aucticon
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.RecordAuction" >
+  <insert id="insert" parameterType="common.query.RecordAuctionQuery" >
     insert into record_aucticon (id, auction_id, user_id, 
       auction_time, price, pricingunit
       )
@@ -117,6 +117,9 @@
         #{item}
       </foreach>
     </if>
+    <if test="userId!= null" >
+      AND user_id =#{userId}
+    </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
@@ -132,7 +135,16 @@
         #{item}
       </foreach>
     </if>
+    <if test="userId!= null" >
+      AND user_id =#{userId}
+    </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
+  </select>
+
+  <select id="getRecordAuctionIds" parameterType="common.query.RecordAuctionQuery" resultType="java.lang.Integer">
+    select DISTINCT auction_id FROM record_aucticon
+    WHERE user_id=#{userId}
+
   </select>
 
 </mapper>

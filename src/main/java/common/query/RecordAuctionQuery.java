@@ -17,6 +17,9 @@ public class RecordAuctionQuery extends QueryParam {
 
     private List<Integer> userIds;
 
+    private Integer userId;
+
+
     private String userName;
 
     private  Integer phoneNumber;
@@ -27,6 +30,13 @@ public class RecordAuctionQuery extends QueryParam {
 
     private BigDecimal price;
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;

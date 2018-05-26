@@ -56,7 +56,7 @@
     delete from book_gift
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.BookGift" >
+  <insert id="insert" parameterType="common.query.BookGiftQuery" >
     insert into book_gift (id, sku_id, seller_id, 
       book_name, remark, src1, 
       src2, src3, src4, status, 
@@ -470,8 +470,17 @@
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>
   <update id="updateBookGiftStatus" >
-    update book_auction
+    update book_gift
     set status = #{status},c_u = #{userId}, c_t = #{cTime}
     where id = #{id}
+  </update>
+
+  <update id="upateBookGiftUserNumRed">
+    UPDATE book_gift SET useable_num=useable_num-#{preNum},use_num=use_num+#{preNum}
+    where id=#{id}
+  </update>
+  <update id="upateBookGiftUserNumAdd">
+    UPDATE book_gift SET useable_num=useable_num+#{preNum}
+    where id=#{id}
   </update>
 </mapper>

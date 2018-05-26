@@ -34,7 +34,7 @@
       #{total,jdbcType=INTEGER}, #{orderTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{failureReason,jdbcType=VARCHAR}, #{completeTime,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="common.model.RecordGift" >
+  <insert id="insertSelective" parameterType="common.query.RecordGiftQuery" >
     insert into record_gift
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -153,6 +153,9 @@
       <foreach collection="buyers" index="index" item="item" open="(" close=")" separator=",">
         #{item}
       </foreach>
+    </if>
+    <if test="buyer!= null" >
+      AND buyer =#{buyer}
     </if>
     <if test="status != null" >   AND  status = #{status,jdbcType=INTEGER}   </if>
     <if test=" id!= null" >   AND  id = #{id} </if>

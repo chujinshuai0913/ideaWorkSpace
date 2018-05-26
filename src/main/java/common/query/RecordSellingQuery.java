@@ -1,5 +1,6 @@
 package common.query;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,9 +27,15 @@ public class RecordSellingQuery extends QueryParam {
 
     private Integer status;
 
+    private Integer buyer;
+
     private String failureReason;
 
     private Integer completeTime;
+
+    private BigDecimal totalPrice;
+
+    private String priceunit;
 
     private Integer scompleteTime;
 
@@ -40,6 +47,30 @@ public class RecordSellingQuery extends QueryParam {
 
     //异常量界限
     private Integer num;
+
+    public Integer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Integer buyer) {
+        this.buyer = buyer;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getPriceunit() {
+        return priceunit;
+    }
+
+    public void setPriceunit(String priceunit) {
+        this.priceunit = priceunit;
+    }
 
     public Integer getId() {
         return id;

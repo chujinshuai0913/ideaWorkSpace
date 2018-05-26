@@ -280,13 +280,13 @@
                 align: "center",
                 formatter: formatterToValue
 
-            },{
+            },/*{
                 field: 'introduce',
                 title: '简介',
                 align: "center",
                 formatter: formatterToValue
 
-            },{
+            },*/{
                 field: 'num',
                 title: '库存量',
                 align: "center",
@@ -301,14 +301,14 @@
                 formatter: formatterToValue
 
             },{
-                field: 'eUser',
-                title: '导出人',
+                field: 'cName',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
-                field: 'eTime',
-                title: '导出时间',
+                field: 'cTime',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 

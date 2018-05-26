@@ -34,11 +34,58 @@ public interface BookService {
     ServiceResult<List<BookVo>>  queryBookList(BookQuery bookQuery);
 
 
+    //书籍交易加减 相应书籍以及总的book
+
+    ServiceResult<Integer> upateBookUserNumAdd(BookQuery query);
+
+    ServiceResult<Integer> upateBookUserNumRed(BookQuery query);
+
+    ServiceResult<Integer> upateBookSellUserNumAdd(BookSellingQuery query);
+
+    ServiceResult<Integer> upateBookSellUserNumRed(BookSellingQuery query);
+
+    ServiceResult<Integer> upateBookBorrowUserNumAdd(BookBorrowQuery query);
+
+    ServiceResult<Integer> upateBookBorrowUserNumRed(BookBorrowQuery query);
+
+
+    ServiceResult<Integer> upateBookGiftUserNumRed(BookGiftQuery query);
+
+    ServiceResult<Integer> upateBookGiftUserNumAdd(BookGiftQuery query);
+
+    ServiceResult<Integer> upateBookAuctionlUserNumAdd(BookAuctionQuery query);
+
+    ServiceResult<Integer> upateBookAuctionUserNumRed(BookAuctionQuery query);
+
     ServiceResult<Integer> insertBook(BookQuery query);
     /*
     * 查询书籍总数count
     */
     ServiceResult<Integer> queryBookCount(BookQuery bookQuery);
+
+    ServiceResult<Integer> insertSellBook(BookSellingQuery query);
+
+
+    ServiceResult<Integer> insertBorrowBook(BookBorrowQuery query);
+
+
+    ServiceResult<Integer> insertGiftBook(BookGiftQuery query);
+
+
+    ServiceResult<Integer> insertAuctionBook(BookAuctionQuery query);
+
+
+    ServiceResult<Integer> insertRSellBook(RecordSellingQuery query);
+
+
+    ServiceResult<Integer> insertRBorrowBook(RecordBorrowQuery query);
+
+
+    ServiceResult<Integer> insertRGiftBook(RecordGiftQuery query);
+
+
+    ServiceResult<Integer> insertRAuctionBook(RecordAuctionQuery query);
+
 
     /*
      * 查询书籍信息根据 BookID
@@ -93,6 +140,9 @@ public interface BookService {
 
     BookGiftRecVo  getBookGiftRecVo(BookGiftRec bookGiftRec,BookGiftRecVo bookGiftRecVo);
 
+    //查询用户竞拍过的书籍ID
+    List<Integer> getRecordAuctionIds(RecordAuctionQuery query);
+
     /*
      * 查询书籍总数count
      */
@@ -115,6 +165,13 @@ public interface BookService {
      * 查询书籍总数count
      */
     ServiceResult<List<BookAuctionVo>> queryBookAutionVoList(BookAuctionQuery bookAuctionQuery);
+
+    ServiceResult<Integer> queryBookAuctionCountByIds(BookAuctionQuery bookAuctionQuery);
+
+    /*
+     * 查询书籍总数count
+     */
+    ServiceResult<List<BookAuctionVo>> queryBookAutionVoListByIds(BookAuctionQuery bookAuctionQuery);
 
     /*
      * 查询书籍总数count

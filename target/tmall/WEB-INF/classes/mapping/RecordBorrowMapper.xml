@@ -17,7 +17,7 @@
       <arg column="pricingunit" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="common.model.RecordBorrow" >
+  <insert id="insert" parameterType="common.query.RecordBorrowQuery" >
     insert into record_borrow (id, auction_id, user_id, 
       total_price, start_time, end_time, 
       real_end_time, num, return_num, 
@@ -119,6 +119,9 @@
         #{item}
       </foreach>
     </if>
+    <if test="userId!= null" >
+      AND user_id =#{userId}
+    </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
@@ -133,6 +136,9 @@
       <foreach collection="userIds" index="index" item="item" open="(" close=")" separator=",">
         #{item}
       </foreach>
+    </if>
+    <if test="userId!= null" >
+      AND user_id =#{userId}
     </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
   </select>

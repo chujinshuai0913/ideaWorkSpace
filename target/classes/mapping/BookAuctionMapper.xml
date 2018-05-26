@@ -50,7 +50,7 @@
     delete from book_auction
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.BookAuction" >
+  <insert id="insert" parameterType="common.query.BookAuctionQuery" >
     insert into book_auction (id, seller_id, book_id, 
       auction_name, price, pricingunit, 
       buyer_id, deal_price, remark, 
@@ -391,6 +391,22 @@
     <if test="sellerId != null" >
       AND  seller_id =#{sellerId}
     </if>
+  </select>
+  <select id="queryBookAuctionCountByIds" resultType="java.lang.Integer" parameterType="common.query.BookAuctionQuery">
+    SELECT count(*)
+    FROM  book_auction
+    WHERE id IN
+    <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+         #{item}
+    </foreach>
+  </select>
+  <select id="queryBookAuctionByIds" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
+    SELECT *
+    FROM  book_auction
+    WHERE id IN
+    <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
   </select>
   <select id="queryBookAuctionList" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
     SELECT *

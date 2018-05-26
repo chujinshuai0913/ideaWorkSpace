@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookGiftMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(BookGift record);
+    int insert(BookGiftQuery record);
 
     int insertSelective(BookGift record);
 
@@ -27,4 +27,8 @@ public interface BookGiftMapper {
 
     /*书籍审核*/
     int updateBookGiftStatus(@Param("id") int id, @Param("status")  int status,@Param("userId") int userId,@Param("cTime") int cTime);
+
+  int upateBookGiftUserNumRed(BookGiftQuery query);
+
+   int upateBookGiftUserNumAdd(BookGiftQuery query);
 }

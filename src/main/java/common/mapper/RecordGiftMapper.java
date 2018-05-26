@@ -10,7 +10,7 @@ import java.util.List;
 public interface RecordGiftMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(RecordGift record);
+    int insert(RecordGiftQuery record);
 
     int insertSelective(RecordGift record);
 

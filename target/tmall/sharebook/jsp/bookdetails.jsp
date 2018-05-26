@@ -28,7 +28,8 @@
 	<div class="headPage">
 		<div class="headPagehead">
 			<div class="headPagehead_text_one">
-				<font color="grey">你好，欢迎访问燕鸣书屋 !</font>
+				<%--	${requestScope.user.id}--%>
+				<font color="grey">你好 <span>楚金帅</span><input id="userId" type="text" type="text" style="display: none" value="1">，欢迎访问燕鸣书屋 !</font>
 			</div>
 			<div class="headPagehead_text_two">
 				<span style="color: red; cursor:pointer">请登录</span>
@@ -61,7 +62,7 @@
 						<img src="${basePath}/sharebook/img/购物车.png " />
 					</div>
 					<div class="headPagebody_right_text_two ">
-						<a href="# "><p>我的书箱(<span>222</span>)</p></a>
+						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
 						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
 					</div>
 				</div>
@@ -93,7 +94,7 @@
 				</div>
 				<div class="bodyPage_body_bookdetail_up_left">
 					<div class="bodyPage_body_bookdetail_up_left_img">
-						<img src="${basePath}/sharebook/img/a5.png" />
+						<img src="${basePath}/sharebook/img/${requestScope.bookVo.src}" />
 					</div>
 					<div class="bodyPage_body_bookdetail_up_left_text">
 						<p class="bodyPage_body_bookdetail_up_left_text_title">${requestScope.bookVo.bookName}</p>
@@ -111,14 +112,18 @@
 								<c:if test='${requestScope.bookVo.selfStatus==1}'>  自营:${requestScope.bookVo.bookSellingVo.sellerName} </c:if>
 								<c:if test='${requestScope.bookVo.selfStatus==0}'> 推荐商家: ${requestScope.bookVo.bookSellingVo.sellerName}</c:if>
 							</h4>
+							<input type="text" id="priceN" style="display: none" value="${requestScope.bookVo.bookSellingVo.price}">
 							<span class="span_2"> 价格：<span style="color: red;">${requestScope.bookVo.bookSellingVo.price}￥</span> </span>
 							<span class="span_2">
+								<input id="bookId" type="text" type="text" style="display: none" value="${requestScope.bookVo.bookSellingVo.id}">
+								<input type="text" id="useableNum" style="display: none" value="${requestScope.bookVo.bookSellingVo.useableNum}">
+                                 <input type="text" id="skuId" style="display: none" value="${requestScope.bookVo.bookSellingVo.skuId}">
 						    	  	可用库存：<span style="color: green; margin-right: 20px;"> ${requestScope.bookVo.bookSellingVo.useableNum}</span>
 						    	  	购买数量:
 						    	  	<button class="btn jian">-</button>
 			                           <input class="input_buy" disabled="disabled" type="text" value="1" />
 			                       	<button class="btn jia"> +</button><br />
-						    	  <button style="cursor:pointer;margin-top:40px;margin-left:80px;color:white;font-size:16px;width: 150px; height: 40px; background-color: red; border: 1px gainsboro solid; border-radius: 5px; text-align: center;">加入书箱</button></span>
+						    	  <button id="insertMyBook" style="cursor:pointer;margin-top:40px;margin-left:80px;color:white;font-size:16px;width: 150px; height: 40px; background-color: red; border: 1px gainsboro solid; border-radius: 5px; text-align: center;">加入书箱</button></span>
 						</div>
 					</div>
 				</div>
@@ -198,13 +203,25 @@
     $(".jia").click(function(iiii){
         var lsoek=$(this).parent().find(".input_buy");
         var lskoe=parseInt(lsoek.val());
-        lsoek.val(lskoe+1);
+        var useableNum=$("#useableNum").val();
+        if(lskoe>=useableNum){
+            alert("超过当前库存量！")
+        }else{
+            lsoek.val(lskoe+1);
+        }
     })
     $(".lskdo").on('input propertychange',function(){
         var deox=$(this).val();
+        var useableNum=$("#useableNum").val();
+
         if(isNaN(deox)){
             alert("您好,请输入数量!");
             $(this).val(1);
+        }
+        if(deox>useableNum){
+            alert("超过当前库存量！")
+        }else{
+            lsoek.val(lskoe+1);
         }
     })
     //详情书籍分类相关推荐
@@ -224,7 +241,7 @@
                         list.forEach(function (item) {
                             $(".bodyPage_body_bookdetail_up_right").find(".bodyPagefirst_right_content").append("<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <div class='bodyPagefirst_right_content_grid'><div class='bodyPagefirst_right_content_left'>"+
                                 "<img src='${basePath}/sharebook/img/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'><p>"+item.bookName+"</p>"+
-                                "<p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span><span>共"+item.userableNum+" 本</span></p></div></div></a>");
+                                "<p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p></div></div></a>");
                         })
                     }
                 }
@@ -242,8 +259,8 @@
         $.ajax({
             type : "post",
             async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-            url : "/ideaWorkSpace/bookshare/probooktop",    //请求发送到TestServlet处
-            data: JSON.stringify($.extend(true, {},{professionalTypeName2:$("#professionalTypeName2").val(),preNum:10})),
+            url : "/ideaWorkSpace/bookshare/bookuserselftop",    //请求发送到TestServlet处
+            data: JSON.stringify($.extend(true, {},{professionalTypeName2:""})),
             contentType:"text/html;charset=utf-8",
             dataType: "json",   //返回格式为json
             success : function(data) {
@@ -255,7 +272,7 @@
                             list.forEach(function (item) {
                                 $(".bodyPage_body_bookdetail_down_left").find(".bodyPagefirst_right_content").append("<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <div class='bodyPagefirst_right_content_grid'><div class='bodyPagefirst_right_content_left'>"+
                                     "<img src='${basePath}/sharebook/img/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'><p>"+item.bookName+"</p>"+
-                                    "<p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span><span>共"+item.userableNum+" 本</span></p></div></div></a>");
+                                    "<p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p></div></div></a>");
                             })
                         }
                     }
@@ -269,6 +286,45 @@
             error: function(error) {
                 console.log(error);
             }})
+
+
+    $("#insertMyBook").on('click',function () {
+        var useableNum=$("#useableNum").val();
+        if(useableNum<=0){
+            alert("当前无库存！");
+        }else {
+            insertBookCat($("#bookId").val(),$(".input_buy").val(),$("#userId").val(),1,$("#priceN").val(),$("#skuId").val());
+		}
+
+    })
+    //加入书箱
+    function insertBookCat(bookId,num,userId,status,price,bookFatherId) {
+        $.ajax({
+            type : "post",
+            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/insertBookCat",    //请求发送到TestServlet处
+            data: JSON.stringify($.extend(true, {},{bookId:bookId,num:num,userId:userId,status:status,price:price,bookFatherId:bookFatherId})),
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        alert("加入成功，前往书箱查看联系方式！")
+                        location.reload();
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
+    }
+
     $('#formSearchBtn').on('click', function () {
         $('#mainTable').bootstrapTable('refresh');
     });
@@ -311,7 +367,7 @@
 
             },{
                 field: 'sellerName',
-                title: '售卖人',
+                title: '店家',
                 align: "center",
                 formatter: function (value, row, index) {
                     if(row.selfStatus==3){
@@ -322,13 +378,6 @@
                     }
 
                 }
-            },
-            {
-                field: 'phoneNumber',
-                title: '联系方式',
-                align: "center",
-                formatter: formatterToValue
-
             },
             {
                 field: 'useNum',
@@ -368,6 +417,8 @@
                 formatter: function (value, row, index) {
                     if(row.price){
                         return  row.price + ' ' +switchState(row.state);
+                    }else if(row.state==3){
+                        return '免费的';
                     }
                     else{
                         return '-';
@@ -379,7 +430,7 @@
                 title: '查看图书',
                 align: "center",
                 formatter :function(value, row, index) {
-                        return [ "<a  class='record-detail'>详细</a>" ].join('');
+                        return [ "<a style='cursor:pointer;' class='record-detail'>详细</a>" ].join('');
                 },
                 events: {
                     'click .record-detail': function (e, value, row, index) {
@@ -391,16 +442,16 @@
         ]
     });
      function detailBook(e, value, row, index) {
-         if(row.state=1){
+         if(row.state==1){
              location.replace("${basePath}/bookshare/bookselldetail?id="+row.id+"");
 		 }
-         if(row.state=2){
+         if(row.state==2){
              location.replace("${basePath}/bookshare/bookborrowdetail?id="+row.id+"");
          }
-         if(row.state=3){
+         if(row.state==3){
              location.replace("${basePath}/bookshare/bookgiftdetail?id="+row.id+"");
          }
-         if(row.state=4){
+         if(row.state==4){
              location.replace("${basePath}/bookshare/bookauctiondetail?id="+row.id+"");
          }
      }
