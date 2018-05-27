@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="common.model.Book" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="ISBN" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ISBN" jdbcType="INTEGER" javaType="java.lang.Long" />
       <arg column="book_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="author" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="press" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -24,7 +24,6 @@
       <arg column="professional_type_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userable_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="use_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="introduce" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="pre_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="print_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -38,17 +37,28 @@
       <arg column="borrow_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="gift_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="auction_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="binding" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isbn10" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="translator" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="src3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="introduce" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="author_intro" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="catalog" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     id, ISBN, book_name, author, press, press_time, page_number, src, pricing, pricingunit, 
     seller_number, book_type2, book_type1, book_type_name2, book_type_name1, professional_type1, 
     professional_type2, professional_type_name1, professional_type_name2, userable_num, 
-    use_num, introduce, pre_num, c_u, print_user, c_t, print_time, import_user, import_time, 
-    export_user, export_time,sell_status,borrow_status,gift_status,auction_status
+    use_num, pre_num, c_u, print_user, c_t, print_time, import_user, import_time, export_user, 
+    export_time, sell_status, borrow_status, gift_status, auction_status, binding, subtitle, 
+    isbn10, translator, tag, src2, src3,introduce, author_intro, catalog
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+    select 
     <include refid="Base_Column_List" />
     from book
     where id = #{id,jdbcType=INTEGER}
@@ -57,7 +67,7 @@
     delete from book
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.query.BookQuery" >
+  <insert id="insert" parameterType="common.query.BookQuery" useGeneratedKeys="true" keyProperty="id"  >
     insert into book (id, ISBN, book_name, 
       author, press, press_time, 
       page_number, src, pricing, 
@@ -65,22 +75,29 @@
       book_type1, book_type_name2, book_type_name1, 
       professional_type1, professional_type2, professional_type_name1, 
       professional_type_name2, userable_num, use_num, 
-      introduce, pre_num, c_u, 
-      print_user, c_t, print_time, 
-      import_user, import_time, export_user, 
-      export_time,sell_status,borrow_status,gift_status,auction_status)
-    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, 
+      pre_num, c_u, print_user, 
+      c_t, print_time, import_user, 
+      import_time, export_user, export_time, 
+      sell_status, borrow_status, gift_status, 
+      auction_status, binding, subtitle, 
+      isbn10, translator, tag, 
+      src2, src3, introduce, 
+      author_intro, catalog)
+    values (#{id,jdbcType=INTEGER}, #{isbn}, #{bookName,jdbcType=VARCHAR},
       #{author,jdbcType=VARCHAR}, #{press,jdbcType=VARCHAR}, #{pressTime,jdbcType=INTEGER}, 
-      #{pageNumber,jdbcType=INTEGER}, #{src,jdbcType=VARCHAR}, #{pricing,jdbcType=DECIMAL}, 
+      #{pages,jdbcType=INTEGER}, #{src,jdbcType=VARCHAR}, #{pricing,jdbcType=DECIMAL},
       #{pricingunit,jdbcType=VARCHAR}, #{sellerNumber,jdbcType=INTEGER}, #{bookType2,jdbcType=INTEGER}, 
       #{bookType1,jdbcType=INTEGER}, #{bookTypeName2,jdbcType=VARCHAR}, #{bookTypeName1,jdbcType=VARCHAR}, 
       #{professionalType1,jdbcType=INTEGER}, #{professionalType2,jdbcType=INTEGER}, #{professionalTypeName1,jdbcType=VARCHAR}, 
       #{professionalTypeName2,jdbcType=VARCHAR}, #{userableNum,jdbcType=INTEGER}, #{useNum,jdbcType=INTEGER}, 
-      #{introduce,jdbcType=VARCHAR}, #{preNum,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, 
-      #{printUser,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, #{printTime,jdbcType=INTEGER}, 
-      #{importUser,jdbcType=INTEGER}, #{importTime,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER}, 
-      #{exportTime,jdbcType=INTEGER},#{sellStatus,jdbcType=INTEGER}, #{borrowStatus,jdbcType=INTEGER}, #{giftStatus,jdbcType=INTEGER}, #{auctionStatus,jdbcType=INTEGER})
- )
+      #{preNum,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, #{printUser,jdbcType=INTEGER}, 
+      #{cT,jdbcType=INTEGER}, #{printTime,jdbcType=INTEGER}, #{importUser,jdbcType=INTEGER}, 
+      #{importTime,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER}, #{exportTime,jdbcType=INTEGER}, 
+      #{sellStatus,jdbcType=INTEGER}, #{borrowStatus,jdbcType=INTEGER}, #{giftStatus,jdbcType=INTEGER}, 
+      #{auctionStatus,jdbcType=INTEGER}, #{binding,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
+      #{isbn10,jdbcType=INTEGER}, #{translator,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{src2,jdbcType=VARCHAR}, #{src3,jdbcType=VARCHAR}, #{introduce,jdbcType=LONGVARCHAR}, 
+      #{authorIntro,jdbcType=LONGVARCHAR}, #{catalog,jdbcType=LONGVARCHAR})
   </insert>
   <select id="queryBookList" resultMap="BaseResultMap" parameterType="common.query.BookQuery" >
     SELECT *
@@ -157,12 +174,12 @@
       #{item}
     </foreach>
   </select>
-  <select id="queryBookByBookISBN" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="queryBookByBookISBN" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     SELECT *
     FROM book
     WHERE ISBN=#{isbn}
   </select>
-  <select id="queryBookListByISBNs" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="queryBookListByISBNs" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     SELECT *
     FROM book
     WHERE  ISBN in
@@ -170,12 +187,23 @@
       #{item}
     </foreach>
   </select>
-<update id="upateBookUserNumRed">
-  UPDATE book SET userable_num=userable_num-#{preNum},use_num=use_num+#{preNum}
-  where id=#{id}
-</update>
-  <update id="upateBookUserNumAdd">
-    UPDATE book SET userable_num=userable_num+#{preNum}
+  <update id="upateBookUserNumRed">
+    UPDATE book SET userable_num=userable_num-#{preNum},use_num=use_num+#{preNum}
     where id=#{id}
+  </update>
+  <update id="upateBookUserNumAdd">
+    UPDATE book
+    <set>
+       userable_num=userable_num+#{preNum}
+      <if test="sellStatus != null" >,sell_status = #{sellStatus} </if>
+      <if test="borrowStatus != null" > ,borrow_status = #{borrowStatus} </if>
+      <if test="giftStatus != null" >,gift_status = #{giftStatus} </if>
+      <if test="auctionStatus != null" >,auction_status = #{auctionStatus} </if>
+      <if test="sellerNumber != null" >,seller_number = #{sellerNumber} </if>
+    </set>
+
+
+    where id=#{id}
+
   </update>
 </mapper>

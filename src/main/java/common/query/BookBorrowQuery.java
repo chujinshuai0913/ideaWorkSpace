@@ -16,6 +16,7 @@ public class BookBorrowQuery extends QueryParam {
 
     private Integer id;
 
+
     private List<Integer> ids;
 
     private Integer skuId;
@@ -92,6 +93,16 @@ public class BookBorrowQuery extends QueryParam {
     private String professionalTypeName1;
 
     private String professionalTypeName2;
+
+    private Long isbn;
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
 
     public Integer getBookType2() {
         return bookType2;

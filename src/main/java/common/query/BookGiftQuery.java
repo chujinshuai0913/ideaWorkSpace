@@ -13,6 +13,16 @@ import java.util.List;
  */
 public class BookGiftQuery extends QueryParam {
 
+
+    private Long isbn;
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
     private Integer id;
 
     private Integer skuId;

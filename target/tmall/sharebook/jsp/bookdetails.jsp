@@ -44,7 +44,7 @@
 			</div>
 			<div class="headPagebody_none ">
 				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
-					<div class="headPagebody_none_search " >
+					<div class="headPagebody_none_search " style="height: 48px" >
 						<input class="headPagebody_none_search_text " name="bookName1" type="text"  placeholder="书名" value="${requestScope.bookName1}"/>
 						<button class="headPagebody_none_search_icon"  type="submit">搜索</button>
 						<select name="classType1" name="searchSelect " class="headPagebody_none_search_select">
@@ -63,7 +63,7 @@
 					</div>
 					<div class="headPagebody_right_text_two ">
 						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
-						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
+						<a href="${basePath}/sharebook/jsp/myput.jsp"><p>我的闲置书</p></a>
 					</div>
 				</div>
 			</div>

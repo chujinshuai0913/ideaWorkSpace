@@ -12,7 +12,6 @@ package sharebookmanager.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import common.constant.ConstantsUtils;
-import common.model.Book;
 import common.query.BookQuery;
 import common.service.BookService;
 import common.util.DataResult;
@@ -23,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

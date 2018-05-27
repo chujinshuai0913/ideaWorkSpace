@@ -100,12 +100,12 @@ public interface BookService {
     /*
      * 查询书籍信息根据 ISBN
      */
-    ServiceResult<BookVo> queryBookByBookISBN(int ISBN);
+    ServiceResult<BookVo> queryBookByBookISBN(Long ISBN);
 
     /*
      * 根据ISBNs查询书籍
      */
-    ServiceResult<List<BookVo>> queryBookListByISBNs(List<Integer> ISBNs);
+    ServiceResult<List<BookVo>> queryBookListByISBNs(List<Long> ISBNs);
 
 
     /*拼接数据*/

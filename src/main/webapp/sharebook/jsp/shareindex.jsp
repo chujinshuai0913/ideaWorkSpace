@@ -61,7 +61,7 @@
 					</div>
 					<div class="headPagebody_right_text_two ">
 						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
-						<a href="# "><p>我的闲置书(<span>333</span>)</p></a>
+						<a href="${basePath}/sharebook/jsp/myput.jsp"><p>我的闲置书</p></a>
 					</div>
 				</div>
 			</div>

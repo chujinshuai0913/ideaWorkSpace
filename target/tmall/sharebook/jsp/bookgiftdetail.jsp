@@ -37,7 +37,7 @@
 			</div>
 			<div class="headPagebody_none ">
 				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
-					<div class="headPagebody_none_search " >
+					<div class="headPagebody_none_search " style="height: 48px" >
 						<input class="headPagebody_none_search_text " name="bookName1" type="text"  placeholder="书名" value="${requestScope.bookName1}"/>
 						<button class="headPagebody_none_search_icon"  type="submit">搜索</button>
 						<select name="classType1" name="searchSelect " class="headPagebody_none_search_select">
@@ -56,7 +56,7 @@
 					</div>
 					<div class="headPagebody_right_text_two ">
 						<a href="${basePath}/sharebook/jsp/mycat.jsp"><p>我的书箱</p></a>
-						<a href="# "><p>我的闲置书</p></a>
+						<a href="${basePath}/sharebook/jsp/myput.jsp"><p>我的闲置书</p></a>
 					</div>
 				</div>
 			</div>
@@ -91,20 +91,20 @@
 				<div class="bodyPage_body_bookdetail_up_left">
 					<div class="bodyPage_body_bookdetail_up_left_img">
 						<div style="cursor:pointer;width: 100%;height: 80%">
-							<img class="imgBookBig" style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/book/${requestScope.bookGiftVo.src1}" alt="">
+							<img class="imgBookBig" style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/${requestScope.bookGiftVo.src1}" alt="">
 						</div>
 						<div style="width: 100%;height: 20%;">
 							<div style="border-top: 1px gainsboro solid;cursor:pointer;width: 25%;height: 100%;float: left">
-								<img class="imgBook"  style="" src="${basePath}/sharebook/img/book/${requestScope.bookGiftVo.src1}" alt="">
+								<img class="imgBook"  style="" src="${basePath}/sharebook/img/${requestScope.bookGiftVo.src1}" alt="">
 							</div>
 							<div style="border-top: 1px gainsboro solid;border-left: 1px gainsboro solid;cursor:pointer;width: 25%;height: 100%;float: left">
-								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/book/${requestScope.bookGiftVo.src2}" alt="">
+								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/${requestScope.bookGiftVo.src2}" alt="">
 							</div>
 							<div  style="border-top: 1px gainsboro solid;border-left: 1px gainsboro solid;cursor:pointer;width: 25%;height: 100%;float: left">
-								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/book/${requestScope.bookGiftVo.src3}" alt="">
+								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/${requestScope.bookGiftVo.src3}" alt="">
 							</div>
 							<div  style="border-top: 1px gainsboro solid;border-left: 1px gainsboro solid;cursor:pointer;width: 24%;height: 100%;float: left">
-								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/book/${requestScope.bookGiftVo.src4}" alt="">
+								<img class="imgBook"  style="width: 100%;height: 100%;" src="${basePath}/sharebook/img/${requestScope.bookGiftVo.src4}" alt="">
 							</div>
 						</div>
 					</div>

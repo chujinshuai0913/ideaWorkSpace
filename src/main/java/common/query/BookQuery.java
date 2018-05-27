@@ -25,7 +25,7 @@ public class BookQuery extends QueryParam {
 
     private Integer id;
 
-    private Integer isbn;
+    private Long isbn;
 
     private String bookName;
 
@@ -94,7 +94,106 @@ public class BookQuery extends QueryParam {
     private Integer auctionStatus;
 
 
+    private Integer pages;
 
+    private String binding;
+
+    private String subtitle;
+
+    private Long isbn10;
+
+    private String translator;
+
+    private String tag;
+
+    private String src2;
+
+    private String src3;
+
+    private String authorIntro;
+
+    private String catalog;
+
+
+    public Integer getPages(){
+        return pages;
+    }
+
+    public void setPages(Integer pages) {
+        this.pages = pages;
+    }
+
+    public String getBinding() {
+        return binding;
+    }
+
+    public void setBinding(String binding) {
+        this.binding = binding;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public Long getIsbn10() {
+        return isbn10;
+    }
+
+    public void setIsbn10(Long isbn10) {
+        this.isbn10 = isbn10;
+    }
+
+    public String getTranslator() {
+        return translator;
+    }
+
+    public void setTranslator(String translator) {
+        this.translator = translator;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getSrc2() {
+        return src2;
+    }
+
+    public void setSrc2(String src2) {
+        this.src2 = src2;
+    }
+
+    public String getSrc3() {
+        return src3;
+    }
+
+    public void setSrc3(String src3) {
+        this.src3 = src3;
+    }
+
+    public String getAuthorIntro() {
+        return authorIntro;
+    }
+
+    public void setAuthorIntro(String authorIntro) {
+        this.authorIntro = authorIntro;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
+    }
 
     public Integer getSellStatus() {
         return sellStatus;
@@ -136,11 +235,11 @@ public class BookQuery extends QueryParam {
         this.id = id;
     }
 
-    public Integer getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 

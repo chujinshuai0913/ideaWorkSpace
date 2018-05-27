@@ -1,3 +1,5 @@
+
+
 package common.mapper;
 
 import common.model.Book;
@@ -39,16 +41,17 @@ public interface BookMapper {
 
     /* 查询书籍信息根据 ISBN*/
 
-    Book queryBookByBookISBN(@Param("isbn") int isbn);
+    Book queryBookByBookISBN(@Param("isbn") Long isbn);
 
 
     /*  * 根据ISBNs查询书籍*/
 
-    List<Book> queryBookListByISBNs(@Param("isbns") List<Integer> isbns);
+    List<Book> queryBookListByISBNs(@Param("isbns") List<Long> isbns);
 
 
     int upateBookUserNumAdd(BookQuery query);
 
-   int upateBookUserNumRed(BookQuery query);
+    int upateBookUserNumRed(BookQuery query);
 
 }
+

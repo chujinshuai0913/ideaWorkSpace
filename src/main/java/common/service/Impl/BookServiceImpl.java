@@ -241,7 +241,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ServiceResult<BookVo> queryBookByBookISBN(int ISBN) {
+    public ServiceResult<BookVo> queryBookByBookISBN(Long ISBN) {
         try {
             BookVo bookVo =new BookVo();
             ServiceResult<Book> serviceResult=new ServiceResult<>(bookMapper.queryBookByBookISBN(ISBN));
@@ -257,7 +257,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ServiceResult<List<BookVo>> queryBookListByISBNs(List<Integer> ISBNs) {
+    public ServiceResult<List<BookVo>> queryBookListByISBNs(List<Long> ISBNs) {
         try {
             List<BookVo> bookVos=new ArrayList<>();
             List<Book> books=new ArrayList<>();
@@ -335,6 +335,14 @@ public class BookServiceImpl implements BookService {
                if(result.getSuccess()&&result.getBody()!=null){
                    bookVo.setPrUser(result.getBody().getUsername());
                }
+           }
+           if(book.getTag()!=null){
+                  List<String> list=new ArrayList<>();
+                  String[] tags=book.getTag().split(",");
+                   for(int i=0;i<tags.length;i++){
+                         list.add(tags[i]);
+                   }
+                   bookVo.setTags(list);
            }
            return bookVo;
        }catch (Exception e){

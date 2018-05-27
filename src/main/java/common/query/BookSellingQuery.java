@@ -17,6 +17,15 @@ public class BookSellingQuery extends QueryParam {
     private Integer id;
 
     private Integer skuId;
+    private Long isbn;
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
 
     private Integer sellerId;
     private List<Integer> sellerIds;

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Book {
     private Integer id;
 
-    private Integer isbn;
+    private Long isbn;
 
     private String bookName;
 
@@ -45,8 +45,6 @@ public class Book {
 
     private Integer useNum;
 
-    private String introduce;
-
     private Integer preNum;
 
     private Integer cU;
@@ -73,40 +71,30 @@ public class Book {
 
     private Integer auctionStatus;
 
+    private String binding;
 
-    public Integer getSellStatus() {
-        return sellStatus;
-    }
+    private String subtitle;
 
-    public void setSellStatus(Integer sellStatus) {
-        this.sellStatus = sellStatus;
-    }
+    private Long isbn10;
 
-    public Integer getBorrowStatus() {
-        return borrowStatus;
-    }
+    private String translator;
 
-    public void setBorrowStatus(Integer borrowStatus) {
-        this.borrowStatus = borrowStatus;
-    }
+    private String tag;
 
-    public Integer getGiftStatus() {
-        return giftStatus;
-    }
+    private String src2;
 
-    public void setGiftStatus(Integer giftStatus) {
-        this.giftStatus = giftStatus;
-    }
+    private String src3;
 
-    public Integer getAuctionStatus() {
-        return auctionStatus;
-    }
+    private String introduce;
 
-    public void setAuctionStatus(Integer auctionStatus) {
-        this.auctionStatus = auctionStatus;
-    }
+    private String authorIntro;
 
-    public Book(Integer id, Integer isbn, String bookName, String author, String press, Integer pressTime, Integer pageNumber, String src, BigDecimal pricing, String pricingunit, Integer sellerNumber, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2, Integer userableNum, Integer useNum, String introduce, Integer preNum, Integer cU, Integer printUser, Integer cT, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime,Integer sellStatus,Integer borrowStatus, Integer giftStatus, Integer auctionStatus) {
+    private String catalog;
+
+
+    public Book(Integer id, Long isbn, String bookName, String author, String press, Integer pressTime, Integer pageNumber, String src, BigDecimal pricing, String pricingunit, Integer sellerNumber, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2, Integer userableNum, Integer useNum, Integer preNum, Integer cU, Integer printUser, Integer cT, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, Integer sellStatus, Integer borrowStatus,
+                Integer giftStatus, Integer auctionStatus, String binding, String subtitle,
+                Long isbn10, String translator, String tag, String src2, String src3, String authorIntro, String introduce, String catalog) {
         this.id = id;
         this.isbn = isbn;
         this.bookName = bookName;
@@ -128,7 +116,6 @@ public class Book {
         this.professionalTypeName2 = professionalTypeName2;
         this.userableNum = userableNum;
         this.useNum = useNum;
-        this.introduce = introduce;
         this.preNum = preNum;
         this.cU = cU;
         this.printUser = printUser;
@@ -138,14 +125,48 @@ public class Book {
         this.importTime = importTime;
         this.exportUser = exportUser;
         this.exportTime = exportTime;
-        this.sellStatus=sellStatus;
-        this.borrowStatus=borrowStatus;
-        this.giftStatus=giftStatus;
-        this.auctionStatus=auctionStatus;
+        this.sellStatus = sellStatus;
+        this.borrowStatus = borrowStatus;
+        this.giftStatus = giftStatus;
+        this.auctionStatus = auctionStatus;
+        this.binding = binding;
+        this.subtitle = subtitle;
+        this.isbn10 = isbn10;
+        this.translator = translator;
+        this.authorIntro = authorIntro;
+        this.introduce = introduce;
+        this.catalog = catalog;
+        this.tag = tag;
+        this.src2 = src2;
+        this.src3 = src3;
     }
 
     public Book() {
         super();
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public String getAuthorIntro() {
+        return authorIntro;
+    }
+
+    public void setAuthorIntro(String authorIntro) {
+        this.authorIntro = authorIntro;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
     }
 
     public Integer getId() {
@@ -156,11 +177,11 @@ public class Book {
         this.id = id;
     }
 
-    public Integer getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 
@@ -316,14 +337,6 @@ public class Book {
         this.useNum = useNum;
     }
 
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
-    }
-
     public Integer getPreNum() {
         return preNum;
     }
@@ -394,5 +407,93 @@ public class Book {
 
     public void setExportTime(Integer exportTime) {
         this.exportTime = exportTime;
+    }
+
+    public Integer getSellStatus() {
+        return sellStatus;
+    }
+
+    public void setSellStatus(Integer sellStatus) {
+        this.sellStatus = sellStatus;
+    }
+
+    public Integer getBorrowStatus() {
+        return borrowStatus;
+    }
+
+    public void setBorrowStatus(Integer borrowStatus) {
+        this.borrowStatus = borrowStatus;
+    }
+
+    public Integer getGiftStatus() {
+        return giftStatus;
+    }
+
+    public void setGiftStatus(Integer giftStatus) {
+        this.giftStatus = giftStatus;
+    }
+
+    public Integer getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(Integer auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
+    public String getBinding() {
+        return binding;
+    }
+
+    public void setBinding(String binding) {
+        this.binding = binding == null ? null : binding.trim();
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle == null ? null : subtitle.trim();
+    }
+
+    public Long getIsbn10() {
+        return isbn10;
+    }
+
+    public void setIsbn10(Long isbn10) {
+        this.isbn10 = isbn10;
+    }
+
+    public String getTranslator() {
+        return translator;
+    }
+
+    public void setTranslator(String translator) {
+        this.translator = translator == null ? null : translator.trim();
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag == null ? null : tag.trim();
+    }
+
+    public String getSrc2() {
+        return src2;
+    }
+
+    public void setSrc2(String src2) {
+        this.src2 = src2 == null ? null : src2.trim();
+    }
+
+    public String getSrc3() {
+        return src3;
+    }
+
+    public void setSrc3(String src3) {
+        this.src3 = src3 == null ? null : src3.trim();
     }
 }

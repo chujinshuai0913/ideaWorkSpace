@@ -15,6 +15,16 @@ import java.util.List;
 public class BookAuctionQuery extends QueryParam {
     private Integer id;
 
+    private Long isbn;
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
+
     private List<Integer> ids;
 
     private List<Integer> sellerIds;
