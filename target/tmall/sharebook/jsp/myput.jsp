@@ -110,11 +110,20 @@
 								<div>
 									<form id="form_bookselluser_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
 										  onkeydown="if(event.keyCode==13){return false;}">
-										<input type="text" name="id" style="display: none" value="${requestScope.bookVo.id}"/>
-										<div class="form-group" style="margin-left: 10px;">
-											<label onclick="$(this).next().focus();" style="font-size: 20px;">卖书</label>
+										<div class="form-group" style="margin-left: 50px;">
+											<label onclick="$(this).next().focus();">书名</label> <input
+												name="bookName" type="text" class="form-control" placeholder="书名模糊查询"/>
 										</div>
-										<div class="form-group" style="margin-left: 30px;">
+										<div class="form-group" style="margin-left: 50px;">
+											<label onclick="$(this).next().focus();">状态</label>
+											<select type="text" name="status"  class="form-control" >
+												<option value="">全部</option>
+												<option value="1">未审核</option>
+												<option value="2">已审核</option>
+												<option value="3">禁卖</option>
+											</select>
+										</div>
+										<div class="form-group" style="margin-left: 250px;">
 											<label></label>
 											<button type="button" id="formSellSearchBtn" class="btn btn-primary"  data-style="zoom-in"
 													style="width: 100px;height: 33px;"	formaction="javascript:void(0);">查询
@@ -135,11 +144,20 @@
 							<div>
 								<form id="form_bookborrowuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
 									  onkeydown="if(event.keyCode==13){return false;}">
-									<input type="text" name="id" style="display: none" value="${requestScope.bookVo.id}"/>
-									<div class="form-group" style="margin-left: 10px;">
-										<label onclick="$(this).next().focus();" style="font-size: 20px; ">出租书籍</label>
-									</div>
-                                    <div class="form-group" style="margin-left: 30px;">
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">书名</label> <input
+                                            name="bookName" type="text" class="form-control" placeholder="书名模糊查询"/>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">状态</label>
+                                        <select type="text" name="status"  class="form-control" >
+                                            <option value="">全部</option>
+                                            <option value="1">未审核</option>
+                                            <option value="2">已审核</option>
+                                            <option value="3">禁卖</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 250px;">
                                             <label></label>
                                             <button type="button" id="formBorrowSearchBtn" class="btn btn-primary"  data-style="zoom-in"
                                                     style="width: 100px;height: 33px;"	formaction="javascript:void(0);">查询
@@ -160,13 +178,25 @@
 							<div>
 								<form id="form_bookgiftuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
 									  onkeydown="if(event.keyCode==13){return false;}">
-									<input type="text" name="id" style="display: none" value="${requestScope.bookVo.id}"/>
-									<div class="form-group" style="margin-left: 10px;">
-										<label onclick="$(this).next().focus();" style="font-size: 20px; ">赠予书籍</label>
-									</div>
-									<div class="form-group" style="margin-left: 30px;">
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">书名</label> <input
+                                            name="bookName" type="text" class="form-control" placeholder="书名模糊查询"/>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">状态</label>
+                                        <select type="text" name="status"  class="form-control" >
+                                            <option value="">全部</option>
+                                            <option value="1">未审核</option>
+                                            <option value="2">已审核</option>
+                                            <option value="3">禁卖</option>
+                                        </select>
+                                    </div>
+									<div class="form-group" style="margin-left: 250px;">
 										<label></label>
-										<button type="button" id="formGiftSearchBtn" class="btn btn-primary"  data-style="zoom-in"
+                                        <button type="button" id="formGiftSearchBtn" class="btn btn-primary"  data-style="zoom-in"
+                                                style="width: 100px;height: 33px;"	formaction="javascript:void(0);">查询
+                                        </button>&nbsp;&nbsp;&nbsp;&nbsp;
+										<button type="button" id="insertGiftSearchBtn" class="btn btn-primary"  data-style="zoom-in"
 												style="width: 100px;height: 33px;width: 200px"	formaction="javascript:void(0);">还有书籍赠予
 										</button>
 									</div>
@@ -182,19 +212,28 @@
 							<div>
 								<form id="form_bookauctionuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
 									  onkeydown="if(event.keyCode==13){return false;}">
-									<input type="text" name="id" style="display: none" value="${requestScope.bookVo.id}"/>
-									<div class="form-group" style="margin-left: 10px;">
-										<label onclick="$(this).next().focus();" style="font-size: 20px; ">竞价书籍</label>
-									</div>
-									<div class="form-group" style="margin-left: 60%">
-										<label onclick="$(this).next().focus();">竞价状态</label>
-										<select type="text" name="state"  class="form-control" >
-											<option value="">全部</option>
-										</select>
-									</div>
-									<div class="form-group" style="margin-left: 30px;">
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">书名</label> <input
+                                            name="auctionName" type="text" class="form-control" placeholder="书名模糊查询"/>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 50px;">
+                                        <label onclick="$(this).next().focus();">状态</label>
+                                        <select type="text" name="status"  class="form-control" >
+                                            <option value="">全部</option>
+                                            <option value="1">未审核</option>
+                                            <option value="2">已审核</option>
+                                            <option value="3">禁卖</option>
+                                            <option value="4">竞拍中</option>
+                                            <option value="5">已成交</option>
+                                            <option value="6">流拍</option>
+                                        </select>
+                                    </div>
+									<div class="form-group" style="margin-left: 250px;">
 										<label></label>
-										<button type="button"  id="formAuctionSearchBtn" class="btn btn-primary"  data-style="zoom-in"
+                                        <button type="button" id="formAuctionSearchBtn" class="btn btn-primary"  data-style="zoom-in"
+                                                style="width: 100px;height: 33px;"	formaction="javascript:void(0);">查询
+                                        </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="button"  id="insertAuctionSearchBtn" class="btn btn-primary"  data-style="zoom-in"
 												style="width: 100px;height: 33px;width: 200px"	formaction="javascript:void(0);">添加要竞拍的书籍
 										</button>
 									</div>
@@ -245,13 +284,135 @@
 		</div>
 	</div>
 </div>
+	<div id="modal_detailTable1" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+		<div class="modal-dialog" dialog-width="900px" style="width:900px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+					<h4 class="modal-title" id="modalTitle1">买书人</h4>
+					<form id="form_sell_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+						  onkeydown="if(event.keyCode==13){return false;}">
+						<div class="form-group" style="margin-left: 50px;">
+							<label onclick="$(this).next().focus();">姓名</label>
+							<input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+						</div>
+						<div class="form-group" style="margin-left: 30px;">
+							<label></label>
+							<button type="button" id="formSellSearchBtn1" class="btn btn-primary" data-style="zoom-in"
+									formaction="javascript:void(0);">查询
+							</button>&nbsp;&nbsp;
+							<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+						</div>
+					</form>
+				</div>
+				<div class="modal-body">
+					<table id="detailTable1"></table>
+				</div>
 
+			</div>
+		</div>
+	</div>
+    <div id="modal_detailTable2" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog" dialog-width="900px" style="width:900px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                    <h4 class="modal-title" id="modalTitle2">借书人</h4>
+                    <form id="form_borrow_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                          onkeydown="if(event.keyCode==13){return false;}">
+                        <div class="form-group" style="margin-left: 50px;">
+                            <label onclick="$(this).next().focus();">姓名</label>
+                            <input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px;">
+                            <label></label>
+                            <button type="button" id="formSellSearchBtn2" class="btn btn-primary" data-style="zoom-in"
+                                    formaction="javascript:void(0);">查询
+                            </button>&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <table id="detailTable2"></table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="modal_detailTable3" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog" dialog-width="900px" style="width:900px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                    <h4 class="modal-title" id="modalTitle3">受赠人</h4>
+                    <form id="form_gift_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                          onkeydown="if(event.keyCode==13){return false;}">
+                        <div class="form-group" style="margin-left: 50px;">
+                            <label onclick="$(this).next().focus();">姓名</label>
+                            <input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px;">
+                            <label></label>
+                            <button type="button" id="formSellSearchBtn3" class="btn btn-primary" data-style="zoom-in"
+                                    formaction="javascript:void(0);">查询
+                            </button>&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <table id="detailTable3"></table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div id="modal_detailTable4" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog" dialog-width="900px" style="width:900px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                    <h4 class="modal-title" id="modalTitle4">出价人</h4>
+                    <form id="form_auction_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                          onkeydown="if(event.keyCode==13){return false;}">
+                        <div class="form-group" style="margin-left: 50px;">
+                            <label onclick="$(this).next().focus();">姓名</label>
+                            <input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px;">
+                            <label></label>
+                            <button type="button" id="formSellSearchBtn4" class="btn btn-primary" data-style="zoom-in"
+                                    formaction="javascript:void(0);">查询
+                            </button>&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <table id="detailTable4"></table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 <script>
     var userId=1;
     $('#formSellSearchBtn').on('click', function () {
         $('#mainTable1').bootstrapTable('refresh');
+    });
+    $('#formBorrowSearchBtn').on('click', function () {
+        $('#mainTable2').bootstrapTable('refresh');
+    });
+    $('#formGiftSearchBtn').on('click', function () {
+        $('#mainTable3').bootstrapTable('refresh');
+    });
+    $('#formAuctionSearchBtn').on('click', function () {
+        $('#mainTable4').bootstrapTable('refresh');
     });
     $('#insertSellBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
@@ -261,7 +422,7 @@
     $('#insertSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
         var isbn=$('#isbn').val();
-        var status=  $('#status').val();
+        var status=$('#status').val();
         location.href="${basePath}/bookshare/uploadbook?isbn="+isbn+"&status="+status+"";
         $('#modal_detailTable').modal('hide');
         $('#isbnIn')[0].reset();
@@ -285,7 +446,7 @@
     });
     $("#mainTable1").bootstrapTable({
         toolbar: "#toolbar_book",
-        url: '${basePath}/bookshare/mycatselldetail',
+        url: '${basePath}/bookshare/bookselling',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -309,49 +470,103 @@
                 title: 'id',
                 align: "center",
                 visible:false,
-
-            },{
+            },
+            {
                 field: 'bookName',
                 title: '书名',
-                align: "center"
-            },{
-                field: 'sellName',
-                title: '店家',
-                align: "center"
-            },{
-                field: 'sellPhoneNumber',
-                title: '电话',
-                align: "center"
-            },{
-                field: 'total',
-                title: '数量',
-                align: "center"
-            }
-            ,{
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
                 field: 'price',
                 title: '售价',
                 align: "center",
                 formatter: function (value, row, index) {
                     if(row.price){
-                        return  row.price + '元 '
+                        return  row.price + ' ' + row.pricingunit;
                     }
                     else{
                         return '-';
                     }
 
                 }
-            },{
-                field: 'oTime',
-                title: '下单时间',
+            },
+           {
+                field: 'num',
+                title: '库存量',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if (row.oTime) {
-                        return row.oTime;
+                formatter :function(value, row, index) {
+                    if(!row.useableNum){
+                        return  row.preNum;
                     }
-                    else {
-                        return '-';
+                    if(!row.preNum) {
+                        return row.useableNum;
+                    }else if(row.preNum&&row.useableNum){
+                        return row.preNum+row.useableNum;
+                    }else {
+                        return 0;
                     }
                 }
+
+            },{
+                field: 'useNum',
+                title: '出货量',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(value>0){
+                        return [ "<a style='cursor:pointer;color: blue;'  class='record-detail'>",''+value+'','</a>' ].join('');
+                    }else{
+                        return value;
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog1(e, value, row, index);
+                    }
+                }
+
+            },{
+                field: 'num',
+                title: '销售额',
+                align: "center",
+                formatter :function(value, row, index) {
+                    return row.useNum*row.price+'  元';
+                }
+
+            },{
+                field: 'uTime',
+                title: '上传时间',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'statusStr',
+                title: '状态',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'status',
+                title: '状态',
+                align: "center",
+                visible:false,
+                formatter: formatterToValue
+
+            },{
+                field: 'cName',
+                title: '审核人',
+                align: "center",
+                formatter: formatterToValue
+
+            },{
+                field: 'cTime',
+                title: '审核时间',
+                align: "center",
+                formatter: formatterToValue
+
             },{
                 field: '查看图书',
                 title: '查看图书',
@@ -370,7 +585,7 @@
 
     $("#mainTable2").bootstrapTable({
         toolbar: "#toolbar_book",
-        url: '${basePath}/bookshare/mycatborrowdetail',
+        url: '${basePath}/bookshare/bookborrow',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -395,53 +610,21 @@
                 align: "center",
                 visible:false,
 
-            },{
+            },
+            {
                 field: 'bookName',
                 title: '书名',
-                align: "center"
-            },{
-                field: 'sellName',
-                title: '店家',
-                align: "center"
-            },{
-                field: 'sellPhoneNumber',
-                title: '电话',
-                align: "center"
-            },{
-                field: 'num',
-                title: '借书数量',
-                align: "center"
-            },{
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
                 field: 'price',
                 title: '租金',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if (row.price) {
-                        return row.price+"元/天";
-                    }
-                    else {
-                        return '-';
-                    }
-                }
-            },{
-                field: 'beyondPrice',
-                title: '逾期租金',
-                align: "center",
-                formatter: function (value, row, index) {
-                    if (row.beyondPrice) {
-                        return row.beyondPrice+"元/天";
-                    }
-                    else {
-                        return '-';
-                    }
-                }
-            },{
-                field: 'depositPricer',
-                title: '押金',
-                align: "center",
-                formatter: function (value, row, index) {
-                    if(row.depositPricer){
-                        return  row.depositPricer + '元/本';
+                    if(row.price){
+                        return  row.price +  ' 元/天';
                     }
                     else{
                         return '-';
@@ -450,18 +633,99 @@
                 }
             },
             {
-                field: 'totalDeposit',
-                title: '总押金',
+                field: 'depositPrice',
+                title: '押金',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if(row.totalDeposit){
-                        return  row.totalDeposit + '元';
+                    if(row.price){
+                        return  row.price +  ' 元/本';
                     }
                     else{
                         return '-';
                     }
 
                 }
+            },
+            {
+                field: 'beyondPrice',
+                title: '逾期租金',
+                align: "center",
+                formatter: function (value, row, index) {
+                    if(row.price){
+                        return  row.price + ' 元/天 ';
+                    }
+                    else{
+                        return '-';
+                    }
+
+                }
+            },
+            {
+                field: 'num',
+                title: '库存量',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(!row.useableNum){
+                        return  row.preNum;
+                    }
+                    if(!row.preNum) {
+                        return row.useableNum;
+                    }else if(row.preNum&&row.useableNum){
+                        return row.preNum+row.useableNum;
+                    }else {
+                        return 0;
+                    }
+                }
+
+            },{
+                field: 'useNum',
+                title: '出借量',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(value>0){
+                        return [ "<a style='cursor:pointer;color: blue;' class='record-detail'>",''+value+'','</a>' ].join('');
+                    }else{
+                        return value;
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog2(e, value, row, index);
+                    }
+                }
+
+            },{
+                field: 'uTime',
+                title: '上传时间',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'statusStr',
+                title: '状态',
+                align: "center",
+                formatter: formatterToValue
+            },
+            {
+                field: 'status',
+                title: '状态',
+                align: "center",
+                visible:false,
+                formatter: formatterToValue
+
+            },{
+                field: 'cName',
+                title: '审核人',
+                align: "center",
+                formatter: formatterToValue
+
+            },{
+                field: 'cTime',
+                title: '审核时间',
+                align: "center",
+                formatter: formatterToValue
+
             },{
                 field: '查看图书',
                 title: '查看图书',
@@ -480,7 +744,7 @@
     });
     $("#mainTable3").bootstrapTable({
         toolbar: "#toolbar_book",
-        url: '${basePath}/bookshare/mycatgiftdetail',
+        url: '${basePath}/bookshare/bookgift',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -505,50 +769,87 @@
                 align: "center",
                 visible:false,
 
-            },{
+            },
+            {
                 field: 'bookName',
                 title: '书名',
-                align: "center"
-            },{
-                field: 'sellName',
-                title: '店家',
-                align: "center"
-            },{
-                field: 'sellPhoneNumber',
-                title: '电话',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if (row.sellPhoneNumber) {
-                        return row.sellPhoneNumber;
+                formatter: formatterToValue
+
+            },{
+                field: 'num',
+                title: '库存量',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(!row.useableNum){
+                        return  row.preNum;
                     }
-                    else {
-                        return '-';
+                    if(!row.preNum) {
+                        return row.useableNum;
+                    }else if(row.preNum&&row.useableNum){
+                        return row.preNum+row.useableNum;
+                    }else {
+                        return 0;
                     }
                 }
+
             },{
-                field: 'total',
-                title: '数量',
+                field: 'useNum',
+                title: '赠出量',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if (row.total) {
-                        return row.total;
+                formatter :function(value, row, index) {
+                    if(value>0){
+                        return [ "<a style='cursor:pointer;color: blue;' class='record-detail'>",''+value+'','</a>' ].join('');
+                    }else{
+                        return value;
                     }
-                    else {
-                        return '-';
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog3(e, value, row, index);
                     }
                 }
+
             },{
-                field: 'oTime',
-                title: '下单时间',
+                field: 'uTime',
+                title: '上传时间',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if (row.oTime) {
-                        return row.oTime;
-                    }
-                    else {
-                        return '-';
-                    }
-                }
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'statusStr',
+                title: '状态',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'flagStr',
+                title: '是否回收',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'status',
+                title: '状态',
+                align: "center",
+                visible:false,
+                formatter: formatterToValue
+
+            },{
+                field: 'cName',
+                title: '审核人',
+                align: "center",
+                formatter: formatterToValue
+
+            },{
+                field: 'cTime',
+                title: '审核时间',
+                align: "center",
+                formatter: formatterToValue
+
             },{
                 field: '查看图书',
                 title: '查看图书',
@@ -567,7 +868,7 @@
     });
     $("#mainTable4").bootstrapTable({
         toolbar: "#toolbar_book",
-        url: '${basePath}/bookshare/mycatauctiondetail',
+        url: '${basePath}/bookshare/bookauction',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -585,48 +886,27 @@
             newParams = $.extend(true, {}, params, newParams);
             return newParams;
         },
-        columns: [ /*{
-            checkbox: true
-            },*/
+        columns: [
             {
                 field: 'id',
                 title: 'id',
                 align: "center",
                 visible:false,
 
-            },{
-                field: 'auctionName',
+            },
+            {
+                field: 'bookName',
                 title: '书名',
-                align: "center"
-            },{
-                field: 'sellerName',
-                title: '店家',
-                align: "center"
-            },{
-                field: 'phoneNumber',
-                title: '电话',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if (row.phoneNumber) {
-                        return row.phoneNumber;
-                    }
-                    else {
-                        return '-';
-                    }
-                }
+                formatter: formatterToValue
+
             },{
-                field: 'price',
-                title: '起拍价',
+                field: 'uTime',
+                title: '上传时间',
                 align: "center",
-                formatter: function (value, row, index) {
-                    if(row.price){
-                        return  row.price + '元 ';
-                    }
-                    else{
-                        return '-';
-                    }
-                }
-            },{
+                formatter: formatterToValue
+
+            }, {
                 field: 'sTime',
                 title: '起拍时间',
                 formatter: formatterToValue
@@ -636,18 +916,66 @@
                 title: '结束时间',
                 formatter: formatterToValue
 
-            },{
-                field: 'status',
-                title: '书籍状态',
+            },
+            {
+                field: 'price',
+                title: '起拍价',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if(row.status){
-                        return  switch_status(row.status);
+                    if(row.price){
+                        return  row.price + ' 元';
                     }
                     else{
                         return '-';
                     }
+
                 }
+            }, {
+                field: 'dealPrice',
+                title: '成交价',
+                align: "center",
+                formatter: function (value, row, index) {
+                    if(row.dealPrice){
+                        return  row.dealPrice + ' 元';
+                    }
+                    else{
+                        return '-';
+                    }
+
+                }
+            }, {
+                field: 'buyerName',
+                title: '成交人',
+                align: "center",
+                formatter:formatterToValue
+            },
+            {
+                field: 'status',
+                title: '状态',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(value==4||value==5||value==6){
+                        return [ "<a style='cursor:pointer;color: blue' class='record-detail'>",''+switch_status(value)+'','</a>' ].join('');
+                    }else{
+                        return switch_status(value);
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog4(e, value, row, index);
+                    }
+                }
+            },{
+                field: 'cName',
+                title: '审核人',
+                align: "center",
+                formatter: formatterToValue
+
+            },{
+                field: 'cTime',
+                title: '审核时间',
+                align: "center",
+                formatter: formatterToValue
 
             },{
                 field: '查看图书',
@@ -666,15 +994,15 @@
         ]
     });
     function detailSellBook(e, value, row, index) {
-        location.replace("${basePath}/bookshare/bookselldetail?id="+row.sellingId+"");
+        location.replace("${basePath}/bookshare/bookselldetail?id="+row.id+"");
     }
     function detailBorrowBook(e, value, row, index) {
 
-        location.replace("${basePath}/bookshare/bookborrowdetail?id="+row.auctionId+"");
+        location.replace("${basePath}/bookshare/bookborrowdetail?id="+row.id+"");
     }
     function detailGiftBook(e, value, row, index) {
 
-        location.replace("${basePath}/bookshare/bookgiftdetail?id="+row.sellingId+"");
+        location.replace("${basePath}/bookshare/bookgiftdetail?id="+row.id+"");
     }
     function detailAuctionBook(e, value, row, index) {
         location.replace("${basePath}/bookshare/bookauctiondetail?id="+row.id+"");
@@ -719,7 +1047,370 @@
         }
         return text;
     }
+    $("#detailTable4").bootstrapTable(
+        {
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var idParam={auctionId:auctionId};
+                var userParams=convertSerializeArrayToObject($("#form_auction_q").serializeArray());
+                var oldParams = $.extend(true,{},params,idParam);
+                var newParams = $.extend(true,{},oldParams,userParams);
+                return newParams;
+            },
+            columns : [
+                {
+                    align: "center",
+                    field : 'userName',
+                    title : '出价人',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'phoneNumber',
+                    title : '手机',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'price',
+                    title : '出价',
+                    formatter: function (value, row, index) {
+                        if(row.price){
+                            return  row.price + '  元' ;
+                        }
+                        else{
+                            return '-';
+                        }
 
+                    }
+                },
+                {
+                    align: "center",
+                    field : 'aTime',
+                    title : '出价时间',
+                    formatter:formatterToValue
+                }]
+        });
+    //弹出层
+    var auctionId=0;
+    function detailTableDialog4(e, value, row, index){
+        $('#modal_detailTable4').modal("show");
+        auctionId=row.id;
+        $('#detailTable4').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordauction',
+            query:{
+                auctionId:auctionId
+            }
+        });
+    }
+
+    $('#formSellSearchBtn4').on('click', function () {
+        $('#detailTable').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordauction',
+            query:{
+                auctionId:auctionId
+            }
+        });
+    });
+    $("#detailTable3").bootstrapTable(
+        {
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var idParam={sellingId:sellingId};
+                var userParams=convertSerializeArrayToObject($("#form_gift_q").serializeArray());
+                var oldParams = $.extend(true,{},params,idParam);
+                var newParams = $.extend(true,{},oldParams,userParams);
+                return newParams;
+            },
+            columns : [
+                {
+                    align: "center",
+                    field : 'buyerName',
+                    title : '受赠人',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'phoneNumber',
+                    title : '手机',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'total',
+                    title : '受赠数量',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'oTime',
+                    title : '受赠时间',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'statusStr',
+                    title : '交易状态',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'cTime',
+                    title : '交易时间',
+                    formatter: formatterToValue
+                }]
+        });
+    //弹出层
+    var sellingId=0;
+    function detailTableDialog3(e, value, row, index){
+        $('#modal_detailTable3').modal("show");
+        sellingId=row.id;
+        $('#detailTable3').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordgift',
+            query:{
+                sellingId:sellingId
+            }
+        });
+    }
+
+    $('#formSellSearchBtn3').on('click', function () {
+        $('#detailTable3').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordgift',
+            query:{
+                sellingId:sellingId
+            }
+        });
+    });
+    $("#detailTable2").bootstrapTable(
+        {
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var idParam={auctionId:auctionId};
+                var userParams=convertSerializeArrayToObject($("#form_borrow_q").serializeArray());
+                var oldParams = $.extend(true,{},params,idParam);
+                var newParams = $.extend(true,{},oldParams,userParams);
+                return newParams;
+            },
+            columns : [
+                {
+                    align: "center",
+                    field : 'userName',
+                    title : '借书人',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'phoneNumber',
+                    title : '手机',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'num',
+                    title : '借书数量',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'returnNum',
+                    title : '还书数量',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'sTime',
+                    title : '借书时间',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'eTime',
+                    title : '最晚还书时间',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'rTime',
+                    title : '实际还书时间',
+                    formatter: formatterToValue
+                },{
+                    align: "center",
+                    field : 'totalDeposit',
+                    title : '总押金',
+                    formatter: function (value, row, index) {
+                        if(row.totalDeposit){
+                            return  row.totalDeposit + '  /元' ;
+                        }
+                        else{
+                            return '-';
+                        }
+
+                    }
+                },
+                {
+                    align: "center",
+                    field : 'returnDeposit',
+                    title : '所退押金',
+                    formatter: function (value, row, index) {
+                        if(row.returnDeposit){
+                            return  row.returnDeposit + '  /元' ;
+                        }
+                        else{
+                            return '-';
+                        }
+
+                    }
+                },
+                {
+                    align: "center",
+                    field : 'totalPrice',
+                    title : '总费用',
+                    formatter: function (value, row, index) {
+                        if(row.totalPrice){
+                            return  row.totalPrice + '  /元' ;
+                        }
+                        else{
+                            return '-';
+                        }
+
+                    }
+                }]
+        });
+    //弹出层
+    var auctionId=0;
+    function detailTableDialog2(e, value, row, index){
+        $('#modal_detailTable2').modal("show");
+        auctionId=row.id;
+        $('#detailTable2').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordborrow',
+            query:{
+                auctionId:auctionId
+            }
+        });
+    }
+
+    $('#formSellSearchBtn2').on('click', function () {
+        $('#detailTable2').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordborrow',
+            query:{
+                auctionId:auctionId
+            }
+        });
+    });
+
+    $("#detailTable1").bootstrapTable(
+        {
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var idParam={sellingId:sellingId};
+                var userParams=convertSerializeArrayToObject($("#form_sell_q").serializeArray());
+                var oldParams = $.extend(true,{},params,idParam);
+                var newParams = $.extend(true,{},oldParams,userParams);
+                return newParams;
+            },
+            columns : [
+                {
+                    align: "center",
+                    field : 'buyerName',
+                    title : '买书人',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'phoneNumber',
+                    title : '手机',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'total',
+                    title : '买书数量',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'numPrice',
+                    title : '总价',
+                    formatter: function (value, row, index) {
+                        if(row.totalPrice){
+                            return  row.totalPrice + '  /元' ;
+                        }
+                        else{
+                            return '-';
+                        }
+
+                    }
+                },
+                {
+                    align: "center",
+                    field : 'oTime',
+                    title : '下单时间',
+                    formatter:formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'statusStr',
+                    title : '交易状态',
+                    formatter: formatterToValue
+                }]
+        });
+    //弹出层
+    var sellingId=0;
+    function detailTableDialog1(e, value, row, index){
+        $('#modal_detailTable1').modal("show");
+        sellingId=row.id;
+        $('#detailTable1').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordselling',
+            query:{
+                sellingId:sellingId
+            }
+        });
+    }
+
+    $('#formSellSearchBtn1').on('click', function () {
+        $('#detailTable1').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/bookshare/recordselling',
+            query:{
+                sellingId:sellingId
+            }
+        });
+    });
 
     (function($) {
 

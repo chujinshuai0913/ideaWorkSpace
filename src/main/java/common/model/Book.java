@@ -94,7 +94,7 @@ public class Book {
 
     public Book(Integer id, Long isbn, String bookName, String author, String press, Integer pressTime, Integer pageNumber, String src, BigDecimal pricing, String pricingunit, Integer sellerNumber, Integer bookType2, Integer bookType1, String bookTypeName2, String bookTypeName1, Integer professionalType1, Integer professionalType2, String professionalTypeName1, String professionalTypeName2, Integer userableNum, Integer useNum, Integer preNum, Integer cU, Integer printUser, Integer cT, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, Integer sellStatus, Integer borrowStatus,
                 Integer giftStatus, Integer auctionStatus, String binding, String subtitle,
-                Long isbn10, String translator, String tag, String src2, String src3, String authorIntro, String introduce, String catalog) {
+                Long isbn10, String translator, String tag, String src2, String src3, String introduce, String authorIntro, String catalog) {
         this.id = id;
         this.isbn = isbn;
         this.bookName = bookName;
@@ -133,12 +133,12 @@ public class Book {
         this.subtitle = subtitle;
         this.isbn10 = isbn10;
         this.translator = translator;
-        this.authorIntro = authorIntro;
-        this.introduce = introduce;
-        this.catalog = catalog;
         this.tag = tag;
         this.src2 = src2;
         this.src3 = src3;
+        this.introduce = introduce;
+        this.authorIntro = authorIntro;
+        this.catalog = catalog;
     }
 
     public Book() {

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="common.model.Book" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="ISBN" jdbcType="INTEGER" javaType="java.lang.Long" />
+      <arg column="ISBN" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="book_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="author" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="press" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -39,7 +39,7 @@
       <arg column="auction_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="binding" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="isbn10" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isbn10" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="translator" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="tag" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="src2" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -85,7 +85,7 @@
       author_intro, catalog)
     values (#{id,jdbcType=INTEGER}, #{isbn}, #{bookName,jdbcType=VARCHAR},
       #{author,jdbcType=VARCHAR}, #{press,jdbcType=VARCHAR}, #{pressTime,jdbcType=INTEGER}, 
-      #{pages,jdbcType=INTEGER}, #{src,jdbcType=VARCHAR}, #{pricing,jdbcType=DECIMAL},
+      #{pageNum,jdbcType=INTEGER}, #{src,jdbcType=VARCHAR}, #{pricing,jdbcType=DECIMAL},
       #{pricingunit,jdbcType=VARCHAR}, #{sellerNumber,jdbcType=INTEGER}, #{bookType2,jdbcType=INTEGER}, 
       #{bookType1,jdbcType=INTEGER}, #{bookTypeName2,jdbcType=VARCHAR}, #{bookTypeName1,jdbcType=VARCHAR}, 
       #{professionalType1,jdbcType=INTEGER}, #{professionalType2,jdbcType=INTEGER}, #{professionalTypeName1,jdbcType=VARCHAR}, 
@@ -194,15 +194,11 @@
   <update id="upateBookUserNumAdd">
     UPDATE book
     <set>
-       userable_num=userable_num+#{preNum}
-      <if test="sellStatus != null" >,sell_status = #{sellStatus} </if>
-      <if test="borrowStatus != null" > ,borrow_status = #{borrowStatus} </if>
-      <if test="giftStatus != null" >,gift_status = #{giftStatus} </if>
-      <if test="auctionStatus != null" >,auction_status = #{auctionStatus} </if>
-      <if test="sellerNumber != null" >,seller_number = #{sellerNumber} </if>
+        <if test="preNum != null" >userable_num=userable_num+#{preNum},</if>
+        <if test="sellerNumber != null" >seller_number = #{sellerNumber}, </if>
+        <if test="professionalTypeName1 != null and professionalTypeName1 !=''">professional_type_name1=#{professionalTypeName1},</if>
+        <if test="professionalTypeName2 != null and professionalTypeName2 !=''">professional_type_name2=#{professionalTypeName2},</if>
     </set>
-
-
     where id=#{id}
 
   </update>

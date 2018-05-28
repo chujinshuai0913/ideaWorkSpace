@@ -49,7 +49,7 @@ public class ImgController {
         String fileName=file.getOriginalFilename();//获取文件名加后缀
         if(fileName!=null&&fileName!=""){
             String returnUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() +"/sharebook/img/shareactivity/";//存储路径
-            String path = request.getSession().getServletContext().getRealPath("sharebook/img/shareactivity/"); //文件存储位置
+            String path = request.getSession().getServletContext().getRealPath("sharebook/img/"); //文件存储位置
             // String path = "F:\\study\\code\\idea\\workspace\\ideaWorkSpace\\src\\main\\webapp\\sharebook\\img\\shareactivity";
             String fileF = fileName.substring(fileName.lastIndexOf("."), fileName.length());//文件后缀
             fileName= DateUtils.getNowTimeStamp()+"_"+new Random().nextInt(1000);//新的文件名

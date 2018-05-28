@@ -17,6 +17,9 @@ public interface BookGiftMapper {
 
     BookGift selectByPrimaryKey(Integer id);
 
+    BookGift selectBookGiftById(@Param("id")  Integer id,@Param("status") Integer status);
+
+
     int updateByPrimaryKeySelective(BookGift record);
 
     int updateByPrimaryKey(BookGift record);

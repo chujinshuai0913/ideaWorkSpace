@@ -236,7 +236,7 @@
         <div class="modal-content">
             <div class="modal-header" style="height: 400px">
                 <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                <img id="myImage" style=" width:100%; height:98%;" src="${basePath}/sharebook/img/shareactivity/2.jpg" alt="信息公告图片">
+                <img id="myImage" style=" width:100%; height:98%;" src="${basePath}/sharebook/img/2.jpg" alt="信息公告图片">
             </div>
         </div>
     </div>
@@ -248,7 +248,7 @@
                 <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                 <h4 class="modal-title" >信息公告图片</h4>
                 <input type="file" class="form-control"  id="logoFile" name="logoFile" onchange="setImg(this);">
-                <img id="uploadImgShow" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/shareactivity/1.jpg" >
+                <img id="uploadImgShow" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/1.jpg" >
             </div>
         </div>
     </div>
@@ -282,7 +282,7 @@
             success: function(suc) {
                 if(suc.code==0){
                     $("#uploadImg").val(suc.message);//将地址存储好
-                    $("#uploadImgShow").attr("src","${basePath}/sharebook/img/shareactivity/"+suc.message+"");//显示图片
+                    $("#uploadImgShow").attr("src","${basePath}/sharebook/img/"+suc.message+"");//显示图片
                 }else{
                     alertLayel("上传失败");
                     $(obj).val('');
@@ -360,7 +360,7 @@
     });
     function imgDialog(e, value, row, index){
         $('#modal_img').modal("show");
-        $("#myImage").attr('src',"${basePath}/sharebook/img/shareactivity/"+row.src+"");
+        $("#myImage").attr('src',"${basePath}/sharebook/img"+row.src+"");
     }
     var $table = $("#mainTable");
     $table.bootstrapTable({

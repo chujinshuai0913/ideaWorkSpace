@@ -137,6 +137,7 @@
         dataType: "json",
         sidePagination : "server",
         pagination : true,
+        sortName:"upload_time",
         sortOrder:"desc",
         pageList : [10,15,25,50,100,'all'],
         pageNumber:1,
@@ -245,6 +246,7 @@
             }, {
                 field: 'dTime',
                 title: '上次交易时间',
+                align: "center",
                 formatter: formatterToValue
 
             },{

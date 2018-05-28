@@ -15,10 +15,13 @@
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/js/bootstrap-table-zh-CN.min.js"></script>
 	<script type="text/javascript" src="${basePath}/sharebookmanager/static/bootstrap-datepicker-1.5.0/js/bootstrap-datepicker.js" ></script>
+    <script type="text/javascript" src="${basePath}/sharebook/js/jquery.cardtabs.js"></script>
 	<link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
 	<link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="${basePath}/sharebook/css/bookdetails.css" />
 	<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/jquery.cardtabs.css">
+	<link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/dl_b.css">
 </head>
 <style>
 
@@ -175,11 +178,57 @@
 							</div>
 						</div>
 					</div>
-					<div class="bodyPage_body_bookdetail_down_right_book">
-						内容提要
-						文章节选
-						目录
-						编辑推荐语
+					<div class="bodyPage_body_bookdetail_down_right_book markdown-body">
+                        <div class='example'>
+                            <div class='tabsholder'>
+                                <div data-tab="书籍信息">
+                                    <div style="width: 100%;height: 310px">
+                                       <%-- <div class="bodyPage_body_insert_bookdetail_up_img">
+                                            <img src="${basePath}/sharebook/img/${requestScope.book.src}"/>
+                                        </div>--%>
+                                        <div class="bodyPage_body_insert_bookdetail_up_text">
+                                            <p style="margin-left: 20px;margin-top: 20px">
+                                                副标题:<span>${requestScope.bookVo.subtitle}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                作者:<span>${requestScope.bookVo.author}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                翻译:<span>${requestScope.bookVo.translator}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                ISBN： <span>${requestScope.bookVo.isbn}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                ISBN10： <span>${requestScope.bookVo.isbn10}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </p>
+                                            <p style="margin-left: 20px;margin-top: 20px">
+                                                定价： <span>${requestScope.bookVo.pricing}元</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                装帧:<span>${requestScope.bookVo.binding}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                页数：<span>${requestScope.bookVo.pageNumber}页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                出版社:<span>${requestScope.bookVo.press}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                出版时间:<span>
+                                                             <jsp:useBean id="Timestamp" class="java.util.Date"/>
+                                                            <c:set target="${Timestamp}" property="time" value="${requestScope.bookVo.pressTime}"/>
+                                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${Timestamp}" type="both"/>
+                                                        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </p>
+                                            <p style="margin-left: 20px;margin-top: 20px">
+                                                标签:<span>${requestScope.bookVo.tag}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tab="简介" style="line-height: 20px; font-size: 14px;color: grey">
+									<div style="width:100%;margin: auto">
+										${requestScope.bookVo.introduce}
+									</div>
+
+                                </div>
+                                <div data-tab="目录" style="line-height: 20px; font-size: 14px;color: grey">
+                                    <div style="width:50%;margin: auto">
+                                        ${requestScope.bookVo.catalog}
+                                    </div>
+                                </div>
+								<div data-tab="作者" style="line-height: 20px; font-size: 14px;color: grey">
+									<div style="width:50%;margin: auto">
+										${requestScope.bookVo.authorIntro}
+									</div>
+								</div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -191,6 +240,7 @@
 </div>
 </body>
 <script>
+    $('.tabsholder').cardTabs({theme: 'graygreen'});
     $(".jian").click(function(){
         var lsoek=$(this).parent().find(".input_buy");
         var lskoe=parseInt(lsoek.val());
@@ -312,6 +362,8 @@
                     if (data.error_code == 0){
                         alert("加入成功，前往书箱查看联系方式！")
                         location.reload();
+                    }else{
+                        alert("加入失败，自己不能买自己的书籍！")
                     }
                 } catch (e){
                     console.log(e.message);

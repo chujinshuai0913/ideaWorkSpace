@@ -127,9 +127,12 @@
                                             <img src="${basePath}/sharebook/img/${requestScope.book.src}"/>
                                         </div>
                                          <div class="bodyPage_body_insert_bookdetail_up_text">
-                                              <h1>${requestScope.book.bookName}</h1>
+                                              <h1 style="display: inline">${requestScope.book.bookName}</h1>
+                                             <span style="font-size: 12px;color: grey">
+                                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${requestScope.book.subtitle}
+                                             </span>
                                                <p style="margin-left: 20px;margin-top: 20px">
-                                                   副标题:<span>${requestScope.book.subtitle}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                                    作者:<span>${requestScope.book.author}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                    翻译:<span>${requestScope.book.translator}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                    ISBN： <span>${requestScope.book.isbn}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -237,7 +240,7 @@
                         <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                         <h4 class="modal-title" >上传书籍图片</h4>
                         <input type="file" class="form-control"  id="logoFile" name="logoFile" onchange="setImg1(this);">
-                        <img id="uploadImgShow1" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/shareactivity/1.jpg" >
+                        <img id="uploadImgShow1" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/1.jpg" >
                     </div>
                 </div>
             </div>
@@ -249,7 +252,7 @@
                         <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                         <h4 class="modal-title" >上传书籍图片</h4>
                         <input type="file" class="form-control"  id="logoFile2" name="logoFile" onchange="setImg2(this);">
-                        <img id="uploadImgShow2" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/shareactivity/1.jpg" >
+                        <img id="uploadImgShow2" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/1.jpg" >
                     </div>
                 </div>
             </div>
@@ -261,7 +264,7 @@
                         <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                         <h4 class="modal-title" >上传书籍图片</h4>
                         <input type="file" class="form-control"  id="logoFile3" name="logoFile" onchange="setImg3(this);">
-                        <img id="uploadImgShow3" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/shareactivity/1.jpg" >
+                        <img id="uploadImgShow3" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/1.jpg" >
                     </div>
                 </div>
             </div>
@@ -273,7 +276,7 @@
                         <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
                         <h4 class="modal-title" >上传书籍图片</h4>
                         <input type="file" class="form-control"  id="logoFile4" name="logoFile" onchange="setImg4(this);">
-                        <img id="uploadImgShow4" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/shareactivity/1.jpg" >
+                        <img id="uploadImgShow4" style=" width:100%; height:80%;" src="${basePath}/sharebook/img/1.jpg" >
                     </div>
                 </div>
             </div>
@@ -322,7 +325,7 @@
                 success: function(suc) {
                     if(suc.code==0){
                         $("#uploadImg1").val(suc.message);//将地址存储好
-                        $("#uploadImgShow1").attr("src","${basePath}/sharebook/img/shareactivity/"+suc.message+"");//显示图片
+                        $("#uploadImgShow1").attr("src","${basePath}/sharebook/img/"+suc.message+"");//显示图片
                     }else{
                         alertLayel("上传失败");
                         $(obj).val('');
@@ -357,7 +360,7 @@
                 success: function(suc) {
                     if(suc.code==0){
                         $("#uploadImg2").val(suc.message);//将地址存储好
-                        $("#uploadImgShow2").attr("src","${basePath}/sharebook/img/shareactivity/"+suc.message+"");//显示图片
+                        $("#uploadImgShow2").attr("src","${basePath}/sharebook/img/"+suc.message+"");//显示图片
                     }else{
                         alertLayel("上传失败");
                         $(obj).val('');
@@ -392,7 +395,7 @@
                 success: function(suc) {
                     if(suc.code==0){
                         $("#uploadImg3").val(suc.message);//将地址存储好
-                        $("#uploadImgShow3").attr("src","${basePath}/sharebook/img/shareactivity/"+suc.message+"");//显示图片
+                        $("#uploadImgShow3").attr("src","${basePath}/sharebook/img/"+suc.message+"");//显示图片
                     }else{
                         alertLayel("上传失败");
                         $(obj).val('');
@@ -427,7 +430,7 @@
                 success: function(suc) {
                     if(suc.code==0){
                         $("#uploadImg4").val(suc.message);//将地址存储好
-                        $("#uploadImgShow4").attr("src","${basePath}/sharebook/img/shareactivity/"+suc.message+"");//显示图片
+                        $("#uploadImgShow4").attr("src","${basePath}/sharebook/img/"+suc.message+"");//显示图片
                     }else{
                         alertLayel("上传失败");
                         $(obj).val('');

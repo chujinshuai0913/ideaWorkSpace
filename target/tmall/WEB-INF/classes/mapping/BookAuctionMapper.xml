@@ -46,6 +46,11 @@
     from book_auction
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectBookAuctionById" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery" >
+    select *
+    from book_auction
+    where id = #{id,jdbcType=INTEGER} AND status=#{status}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_auction
     where id = #{id,jdbcType=INTEGER}
@@ -380,6 +385,7 @@
     FROM book_auction
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
+      <if test="auctionName!=null and auctionName !=''" >   <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
     <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
     <if test="sellerIds != null" >
@@ -415,6 +421,7 @@
     <if test="status!=null" >   AND status=#{status}   </if>
     <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
+      <if test="auctionName!=null and auctionName !=''" >  <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
     <if test="sellerIds != null" >
       AND  seller_id
       <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">

@@ -52,6 +52,11 @@
     from book_gift
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectBookGiftById" resultMap="BaseResultMap" parameterType="common.query.BookGiftQuery" >
+        select *
+        from book_gift
+        where id = #{id,jdbcType=INTEGER} AND status=#{status}
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_gift
     where id = #{id,jdbcType=INTEGER}
@@ -441,21 +446,26 @@
     FROM book_gift
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="useNum == 1" >   AND  useable_num>0   </if>
     <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
+    <if test="bookName!=null and bookName !=''" >   <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
     <if test="sellerIds != null" >
       AND  seller_id
       <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
         #{item}
       </foreach>
     </if>
+      <if test="sellerId != null" >
+          AND  seller_id =#{sellerId}
+      </if>
   </select>
   <select id="queryBookGiftList" resultMap="BaseResultMap" parameterType="common.query.BookGiftQuery">
     SELECT *
     FROM book_gift
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="bookName!=null and bookName !=''" >    <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]></if>
+    <if test="useNum == 1" >   AND  useable_num>0   </if>
     <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
     <if test="sellerIds!= null" >
       AND  seller_id

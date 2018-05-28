@@ -1000,7 +1000,7 @@ public class BookServiceImpl implements BookService {
     public ServiceResult<BookSellingVo> selectSellByPrimaryKey(BookSellingQuery bookSellingQuery) {
         try {
             BookSellingVo bookSellingVo =new BookSellingVo();
-            ServiceResult<BookSelling> serviceResult=new ServiceResult<>(bookSellingMapper.selectByPrimaryKey(bookSellingQuery.getId()));
+            ServiceResult<BookSelling> serviceResult=new ServiceResult<>(bookSellingMapper.selectBookSellById(bookSellingQuery.getId(),bookSellingQuery.getStatus()));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                       bookSellingVo= this.getBookSellingVo(serviceResult.getBody(),bookSellingVo);
             }
@@ -1015,7 +1015,7 @@ public class BookServiceImpl implements BookService {
     public ServiceResult<BookBorrowVo> selectBorrowByPrimaryKey(BookBorrowQuery bookBorrowQuery) {
         try {
             BookBorrowVo bookBorrowVo =new BookBorrowVo();
-            ServiceResult<BookBorrow> serviceResult=new ServiceResult<>(bookBorrowMapper.selectByPrimaryKey(bookBorrowQuery.getId()));
+            ServiceResult<BookBorrow> serviceResult=new ServiceResult<>(bookBorrowMapper.selectBookBorrowById(bookBorrowQuery.getId(),bookBorrowQuery.getStatus()));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 bookBorrowVo= this.getBookBorrowVo(serviceResult.getBody(),bookBorrowVo);
             }
@@ -1030,7 +1030,7 @@ public class BookServiceImpl implements BookService {
     public ServiceResult<BookGiftVo> selectGiftByPrimaryKey(BookGiftQuery bookGiftQuery) {
         try {
             BookGiftVo bookGiftVo =new BookGiftVo();
-            ServiceResult<BookGift> serviceResult=new ServiceResult<>(bookGiftMapper.selectByPrimaryKey(bookGiftQuery.getId()));
+            ServiceResult<BookGift> serviceResult=new ServiceResult<>(bookGiftMapper.selectBookGiftById(bookGiftQuery.getId(),bookGiftQuery.getStatus()));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 bookGiftVo= this.getBookGiftVo(serviceResult.getBody(),bookGiftVo);
             }
@@ -1045,7 +1045,7 @@ public class BookServiceImpl implements BookService {
     public ServiceResult<BookAuctionVo> selectAuctionByPrimaryKey(BookAuctionQuery bookAuctionQuery) {
         try {
             BookAuctionVo bookAuctionVo =new BookAuctionVo();
-            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.selectByPrimaryKey(bookAuctionQuery.getId()));
+            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.selectBookAuctionById(bookAuctionQuery.getId(),bookAuctionQuery.getStatus()));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 bookAuctionVo= this.getBookAuctionVo(serviceResult.getBody(),bookAuctionVo);
             }

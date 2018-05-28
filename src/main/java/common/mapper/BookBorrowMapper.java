@@ -15,6 +15,7 @@ public interface BookBorrowMapper {
 
     BookBorrow selectByPrimaryKey(Integer id);
 
+    BookBorrow selectBookBorrowById(@Param("id")  Integer id,@Param("status") Integer status);
     int updateByPrimaryKeySelective(BookBorrow record);
 
     int updateByPrimaryKey(BookBorrow record);

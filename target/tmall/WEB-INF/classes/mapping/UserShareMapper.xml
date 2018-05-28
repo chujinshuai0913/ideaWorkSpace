@@ -388,7 +388,7 @@
     <select id="getIdByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT  id
         FROM user_share
-        where user_name=#{userName}
+        where  <if test="userName != null and userName !=''">  <![CDATA[	user_name LIKE CONCAT(CONCAT('%',#{userName}),'%')	]]> </if>
     </select>
     <select id="getUserShareNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT  *

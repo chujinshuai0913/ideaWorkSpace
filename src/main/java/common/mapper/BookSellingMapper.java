@@ -15,6 +15,7 @@ public interface BookSellingMapper {
     int insertSelective(BookSelling record);
 
     BookSelling selectByPrimaryKey(Integer id);
+    BookSelling selectBookSellById(@Param("id")  Integer id,@Param("status") Integer status);
 
     int updateByPrimaryKeySelective(BookSelling record);
 

@@ -563,9 +563,6 @@
             return newParams;
         },
         columns: [
-            /*{
-                       checkbox: true
-                       },*/
             {
                 field: 'id',
                 title: 'id',

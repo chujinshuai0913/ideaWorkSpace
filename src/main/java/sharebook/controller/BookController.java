@@ -866,6 +866,7 @@ public class BookController {
         ModelAndView mv = new ModelAndView();
         BookSellingQuery query=new BookSellingQuery();
         query.setId(id);
+        query.setStatus(ConstantsUtils.BookAuditCode.AUDIT);
         ServiceResult<BookSellingVo> serviceResult=bookService.selectSellByPrimaryKey(query);
         if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 mv.addObject("bookSellingVo", serviceResult.getBody());
@@ -882,6 +883,7 @@ public class BookController {
         ModelAndView mv = new ModelAndView();
         BookBorrowQuery query=new BookBorrowQuery();
         query.setId(id);
+        query.setStatus(ConstantsUtils.BookAuditCode.AUDIT);
         ServiceResult<BookBorrowVo> serviceResult=bookService.selectBorrowByPrimaryKey(query);
         if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
             mv.addObject("bookBorrowVo", serviceResult.getBody());
@@ -898,6 +900,7 @@ public class BookController {
         ModelAndView mv = new ModelAndView();
         BookGiftQuery query=new BookGiftQuery();
         query.setId(id);
+        query.setStatus(ConstantsUtils.BookAuditCode.AUDIT);
         ServiceResult<BookGiftVo> serviceResult=bookService.selectGiftByPrimaryKey(query);
         if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
             mv.addObject("bookGiftVo", serviceResult.getBody());
@@ -915,6 +918,7 @@ public class BookController {
         ModelAndView mv = new ModelAndView();
         BookAuctionQuery query=new BookAuctionQuery();
         query.setId(id);
+        query.setStatus(ConstantsUtils.BookAuditCode.AUDIT);
         ServiceResult<BookAuctionVo> serviceResult=bookService.selectAuctionByPrimaryKey(query);
         if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
             mv.addObject("bookAuctionVo", serviceResult.getBody());
@@ -965,8 +969,14 @@ public class BookController {
         RecordAuctionQuery bookAuctionQuery=new RecordAuctionQuery();
         RecordGiftQuery giftQuery=new RecordGiftQuery();
         Map<String,Object> successMap = new HashMap<String,Object>();
+
+        UserLogin userLogin=new UserLogin();
+        userLogin.setUserId(1);
         try{
             ListResult results=null;
+          /*  if(query.getUserId()==userLogin.getUserId()){
+                results = new ListResult(1, 0, query.getPageSize(), query.getPageNumber(), new ArrayList<>());
+            }*/
             //买卖书籍
             if (query.getStatus()==1) {
                 sellingQuery.setSellingId(query.getBookId());
@@ -1262,18 +1272,16 @@ public class BookController {
         BookSellingQuery query = JSONObject.parseObject(strJson,BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            if(query.getSellerUser()!=null&&!query.getSellerUser().equals("")){
-                ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getSellerUser());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
-                    query.setSellerIds(serviceResult.getBody());
-                }
-            }
+            //获取用户
+            UserLogin userLogin =new UserLogin();
+            userLogin.setUserId(1);
+            query.setSellerId(userLogin.getUserId());
             ServiceResult<Integer> countRes = bookService.queryBookSellingCount(query);
             List<BookSellingVo> list  = new ArrayList<BookSellingVo>();
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("deal_time");
+                query.setSortName("upload_time");
                 query.setSortOrder("desc");
                 ServiceResult<List<BookSellingVo>> result = bookService.queryBookSellingVoList(query);
                 if(result.getSuccess()){
@@ -1287,7 +1295,7 @@ public class BookController {
             return results.toMap();
 
         }catch(Exception e){
-            logger.error("BookManagerController.bookListData---------->",e);
+            logger.error("BookManagerController.bookselling---------->",e);
             successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
             return successMap;
         }
@@ -1309,7 +1317,7 @@ public class BookController {
         try{
             if(query.getBuyerName()!=null&&!query.getBuyerName().equals("")){
                 ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getBuyerName());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null&&serviceResult.getBody().size()>0){
                     query.setBuyers(serviceResult.getBody());
                 }
             }
@@ -1347,18 +1355,14 @@ public class BookController {
     @RequestMapping(value = "/bookborrow", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, ?> bookborrowData(HttpServletResponse response, @RequestBody String strJson) {
-
-
         logger.info("BookManagerController.bookborrowData---------->"+strJson);
         BookBorrowQuery query = JSONObject.parseObject(strJson,BookBorrowQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            if(query.getSellerUser()!=null&&!query.getSellerUser().equals("")){
-                ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getSellerUser());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
-                    query.setSellerIds(serviceResult.getBody());
-                }
-            }
+            //获取用户
+            UserLogin userLogin =new UserLogin();
+            userLogin.setUserId(1);
+            query.setSellerId(userLogin.getUserId());
             ServiceResult<Integer> countRes = bookService.queryBookBorrowCount(query);
             List<BookBorrowVo> list  = new ArrayList<BookBorrowVo>();
             long total = 0;
@@ -1401,7 +1405,7 @@ public class BookController {
         try{
             if(query.getUserName()!=null&&!query.getUserName().equals("")){
                 ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getUserName());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null&&serviceResult.getBody().size()>0){
                     query.setUserIds(serviceResult.getBody());
                 }
             }
@@ -1445,12 +1449,10 @@ public class BookController {
         BookGiftQuery query = JSONObject.parseObject(strJson,BookGiftQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            if(query.getSellerUser()!=null&&!query.getSellerUser().equals("")){
-                ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getSellerUser());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
-                    query.setSellerIds(serviceResult.getBody());
-                }
-            }
+            //获取用户
+            UserLogin userLogin =new UserLogin();
+            userLogin.setUserId(1);
+            query.setSellerId(userLogin.getUserId());
             ServiceResult<Integer> countRes = bookService.queryBookGiftCount(query);
             List<BookGiftVo> list  = new ArrayList<BookGiftVo>();
             long total = 0;
@@ -1493,7 +1495,7 @@ public class BookController {
         try{
             if(query.getBuyerName()!=null&&!query.getBuyerName().equals("")){
                 ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getBuyerName());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null&&serviceResult.getBody().size()>0){
                     query.setBuyers(serviceResult.getBody());
                 }
             }
@@ -1538,19 +1540,17 @@ public class BookController {
         BookAuctionQuery query = JSONObject.parseObject(strJson,BookAuctionQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            if(query.getSellerUser()!=null&&!query.getSellerUser().equals("")){
-                ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getSellerUser());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
-                    query.setSellerIds(serviceResult.getBody());
-                }
-            }
+            //获取用户
+            UserLogin userLogin =new UserLogin();
+            userLogin.setUserId(1);
+            query.setSellerId(userLogin.getUserId());
             query.setEndTime(DateUtils.getNowTimeStamp());
             ServiceResult<Integer> countRes = bookService.queryBookAuctionCount(query);
             List<BookAuctionVo> list  = new ArrayList<BookAuctionVo>();
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("end_time");
+                query.setSortName("upload_time");
                 query.setSortOrder("desc");
                 ServiceResult<List<BookAuctionVo>> result = bookService.queryBookAutionVoList(query);
                 if(result.getSuccess()){
@@ -1586,7 +1586,7 @@ public class BookController {
         try{
             if(query.getUserName()!=null&&!query.getUserName().equals("")){
                 ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getUserName());
-                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                if(serviceResult.getSuccess()&&serviceResult.getBody()!=null&&serviceResult.getBody().size()>0){
                     query.setUserIds(serviceResult.getBody());
                 }
             }
@@ -1681,25 +1681,30 @@ public class BookController {
             query.setUploadTime(DateUtils.getNowTimeStamp());
             query.setProfessionalTypeName1(userLogin.getProfessionalName1());
             query.setProfessionalTypeName2(userLogin.getProfessionalName2());
+            query.setState(1);
+            query.setUseNum(0);
             ServiceResult<BookVo> result=bookService.queryBookByBookISBN(query.getIsbn());
             if(result.getSuccess()&&result.getBody()!=null&&result.getBody().getId()!=null){
               //数据库存在该书籍 上传到此书籍下
-                Book book=result.getBody();
-                query.setSkuId(book.getId());
+                BookVo bookVo=result.getBody();
+                query.setSkuId(bookVo.getId());
                 BookQuery bookQuery=new BookQuery();
-                bookQuery.setUserableNum(query.getUseableNum());
-                bookQuery.setSellStatus(1);
-                bookQuery.setSellerNumber(book.getSellerNumber()+1);
-                bookQuery.setProfessionalTypeName1(book.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
-                bookQuery.setProfessionalTypeName2(book.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                bookQuery.setId(bookVo.getId());
+                //买卖书籍审核后添加数量
+               /* bookQuery.setPreNum(query.getUseableNum());*/
+                bookQuery.setSellerNumber(bookVo.getSellerNumber()+1);
+                bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
+                bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
                 bookService.upateBookUserNumAdd(bookQuery);
+                query.setBookName(bookVo.getBookName());
             }else{
                 Book book=new Book();
                 BookQuery bookQuery =new BookQuery();
                 book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
-                if(book!=null){
+                if(book!=null&&book.getIsbn()!=null){
                     bookQuery = JSONObject.parseObject(JSONObject.toJSONString(book),BookQuery.class);
-
+                    bookQuery.setPageNum(book.getPageNumber());
+                    query.setBookName(book.getBookName());
                 }else{
                     bookQuery.setBookName(query.getBookName());
                     bookQuery.setIntroduce(query.getRemark());
@@ -1709,22 +1714,28 @@ public class BookController {
                     bookQuery.setPricing(query.getPrice());
                     bookQuery.setSrc(query.getSrc1());
                     bookQuery.setPricingunit(query.getPricingunit());
+                    bookQuery.setIntroduce(query.getRemark());
                 }
+
                 bookQuery.setSellStatus(1);
                 bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
                 bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
                 bookQuery.setSellerNumber(1);
-                bookQuery.setUserableNum(query.getUseableNum());
+                bookQuery.setUserableNum(0);
+              /*  bookQuery.setUserableNum(query.getUseableNum());*/
+                bookQuery.setUseNum(0);
                 bookQuery.setBookTypeName1(query.getBookTypeName1());
                 bookQuery.setBookTypeName2(query.getBookTypeName2());
                 bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
                 bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setcU(userLogin.getUserId());
+                bookQuery.setcT(DateUtils.getNowTimeStamp());
                 bookService.insertBook(bookQuery);
                 query.setSkuId(bookQuery.getId());
 
             }
             int code=1;
-           ServiceResult<Integer> integerServiceResult=bookService.insertSellBook(query);
+            ServiceResult<Integer> integerServiceResult=bookService.insertSellBook(query);
             if(integerServiceResult.getSuccess() && integerServiceResult.getBody() > 0){
                 code=0;
             }

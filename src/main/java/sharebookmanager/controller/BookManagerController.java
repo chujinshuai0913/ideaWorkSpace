@@ -98,7 +98,7 @@ public class BookManagerController {
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("deal_time");
+                query.setSortName("upload_time");
                 query.setSortOrder("desc");
                 ServiceResult<List<BookSellingVo>> result = bookService.queryBookSellingVoList(query);
                 if(result.getSuccess()){
@@ -375,7 +375,7 @@ public class BookManagerController {
             long total = 0;
             if(countRes.getSuccess()  && countRes.getBody() > 0){
                 total = countRes.getBody();
-                query.setSortName("end_time");
+                query.setSortName("upload_time");
                 query.setSortOrder("desc");
                 ServiceResult<List<BookAuctionVo>> result = bookService.queryBookAutionVoList(query);
                 if(result.getSuccess()){
@@ -504,7 +504,7 @@ public class BookManagerController {
                         if(bookMap.get(bookSelling.getSkuId())!=null){
                              bookMap.put(bookSelling.getSkuId(),bookMap.get(bookSelling.getSkuId())+bookSelling.getUseableNum());
                         }else {
-                            bookMap.put(bookSelling.getSkuId(),bookSelling.getUseableNum());
+                             bookMap.put(bookSelling.getSkuId(),bookSelling.getUseableNum());
                         }
 
                     }
@@ -517,7 +517,7 @@ public class BookManagerController {
                      BookQuery  bookQuery=new BookQuery();
                     for (Map.Entry<Integer, Integer> entry : bookMap.entrySet()) {
                         bookQuery.setId(entry.getKey());
-                        bookQuery.setPreNum( entry.getValue());
+                        bookQuery.setPreNum(entry.getValue());
                         bookService.upateBookUserNumAdd(bookQuery);
                     }
                 } else {

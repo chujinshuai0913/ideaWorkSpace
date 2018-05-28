@@ -197,8 +197,15 @@
 
             },
             {
-                field: 'phoneNumber',
+                field: 'isbn',
                 title: 'ISBN',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: 'isbn10',
+                title: 'ISBN10',
                 align: "center",
                 formatter: formatterToValue
 
@@ -231,7 +238,7 @@
                 title: '定价',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if(row.price){
+                    if(row.pricing){
                         return  row.pricing + ' ' + row.pricingunit;
                     }
                     else{

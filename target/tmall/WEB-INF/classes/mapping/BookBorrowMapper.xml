@@ -53,6 +53,11 @@
     from book_borrow
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectBookBorrowById" resultMap="BaseResultMap" parameterType="common.query.BookBorrowQuery" >
+        select *
+        from book_borrow
+        where id = #{id,jdbcType=INTEGER} AND status=#{status}
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_borrow
     where id = #{id,jdbcType=INTEGER}
@@ -452,7 +457,8 @@
     FROM book_borrow
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="bookName!=null and bookName !=''" >  <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
+    <if test="useNum == 1" >   AND  useable_num>0   </if>
     <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
     <if test="sellerIds != null" >
       AND  seller_id
@@ -460,13 +466,17 @@
         #{item}
       </foreach>
     </if>
+      <if test="sellerId != null" >
+          AND  seller_id =#{sellerId}
+      </if>
   </select>
   <select id="queryBookBorrowList" resultMap="BaseResultMap" parameterType="common.query.BookBorrowQuery">
     SELECT *
     FROM book_borrow
     WHERE 1=1
     <if test="status!=null" >   AND status=#{status}   </if>
-    <if test="useNum == 1" >   AND  useable_num+pre_num>0   </if>
+    <if test="bookName!=null and bookName !=''" >  <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
+    <if test="useNum == 1" >   AND  useable_num>0   </if>
     <if test="skuId != null" >   AND  sku_id = #{skuId}   </if>
     <if test="sellerIds != null" >
       AND  seller_id

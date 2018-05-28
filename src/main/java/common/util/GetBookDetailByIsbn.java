@@ -34,6 +34,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -123,9 +125,14 @@ public class GetBookDetailByIsbn {
         book.setAuthor(author);
         book.setSubtitle( map.get("subtitle"));
         String author_intro=map.get("author_intro").toString();
-        author_intro=author_intro.replace("/n", "<br>");
-        book.setAuthorIntro(author_intro);
-        book.setPricing(new BigDecimal(map.get("price").replace("元","")));
+        author_intro=author_intro.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        book.setAuthorIntro("&nbsp;&nbsp;"+author_intro);
+        Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])");
+        Matcher matcher = pattern.matcher(map.get("price"));
+        if(matcher.find()){
+            book.setPricing(new BigDecimal( matcher.group(1)));
+         }
+       /*  book.setPricing(new BigDecimal((map.get("price").replace("元", ""))));*/
         book.setPricingunit("元");
         book.setPress(map.get("publisher"));
         book.setPressTime(DateUtils.getDayUnixTimeStamp(map.get("pubdate")));
@@ -133,7 +140,10 @@ public class GetBookDetailByIsbn {
         book.setIsbn(Long.parseLong(map.get("isbn13")));
         book.setIsbn10(Long.parseLong(map.get("isbn10")));
         book.setBinding(map.get("binding"));
-        book.setIntroduce(map.get("summary"));
+
+        String summary=map.get("summary").toString();
+        summary=summary.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        book.setIntroduce("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+summary);
         String catalog=map.get("catalog").toString();
         catalog=catalog.replace("/n", "<br>");
         book.setCatalog(catalog);

@@ -19,6 +19,8 @@ public interface BookAuctionMapper {
 
     BookAuction selectByPrimaryKey(Integer id);
 
+    BookAuction selectBookAuctionById(@Param("id")  Integer id,@Param("status") Integer status);
+
     int updateByPrimaryKeySelective(BookAuction record);
 
     int updateByPrimaryKey(BookAuction record);
