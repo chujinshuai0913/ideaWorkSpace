@@ -38,7 +38,6 @@ public class DateUtils {
         }
         return 0;
     }
-
     /**
      * 将日期转换为 时间戳
      * @author yangweiqiang 2016.12.01

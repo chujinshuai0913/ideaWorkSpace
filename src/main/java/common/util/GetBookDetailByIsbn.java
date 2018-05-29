@@ -110,71 +110,82 @@ public class GetBookDetailByIsbn {
     }
 
     public static Book getBookByMap(Map<String, String> map) {
-
-        Book book=new Book();
-        String author = map.get("author").toString();
-        author = author.replace("[", "");
-        author = author.replace("]", "");
-        author = author.replace("\"", "");
-        book.setBookName(map.get("title"));
-        String translator=map.get("translator").toString();
-        translator = translator.replace("[", "");
-        translator = translator.replace("]", "");
-        translator = translator.replace("\"", "");
-        book.setTranslator(translator);
-        book.setAuthor(author);
-        book.setSubtitle( map.get("subtitle"));
-        String author_intro=map.get("author_intro").toString();
-        author_intro=author_intro.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-        book.setAuthorIntro("&nbsp;&nbsp;"+author_intro);
-        Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])");
-        Matcher matcher = pattern.matcher(map.get("price"));
-        if(matcher.find()){
-            book.setPricing(new BigDecimal( matcher.group(1)));
-         }
-       /*  book.setPricing(new BigDecimal((map.get("price").replace("元", ""))));*/
-        book.setPricingunit("元");
-        book.setPress(map.get("publisher"));
-        book.setPressTime(DateUtils.getDayUnixTimeStamp(map.get("pubdate")));
-        book.setPageNumber(Integer.parseInt(map.get("pages")));
-        book.setIsbn(Long.parseLong(map.get("isbn13")));
-        book.setIsbn10(Long.parseLong(map.get("isbn10")));
-        book.setBinding(map.get("binding"));
-
-        String summary=map.get("summary").toString();
-        summary=summary.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-        book.setIntroduce("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+summary);
-        String catalog=map.get("catalog").toString();
-        catalog=catalog.replace("/n", "<br>");
-        book.setCatalog(catalog);
-
-        Map<String, String> map2 = null;
         try {
-            map2 = toMap(map.get("images").toString().replace("\"", "'"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-       /* String url1= (map2.get("small")).substring(0, (map2.get("small")).indexOf("/")+1).trim();
-        String url2= (map2.get("small")).substring((map2.get("small")).indexOf("/")+1).trim();
-        if(!url2.substring(0, (map2.get("small")).indexOf("/")).trim().equals("/")){
-            book.setSrc(url1+"/"+url2);
-        }*/
-        book.setSrc(ImgDown.getImgDwon(map2.get("small")).trim());
-        book.setSrc2(ImgDown.getImgDwon(map2.get("medium")).trim());
-        book.setSrc3(ImgDown.getImgDwon(map2.get("large")).trim());
-        JSONArray json = JSONArray.parseArray(map.get("tags")); // 首先把字符串转成 JSONArray  对象
-        String tag=null;
-        if (json.size() > 0) {
-            for (int i = 0; i < json.size(); i++) {
-                JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
-                if(i==0){
-                    tag=job.get("title")+"";
-                }else {
-                    tag = tag +','+ job.get("title");
+            Book book=new Book();
+            String author = map.get("author").toString();
+            author = author.replace("[", "");
+            author = author.replace("]", "");
+            author = author.replace("\"", "");
+            book.setBookName(map.get("title"));
+            String translator=map.get("translator").toString();
+            translator = translator.replace("[", "");
+            translator = translator.replace("]", "");
+            translator = translator.replace("\"", "");
+            book.setTranslator(translator);
+            book.setAuthor(author);
+            book.setSubtitle( map.get("subtitle"));
+            String author_intro=map.get("author_intro").toString();
+            author_intro=author_intro.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+            book.setAuthorIntro("&nbsp;&nbsp;"+author_intro);
+            Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])");
+            Matcher matcher = pattern.matcher(map.get("price"));
+            if(matcher.find()){
+                book.setPricing(new BigDecimal( matcher.group(1)));
+            }
+            /*  book.setPricing(new BigDecimal((map.get("price").replace("元", ""))));*/
+            book.setPricingunit("元");
+            book.setPress(map.get("publisher"));
+            book.setPressTime(DateUtils.getDayUnixTimeStamp(map.get("pubdate")));
+            if(book.getPressTime()<=0){
+                String dateStr=map.get("pubdate")+"-01";
+                book.setPressTime(DateUtils.getDayUnixTimeStamp(dateStr.trim()));
+            }
+            if(!map.get("pages").equals("")){
+                book.setPageNumber(Integer.parseInt(map.get("pages").trim()));
+            }
+            if(!map.get("isbn13").equals("")){
+                book.setIsbn(Long.parseLong(map.get("isbn13").trim()));
+            }
+            book.setIsbn10(map.get("isbn10"));
+            book.setBinding(map.get("binding"));
+            String summary=map.get("summary").toString();
+            summary=summary.replace("/n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+            book.setIntroduce("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+summary);
+            String catalog=map.get("catalog").toString();
+            catalog=catalog.replace("/n", "<br>");
+            book.setCatalog(catalog);
+
+            Map<String, String> map2 = null;
+            try {
+                map2 = toMap(map.get("images").toString().replace("\"", "'"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+               /* String url1= (map2.get("small")).substring(0, (map2.get("small")).indexOf("/")+1).trim();
+                String url2= (map2.get("small")).substring((map2.get("small")).indexOf("/")+1).trim();
+                if(!url2.substring(0, (map2.get("small")).indexOf("/")).trim().equals("/")){
+                    book.setSrc(url1+"/"+url2);
+                }*/
+            book.setSrc(ImgDown.getImgDwon(map2.get("small")).trim());
+            book.setSrc2(ImgDown.getImgDwon(map2.get("medium")).trim());
+            book.setSrc3(ImgDown.getImgDwon(map2.get("large")).trim());
+            JSONArray json = JSONArray.parseArray(map.get("tags")); // 首先把字符串转成 JSONArray  对象
+            String tag=null;
+            if (json.size() > 0) {
+                for (int i = 0; i < json.size(); i++) {
+                    JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                    if(i==0){
+                        tag=job.get("title")+"";
+                    }else {
+                        tag = tag +','+ job.get("title");
+                    }
                 }
             }
+            book.setTag(tag);
+            return  book;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
-        book.setTag(tag);
-        return  book;
     }
 }

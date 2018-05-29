@@ -100,7 +100,7 @@ public class BookQuery extends QueryParam {
 
     private String subtitle;
 
-    private Long isbn10;
+    private String isbn10;
 
     private String translator;
 
@@ -139,11 +139,11 @@ public class BookQuery extends QueryParam {
         this.subtitle = subtitle;
     }
 
-    public Long getIsbn10() {
+    public String getIsbn10() {
         return isbn10;
     }
 
-    public void setIsbn10(Long isbn10) {
+    public void setIsbn10(String isbn10) {
         this.isbn10 = isbn10;
     }
 

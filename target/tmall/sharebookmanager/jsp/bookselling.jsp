@@ -243,13 +243,13 @@
                 align: "center",
                 formatter: formatterToValue
 
-            }, {
+            },/*{
                 field: 'dTime',
                 title: '上次交易时间',
                 align: "center",
                 formatter: formatterToValue
 
-            },{
+            },*/{
                 field: 'professionalTypeName1',
                 title: '学院',
                 align: "center",

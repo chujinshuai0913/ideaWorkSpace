@@ -232,7 +232,7 @@
                         list = JSON.parse(JSON.stringify(data.data));
                         if(list.length>0){
                             list.forEach(function (item) {
-                                $(".bodyPagefirst_none_up").find(".carousel").append("<li><img src='${basePath}/sharebook/img/shareactivity/"+item.src+"'></li>");
+                                $(".bodyPagefirst_none_up").find(".carousel").append("<li><img src='${basePath}/sharebook/img/"+item.src+"'></li>");
                             })
                             imgCycle();
                         }
@@ -266,7 +266,7 @@
                             list.forEach(function (item) {
                                 $(".bodyPagefirst_right_content").append("<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> " +
                                     "<div class='bodyPagefirst_right_content_grid '><div class='bodyPagefirst_right_content_left'>" +
-                                    " <img src='${basePath}/sharebook/img/book/"+item.src+"' alt='11' /></div><div class='bodyPagefirst_right_content_right'>" +
+                                    " <img src='${basePath}/sharebook/img/"+item.src+"' alt='11' /></div><div class='bodyPagefirst_right_content_right'>" +
                                     "<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></div></a>");
                             })
                         }
@@ -452,7 +452,6 @@
                     if (data.error_code == 0){
                         list = JSON.parse(JSON.stringify(data.data));
                         if(list.length>0){
-
                             $("#index1F").find("li").remove();
                             list.forEach(function (item) {
                                 $("#index1F").append("<li><dl class='fenleiLeft'><dt>"+item.className1+"</dt> <dt class='dt_value' style='display: none'>"+item.id+"</dt></dl></li>");

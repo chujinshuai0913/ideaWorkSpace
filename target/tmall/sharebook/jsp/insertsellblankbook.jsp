@@ -125,7 +125,6 @@
                     <form id="form_insert_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
                           onkeydown="if(event.keyCode==13){return false;}">
                         <input style="display: none" name="isbn" value="${requestScope.book.isbn}">
-
                         <div class="form-group" style="margin-left: 40px;">
                             <label onclick="$(this).next().focus();">图片一</label>
                             <input  style="margin-left:10px"  name="src1" type="text" id="uploadImg1" class="form-control" placeholder="图片一" readonly/>
@@ -156,23 +155,19 @@
                         </div>
                         <div class="form-group" style="margin-left: 40px;margin-top: 20px">
                             <label onclick="$(this).next().focus();">一级分类</label>
-                            <select style="margin-left: 25px"  type="text" name="bookTypeName1"  class="form-control" >
-                                <option>青春文学</option>
-                                <option>历史政治</option>
+                            <select style="margin-left: 25px"  type="text" id="bookTypeName1" name="bookTypeName1"  class="form-control" >
                             </select>
                         </div>
                         <div class="form-group" style="margin-left: 90px;margin-top: 20px">
                             <label  onclick="$(this).next().focus();">二级分类</label>
-                            <select style="margin-left: 25px" type="text" name="bookTypeName2"  class="form-control" >
-                                <option>青春文学</option>
-                                <option>历史政治</option>
+                            <select style="margin-left: 25px" type="text" id="bookTypeName2" name="bookTypeName2"  class="form-control" >
                             </select>
                         </div>
                         <div class="form-group" style="margin-left: 40px;margin-top:20px">
                             <label  onclick="$(this).next().focus();">介绍</label>
                             <textarea class="form-control" name="remark" style="width:600px;height: 200px;margin-left: 25px">
 
-                                    </textarea>
+                            </textarea>
                         </div>
                         <div>
                             <div class="form-group" style="margin-left: 500px;margin-top:50px;margin-bottom: 200px;">
@@ -396,6 +391,13 @@
             }
         });
     }
+    function convertSerializeArrayToObject(array) {
+        var obj = {};
+        for(var i = 0, length = array.length; i<length; i++){
+            obj[array[i]['name']] =array[i]['value'];
+        }
+        return obj;
+    }
     $('#formInsertBtn').on('click', function () {
         $.ajax({
             type : "post",
@@ -421,12 +423,72 @@
                 console.log(error);
             }})
     });
-    function convertSerializeArrayToObject(array) {
-        var obj = {};
-        for(var i = 0, length = array.length; i<length; i++){
-            obj[array[i]['name']] =array[i]['value'];
-        }
-        return obj;
+
+
+    //图书分类
+    $.ajax({
+        type : "post",
+        async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "/ideaWorkSpace/bookshare/bookclassinformation",    //请求发送到TestServlet处
+        data: {id:1},
+        contentType:"text/html;charset=utf-8",
+        dataType: "json",   //返回格式为json
+        success : function(data) {
+            try {
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                if (data.error_code == 0){
+                    list = JSON.parse(JSON.stringify(data.data));
+                    if(list.length>0){
+                        $("#bookTypeName1").find("option").remove();
+                        list.forEach(function (item) {
+                            $("#bookTypeName1").append("<option value='"+item.id+"'>"+item.className1+"</option>");
+                        })
+                    }
+                }
+            } catch (e){
+                console.log(e.message);
+            }
+
+        },
+        complete: function() {
+        },
+        error: function(error) {
+            console.log(error);
+        }})
+    //图书二类
+    $("#bookTypeName1").change(function(){
+        Class2BookTopAjax( $("#bookTypeName1").val());
+    });
+    function Class2BookTopAjax(classId1){
+        $.ajax({
+            type : "post",
+            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "/ideaWorkSpace/bookshare/bookclass2information",    //请求发送到TestServlet处
+            data: JSON.stringify($.extend(true, {},{classId1:classId1})),
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.error_code == 0){
+                        list = JSON.parse(JSON.stringify(data.data));
+                        $("#bookTypeName2").find("option").remove();
+                        if(list.length>0){
+                            list.forEach(function (item) {
+                                $("#bookTypeName2").append("<option >"+item.className2+"</option>");
+                            })
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
     }
 </script>
 </html>

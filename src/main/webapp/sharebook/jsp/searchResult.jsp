@@ -79,26 +79,6 @@
 		</div>
 	</div>
 	<div class="bodyPage_searchResult">
-		<div class="bodyPage_searchResult_head">
-			<div class="bodyPage_searchResult_head_up">
-				<p>搜索:<span>${requestScope.bookName}  ${requestScope.author} ${requestScope.ISBN} ${requestScope.press}</span>" （共有图书<span>${requestScope.total}</span>种）</p>
-			</div>
-			<div class="bodyPage_searchResult_head_down">
-				<form action="/ideaWorkSpace/bookshare/searchresult"  name="myform" method="post">高级搜索
-					书名：<input name="bookName" class="searchResult_input" type="text" value="${requestScope.bookName}" />
-					作者：<input name="author" class="searchResult_input"  type="text" value="${requestScope.author}" />
-					ISBN：<input name="ISBN" class="searchResult_input" type="text" value="${requestScope.ISBN}" />
-					出版社：  <input name="press" class="searchResult_input" type="text" value="${requestScope.press}" />
-					类型：<select name="classType" class="searchResult_input" >
-						<option value="" <c:if test='${requestScope.classType== ""}'>  selected='selected'  </c:if>>全部</option>
-						<option value="1" <c:if test='${requestScope.classType== "1"}'>  selected='selected'  </c:if>>买卖</option>
-						<option value="2" <c:if test='${requestScope.classType== "2"}'>  selected='selected'  </c:if>>租借</option>
-						<option value="3" <c:if test='${requestScope.classType== "3"}'>  selected='selected'  </c:if>>赠予</option>
-					</select>
-					<button class="button small" type="submit">搜索</button>
-				</form>
-			</div>
-		</div>
 		<div class="bodyPage_searchResult_body">
 			<div class="bodyPage_searchResult_body_right">
 				<div class="bodyPage_classBook_left_title">
@@ -106,6 +86,26 @@
 				</div>
 			</div>
 			<div class="bodyPage_searchResult_body_left">
+				<div class="bodyPage_searchResult_head">
+					<div class="bodyPage_searchResult_head_up">
+						<p>搜索:<span>${requestScope.bookName}  ${requestScope.author} ${requestScope.ISBN} ${requestScope.press}</span>" （共有图书<span>${requestScope.total}</span>种）</p>
+					</div>
+					<div class="bodyPage_searchResult_head_down"  style="width: 100%;">
+						<form action="/ideaWorkSpace/bookshare/searchresult"  name="myform" method="post">高级搜索
+							书名：<input name="bookName" class="searchResult_input" type="text" value="${requestScope.bookName}" />
+							作者：<input name="author" class="searchResult_input"  type="text" value="${requestScope.author}" />
+							ISBN：<input name="ISBN" class="searchResult_input" type="text" value="${requestScope.ISBN}" />
+							出版社：  <input name="press" class="searchResult_input" type="text" value="${requestScope.press}" />
+							类型：<select name="classType" class="searchResult_input" >
+								<option value="" <c:if test='${requestScope.classType== ""}'>  selected='selected'  </c:if>>全部</option>
+								<option value="1" <c:if test='${requestScope.classType== "1"}'>  selected='selected'  </c:if>>买卖</option>
+								<option value="2" <c:if test='${requestScope.classType== "2"}'>  selected='selected'  </c:if>>租借</option>
+								<option value="3" <c:if test='${requestScope.classType== "3"}'>  selected='selected'  </c:if>>赠予</option>
+							</select>
+							<button class="button small" type="submit">搜索</button>
+						</form>
+					</div>
+				</div>
 				<c:forEach items="${requestScope.searchResult }" var="s">
 					<div class="bodyPage_searchResult_body_text">
 						<div class="bodyPage_searchResult_body_text_left " style="margin-top: 15px;">
@@ -146,7 +146,7 @@
                         if(list.length>0){
                             list.forEach(function (item) {
                                 $(".bodyPage_searchResult_body_right").append("<div class='bodyPage_classBook_left_content'><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'>  <div class='bodyPage_classBook_left_content_left'>"+
-                                    "<img src='${basePath}/sharebook/img/book/"+item.src+"' alt='11' /></div><div class='bodyPage_classBook_left_content_right'>" +
+                                    "<img src='${basePath}/sharebook/img/"+item.src+"' alt='11' /></div><div class='bodyPage_classBook_left_content_right'>" +
                                     "<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></a></div>");
                             })
                         }

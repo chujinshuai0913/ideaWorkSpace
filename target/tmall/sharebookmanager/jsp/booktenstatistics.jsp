@@ -167,7 +167,7 @@
                 }
             ]
         };
-        myChart.setOption(option);
+        myChart.setOption(option,true);
         myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
 
         var bookNames=[];    //类别数组（实际用来盛放X轴坐标值）
@@ -185,6 +185,7 @@
                 try {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象
                 if (data.error_code == 0){
+                   // myChart = echarts.init(document.getElementById('main'),'macarons');
                     list = JSON.parse(JSON.stringify(data.data));
                     list.list.forEach(function (item) {
                         bookNames.push(item.bookName);

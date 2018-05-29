@@ -3,6 +3,7 @@ package common.service.Impl;
 import com.alibaba.fastjson.JSONObject;
 import common.constant.ConstantsUtils;
 import common.constant.UserShareCodeEum;
+import common.constant.UserStatusEnum;
 import common.mapper.*;
 import common.model.*;
 import common.query.RecordSellingQuery;
@@ -123,11 +124,7 @@ public class UserServiceImpl implements UserService{
                     userShareVo.setcName("");
                     userShareVo.seteUser("");
                     userShareVo.setpUser("");
-                    if(ConstantsUtils.UserShareCode.STATUS==userShare.getStatus()){
-                        userShareVo.setStatusName(UserShareCodeEum.STAUS.getName());
-                    }else {
-                        userShareVo.setStatusName(UserShareCodeEum.STATUS_NOT.getName());
-                    }
+                    userShareVo.setStatusName(UserStatusEnum.getNameMap().get(userShare.getStatus()));
                     if (userShare.getRegisteredTime()!=null&&userShare.getRegisteredTime() > 0) {
                         userShareVo.setrTime(DateUtils.getDateStringByTimeStamp(userShare.getRegisteredTime(), DateUtils.YMDHMS));
                     }

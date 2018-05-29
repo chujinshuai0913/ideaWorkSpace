@@ -360,7 +360,7 @@
     });
     function imgDialog(e, value, row, index){
         $('#modal_img').modal("show");
-        $("#myImage").attr('src',"${basePath}/sharebook/img"+row.src+"");
+        $("#myImage").attr('src',"${basePath}/sharebook/img/"+row.src+"");
     }
     var $table = $("#mainTable");
     $table.bootstrapTable({

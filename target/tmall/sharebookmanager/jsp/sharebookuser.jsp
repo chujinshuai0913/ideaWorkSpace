@@ -71,6 +71,7 @@
                     <option value="">全部</option>
                     <option value="1"> 可用</option>
                     <option value="2"> 不可用</option>
+                    <option value="3"> 自营</option>
                 </select>
             </div>
             <div class="form-group" style="margin-left: 50px;">

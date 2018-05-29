@@ -150,7 +150,7 @@
                     if(list.length>0){
                         list.forEach(function (item) {
                             $(".bodyPage_classBook_left").append("<div class='bodyPage_classBook_left_content'><a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <div class='bodyPage_classBook_left_content_left'>"+
-                                "<img src='${basePath}/sharebook/img/book/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'>" +
+                                "<img src='${basePath}/sharebook/img/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'>" +
                             "<p>"+item.bookName+"</p><p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p> </div></a></div>");
                         })
                     }

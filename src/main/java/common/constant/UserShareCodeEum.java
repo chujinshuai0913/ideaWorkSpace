@@ -13,8 +13,8 @@ import java.io.Serializable;
  */
 public enum UserShareCodeEum implements Serializable {
     STAUS(ConstantsUtils.UserShareCode.STATUS,"可用"),
-    STATUS_NOT(ConstantsUtils.UserShareCode.STATUS_NOT,"不可用");
-
+    STATUS_NOT(ConstantsUtils.UserShareCode.STATUS_NOT,"不可用"),
+    USER_SELF_STATUS(ConstantsUtils.UserShareCode.USER_SELF_STATUS,"自营");
     private int code;
     private String name;
 

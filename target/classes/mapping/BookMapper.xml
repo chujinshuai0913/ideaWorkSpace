@@ -39,7 +39,7 @@
       <arg column="auction_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="binding" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="isbn10" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="isbn10" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="translator" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="tag" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="src2" jdbcType="VARCHAR" javaType="java.lang.String" />

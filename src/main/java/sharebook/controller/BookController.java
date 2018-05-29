@@ -1668,10 +1668,13 @@ public class BookController {
         BookSellingQuery query = JSONObject.parseObject(strJson.trim(),BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
+            query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
             //用户id
             //登陆的用户
             UserLogin userLogin=new UserLogin();
             userLogin.setUserId(1);
+            userLogin.setProfessionalName1("软件学院");
+            userLogin.setProfessionalName2("软件工程");
             query.setSellerId(userLogin.getUserId());
             query.setcT(DateUtils.getNowTimeStamp());
             query.setcU(userLogin.getUserId());
