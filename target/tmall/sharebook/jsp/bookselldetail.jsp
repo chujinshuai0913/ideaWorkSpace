@@ -37,7 +37,7 @@
 			</div>
 			<div class="headPagebody_none ">
 				<form action="/ideaWorkSpace/bookshare/searchresult1"  name="myform" method="post" >
-					<div class="headPagebody_none_search " style="height: 48px" >
+					<div class="headPagebody_none_search " style="height: 38px" >
 						<input class="headPagebody_none_search_text " name="bookName1" type="text"  placeholder="书名" value="${requestScope.bookName1}"/>
 						<button class="headPagebody_none_search_icon"  type="submit">搜索</button>
 						<select name="classType1" name="searchSelect " class="headPagebody_none_search_select">

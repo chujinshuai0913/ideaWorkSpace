@@ -560,7 +560,7 @@
                 {
                     align: "center",
                     field : 'auctionName',
-                    title : '场次名称',
+                    title : '书名',
                     formatter: formatterToValue
                 },
                 {

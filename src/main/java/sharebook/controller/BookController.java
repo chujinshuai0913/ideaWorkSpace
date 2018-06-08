@@ -1696,14 +1696,20 @@ public class BookController {
                 //买卖书籍审核后添加数量
                /* bookQuery.setPreNum(query.getUseableNum());*/
                 bookQuery.setSellerNumber(bookVo.getSellerNumber()+1);
-                bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
-                bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                if(bookQuery.getProfessionalTypeName1().indexOf(query.getProfessionalTypeName1())==-1){
+                    bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
+                }
+                if(bookQuery.getProfessionalTypeName2().indexOf(query.getProfessionalTypeName2())==-1){
+                    bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                }
                 bookService.upateBookUserNumAdd(bookQuery);
                 query.setBookName(bookVo.getBookName());
             }else{
                 Book book=new Book();
                 BookQuery bookQuery =new BookQuery();
-                book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
+                if(query.getIsbn()!=null){
+                    book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
+                }
                 if(book!=null&&book.getIsbn()!=null){
                     bookQuery = JSONObject.parseObject(JSONObject.toJSONString(book),BookQuery.class);
                     bookQuery.setPageNum(book.getPageNumber());
@@ -1718,6 +1724,7 @@ public class BookController {
                     bookQuery.setSrc(query.getSrc1());
                     bookQuery.setPricingunit(query.getPricingunit());
                     bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
                 }
 
                 bookQuery.setSellStatus(1);
@@ -1753,9 +1760,319 @@ public class BookController {
     }
 
     //租借书籍上传
-    //赠予书籍上传
-    //竞拍书籍上传
+    @RequestMapping(value = "/insertborrowbook", method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public Map<String, ?> insertborrowbook(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.insertborrowbook---------->"+strJson);
+        BookBorrowQuery query = JSONObject.parseObject(strJson.trim(),BookBorrowQuery.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
+            //用户id
+            //登陆的用户
+            UserLogin userLogin=new UserLogin();
+            userLogin.setUserId(1);
+            userLogin.setRealUserName("楚金帅");
+            userLogin.setProfessionalName1("软件学院");
+            userLogin.setProfessionalName2("软件工程");
+            query.setSellerId(userLogin.getUserId());
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setcU(userLogin.getUserId());
+            query.setSellerId(userLogin.getUserId());
+            query.setStatus(ConstantsUtils.BookAuditCode.AUDIT_NOT);
+            query.setPricingunit("元/天");
+            query.setUploadTime(DateUtils.getNowTimeStamp());
+            query.setProfessionalTypeName1(userLogin.getProfessionalName1());
+            query.setProfessionalTypeName2(userLogin.getProfessionalName2());
+            query.setState(2);
+            query.setUseNum(0);
+            ServiceResult<BookVo> result=bookService.queryBookByBookISBN(query.getIsbn());
+            if(result.getSuccess()&&result.getBody()!=null&&result.getBody().getId()!=null){
+                //数据库存在该书籍 上传到此书籍下
+                BookVo bookVo=result.getBody();
+                query.setSkuId(bookVo.getId());
+                BookQuery bookQuery=new BookQuery();
+                bookQuery.setId(bookVo.getId());
+                //买卖书籍审核后添加数量
+                 bookQuery.setPreNum(query.getUseableNum());
+                bookQuery.setSellerNumber(bookVo.getSellerNumber()+1);
+                if(bookQuery.getProfessionalTypeName1().indexOf(query.getProfessionalTypeName1())==-1){
+                    bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
+                }
+                if(bookQuery.getProfessionalTypeName2().indexOf(query.getProfessionalTypeName2())==-1){
+                    bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                }
+                bookService.upateBookUserNumAdd(bookQuery);
+                query.setBookName(bookVo.getBookName());
+            }else{
+                Book book=new Book();
+                BookQuery bookQuery =new BookQuery();
+                if(query.getIsbn()!=null){
+                    book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
+                }
+                if(book!=null&&book.getIsbn()!=null){
+                    bookQuery = JSONObject.parseObject(JSONObject.toJSONString(book),BookQuery.class);
+                    bookQuery.setPageNum(book.getPageNumber());
+                    query.setBookName(book.getBookName());
+                }else{
+                    bookQuery.setBookName(query.getBookName());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setPressTime(DateUtils.getNowTimeStamp());
+                    bookQuery.setPress(userLogin.getRealUserName());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setPricing(query.getPrice());
+                    bookQuery.setSrc(query.getSrc1());
+                    bookQuery.setPricingunit(query.getPricingunit());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setPress("自己的资料出借");
+                }
+                bookQuery.setBorrowStatus(1);
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setSellerNumber(1);
+                bookQuery.setUserableNum(0);
+                bookQuery.setUserableNum(query.getUseableNum());
+                bookQuery.setUseNum(0);
+                bookQuery.setBookTypeName1(query.getBookTypeName1());
+                bookQuery.setBookTypeName2(query.getBookTypeName2());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setcU(userLogin.getUserId());
+                bookQuery.setcT(DateUtils.getNowTimeStamp());
+                bookService.insertBook(bookQuery);
+                query.setSkuId(bookQuery.getId());
 
+            }
+            int code=1;
+            ServiceResult<Integer> integerServiceResult=bookService.insertBorrowBook(query);
+            if(integerServiceResult.getSuccess() && integerServiceResult.getBody() > 0){
+                code=0;
+            }
+            DataResult results= new DataResult(code, new Book());
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertborrowbook---------->",e);
+            successMap.put("resultMassage", "信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+    //赠予书籍上传
+    @RequestMapping(value = "/insertgiftbook", method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public Map<String, ?> insertgiftbook(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.insertgiftbook---------->"+strJson);
+        BookGiftQuery query = JSONObject.parseObject(strJson.trim(),BookGiftQuery.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
+            //用户id
+            //登陆的用户
+            UserLogin userLogin=new UserLogin();
+            userLogin.setUserId(1);
+            userLogin.setProfessionalName1("软件学院");
+            userLogin.setProfessionalName2("软件工程");
+            query.setSellerId(userLogin.getUserId());
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setcU(userLogin.getUserId());
+            query.setSellerId(userLogin.getUserId());
+            query.setStatus(ConstantsUtils.BookAuditCode.AUDIT_NOT);
+            query.setUploadTime(DateUtils.getNowTimeStamp());
+            query.setProfessionalTypeName1(userLogin.getProfessionalName1());
+            query.setProfessionalTypeName2(userLogin.getProfessionalName2());
+            query.setState(3);
+            query.setUseNum(0);
+            ServiceResult<BookVo> result=bookService.queryBookByBookISBN(query.getIsbn());
+            if(result.getSuccess()&&result.getBody()!=null&&result.getBody().getId()!=null){
+                //数据库存在该书籍 上传到此书籍下
+                BookVo bookVo=result.getBody();
+                query.setSkuId(bookVo.getId());
+                BookQuery bookQuery=new BookQuery();
+                bookQuery.setId(bookVo.getId());
+                //买卖书籍审核后添加数量
+                bookQuery.setPreNum(query.getUseableNum());
+                bookQuery.setSellerNumber(bookVo.getSellerNumber()+1);
+                if(bookQuery.getProfessionalTypeName1().indexOf(query.getProfessionalTypeName1())==-1){
+                    bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
+                }
+                if(bookQuery.getProfessionalTypeName2().indexOf(query.getProfessionalTypeName2())==-1){
+                    bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                }
+                bookService.upateBookUserNumAdd(bookQuery);
+                query.setBookName(bookVo.getBookName());
+            }else{
+                Book book=new Book();
+                BookQuery bookQuery =new BookQuery();
+                if(query.getIsbn()!=null){
+                    book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
+                }
+                if(book!=null&&book.getIsbn()!=null){
+                    bookQuery = JSONObject.parseObject(JSONObject.toJSONString(book),BookQuery.class);
+                    bookQuery.setPageNum(book.getPageNumber());
+                    query.setBookName(book.getBookName());
+                }else{
+                    bookQuery.setBookName(query.getBookName());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setPressTime(DateUtils.getNowTimeStamp());
+                    bookQuery.setPress(userLogin.getRealUserName());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setSrc(query.getSrc1());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setPress("自己的资料赠予");
+                }
+
+                bookQuery.setGiftStatus(1);
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setSellerNumber(1);
+                bookQuery.setUserableNum(0);
+               bookQuery.setUserableNum(query.getUseableNum());
+                bookQuery.setUseNum(0);
+                bookQuery.setBookTypeName1(query.getBookTypeName1());
+                bookQuery.setBookTypeName2(query.getBookTypeName2());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setcU(userLogin.getUserId());
+                bookQuery.setcT(DateUtils.getNowTimeStamp());
+                bookService.insertBook(bookQuery);
+                query.setSkuId(bookQuery.getId());
+
+            }
+            int code=1;
+            ServiceResult<Integer> integerServiceResult=bookService.insertGiftBook(query);
+            if(integerServiceResult.getSuccess() && integerServiceResult.getBody() > 0){
+                code=0;
+            }
+            DataResult results= new DataResult(code, new Book());
+            return results.toMap();
+
+        }catch(Exception e){
+            logger.error("BookManagerController.insertgiftbook---------->",e);
+            successMap.put("resultMassage", "信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
+    //竞拍书籍上传
+    @RequestMapping(value = "/insertauctionbook", method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public Map<String, ?> insertauctionbook(HttpServletResponse response, @RequestBody String strJson) {
+        logger.info("BookManagerController.insertauctionbook---------->"+strJson);
+        BookAuctionQuery query = JSONObject.parseObject(strJson.trim(),BookAuctionQuery.class);
+        Map<String,Object> successMap = new HashMap<String,Object>();
+        try{
+            query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
+            //用户id
+            //登陆的用户
+            UserLogin userLogin=new UserLogin();
+            userLogin.setUserId(1);
+            userLogin.setRealUserName("楚金帅");
+            userLogin.setProfessionalName1("软件学院");
+            userLogin.setProfessionalName2("软件工程");
+            query.setSellerId(userLogin.getUserId());
+            query.setcT(DateUtils.getNowTimeStamp());
+            query.setcU(userLogin.getUserId());
+            query.setSellerId(userLogin.getUserId());
+            query.setStatus(ConstantsUtils.BookAuditCode.AUDIT_NOT);
+            query.setUploadTime(DateUtils.getNowTimeStamp());
+            query.setProfessionalTypeName1(userLogin.getProfessionalName1());
+            query.setProfessionalTypeName2(userLogin.getProfessionalName2());
+            query.setState(4);
+            query.setPricingunit("元");
+            if(StringUtils.isEmpty(query.getStrTime())){
+                successMap.put("resultMassage", "开始时间不能为空！");
+                return successMap;
+            }else {
+                query.setStartTime(DateUtils.getAppointedTimeIntValue(query.getStrTime(),DateUtils.YMDHM));
+            }
+            if(StringUtils.isEmpty(query.getEtrTime())){
+                successMap.put("resultMassage", "结束时间不能为空！");
+                return successMap;
+            }else {
+                query.setEndTime(DateUtils.getAppointedTimeIntValue(query.getEtrTime(),DateUtils.YMDHM));
+            }
+            if(query.getStartTime()<DateUtils.getNowTimeStamp()){
+                successMap.put("resultMassage", "开始时间不能早于当前时间！");
+                return successMap;
+            }
+            if(query.getEndTime()-query.getStartTime()<1800){
+                successMap.put("resultMassage", "拍卖时长不得低于30分钟！");
+                return successMap;
+            }
+            ServiceResult<BookVo> result=bookService.queryBookByBookISBN(query.getIsbn());
+            if(result.getSuccess()&&result.getBody()!=null&&result.getBody().getId()!=null){
+                //数据库存在该书籍 上传到此书籍下
+                BookVo bookVo=result.getBody();
+                query.setBookId(bookVo.getId());
+                BookQuery bookQuery=new BookQuery();
+                bookQuery.setId(bookVo.getId());
+                //买卖书籍审核后添加数量
+                bookQuery.setPreNum(1);
+                bookQuery.setSellerNumber(bookVo.getSellerNumber()+1);
+                if(bookQuery.getProfessionalTypeName1().indexOf(query.getProfessionalTypeName1())==-1){
+                    bookQuery.setProfessionalTypeName1(bookVo.getProfessionalTypeName1()+','+query.getProfessionalTypeName1());
+                }
+                if(bookQuery.getProfessionalTypeName2().indexOf(query.getProfessionalTypeName2())==-1){
+                    bookQuery.setProfessionalTypeName2(bookVo.getProfessionalTypeName2()+','+query.getProfessionalTypeName2());
+                }
+                bookService.upateBookUserNumAdd(bookQuery);
+                query.setAuctionName(bookVo.getBookName());
+            }else{
+                Book book=new Book();
+                BookQuery bookQuery =new BookQuery();
+                if(query.getIsbn()!=null){
+                    book=GetBookDetailByIsbn.getBook(query.getIsbn()+"");
+                }
+                if(book!=null&&book.getIsbn()!=null){
+                    bookQuery = JSONObject.parseObject(JSONObject.toJSONString(book),BookQuery.class);
+                    bookQuery.setPageNum(book.getPageNumber());
+                    query.setAuctionName(book.getBookName());
+                }else{
+                    bookQuery.setBookName(query.getAuctionName());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setPressTime(DateUtils.getNowTimeStamp());
+                    bookQuery.setPress(userLogin.getRealUserName());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setSrc(query.getSrc1());
+                    bookQuery.setIntroduce(query.getRemark());
+                    bookQuery.setPricing(query.getPrice());
+                    bookQuery.setPricingunit(query.getPricingunit());
+                    bookQuery.setAuthor(userLogin.getRealUserName());
+                    bookQuery.setPress("自己的资料来竞拍");
+                }
+                bookQuery.setAuctionStatus(1);
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setSellerNumber(1);
+                bookQuery.setUserableNum(1);
+                bookQuery.setUseNum(0);
+                bookQuery.setBookTypeName1(query.getBookTypeName1());
+                bookQuery.setBookTypeName2(query.getBookTypeName2());
+                bookQuery.setProfessionalTypeName2(query.getProfessionalTypeName2());
+                bookQuery.setProfessionalTypeName1(query.getProfessionalTypeName1());
+                bookQuery.setcU(userLogin.getUserId());
+                bookQuery.setcT(DateUtils.getNowTimeStamp());
+                bookService.insertBook(bookQuery);
+                query.setBookId(bookQuery.getId());
+
+            }
+            int code=1;
+            ServiceResult<Integer> integerServiceResult=bookService.insertAuctionBook(query);
+            if(integerServiceResult.getSuccess() && integerServiceResult.getBody() > 0){
+                code=0;
+            }
+            DataResult results= new DataResult(code, new Book());
+            return results.toMap();
+        }catch(Exception e){
+            logger.error("BookManagerController.insertauctionbook---------->",e);
+            successMap.put("resultMassage", "信息异常，请稍后重试!");
+            return successMap;
+        }
+    }
 
 }
 

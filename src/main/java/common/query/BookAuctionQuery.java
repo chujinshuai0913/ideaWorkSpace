@@ -61,11 +61,17 @@ public class BookAuctionQuery extends QueryParam {
 
     private Integer endTime;
 
+
+
     private Integer state;
 
     private Integer status;
 
     private String failReason;
+
+    private String strTime;
+
+    private String etrTime;
 
     private Integer cU;
 
@@ -88,6 +94,23 @@ public class BookAuctionQuery extends QueryParam {
     private String professionalTypeName1;
 
     private String professionalTypeName2;
+
+
+    public String getStrTime() {
+        return strTime;
+    }
+
+    public void setStrTime(String strTime) {
+        this.strTime = strTime;
+    }
+
+    public String getEtrTime() {
+        return etrTime;
+    }
+
+    public void setEtrTime(String etrTime) {
+        this.etrTime = etrTime;
+    }
 
     public Integer getBookType2() {
         return bookType2;

@@ -97,6 +97,35 @@
         <table  id="mainTable"></table>
     </div>
 </div>
+<div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="900px" style="width:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle">竞拍记录</h4>
+                <form id="form_sell_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+                      onkeydown="if(event.keyCode==13){return false;}">
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();">姓名</label>
+                        <input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label></label>
+                        <button type="button" id="formSellSearchBtn" class="btn btn-primary" data-style="zoom-in"
+                                formaction="javascript:void(0);">查询
+                        </button>&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body">
+                <table id="detailTable"></table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
 <script type="text/javascript">
 
     $('#formSearchBtn').on('click', function () {
@@ -144,7 +173,7 @@
 
             },
             {
-                field: 'bookName',
+                field: 'auctionName',
                 title: '书名',
                 align: "center",
                 formatter: formatterToValue
@@ -233,13 +262,13 @@
                 }
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 
@@ -302,10 +331,10 @@
     //弹出层
     var auctionId=0;
     function detailTableDialog(e, value, row, index){
-        alert("11");
         $('#modal_detailTable').modal("show");
         auctionId=row.id;
         $('#detailTable').bootstrapTable('refresh',{
+
             url: '/ideaWorkSpace/book/recordauction',
             query:{
                 auctionId:auctionId

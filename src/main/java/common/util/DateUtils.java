@@ -8,6 +8,7 @@ import java.util.*;
 public class DateUtils {
     public static final String YMD = "yyyy-MM-dd";
     public static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";
+    public static final String YMDHM = "yyyy-MM-dd HH:mm";
     public static final String KEY_INT_STARTTIME = "intStarttime";
     public static final String KEY_STR_STARTTIME = "strStarttime";
     public static final String KEY_INT_ENDTIME = "intEndtime";

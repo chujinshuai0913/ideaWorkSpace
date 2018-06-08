@@ -39,196 +39,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="searchResult.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/searchResult.jsp">
+      <file leaf-file-name="insertborrowbook.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowbook.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="92" column="86" lean-forward="false" selection-start-line="92" selection-start-column="86" selection-end-line="92" selection-end-column="86" />
+            <state relative-caret-position="114">
+              <caret line="452" column="64" lean-forward="false" selection-start-line="452" selection-start-column="64" selection-end-line="452" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insertgiftblankbook.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftblankbook.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-128">
+              <caret line="400" column="58" lean-forward="false" selection-start-line="400" selection-start-column="44" selection-end-line="400" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insertgiftbook.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftbook.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4323">
+              <caret line="195" column="79" lean-forward="false" selection-start-line="195" selection-start-column="77" selection-end-line="195" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sharebook/controller/BookController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="1937" column="62" lean-forward="true" selection-start-line="1937" selection-start-column="62" selection-end-line="1937" selection-end-column="62" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#30731#30746#0" expanded="true" />
+                <element signature="e#90574#90589#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShareManagerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/ShareManagerController.java">
+      <file leaf-file-name="BookGiftQuery.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookGiftQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3217">
-              <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="71" column="101" lean-forward="true" selection-start-line="71" selection-start-column="101" selection-end-line="71" selection-end-column="101" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/service/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserShareController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sharebook/controller/UserShareController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="79" column="79" lean-forward="true" selection-start-line="79" selection-start-column="79" selection-end-line="79" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/UserServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="126" column="65" lean-forward="true" selection-start-line="126" selection-start-column="65" selection-end-line="126" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetBookDetailByIsbn.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/util/GetBookDetailByIsbn.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bookProResult.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookProResult.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="151" column="69" lean-forward="false" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvocableHandlerMethod.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insertsellbook.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertsellbook.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServletInvocableHandlerMethod.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.5.RELEASE/spring-webmvc-4.2.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bookClassResult.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookClassResult.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="152" column="68" lean-forward="false" selection-start-line="152" selection-start-column="68" selection-end-line="152" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserShareCodeEum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/UserShareCodeEum.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="73" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="16" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookStatusEnum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/BookStatusEnum.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserStatusEnum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/UserStatusEnum.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="47" />
+            <state relative-caret-position="174">
+              <caret line="99" column="36" lean-forward="false" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
               <folding>
-                <element signature="e#728#729#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
+                <element signature="e#1683#1684#0" expanded="true" />
+                <element signature="e#1737#1738#0" expanded="true" />
+                <element signature="e#1783#1784#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="book.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/book.jsp">
+      <file leaf-file-name="BookGift.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/model/BookGift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="159" column="21" lean-forward="true" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+            <state relative-caret-position="266">
+              <caret line="69" column="41" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="69" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sharebookuser.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/sharebookuser.jsp">
+      <file leaf-file-name="BookService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/service/BookService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
-              <caret line="252" column="34" lean-forward="false" selection-start-line="252" selection-start-column="24" selection-end-line="252" selection-end-column="34" />
+            <state relative-caret-position="152">
+              <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookManagerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/BookManagerController.java">
+      <file leaf-file-name="BookServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/BookServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="802" column="67" lean-forward="true" selection-start-line="802" selection-start-column="67" selection-end-line="802" selection-end-column="67" />
+            <state relative-caret-position="171">
+              <caret line="178" column="52" lean-forward="false" selection-start-line="178" selection-start-column="52" selection-end-line="178" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstantsUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/ConstantsUtils.java">
+      <file leaf-file-name="BookGiftMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/BookGiftMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="48" />
+            <state relative-caret-position="133">
+              <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookGiftMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookGiftMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -237,9 +149,104 @@
       <file leaf-file-name="DateUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/common/util/DateUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="39" column="5" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state relative-caret-position="247">
+              <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="196" column="60" lean-forward="false" selection-start-line="196" selection-start-column="48" selection-end-line="196" selection-end-column="60" />
+              <folding>
+                <marker date="1527506927076" expanded="true" signature="4581:4681" ph="select from book" />
+                <marker date="1527506927076" expanded="true" signature="4768:4822" ph="delete from book... " />
+                <marker date="1527506927076" expanded="true" signature="4944:7039" ph="insert into book... " />
+                <marker date="1527506927076" expanded="true" signature="7152:9036" ph="SELECT * FRO... book" />
+                <marker date="1527506927076" expanded="true" signature="9161:10913" ph="SELECT * FRO... book" />
+                <marker date="1527506927076" expanded="true" signature="11038:12409" ph="SELECT count... book" />
+                <marker date="1527506927076" expanded="true" signature="12528:12569" ph="SELECT * FRO... book" />
+                <marker date="1527506927076" expanded="true" signature="12955:13000" ph="SELECT * FRO... book" />
+                <marker date="1527506927076" expanded="true" signature="13327:13423" ph="UPDATE book... " />
+                <marker date="1527506927076" expanded="true" signature="13476:13954" ph="UPDATE book... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insertborrowblankbook.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowblankbook.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="412" column="60" lean-forward="false" selection-start-line="412" selection-start-column="60" selection-end-line="412" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookAuctionMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookAuctionMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7880">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1527482245465" expanded="true" signature="3172:3280" ph="select from book_auction" />
+                <marker date="1527482245465" expanded="true" signature="3408:3497" ph="select * fro... book_auction" />
+                <marker date="1527482245465" expanded="true" signature="3584:3646" ph="delete from book_auction... " />
+                <marker date="1527482245465" expanded="true" signature="3733:5119" ph="insert into book_auction... " />
+                <marker date="1527482245465" expanded="true" signature="9987:12883" ph="update book_auction... " />
+                <marker date="1527482245465" expanded="true" signature="12977:14426" ph="update book_auction... " />
+                <marker date="1527482245465" expanded="true" signature="15968:16797" ph="SELECT * FRO... book_auction" />
+                <marker date="1527482245465" expanded="true" signature="16861:16960" ph="update book_auction... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookAuctionQuery.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookAuctionQuery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="99" column="22" lean-forward="false" selection-start-line="99" selection-start-column="15" selection-end-line="99" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1588#1589#0" expanded="true" />
+                <element signature="e#1618#1619#0" expanded="true" />
+                <element signature="e#1664#1665#0" expanded="true" />
+                <element signature="e#1702#1703#0" expanded="true" />
+                <element signature="e#1736#1737#0" expanded="true" />
+                <element signature="e#1766#1767#0" expanded="true" />
+                <element signature="e#1812#1813#0" expanded="true" />
+                <element signature="e#1850#1851#0" expanded="true" />
+                <element signature="e#4367#4368#0" expanded="true" />
+                <element signature="e#4395#4396#0" expanded="true" />
+                <element signature="e#6426#6427#0" expanded="true" />
+                <element signature="e#6459#6460#0" expanded="true" />
+                <element signature="e#6511#6512#0" expanded="true" />
+                <element signature="e#6555#6556#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myput.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/myput.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="913" column="31" lean-forward="false" selection-start-line="913" selection-start-column="31" selection-end-line="913" selection-end-column="31" />
+              <folding>
+                <marker date="1528459686741" expanded="true" signature="25222:25249" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="26914:26929" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="30311:30338" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="31761:31776" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="33946:33973" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="35569:35584" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="38567:38593" ph="..." />
+                <marker date="1528459686741" expanded="true" signature="39517:39532" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -258,20 +265,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shareactivity</find>
-      <find>setUserableNum</find>
-      <find>zwjs</find>
-      <find>modal_detailTable</find>
-      <find>detailTable</find>
-      <find>sellingId</find>
-      <find>bookselldetail</find>
-      <find>bookselling</find>
-      <find>form_bookselluser_q</find>
-      <find>/bookselling</find>
-      <find>BookAuctionQuery</find>
-      <find>book_name</find>
-      <find>mycat</find>
-      <find>formSellSearchBtn</find>
       <find>cat</find>
       <find>/bookauction</find>
       <find>form_bookgiftuser_q</find>
@@ -279,7 +272,6 @@
       <find>form_gift_q</find>
       <find>/recordauction</find>
       <find>form_bookauctionuser_q</find>
-      <find>book</find>
       <find>upload</find>
       <find>index1F</find>
       <find>form_insert_q</find>
@@ -288,6 +280,21 @@
       <find>/img</find>
       <find>/book</find>
       <find>/book/</find>
+      <find>status</find>
+      <find>insertSearchBtn</find>
+      <find>uploadbook</find>
+      <find>insertSellBtn</find>
+      <find>Dat</find>
+      <find>getUploadTime</find>
+      <find>recordauction</find>
+      <find>formSellSearchBtn</find>
+      <find>detailTable</find>
+      <find>modal_detailTable</find>
+      <find>book</find>
+      <find>detailTable4</find>
+      <find>alert</find>
+      <find>formInsertBtn</find>
+      <find>insertgift</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -309,23 +316,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/common/query/BookGiftQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/common/model/UserLogin.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/css/tab_div.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookselldetail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookborrowdetail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookgiftdetail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookauctiondetail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/common/util/ImgDown.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/css/jquery.cardtabs.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/css/bookdetails.css" />
-        <option value="$PROJECT_DIR$/src/main/java/common/query/BookSellingQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sharebookmanager/controller/ImgController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/shareannouncement.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/sharebookmanager/controller/BookManagerController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookdetails.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/common/service/Impl/BookServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/mapper/BookSellingMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/mapper/BookAuctionMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/mapper/BookBorrowMapper.java" />
@@ -337,7 +330,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapping/BookSellingMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/BookGiftMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/UserShareMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/myput.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookClassification.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookProification.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookClassResult.jsp" />
@@ -346,8 +338,6 @@
         <option value="$PROJECT_DIR$/src/main/java/common/model/Book.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/BookMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/common/query/BookQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sharebook/controller/BookController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookselling.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/shareactivity.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/booktenstatistics.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/searchResult.jsp" />
@@ -356,10 +346,27 @@
         <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/sharebookuser.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/common/constant/UserStatusEnum.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/service/Impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/book.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/common/util/DateUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/common/util/GetBookDetailByIsbn.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertsellbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookselldetail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/css/jquery-ui.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftblankbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertauctionbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/common/query/BookAuctionQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/common/util/DateUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/common/service/Impl/BookServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookborrow.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookgift.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookselling.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/myput.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/book.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookauction.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertauctionblankbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowblankbook.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/common/query/BookGiftQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sharebook/controller/BookController.java" />
       </list>
     </option>
   </component>
@@ -409,7 +416,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="526" />
     <option name="width" value="1210" />
     <option name="height" value="994" />
@@ -448,10 +455,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -492,7 +499,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="constant" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
@@ -501,7 +508,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
@@ -510,15 +517,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="sharebook" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ideaWorkSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sharebook" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
@@ -549,6 +547,14 @@
               <item name="ideaWorkSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapping" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ideaWorkSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -567,14 +573,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="sharebook" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tmall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ideaWorkSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="sharebookmanager" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -610,10 +608,10 @@
       <recent name="common.query" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\study\code\idea\workspace\ideaWorkSpace\src\main\webapp\sharebook\js" />
       <recent name="F:\study\code\idea\workspace\ideaWorkSpace\src\main\webapp\sharebook\css" />
-      <recent name="F:\study\code\idea\workspace\ideaWorkSpace\target\tmall\WEB-INF\lib" />
+      <recent name="F:\study\code\idea\workspace\ideaWorkSpace\src\main\webapp\sharebook\js" />
       <recent name="F:\study\code\idea\workspace\ideaWorkSpace\src\main\webapp\sharebook\jsp" />
+      <recent name="F:\study\code\idea\workspace\ideaWorkSpace\target\tmall\WEB-INF\lib" />
       <recent name="F:\study\code\idea\workspace\ideaWorkSpace\target\tmall\sharebook\jsp" />
     </key>
   </component>
@@ -1094,6 +1092,8 @@
       <workItem from="1527487421109" duration="3820000" />
       <workItem from="1527497210136" duration="8456000" />
       <workItem from="1527552699159" duration="11836000" />
+      <workItem from="1527844798162" duration="3389000" />
+      <workItem from="1528452139064" duration="12238000" />
     </task>
     <servers />
   </component>
@@ -1130,7 +1130,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="480676000" />
+    <option name="totallyTimeSpent" value="496303000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1142,7 +1142,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55490655" sideWeight="0.5069742" order="7" side_tool="true" content_ui="tabs" />
@@ -1152,11 +1153,11 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4275701" sideWeight="0.49302575" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40186915" sideWeight="0.49302575" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943925" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26285046" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1164,11 +1165,11 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8865497" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.885514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22800429" sideWeight="0.8082759" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943925" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10675966" sideWeight="0.8082759" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25375536" sideWeight="0.5046729" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1247,7 +1248,7 @@
           <option name="timeStamp" value="197" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="432" />
+      <option name="time" value="451" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1256,296 +1257,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookAuctionMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7258">
-          <caret line="382" column="14" lean-forward="false" selection-start-line="382" selection-start-column="14" selection-end-line="382" selection-end-column="14" />
-          <folding>
-            <marker date="1527482245465" expanded="true" signature="3172:3280" ph="select from book_auction" />
-            <marker date="1527482245465" expanded="true" signature="3408:3497" ph="select * fro... book_auction" />
-            <marker date="1527482245465" expanded="true" signature="3584:3646" ph="delete from book_auction... " />
-            <marker date="1527482245465" expanded="true" signature="3733:5119" ph="insert into book_auction... " />
-            <marker date="1527482245465" expanded="true" signature="9987:12883" ph="update book_auction... " />
-            <marker date="1527482245465" expanded="true" signature="12977:14426" ph="update book_auction... " />
-            <marker date="1527482245465" expanded="true" signature="15968:16797" ph="SELECT * FRO... book_auction" />
-            <marker date="1527482245465" expanded="true" signature="16861:16960" ph="update book_auction... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/RecordAuctionMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/RecordBorrowMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2090">
-          <caret line="110" column="26" lean-forward="false" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
-          <folding>
-            <marker date="1527481445269" expanded="true" signature="1383:1979" ph="insert into record_borrow... " />
-            <marker date="1527481445269" expanded="true" signature="4219:4832" ph="select * fro... record_borrow" />
-            <marker date="1527481445269" expanded="true" signature="4972:5427" ph="select count... record_borrow" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/RecordBorrowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/UserShareMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="37" column="25" lean-forward="false" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/myput.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="249" column="52" lean-forward="false" selection-start-line="249" selection-start-column="52" selection-end-line="249" selection-end-column="52" />
-          <folding>
-            <marker date="1527491230179" expanded="true" signature="25570:25597" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="27262:27277" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="30659:30686" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="32109:32124" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="34294:34321" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="35917:35932" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="38912:38938" ph="..." />
-            <marker date="1527491230179" expanded="true" signature="39862:39877" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookPersonal.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookProification.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2945">
-          <caret line="155" column="68" lean-forward="false" selection-start-line="155" selection-start-column="68" selection-end-line="155" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/UserShareMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7505">
-          <caret line="395" column="22" lean-forward="false" selection-start-line="395" selection-start-column="22" selection-end-line="395" selection-end-column="22" />
-          <folding>
-            <marker date="1527490728423" expanded="true" signature="2171:2277" ph="select from user_share" />
-            <marker date="1527490728423" expanded="true" signature="2364:2424" ph="delete from user_share... " />
-            <marker date="1527490728423" expanded="true" signature="2509:3406" ph="insert into user_share... " />
-            <marker date="1527490728423" expanded="true" signature="6667:8528" ph="update user_share... " />
-            <marker date="1527490728423" expanded="true" signature="8620:9552" ph="update user_share... " />
-            <marker date="1527490728423" expanded="true" signature="9672:11098" ph="SELECT * FRO... user_share" />
-            <marker date="1527490728423" expanded="true" signature="11230:12654" ph="SELECT * FRO... user_share" />
-            <marker date="1527490728423" expanded="true" signature="12789:14051" ph="SELECT count... user_share" />
-            <marker date="1527490728423" expanded="true" signature="14190:14968" ph="SELECT FROM user_share" />
-            <marker date="1527490728423" expanded="true" signature="15093:15251" ph="SELECT id FR... user_share" />
-            <marker date="1527490728423" expanded="true" signature="15093:15261" ph="SELECT id FR... user_share" />
-            <marker date="1527490728423" expanded="true" signature="15383:15439" ph="SELECT * FRO... user_share" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/RecordSellingQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="94" column="16" lean-forward="false" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
-          <folding>
-            <element signature="e#1734#1735#0" expanded="false" />
-            <element signature="e#1770#1771#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/TypeBook2Mapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/ImgController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookauction.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="78" column="16" lean-forward="false" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/model/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1824">
-          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-          <folding>
-            <marker date="1527506927076" expanded="true" signature="4581:4681" ph="select , fro... " />
-            <marker date="1527506927076" expanded="true" signature="4768:4822" ph="delete from book... " />
-            <marker date="1527506927076" expanded="true" signature="4944:7039" ph="insert into book... " />
-            <marker date="1527506927076" expanded="true" signature="7152:9036" ph="SELECT * FRO... book" />
-            <marker date="1527506927076" expanded="true" signature="9161:10913" ph="SELECT * FRO... book" />
-            <marker date="1527506927076" expanded="true" signature="11038:12409" ph="SELECT count... book" />
-            <marker date="1527506927076" expanded="true" signature="12528:12569" ph="SELECT * FRO... book" />
-            <marker date="1527506927076" expanded="true" signature="12955:13000" ph="SELECT * FRO... book" />
-            <marker date="1527506927076" expanded="true" signature="13327:13423" ph="UPDATE book... " />
-            <marker date="1527506927076" expanded="true" signature="13476:13954" ph="UPDATE book... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2318">
-          <caret line="145" column="32" lean-forward="false" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/ClassTypeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4579">
-          <caret line="282" column="18" lean-forward="false" selection-start-line="282" selection-start-column="18" selection-end-line="282" selection-end-column="18" />
-          <folding>
-            <element signature="e#10948#10949#0" expanded="false" />
-            <element signature="e#11009#11010#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/ClassTypeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="71" column="9" lean-forward="false" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookClassification.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2128">
-          <caret line="112" column="21" lean-forward="false" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/shareindex.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9253">
-          <caret line="487" column="35" lean-forward="false" selection-start-line="487" selection-start-column="35" selection-end-line="487" selection-end-column="35" />
-          <folding>
-            <marker date="1527500399369" expanded="true" signature="19212:19225" ph="..." />
-            <marker date="1527500399369" expanded="true" signature="20783:20796" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertsellblankbook.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9063">
-          <caret line="477" column="68" lean-forward="false" selection-start-line="477" selection-start-column="68" selection-end-line="477" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookselling.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="245" column="16" lean-forward="false" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookgiftrec.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="113" column="45" lean-forward="false" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/BookService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="253" column="27" lean-forward="false" selection-start-line="253" selection-start-column="27" selection-end-line="253" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/BookServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="1363" column="62" lean-forward="false" selection-start-line="1363" selection-start-column="62" selection-end-line="1363" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/BookGiftRecMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookGiftRecMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="141" column="67" lean-forward="false" selection-start-line="141" selection-start-column="33" selection-end-line="141" selection-end-column="67" />
-          <folding>
-            <marker date="1526721858827" expanded="true" signature="1127:1236" ph="select from book_gift_rec" />
-            <marker date="1526721858827" expanded="true" signature="1322:1385" ph="delete from book_gift_rec... " />
-            <marker date="1526721858827" expanded="true" signature="1466:1798" ph="insert into book_gift_rec... " />
-            <marker date="1526721858827" expanded="true" signature="3242:3929" ph="update book_gift_rec... " />
-            <marker date="1526721858827" expanded="true" signature="4022:4368" ph="update book_gift_rec... " />
-            <marker date="1526721858827" expanded="true" signature="4494:4775" ph="SELECT * FRO... book_gift_rec" />
-            <marker date="1526721858827" expanded="true" signature="4911:5028" ph="SELECT count... book_gift_rec" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sharebook/controller/BookController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1669" column="12" lean-forward="false" selection-start-line="1669" selection-start-column="12" selection-end-line="1669" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/shareactivity.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="238" column="97" lean-forward="false" selection-start-line="238" selection-start-column="93" selection-end-line="238" selection-end-column="97" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1553,7 +1268,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1567,41 +1281,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/searchResult.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="1748">
           <caret line="92" column="86" lean-forward="false" selection-start-line="92" selection-start-column="86" selection-end-line="92" selection-end-column="86" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.5.RELEASE/spring-webmvc-4.2.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="684">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/ShareManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3217">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookProResult.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="2869">
           <caret line="151" column="69" lean-forward="false" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
           <folding />
         </state>
@@ -1609,7 +1304,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookClassResult.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
+        <state relative-caret-position="2888">
           <caret line="152" column="68" lean-forward="false" selection-start-line="152" selection-start-column="68" selection-end-line="152" selection-end-column="68" />
           <folding />
         </state>
@@ -1617,7 +1312,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/ConstantsUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
+        <state relative-caret-position="361">
           <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="48" />
           <folding />
         </state>
@@ -1625,32 +1320,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/sharebookuser.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
+        <state relative-caret-position="4788">
           <caret line="252" column="34" lean-forward="false" selection-start-line="252" selection-start-column="24" selection-end-line="252" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/BookManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="802" column="67" lean-forward="true" selection-start-line="802" selection-start-column="67" selection-end-line="802" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="71" column="101" lean-forward="true" selection-start-line="71" selection-start-column="101" selection-end-line="71" selection-end-column="101" />
+        <state relative-caret-position="855">
+          <caret line="71" column="101" lean-forward="false" selection-start-line="71" selection-start-column="101" selection-end-line="71" selection-end-column="101" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sharebook/controller/UserShareController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="79" column="79" lean-forward="true" selection-start-line="79" selection-start-column="79" selection-end-line="79" selection-end-column="79" />
+        <state relative-caret-position="1007">
+          <caret line="79" column="79" lean-forward="false" selection-start-line="79" selection-start-column="79" selection-end-line="79" selection-end-column="79" />
           <folding />
         </state>
       </provider>
@@ -1659,30 +1346,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/BookStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/UserShareCodeEum.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="16" column="73" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="16" selection-end-column="73" />
-          <folding />
+          <caret line="16" column="73" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="16" selection-end-column="73" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="126" column="65" lean-forward="true" selection-start-line="126" selection-start-column="65" selection-end-line="126" selection-end-column="65" />
+        <state relative-caret-position="1957">
+          <caret line="126" column="65" lean-forward="false" selection-start-line="126" selection-start-column="65" selection-end-line="126" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertsellbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2774">
+          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/ShareManagerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/util/GetBookDetailByIsbn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="143" column="78" lean-forward="true" selection-start-line="143" selection-start-column="78" selection-end-line="143" selection-end-column="78" />
           <folding />
         </state>
       </provider>
@@ -1691,42 +1392,331 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="73">
           <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/constant/BookStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/bookselldetail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
           <folding>
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/book.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/css/tab_div.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="159" column="21" lean-forward="true" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+        <state relative-caret-position="-380">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/QueryParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookBorrowQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="36" column="34" lean-forward="false" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="110" column="25" lean-forward="true" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/js/jquery.ui.datepicker-zh-CN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/css/jquery-ui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="724">
+          <caret line="766" column="0" lean-forward="true" selection-start-line="766" selection-start-column="0" selection-end-line="766" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookgift.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="269" column="26" lean-forward="false" selection-start-line="269" selection-start-column="26" selection-end-line="269" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookselling.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="283" column="0" lean-forward="true" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookborrow.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sharebookmanager/controller/BookManagerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="411" column="45" lean-forward="false" selection-start-line="411" selection-start-column="45" selection-end-line="411" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="196" column="60" lean-forward="false" selection-start-line="196" selection-start-column="48" selection-end-line="196" selection-end-column="60" />
+          <folding>
+            <marker date="1527506927076" expanded="true" signature="4581:4681" ph="select from book" />
+            <marker date="1527506927076" expanded="true" signature="4768:4822" ph="delete from book... " />
+            <marker date="1527506927076" expanded="true" signature="4944:7039" ph="insert into book... " />
+            <marker date="1527506927076" expanded="true" signature="7152:9036" ph="SELECT * FRO... book" />
+            <marker date="1527506927076" expanded="true" signature="9161:10913" ph="SELECT * FRO... book" />
+            <marker date="1527506927076" expanded="true" signature="11038:12409" ph="SELECT count... book" />
+            <marker date="1527506927076" expanded="true" signature="12528:12569" ph="SELECT * FRO... book" />
+            <marker date="1527506927076" expanded="true" signature="12955:13000" ph="SELECT * FRO... book" />
+            <marker date="1527506927076" expanded="true" signature="13327:13423" ph="UPDATE book... " />
+            <marker date="1527506927076" expanded="true" signature="13476:13954" ph="UPDATE book... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookAuctionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7880">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1527482245465" expanded="true" signature="3172:3280" ph="select from book_auction" />
+            <marker date="1527482245465" expanded="true" signature="3408:3497" ph="select * fro... book_auction" />
+            <marker date="1527482245465" expanded="true" signature="3584:3646" ph="delete from book_auction... " />
+            <marker date="1527482245465" expanded="true" signature="3733:5119" ph="insert into book_auction... " />
+            <marker date="1527482245465" expanded="true" signature="9987:12883" ph="update book_auction... " />
+            <marker date="1527482245465" expanded="true" signature="12977:14426" ph="update book_auction... " />
+            <marker date="1527482245465" expanded="true" signature="15968:16797" ph="SELECT * FRO... book_auction" />
+            <marker date="1527482245465" expanded="true" signature="16861:16960" ph="update book_auction... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/common/util/DateUtils.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/book.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="559" column="17" lean-forward="true" selection-start-line="559" selection-start-column="17" selection-end-line="559" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebookmanager/jsp/bookauction.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="342" column="0" lean-forward="false" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertauctionbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="197" column="86" lean-forward="false" selection-start-line="197" selection-start-column="82" selection-end-line="197" selection-end-column="86" />
+          <folding>
+            <element signature="n#style#1;n#input#0;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#11;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/myput.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="913" column="31" lean-forward="false" selection-start-line="913" selection-start-column="31" selection-end-line="913" selection-end-column="31" />
+          <folding>
+            <marker date="1528459686741" expanded="true" signature="25222:25249" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="26914:26929" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="30311:30338" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="31761:31776" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="33946:33973" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="35569:35584" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="38567:38593" ph="..." />
+            <marker date="1528459686741" expanded="true" signature="39517:39532" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertauctionblankbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="417" column="57" lean-forward="false" selection-start-line="417" selection-start-column="50" selection-end-line="417" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#input#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#6;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookAuctionQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="99" column="22" lean-forward="false" selection-start-line="99" selection-start-column="15" selection-end-line="99" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1588#1589#0" expanded="true" />
+            <element signature="e#1618#1619#0" expanded="true" />
+            <element signature="e#1664#1665#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1736#1737#0" expanded="true" />
+            <element signature="e#1766#1767#0" expanded="true" />
+            <element signature="e#1812#1813#0" expanded="true" />
+            <element signature="e#1850#1851#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4395#4396#0" expanded="true" />
+            <element signature="e#6426#6427#0" expanded="true" />
+            <element signature="e#6459#6460#0" expanded="true" />
+            <element signature="e#6511#6512#0" expanded="true" />
+            <element signature="e#6555#6556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="452" column="64" lean-forward="false" selection-start-line="452" selection-start-column="64" selection-end-line="452" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertborrowblankbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="412" column="60" lean-forward="false" selection-start-line="412" selection-start-column="60" selection-end-line="412" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftbook.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4323">
+          <caret line="195" column="79" lean-forward="false" selection-start-line="195" selection-start-column="77" selection-end-line="195" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/BookService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/service/Impl/BookServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="178" column="52" lean-forward="false" selection-start-line="178" selection-start-column="52" selection-end-line="178" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/mapper/BookGiftMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="39" column="5" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertsellbook.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookGiftMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+        <state relative-caret-position="124">
+          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/util/GetBookDetailByIsbn.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/sharebook/jsp/insertgiftblankbook.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state relative-caret-position="-128">
+          <caret line="400" column="58" lean-forward="false" selection-start-line="400" selection-start-column="44" selection-end-line="400" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/model/BookGift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="69" column="41" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="69" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/query/BookGiftQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="99" column="36" lean-forward="false" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
+          <folding>
+            <element signature="e#1683#1684#0" expanded="true" />
+            <element signature="e#1737#1738#0" expanded="true" />
+            <element signature="e#1783#1784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sharebook/controller/BookController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="1937" column="62" lean-forward="true" selection-start-line="1937" selection-start-column="62" selection-end-line="1937" selection-end-column="62" />
+          <folding>
+            <element signature="e#30731#30746#0" expanded="true" />
+            <element signature="e#90574#90589#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -261,13 +261,13 @@
 
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 

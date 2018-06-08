@@ -403,7 +403,7 @@ public class BookServiceImpl implements BookService {
             }
             if(bookSelling.getUploadTime()!=null&&bookSelling.getUploadTime()>0)
             {
-                bookSellingVo.setuTime(DateUtils.getDateStringByTimeStamp(bookSelling.getUploadTime(),DateUtils.YMD));
+                bookSellingVo.setuTime(DateUtils.getDateStringByTimeStamp(bookSelling.getUploadTime(),DateUtils.YMDHMS));
             }
             if(bookSelling.getExportTime()!=null&&bookSelling.getExportTime()>0)
             {
@@ -500,7 +500,7 @@ public class BookServiceImpl implements BookService {
             }
             if(bookBorrow.getUploadTime()!=null&&bookBorrow.getUploadTime()>0)
             {
-                bookBorrowVo.setuTime(DateUtils.getDateStringByTimeStamp(bookBorrow.getUploadTime(),DateUtils.YMD));
+                bookBorrowVo.setuTime(DateUtils.getDateStringByTimeStamp(bookBorrow.getUploadTime(),DateUtils.YMDHMS));
             }
             return bookBorrowVo;
         }catch (Exception e){
@@ -565,10 +565,6 @@ public class BookServiceImpl implements BookService {
             if(bookAuction.getUploadTime()!=null&&bookAuction.getUploadTime()>0)
             {
                 bookAuctionVo.setuTime(DateUtils.getDateStringByTimeStamp(bookAuction.getUploadTime(),DateUtils.YMDHMS));
-            }
-            if(bookAuction.getUploadTime()!=null&&bookAuction.getUploadTime()>0)
-            {
-                bookAuctionVo.setuTime(DateUtils.getDateStringByTimeStamp(bookAuction.getUploadTime(),DateUtils.YMD));
             }
             return bookAuctionVo;
         }catch (Exception e){
@@ -653,7 +649,7 @@ public class BookServiceImpl implements BookService {
             }
             if(bookGift.getUploadTime()!=null&&bookGift.getUploadTime()>0)
             {
-                bookGiftVo.setuTime(DateUtils.getDateStringByTimeStamp(bookGift.getUploadTime(),DateUtils.YMD));
+                bookGiftVo.setuTime(DateUtils.getDateStringByTimeStamp(bookGift.getUploadTime(),DateUtils.YMDHMS));
             }
             return bookGiftVo;
         }catch (Exception e){

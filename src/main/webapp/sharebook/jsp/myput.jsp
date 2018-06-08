@@ -281,123 +281,124 @@
 						</div>
 					</div>
 				</div>
+				<div id="modal_detailTable1" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+					<div class="modal-dialog" dialog-width="900px" style="width:900px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+								<h4 class="modal-title" id="modalTitle1">买书人</h4>
+								<form id="form_sell_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+									  onkeydown="if(event.keyCode==13){return false;}">
+									<div class="form-group" style="margin-left: 50px;">
+										<label onclick="$(this).next().focus();">姓名</label>
+										<input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+									</div>
+									<div class="form-group" style="margin-left: 30px;">
+										<label></label>
+										<button type="button" id="formSellSearchBtn1" class="btn btn-primary" data-style="zoom-in"
+												formaction="javascript:void(0);">查询
+										</button>&nbsp;&nbsp;
+										<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+									</div>
+								</form>
+							</div>
+							<div class="modal-body">
+								<table id="detailTable1"></table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div id="modal_detailTable2" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+					<div class="modal-dialog" dialog-width="900px" style="width:900px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+								<h4 class="modal-title" id="modalTitle2">借书人</h4>
+								<form id="form_borrow_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+									  onkeydown="if(event.keyCode==13){return false;}">
+									<div class="form-group" style="margin-left: 50px;">
+										<label onclick="$(this).next().focus();">姓名</label>
+										<input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
+									</div>
+									<div class="form-group" style="margin-left: 30px;">
+										<label></label>
+										<button type="button" id="formSellSearchBtn2" class="btn btn-primary" data-style="zoom-in"
+												formaction="javascript:void(0);">查询
+										</button>&nbsp;&nbsp;
+										<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+									</div>
+								</form>
+							</div>
+							<div class="modal-body">
+								<table id="detailTable2"></table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div id="modal_detailTable3" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+					<div class="modal-dialog" dialog-width="900px" style="width:900px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+								<h4 class="modal-title" id="modalTitle3">受赠人</h4>
+								<form id="form_gift_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+									  onkeydown="if(event.keyCode==13){return false;}">
+									<div class="form-group" style="margin-left: 50px;">
+										<label onclick="$(this).next().focus();">姓名</label>
+										<input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+									</div>
+									<div class="form-group" style="margin-left: 30px;">
+										<label></label>
+										<button type="button" id="formSellSearchBtn3" class="btn btn-primary" data-style="zoom-in"
+												formaction="javascript:void(0);">查询
+										</button>&nbsp;&nbsp;
+										<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+									</div>
+								</form>
+							</div>
+							<div class="modal-body">
+								<table id="detailTable3"></table>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div id="modal_detailTable4" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+					<div class="modal-dialog" dialog-width="900px" style="width:900px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+								<h4 class="modal-title" id="modalTitle4">出价人</h4>
+								<form id="form_auction_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+									  onkeydown="if(event.keyCode==13){return false;}">
+									<div class="form-group" style="margin-left: 50px;">
+										<label onclick="$(this).next().focus();">姓名</label>
+										<input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
+									</div>
+									<div class="form-group" style="margin-left: 30px;">
+										<label></label>
+										<button type="button" id="formSellSearchBtn4" class="btn btn-primary" data-style="zoom-in"
+												formaction="javascript:void(0);">查询
+										</button>&nbsp;&nbsp;
+										<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+									</div>
+								</form>
+							</div>
+							<div class="modal-body">
+								<table id="detailTable4"></table>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
 		</div>
 	</div>
 </div>
-	<div id="modal_detailTable1" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-		<div class="modal-dialog" dialog-width="900px" style="width:900px">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-					<h4 class="modal-title" id="modalTitle1">买书人</h4>
-					<form id="form_sell_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
-						  onkeydown="if(event.keyCode==13){return false;}">
-						<div class="form-group" style="margin-left: 50px;">
-							<label onclick="$(this).next().focus();">姓名</label>
-							<input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
-						</div>
-						<div class="form-group" style="margin-left: 30px;">
-							<label></label>
-							<button type="button" id="formSellSearchBtn1" class="btn btn-primary" data-style="zoom-in"
-									formaction="javascript:void(0);">查询
-							</button>&nbsp;&nbsp;
-							<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-						</div>
-					</form>
-				</div>
-				<div class="modal-body">
-					<table id="detailTable1"></table>
-				</div>
 
-			</div>
-		</div>
-	</div>
-    <div id="modal_detailTable2" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog" dialog-width="900px" style="width:900px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                    <h4 class="modal-title" id="modalTitle2">借书人</h4>
-                    <form id="form_borrow_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
-                          onkeydown="if(event.keyCode==13){return false;}">
-                        <div class="form-group" style="margin-left: 50px;">
-                            <label onclick="$(this).next().focus();">姓名</label>
-                            <input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
-                        </div>
-                        <div class="form-group" style="margin-left: 30px;">
-                            <label></label>
-                            <button type="button" id="formSellSearchBtn2" class="btn btn-primary" data-style="zoom-in"
-                                    formaction="javascript:void(0);">查询
-                            </button>&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <table id="detailTable2"></table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div id="modal_detailTable3" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog" dialog-width="900px" style="width:900px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                    <h4 class="modal-title" id="modalTitle3">受赠人</h4>
-                    <form id="form_gift_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
-                          onkeydown="if(event.keyCode==13){return false;}">
-                        <div class="form-group" style="margin-left: 50px;">
-                            <label onclick="$(this).next().focus();">姓名</label>
-                            <input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
-                        </div>
-                        <div class="form-group" style="margin-left: 30px;">
-                            <label></label>
-                            <button type="button" id="formSellSearchBtn3" class="btn btn-primary" data-style="zoom-in"
-                                    formaction="javascript:void(0);">查询
-                            </button>&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <table id="detailTable3"></table>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div id="modal_detailTable4" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog" dialog-width="900px" style="width:900px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                    <h4 class="modal-title" id="modalTitle4">出价人</h4>
-                    <form id="form_auction_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
-                          onkeydown="if(event.keyCode==13){return false;}">
-                        <div class="form-group" style="margin-left: 50px;">
-                            <label onclick="$(this).next().focus();">姓名</label>
-                            <input  name="buyerName" type="text" class="form-control" placeholder="姓名查询"/>
-                        </div>
-                        <div class="form-group" style="margin-left: 30px;">
-                            <label></label>
-                            <button type="button" id="formSellSearchBtn4" class="btn btn-primary" data-style="zoom-in"
-                                    formaction="javascript:void(0);">查询
-                            </button>&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <table id="detailTable4"></table>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
 </div>
 </body>
 <script>
@@ -418,6 +419,21 @@
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
         $('#modal_detailTable').modal("show");
         $('#status').val(1);
+    });
+    $('#insertBorrowSearchBtn').on('click', function () {
+        /*判断用户是否认正未认证不可上传并转发到认证页面*/
+        $('#modal_detailTable').modal("show");
+        $('#status').val(2);
+    });
+    $('#insertGiftSearchBtn').on('click', function () {
+        /*判断用户是否认正未认证不可上传并转发到认证页面*/
+        $('#modal_detailTable').modal("show");
+        $('#status').val(3);
+    });
+    $('#insertAuctionSearchBtn').on('click', function () {
+        /*判断用户是否认正未认证不可上传并转发到认证页面*/
+        $('#modal_detailTable').modal("show");
+        $('#status').val(4);
     });
     $('#insertSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
@@ -895,7 +911,7 @@
 
             },
             {
-                field: 'bookName',
+                field: 'auctionName',
                 title: '书名',
                 align: "center",
                 formatter: formatterToValue

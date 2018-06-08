@@ -95,6 +95,16 @@ public class BookGiftQuery extends QueryParam {
 
     private String professionalTypeName2;
 
+    private String pricingunit;
+
+    public String getPricingunit() {
+        return pricingunit;
+    }
+
+    public void setPricingunit(String pricingunit) {
+        this.pricingunit = pricingunit;
+    }
+
     public Integer getBookType2() {
         return bookType2;
     }
