@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -1041,7 +1042,7 @@ public class BookServiceImpl implements BookService {
     public ServiceResult<BookAuctionVo> selectAuctionByPrimaryKey(BookAuctionQuery bookAuctionQuery) {
         try {
             BookAuctionVo bookAuctionVo =new BookAuctionVo();
-            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.selectBookAuctionById(bookAuctionQuery.getId(),bookAuctionQuery.getStatus()));
+            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.selectBookAuctionById(bookAuctionQuery.getId(),bookAuctionQuery.getStatusList()));
             if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
                 bookAuctionVo= this.getBookAuctionVo(serviceResult.getBody(),bookAuctionVo);
             }
@@ -1069,6 +1070,21 @@ public class BookServiceImpl implements BookService {
                 }
             }
             return new ServiceResult<>(bookAuctionVos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<BookAuctionVo> queryBookAutionVo(BookAuctionQuery bookAuctionQuery) {
+        try {
+            BookAuctionVo bookAuctionVo= new BookAuctionVo();
+            ServiceResult<BookAuction> serviceResult=new ServiceResult<>(bookAuctionMapper.queryBookAuction(bookAuctionQuery));
+            if (serviceResult.getSuccess()&&serviceResult.getBody()!=null){
+                bookAuctionVo=this.getBookAuctionVo(serviceResult.getBody(),bookAuctionVo);
+            }
+            return new ServiceResult<>(bookAuctionVo) ;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             return new ServiceResult<>(11,e.getMessage());
@@ -1115,6 +1131,16 @@ public class BookServiceImpl implements BookService {
                 }
             }
             return new ServiceResult<>(bookBorrowVos) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public  ServiceResult<BookBorrow> queryBookBorrowById(BookBorrowQuery bookBorrowQuery){
+        try {
+            return new ServiceResult<>(bookBorrowMapper.selectByPrimaryKey(bookBorrowQuery.getId()));
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             return new ServiceResult<>(11,e.getMessage());
@@ -1201,8 +1227,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public ServiceResult<RecordBorrow> getRecordBorrow(RecordBorrowQuery query) {
+        try {
+            return new ServiceResult<>(recordBorrowMapper.getRecordBorrowById(query));
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
     public ServiceResult<Integer> getRecordBorrowCount(RecordBorrowQuery query) {
         return new ServiceResult<>(recordBorrowMapper.getRecordBorrowCount(query));
+    }
+
+    @Override
+    public ServiceResult<Integer> updateRecordBorrowBlack(RecordBorrowQuery query) {
+        return  new ServiceResult<>(recordBorrowMapper.updateRecordBorrowBlack(query));
     }
 
     @Override
@@ -1244,6 +1285,11 @@ public class BookServiceImpl implements BookService {
             logger.error(e.getMessage(),e);
             return new ServiceResult<>(11,e.getMessage());
         }
+    }
+
+    @Override
+    public ServiceResult<BigDecimal> getRecordAuctiontMaxPrice(RecordAuctionQuery query) {
+         return  new ServiceResult<>(recordAuctionMapper.getRecordAuctiontMaxPridce(query));
     }
 
     @Override

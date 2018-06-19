@@ -16,6 +16,8 @@ public class UserManagerQuery extends QueryParam {
 
     private Integer password;
 
+    private Integer newpassword;
+
     private Integer signTime;
 
     private Integer loginTime;
@@ -24,17 +26,25 @@ public class UserManagerQuery extends QueryParam {
 
     private Integer roleId;
 
-    private Integer workId;
+    private Long workId;
 
     private Integer deleteTime;
 
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private String startSignDate;
     private String endSignDate;
 
     private int sSignDate;
     private int eSignDate;
+
+    public Integer getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(Integer newpassword) {
+        this.newpassword = newpassword;
+    }
 
     public Integer getId() {
         return id;
@@ -92,11 +102,11 @@ public class UserManagerQuery extends QueryParam {
         this.roleId = roleId;
     }
 
-    public Integer getWorkId() {
+    public Long getWorkId() {
         return workId;
     }
 
-    public void setWorkId(Integer workId) {
+    public void setWorkId(Long workId) {
         this.workId = workId;
     }
 
@@ -108,11 +118,11 @@ public class UserManagerQuery extends QueryParam {
         this.deleteTime = deleteTime;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

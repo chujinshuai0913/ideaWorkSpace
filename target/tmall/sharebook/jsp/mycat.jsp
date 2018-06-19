@@ -30,15 +30,19 @@
 	<div class="headPage">
 		<div class="headPagehead">
 			<div class="headPagehead_text_one">
-				<%--	${requestScope.user.id}--%>
-				<font color="grey">你好 <span>楚金帅</span><input id="userId" type="text" type="text" style="display: none" value="1">，欢迎访问燕鸣书屋 !</font>
 			</div>
-			<div class="headPagehead_text_two">
-				<span style="color: red; cursor:pointer">请登录</span>
-				<span style="cursor:pointer">，免费注册</span>
-				<span style="padding-left: 2px;font-size: 14px; ">|</span>
-				<span style=" cursor:pointer">微信小程序</span>
-			</div>
+			<c:if test='${sessionScope.userLogin.userName!= null}'>
+				<div class="headPagehead_text_two" style="margin-right: 200px;">
+					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+
+				</div>
+			</c:if>
+			<c:if test='${sessionScope.userLogin.userName== null}'>
+				<div class="headPagehead_text_two">
+					<a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+					<a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+				</div>
+			</c:if>
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
@@ -91,12 +95,7 @@
 						<li>
 							<a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a>
 						</li>
-						<li>
-							<a href="# ">书籍竞拍</a>
-						</li>
-						<li>
-							<a href="# ">资料共享</a>
-						</li>
+						<li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
 					</ul>
 				</div>
 			</div>
@@ -212,13 +211,6 @@
 						</div>
 					</div>
 				</div>
-				<%--<div class="bodyPage_body_bookdetail_up_right">
-                <div class="bodyPagefirst_right_title ">
-                    <img src="${basePath}/sharebook/img/勋章.png " /><p>猜你喜欢</p>
-                </div>
-                <div class="bodyPagefirst_right_content ">
-                </div>
-            </div>--%>
 			</div>
 		</div>
 	</div>
@@ -228,40 +220,7 @@
 </body>
 <script>
     var userId = 1;
-    /*
 
-        //详情书籍专业相关推荐
-        $.ajax({
-            type : "post",
-            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-            url : "/ideaWorkSpace/bookshare/bookuserselftop",    //请求发送到TestServlet处
-            data: JSON.stringify($.extend(true, {},{professionalTypeName2:""})),
-            contentType:"text/html;charset=utf-8",
-            dataType: "json",   //返回格式为json
-            success : function(data) {
-                try {
-                    //请求成功时执行该函数内容，result即为服务器返回的json对象
-                    if (data.error_code == 0){
-                        list = JSON.parse(JSON.stringify(data.data));
-                        if(list.length>0){
-                            list.forEach(function (item) {
-                                $(".bodyPage_body_bookdetail_up_right").find(".bodyPagefirst_right_content").append("<a href='${basePath}/bookshare/bookdetails?id="+item.id+"'> <div class='bodyPagefirst_right_content_grid'><div class='bodyPagefirst_right_content_left'>"+
-                                "<img src='${basePath}/sharebook/img/"+item.src+"' /></div><div class='bodyPagefirst_right_content_right'><p>"+item.bookName+"</p>"+
-                                "<p>作者：<span>"+item.author+"</span></p><p>价格：<span class='moneyRed'>"+item.pricing+"￥</span></p></div></div></a>");
-                        })
-                    }
-                }
-            } catch (e){
-                console.log(e.message);
-            }
-
-        },
-        complete: function() {
-        },
-        error: function(error) {
-            console.log(error);
-        }})
-*/
 
     $('#formSellSearchBtn').on('click', function() {
         $('#mainTable1').bootstrapTable('refresh');
@@ -324,6 +283,18 @@
             formatter: function(value, row, index) {
                 if(row.price) {
                     return row.price + '元 '
+                } else {
+                    return '-';
+                }
+
+            }
+        }, {
+            field: '总价',
+            title: '总价',
+            align: "center",
+            formatter: function(value, row, index) {
+                if(row.price) {
+                    return row.price*row.total+ '元 '
                 } else {
                     return '-';
                 }

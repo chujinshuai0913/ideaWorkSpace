@@ -29,6 +29,14 @@
       #{totalDeposit,jdbcType=DECIMAL}, #{returnDeposit,jdbcType=DECIMAL}, #{pricingunit,jdbcType=VARCHAR}
       )
   </insert>
+  <update id="updateRecordBorrowBlack" parameterType="common.query.RecordBorrowQuery" >
+    update record_borrow
+    set  total_price = #{totalPrice},
+        real_end_time = #{realEndTime},
+        return_num = #{returnNum},
+        return_deposit = #{returnDeposit}
+    where id = #{id}
+  </update>
   <insert id="insertSelective" parameterType="common.model.RecordBorrow" >
     insert into record_borrow
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -125,6 +133,12 @@
     <if test=" id!= null" >   AND  id = #{id} </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+
+  <select id="getRecordBorrowById" parameterType="common.query.RecordBorrowQuery" resultMap="BaseResultMap">
+    select *
+    from record_borrow
+    where id=#{id}
   </select>
   <select id="getRecordBorrowCount" parameterType="common.query.RecordSellingQuery"  resultType="java.lang.Integer">
     select count(*)

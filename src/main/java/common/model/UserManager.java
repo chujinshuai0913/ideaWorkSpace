@@ -15,13 +15,13 @@ public class UserManager {
 
     private Integer roleId;
 
-    private Integer workId;
+    private Long workId;
 
     private Integer deleteTime;
 
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
-    public UserManager(Integer id, String username, Integer password, Integer signTime, Integer loginTime, Integer loginNum, Integer roleId, Integer workId, Integer deleteTime, Integer phoneNumber) {
+    public UserManager(Integer id, String username, Integer password, Integer signTime, Integer loginTime, Integer loginNum, Integer roleId, Long workId, Integer deleteTime, Long phoneNumber) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -94,11 +94,11 @@ public class UserManager {
         this.roleId = roleId;
     }
 
-    public Integer getWorkId() {
+    public Long getWorkId() {
         return workId;
     }
 
-    public void setWorkId(Integer workId) {
+    public void setWorkId(Long workId) {
         this.workId = workId;
     }
 
@@ -110,11 +110,11 @@ public class UserManager {
         this.deleteTime = deleteTime;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

@@ -18,7 +18,7 @@ public interface UserShareMapper {
 
     UserShare selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(UserShare record);
+    int updateByPrimaryKeySelective(UserShareQuery record);
 
     int updateByPrimaryKey(UserShare record);
 
@@ -27,7 +27,7 @@ public interface UserShareMapper {
 
     /*查询网站用户列表*/
     List<UserShare> queryUserShareLists(UserShareQuery userShareQuery);
-
+    UserShare loginUserShare(UserShareQuery userShareQuery);
     /*查询网站用户列表*/
     List<UserShare> queryUserShareListsByIds(UserShareQuery userShareQuery);
 
@@ -39,7 +39,6 @@ public interface UserShareMapper {
 
     /*根据id 查询用户姓名*/
     UserShare getUserShareNameById(@Param("id") int id);
-    /*修改网站用户*/
-    int updateUserShare(UserShareQuery userShareQuery);
 
+    Long  queryPhoneNumber(@Param("phoneNumber") Long phoneNumber);
 }

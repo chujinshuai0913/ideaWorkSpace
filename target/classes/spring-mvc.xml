@@ -11,7 +11,7 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <!-- 自动扫描  @Controller-->
-    <context:component-scan base-package="sharebook.controller,sharebookmanager.controller"/>
+    <context:component-scan base-package="sharebook.controller,sharebookmanager.controller,sso.controller"/>
     <mvc:annotation-driven />
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
@@ -31,23 +31,15 @@
             </list>
         </property>
     </bean>
-
     <!-- 静态资源 -->
     <mvc:default-servlet-handler />
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**" />-->
-            <!--&lt;!&ndash; 静态资源不拦截 &ndash;&gt;-->
-            <!--<mvc:exclude-mapping path="/css/**" />-->
-            <!--<mvc:exclude-mapping path="/images/**" />-->
-            <!--<mvc:exclude-mapping path="/js/**" />-->
-            <!--<mvc:exclude-mapping path="/zTree/**" />-->
-            <!--&lt;!&ndash; 登陆页不拦截 &ndash;&gt;-->
-            <!--<mvc:exclude-mapping path="/user/login" />-->
-            <!--<mvc:exclude-mapping path="/user/loginSubmit" />-->
-            <!--<bean class="ssm.interceptor.UserInterceptor"></bean>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/bookshare/sharemanager" />
+            <!-- 登陆页不拦截 -->
+            <bean class="common.interceptor.ManagerInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -64,4 +56,40 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="4096"/>
     </bean>
+
+  <!--  &lt;!&ndash; job的定义 &ndash;&gt;
+    <bean name="myJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="common.util.AuctionProcessQuartz" />
+        &lt;!&ndash; 回调参数的定义 &ndash;&gt;
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="name" value="AuctionProcessQuartz" />
+            </map>
+        </property>
+    </bean>
+
+    &lt;!&ndash; SimpleTrigger 触发器 &ndash;&gt;
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="myJob" />
+        <property name="startDelay" value="0" />&lt;!&ndash; 调度工厂实例化后，经过0秒开始执行调度 &ndash;&gt;
+        <property name="repeatInterval" value="2000" />&lt;!&ndash; 每2秒调度一次 &ndash;&gt;
+    </bean>
+
+    &lt;!&ndash; CronTriggerBean 触发器 &ndash;&gt;
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="myJob" />
+        &lt;!&ndash; 每3秒执行一次 &ndash;&gt;
+        <property name="cronExpression" value="0/600 * * * * ?" />
+    </bean>
+
+    &lt;!&ndash; 配置调度工厂 &ndash;&gt;
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger" />
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+    </bean>-->
+
 </beans>

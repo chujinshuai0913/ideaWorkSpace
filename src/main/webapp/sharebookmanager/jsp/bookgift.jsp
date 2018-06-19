@@ -437,7 +437,7 @@
             }
             var params = {ids:ids};
             $.ajax({
-                url: "/ideaWorkSpace/book/auditBookSelling",    //请求的url地址
+                url: "/ideaWorkSpace/book/auditBookGift",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 data: JSON.stringify(params),    //参数值
                 type: "POST",   //请求方式
@@ -497,7 +497,7 @@
             }
             var params = {ids:ids};
             $.ajax({
-                url: "/ideaWorkSpace/book/auditNotBookSelling",    //请求的url地址
+                url: "/ideaWorkSpace/book/auditNotBookGift",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 data: JSON.stringify(params),    //参数值
                 type: "POST",   //请求方式

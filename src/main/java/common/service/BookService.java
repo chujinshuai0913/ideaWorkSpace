@@ -16,6 +16,7 @@ import common.util.ServiceResult;
 import common.vo.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -166,6 +167,8 @@ public interface BookService {
      */
     ServiceResult<List<BookAuctionVo>> queryBookAutionVoList(BookAuctionQuery bookAuctionQuery);
 
+    /*查询我竞价成功的书籍*/
+    ServiceResult<BookAuctionVo> queryBookAutionVo(BookAuctionQuery bookAuctionQuery);
     ServiceResult<Integer> queryBookAuctionCountByIds(BookAuctionQuery bookAuctionQuery);
 
     /*
@@ -182,6 +185,8 @@ public interface BookService {
      * 查询书籍总数count
      */
     ServiceResult<List<BookBorrowVo>> queryBookBorrowVoList(BookBorrowQuery bookBorrowQuery);
+
+    ServiceResult<BookBorrow> queryBookBorrowById(BookBorrowQuery bookBorrowQuery);
     /*
      * 查询书籍总数count
      */
@@ -207,7 +212,13 @@ public interface BookService {
     /*查询租借书籍记录*/
     ServiceResult< List<RecordBorrowVo>> getRecordBorrowList(RecordBorrowQuery query);
 
+    ServiceResult<RecordBorrow> getRecordBorrow(RecordBorrowQuery query);
+
     ServiceResult<Integer> getRecordBorrowCount(RecordBorrowQuery query);
+
+    ServiceResult<Integer> updateRecordBorrowBlack(RecordBorrowQuery query);
+
+
 
     /*查询赠予书籍记录*/
     ServiceResult< List<RecordGiftVo>> getRecordGiftList(RecordGiftQuery query);
@@ -216,6 +227,10 @@ public interface BookService {
 
     /*查询拍卖书籍记录*/
     ServiceResult< List<RecordAuctionVo>> getRecordAuctionList(RecordAuctionQuery query);
+
+
+    /*查询拍卖书籍记录*/
+    ServiceResult<BigDecimal> getRecordAuctiontMaxPrice(RecordAuctionQuery query);
 
     ServiceResult<Integer> getRecordAuctionCount(RecordAuctionQuery query);
 

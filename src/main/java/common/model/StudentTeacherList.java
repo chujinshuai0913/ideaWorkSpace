@@ -3,7 +3,7 @@ package common.model;
 public class StudentTeacherList {
     private Integer id;
 
-    private Integer idNumber;
+    private Long idNumber;
 
     private String stName;
 
@@ -19,7 +19,7 @@ public class StudentTeacherList {
 
     private Integer time;
 
-    public StudentTeacherList(Integer id, Integer idNumber, String stName, Integer professional1, Integer professional2, String professional1Name, String professional2Name, String grade, Integer time) {
+    public StudentTeacherList(Integer id, Long idNumber, String stName, Integer professional1, Integer professional2, String professional1Name, String professional2Name, String grade, Integer time) {
         this.id = id;
         this.idNumber = idNumber;
         this.stName = stName;
@@ -43,11 +43,11 @@ public class StudentTeacherList {
         this.id = id;
     }
 
-    public Integer getIdNumber() {
+    public Long getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(Integer idNumber) {
+    public void setIdNumber(Long idNumber) {
         this.idNumber = idNumber;
     }
 

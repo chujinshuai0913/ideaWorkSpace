@@ -1,12 +1,15 @@
 package common.mapper;
 
 import common.model.ShareRole;
+import common.query.ShareRoleQuery;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ShareRoleMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(ShareRole record);
+    int insert(ShareRoleQuery record);
 
     int insertSelective(ShareRole record);
 
@@ -17,4 +20,9 @@ public interface ShareRoleMapper {
     int updateByPrimaryKey(ShareRole record);
 
     String getRoleById(@Param("id") int id);
+
+    int getRolePermissionsId(@Param("id") int id);
+
+    List<ShareRole> getUserRoleList(ShareRoleQuery query);
+
 }

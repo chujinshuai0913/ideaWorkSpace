@@ -67,6 +67,8 @@ public class BookAuctionQuery extends QueryParam {
 
     private Integer status;
 
+    private List<Integer> statusList;
+
     private String failReason;
 
     private String strTime;
@@ -95,6 +97,13 @@ public class BookAuctionQuery extends QueryParam {
 
     private String professionalTypeName2;
 
+    public List<Integer> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<Integer> statusList) {
+        this.statusList = statusList;
+    }
 
     public String getStrTime() {
         return strTime;

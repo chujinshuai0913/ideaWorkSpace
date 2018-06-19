@@ -18,7 +18,7 @@
         <script type="text/javascript" src="${basePath}/sharebook/js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="${basePath}/sharebook/js/jquery.ui.datepicker-zh-CN.js"></script>
         <script type="text/javascript" src="${basePath}/sharebook/js/jquery-ui-timepicker-addon.js"></script>
-        <script type="text/javascript" src="${basePath}/sharebook/js/uery-ui-timepicker-zh-CN.js"></script>
+        <script type="text/javascript" src="${basePath}/sharebook/js/jquery-ui-timepicker-zh-CN.js"></script>
         <link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-table-1.9.1/css/bootstrap-table.css" />
         <link rel="stylesheet" href="${basePath}/sharebookmanager/static/bootstrap-3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="${basePath}/sharebook/css/index.css">
@@ -62,15 +62,19 @@
         <div class="headPage">
             <div class="headPagehead">
                 <div class="headPagehead_text_one">
-                    <%--	${requestScope.user.id}--%>
-                    <font color="grey">你好 <span>楚金帅</span><input id="userId" type="text" type="text" style="display: none" value="1">，欢迎访问燕鸣书屋 !</font>
                 </div>
-                <div class="headPagehead_text_two">
-                    <span style="color: red; cursor:pointer">请登录</span>
-                    <span style="cursor:pointer">，免费注册</span>
-                    <span style="padding-left: 2px;font-size: 14px; ">|</span>
-                    <span style=" cursor:pointer">微信小程序</span>
-                </div>
+                <c:if test='${sessionScope.userLogin.userName!= null}'>
+                    <div class="headPagehead_text_two" style="margin-right: 200px;">
+                        <font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+
+                    </div>
+                </c:if>
+                <c:if test='${sessionScope.userLogin.userName== null}'>
+                    <div class="headPagehead_text_two">
+                        <a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+                        <a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+                    </div>
+                </c:if>
             </div>
             <div class="headPagebody">
                 <div class="headPagebody_left">
@@ -113,8 +117,7 @@
                             <li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
                             <li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
                             <li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
-                            <li><a href="# ">书籍竞拍</a></li>
-                            <li><a href="# ">资料共享</a></li>
+                            <li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
                         </ul>
                     </div>
                 </div>
@@ -181,21 +184,17 @@
                             <form id="form_insert_q" class="form-inline" role="form" style="width: 95%;margin: auto;margin-top: 20px;"
                                   onkeydown="if(event.keyCode==13){return false;}">
                                 <input style="display: none" name="isbn" value="${requestScope.book.isbn}">
-                                <div class="form-group" style="margin-left: 40px;">
-                                    <label onclick="$(this).next().focus();">书名</label>
-                                    <input  style="margin-left:25px"  name="auctionName" type="text" class="form-control" placeholder="书名"/>
-                                </div>
                                 <div class="form-group" style="margin-left: 40px;margin-top: 20px;">
                                     <label onclick="$(this).next().focus();">起拍价</label>
                                     <input  style="margin-left: 25px"  name="price" type="text" class="form-control" placeholder="元/天"/>
                                 </div>
                                 <div class="form-group" style="margin-left: 40px;margin-top: 20px;">
                                     <label onclick="$(this).next().focus();">开始时间</label>
-                                    <input  style="margin-left: 25px"  id="sTime" name="sTime" type="text" class="form-control text-box" placeholder="开始时间" readonly="readonly" style="cursor:pointer;"/>
+                                    <input  style="margin-left: 25px"  id="sTime" name="strTime" type="text" class="form-control text-box" placeholder="开始时间" readonly="readonly" style="cursor:pointer;"/>
                                 </div>
                                 <div class="form-group" style="margin-left: 40px;margin-top: 20px;">
                                     <label onclick="$(this).next().focus();">结束时间</label>
-                                    <input  style="margin-left: 25px" id="eTime"  name="eTime" type="text" class="form-control text-box" placeholder="结束时间" readonly="readonly" style="cursor:pointer;"/>
+                                    <input  style="margin-left: 25px" id="eTime"  name="etrTime" type="text" class="form-control text-box" placeholder="结束时间" readonly="readonly" style="cursor:pointer;"/>
                                 </div>
                                 <div class="form-group" style="margin-left: 40px;margin-top: 20px;">
                                     <label onclick="$(this).next().focus();">图片一</label>

@@ -23,6 +23,10 @@ public class ConstantsUtils {
 		public static final int AUDIT_NOT = 1;//未审核
 		public  static final int AUDIT=2;//已审核
 		public  static final int STOP=3;//禁卖
+		public  static final int AUCTION_START=4;//竞拍开始
+		public  static final int AUCTION_SUCCESS=5;//竞拍结束
+		public  static final int AUCTION_FAIL=6;//流拍
+
 	}
 	public static class BookTradeCode {
 		public static final int TRADE_NOT = 1;//未交易

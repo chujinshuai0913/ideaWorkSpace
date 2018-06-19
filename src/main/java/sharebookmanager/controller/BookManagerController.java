@@ -15,8 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import common.service.UserService;
 import org.apache.log4j.Logger;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RestController("BookManagerController")
@@ -33,6 +38,26 @@ public class BookManagerController {
     @Autowired
     private ClassTypeService classTypeService;
 
+
+    @RequestMapping(value = "/bookList", method = RequestMethod.GET)
+    public ModelAndView sharemanager() {
+        logger.info("BookController.bookList------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/book.jsp");
+
+    }
     /***
      *
      * @param response
@@ -48,7 +73,19 @@ public class BookManagerController {
         BookQuery query = JSONObject.parseObject(strJson,BookQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            //用户
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            if(userManagerLogin==null){
+                successMap.put("resultMassage", "用户未登录!");
+                return successMap;
+            }
+            int count=userService.isTrue(request.getServletPath(),userManagerLogin.getRoleId());
+            if(count<1){
+                successMap.put("resultMassage", "无权限!");
+                return successMap;
+            }
             ServiceResult<Integer> countRes = bookService.queryBookCount(query);
             List<BookVo> list  = new ArrayList<BookVo>();
             long total = 0;
@@ -74,6 +111,25 @@ public class BookManagerController {
         }
     }
 
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    public ModelAndView booksell() {
+        logger.info("BookController.booksell------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookselling.jsp");
+
+    }
     /***
      *
      * @param response
@@ -87,6 +143,19 @@ public class BookManagerController {
         BookSellingQuery query = JSONObject.parseObject(strJson,BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            //用户
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            if(userManagerLogin==null){
+                successMap.put("resultMassage", "用户未登录!");
+                return successMap;
+            }
+            int count=userService.isTrue(request.getServletPath(),userManagerLogin.getRoleId());
+            if(count<1){
+                successMap.put("resultMassage", "无权限!");
+                return successMap;
+            }
             if(query.getSellerUser()!=null&&!query.getSellerUser().equals("")){
                 ServiceResult<List<Integer>> serviceResult=userService.getIdByUserName(query.getSellerUser());
                 if(serviceResult.getSuccess()&&serviceResult.getBody()!=null){
@@ -162,7 +231,25 @@ public class BookManagerController {
             return successMap;
         }
     }
+    @RequestMapping(value = "/bookb", method = RequestMethod.GET)
+    public ModelAndView bookb() {
+        logger.info("BookController.bookb------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookborrow.jsp");
 
+    }
     /***
      *
      * @param response
@@ -253,6 +340,25 @@ public class BookManagerController {
             successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
             return successMap;
         }
+    }
+    @RequestMapping(value = "/bookg", method = RequestMethod.GET)
+    public ModelAndView bookg() {
+        logger.info("BookController.bookg------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookgift.jsp");
+
     }
 
     /***
@@ -347,7 +453,25 @@ public class BookManagerController {
         }
     }
 
+    @RequestMapping(value = "/booka", method = RequestMethod.GET)
+    public ModelAndView booka() {
+        logger.info("BookController.booka------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookauction.jsp");
 
+    }
     /***
      *
      * @param response
@@ -439,6 +563,26 @@ public class BookManagerController {
             return successMap;
         }
     }
+    @RequestMapping(value = "/bookprofessionalList1", method = RequestMethod.GET)
+    public ModelAndView bookprofessionalList1() {
+        logger.info("BookController.bookprofessionalList1------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/booklist.jsp");
+
+    }
+
     /***
      *
      * @param response
@@ -759,10 +903,12 @@ public class BookManagerController {
         logger.info("BookManagerController.deleteBookList---------->"+strJson);
         BookProfessionalListQuery query = JSONObject.parseObject(strJson,BookProfessionalListQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
             /*操作人*/
-            query.setcU(id);
+            query.setcU(userManagerLogin.getId());
             query.setcT(DateUtils.getNowTimeStamp());
             ServiceResult<Integer> serviceResult = bookService.deleteBookProfessionalList(query);
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
@@ -778,7 +924,25 @@ public class BookManagerController {
             return successMap;
         }
     }
+    @RequestMapping(value = "/bookrec", method = RequestMethod.GET)
+    public ModelAndView bookrec() {
+        logger.info("BookController.booka------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookgiftrec.jsp");
 
+    }
     /***
      *
      * @param response
@@ -823,6 +987,26 @@ public class BookManagerController {
             successMap.put("resultMassage", "获取书籍信息异常，请稍后重试!");
             return successMap;
         }
+    }
+
+    @RequestMapping(value = "/bookclass12", method = RequestMethod.GET)
+    public ModelAndView bookclass12() {
+        logger.info("BookController.bookclass12------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/bookclass.jsp");
+
     }
     /***
      *
@@ -877,9 +1061,12 @@ public class BookManagerController {
 
         logger.info("BookManagerController.insertclass1Data---------->"+strJson);
         TypeBook1Query query = JSONObject.parseObject(strJson, TypeBook1Query.class);
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            query.setcU(1);
+            query.setcU(userManagerLogin.getId());
             query.setcT(DateUtils.getNowTimeStamp());
             query.setStatus(2);
             if(StringUtils.isEmpty(query.getClassName1())) {
@@ -920,7 +1107,10 @@ public class BookManagerController {
         TypeBook2Query query = JSONObject.parseObject(strJson, TypeBook2Query.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            query.setcU(1);
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            query.setcU(userManagerLogin.getId());
             query.setcT(DateUtils.getNowTimeStamp());
             query.setStatus(2);
             if(StringUtils.isEmpty(query.getClassName2())) {
@@ -1099,7 +1289,25 @@ public class BookManagerController {
             return successMap;
         }
     }
+    @RequestMapping(value = "/bookpro12", method = RequestMethod.GET)
+    public ModelAndView bookpro12() {
+        logger.info("BookController.bookpro12------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/professionalclass.jsp");
 
+    }
     /***
      *
      * @param response
@@ -1155,7 +1363,10 @@ public class BookManagerController {
         TypeProfessional1Query query = JSONObject.parseObject(strJson, TypeProfessional1Query.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            query.setcU(1);
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            query.setcU(userManagerLogin.getId());
             query.setcT(DateUtils.getNowTimeStamp());
             query.setStatus(2);
             if(StringUtils.isEmpty(query.getClassName1())) {

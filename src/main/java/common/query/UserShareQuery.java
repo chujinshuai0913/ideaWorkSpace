@@ -29,6 +29,8 @@ public class UserShareQuery extends QueryParam {
      private int sSignDate;
      private int eSignDate;
 
+     private Integer newpassword;
+
     private Integer id;
 
     private String userName;
@@ -39,7 +41,7 @@ public class UserShareQuery extends QueryParam {
 
     private Long phoneNumber;
 
-    private Integer schoolCode;
+    private Long schoolCode;
 
     private Integer status;
 
@@ -69,6 +71,13 @@ public class UserShareQuery extends QueryParam {
 
     private List<Integer> ids;
 
+    public Integer getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(Integer newpassword) {
+        this.newpassword = newpassword;
+    }
 
     public String getStartSignDate() {
         return startSignDate;
@@ -142,11 +151,11 @@ public class UserShareQuery extends QueryParam {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getSchoolCode() {
+    public Long getSchoolCode() {
         return schoolCode;
     }
 
-    public void setSchoolCode(Integer schoolCode) {
+    public void setSchoolCode(Long schoolCode) {
         this.schoolCode = schoolCode;
     }
 

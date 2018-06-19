@@ -17,11 +17,16 @@
     from share_role
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="getUserRoleList" resultMap="BaseResultMap" parameterType="common.query.ShareRoleQuery" >
+    select *
+    from share_role
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from share_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.ShareRole" >
+  <insert id="insert" parameterType="common.query.ShareRoleQuery" >
     insert into share_role (id, role, permissions
       )
     values (#{id,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR}, #{permissions,jdbcType=INTEGER}
@@ -75,4 +80,10 @@
         FROM share_role
         WHERE id=#{id}
   </select>
+  <select id="getRolePermissionsId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select  permissions
+    from share_role
+    where id=#{id}
+  </select>
+
 </mapper>

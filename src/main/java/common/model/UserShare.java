@@ -13,7 +13,7 @@ public class UserShare implements Serializable {
 
     private Long phoneNumber;
 
-    private Integer schoolCode;
+    private Long schoolCode;
 
     private Integer status;
 
@@ -41,7 +41,7 @@ public class UserShare implements Serializable {
 
     private Integer exportTime;
 
-    public UserShare(Integer id, String userName, String realName, Integer password, Long phoneNumber, Integer schoolCode, Integer status, Integer integral, Integer registeredTime, Integer loginTime, Integer banTime, Integer banLongtime, Integer deleteTime, Integer cU, Integer cT, Integer printUser, Integer printTime, Integer exportUser, Integer exportTime) {
+    public UserShare(Integer id, String userName, String realName, Integer password, Long phoneNumber, Long schoolCode, Integer status, Integer integral, Integer registeredTime, Integer loginTime, Integer banTime, Integer banLongtime, Integer deleteTime, Integer cU, Integer cT, Integer printUser, Integer printTime, Integer exportUser, Integer exportTime) {
         this.id = id;
         this.userName = userName;
         this.realName = realName;
@@ -107,11 +107,11 @@ public class UserShare implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getSchoolCode() {
+    public Long getSchoolCode() {
         return schoolCode;
     }
 
-    public void setSchoolCode(Integer schoolCode) {
+    public void setSchoolCode(Long schoolCode) {
         this.schoolCode = schoolCode;
     }
 

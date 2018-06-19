@@ -185,7 +185,9 @@
                 try {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象
                 if (data.error_code == 0){
-                   // myChart = echarts.init(document.getElementById('main'),'macarons');
+                    bookNames=[];
+                    useNums=[];
+                    // myChart = echarts.init(document.getElementById('main'),'macarons');
                     list = JSON.parse(JSON.stringify(data.data));
                     list.list.forEach(function (item) {
                         bookNames.push(item.bookName);

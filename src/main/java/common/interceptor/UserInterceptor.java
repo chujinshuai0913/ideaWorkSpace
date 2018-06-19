@@ -1,5 +1,6 @@
 package common.interceptor;
 
+import common.model.UserLogin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,11 +20,13 @@ public class UserInterceptor implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 							 Object arg2) throws Exception {
-//		User user = (User)request.getSession().getAttribute(Constant.USER_SESSION);
-//		if(user!=null) {
-//			return true;
-//		}
-//		response.sendRedirect(request.getContextPath()+"/sharebook/jsp/shareindex");
-		return true;
+		UserLogin userLogin = (UserLogin)request.getSession().getAttribute("userLogin");
+		if(userLogin!=null) {
+			return true;
+		}else {
+			String url =request.getContextPath()+"/sso/sharebook/login";
+			response.sendRedirect(url);
+			return true;
+		}
 	}
 }

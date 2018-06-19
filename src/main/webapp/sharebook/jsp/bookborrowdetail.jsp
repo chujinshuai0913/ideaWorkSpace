@@ -21,15 +21,19 @@
 	<div class="headPage">
 		<div class="headPagehead">
 			<div class="headPagehead_text_one">
-				<%--	${requestScope.user.id}--%>
-				<font color="grey">你好 <span>楚金帅</span><input id="userId" type="text" type="text" style="display: none" value="1">，欢迎访问燕鸣书屋 !</font>
 			</div>
-			<div class="headPagehead_text_two">
-				<span style="color: red; cursor:pointer">请登录</span>
-				<span style="cursor:pointer">，免费注册</span>
-				<span style="padding-left: 2px;font-size: 14px; ">|</span>
-				<span style=" cursor:pointer">微信小程序</span>
-			</div>
+			<c:if test='${sessionScope.userLogin.userName!= null}'>
+				<div class="headPagehead_text_two" style="margin-right: 200px;">
+					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+
+				</div>
+			</c:if>
+			<c:if test='${sessionScope.userLogin.userName== null}'>
+				<div class="headPagehead_text_two">
+					<a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+					<a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+				</div>
+			</c:if>
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
@@ -72,8 +76,7 @@
 						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
-						<li><a href="# ">书籍竞拍</a></li>
-						<li><a href="# ">资料共享</a></li>
+						<li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
 					</ul>
 				</div>
 			</div>
@@ -113,7 +116,7 @@
 						<p class="bodyPage_body_bookdetail_up_left_text_detail">
 							<input id="bookId" type="text" type="text" style="display: none" value="${requestScope.bookBorrowVo.id}">
 							<span class="span_1">出借人:<a href="#"><span>${requestScope.bookBorrowVo.sellerName}</span></a> </span>
-							<%--<span class="span_1">联系电话:<span>${requestScope.bookBorrowVo.phoneNumber}</span> </span>--%>
+							<input id="sellerId" type="text" type="text" style="display: none" value="${requestScope.bookBorrowVo.sellerId}">
 							<span class="span_1"> 上传时间：<span>${requestScope.bookBorrowVo.uTime} </span></span>
 							<input type="text" id="priceN" style="display: none" value="${requestScope.bookBorrowVo.depositPrice}">
 							<span class="span_1"> 租金：<span  style="color: red">${requestScope.bookBorrowVo.price}</span>￥/天</span>
@@ -155,7 +158,11 @@
 			</div>
 		</div>
 	</div>
-	<div id="bottom" class="footerPage"></div>
+	<div id="bottom" class="footerPage" style="margin-top: 10px;padding-top: 20px;">
+		<div style="width: 40%;margin: auto;height: 40px; font-size: 20px; text-align: center; color: #fff;   opacity: 0.8;  line-height: 20px;filter:alpha(opacity=80);">
+			Copyright © 2018-2020  燕鸣书屋 ysu.sharebook.com 版权所有
+		</div>
+	</div>
 </div>
 </body>
 <script>
@@ -165,7 +172,7 @@
             if(useableNum<=0){
                 alert("当前无库存！");
             }else {
-                insertBookCat($("#bookId").val(),$(".input_buy").val(),$("#userId").val(),2,$("#priceN").val(),$("#skuId").val());
+                insertBookCat($("#bookId").val(),$(".input_buy").val(),$("#sellerId").val(),2,$("#priceN").val(),$("#skuId").val());
             }
         })
         //加入书箱
@@ -183,7 +190,9 @@
                         if (data.error_code == 0){
                             alert("加入成功，前往书箱查看联系方式！")
                             location.reload();
-                        }
+                        }else {
+                            alert(data.resultMassage);
+						}
                     } catch (e){
                         console.log(e.message);
                     }

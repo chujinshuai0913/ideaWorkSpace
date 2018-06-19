@@ -12,9 +12,11 @@ package sharebookmanager.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import common.model.ShareActivity;
+import common.model.UserManagerLogin;
 import common.query.ShareActivityQuery;
 import common.query.ShareAnnouncementQuery;
 import common.service.ShareManagerService;
+import common.service.UserService;
 import common.util.DateUtils;
 import common.util.ListResult;
 import common.util.ServiceResult;
@@ -24,8 +26,13 @@ import common.vo.ShareAnnouncementVo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /**
@@ -44,6 +51,31 @@ public class ShareManagerController {
 
     @Autowired
     private ShareManagerService shareManagerService;
+
+    @Autowired
+    private UserService userService;
+
+
+
+    @RequestMapping(value = "/shareactivitylist1", method = RequestMethod.GET)
+    public ModelAndView shareactivitylist1() {
+        logger.info("BookController.shareactivitylist1------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/shareactivity.jsp");
+
+    }
     /***
      *
      * @param response
@@ -88,6 +120,24 @@ public class ShareManagerController {
             successMap.put("resultMassage", "获取活动信息失败，请稍后重试!");
             return successMap;
         }
+    }
+    @RequestMapping(value = "/shareannouncementlist1", method = RequestMethod.GET)
+    public ModelAndView shareannouncementlist1() {
+        logger.info("BookController.shareannouncementlist1------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin = (UserManagerLogin) session.getAttribute("userManagerLogin");
+        String uri = "";
+        if (userManagerLogin == null) {
+            return new ModelAndView(request.getContextPath() + "/sso/sharemanager/login.jsp");
+        }
+        String url = request.getServletPath();
+        int count = userService.isTrue(url, userManagerLogin.getRoleId());
+        if (count < 1) {
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/shareannouncement.jsp");
     }
 
     /***
@@ -150,7 +200,10 @@ public class ShareManagerController {
         ShareActivityQuery query = JSONObject.parseObject(strJson, ShareActivityQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            query.setCu(1);//策划人
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            query.setCu(userManagerLogin.getId());
             query.setCt(DateUtils.getNowTimeStamp());
             query.setIsDelete(2);
             if(StringUtils.isEmpty(query.getStartTime())) {
@@ -216,7 +269,10 @@ public class ShareManagerController {
         ShareAnnouncementQuery query = JSONObject.parseObject(strJson, ShareAnnouncementQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
-            query.setCu(1);
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            query.setCu(userManagerLogin.getId());
             query.setCt(DateUtils.getNowTimeStamp());
             query.setIsDelete(2);
             query.setStatus(2);

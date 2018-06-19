@@ -41,6 +41,28 @@ public class UserShareVo extends UserShare implements Serializable {
     private String eTime;
     private Integer num;
 
+    private Integer garde;
+
+    private  String professionalName1;
+
+    private  String professionalName2;
+
+    public String getProfessionalName1() {
+        return professionalName1;
+    }
+
+    public void setProfessionalName1(String professionalName1) {
+        this.professionalName1 = professionalName1;
+    }
+
+    public String getProfessionalName2() {
+        return professionalName2;
+    }
+
+    public void setProfessionalName2(String professionalName2) {
+        this.professionalName2 = professionalName2;
+    }
+
     public String getrTime() {
         return rTime;
     }
@@ -151,5 +173,13 @@ public class UserShareVo extends UserShare implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getGarde() {
+        return garde;
+    }
+
+    public void setGarde(Integer garde) {
+        this.garde = garde;
     }
 }

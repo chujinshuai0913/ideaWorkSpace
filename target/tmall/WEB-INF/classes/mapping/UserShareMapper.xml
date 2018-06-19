@@ -8,7 +8,7 @@
     <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
     <arg column="password" jdbcType="INTEGER" javaType="java.lang.Integer" />
     <arg column="phone_number" jdbcType="BIGINT" javaType="java.lang.Long" />
-    <arg column="school_code" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="school_code" jdbcType="BIGINT" javaType="java.lang.Long" />
     <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
     <arg column="integral" jdbcType="INTEGER" javaType="java.lang.Integer" />
     <arg column="registered_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -48,7 +48,7 @@
       print_user, print_time, export_user, 
       export_time)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=INTEGER}, #{phoneNumber,jdbcType=BIGINT}, #{schoolCode,jdbcType=INTEGER}, 
+      #{password,jdbcType=INTEGER}, #{phoneNumber,jdbcType=BIGINT}, #{schoolCode},
       #{status,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{registeredTime,jdbcType=INTEGER}, 
       #{loginTime,jdbcType=INTEGER}, #{banTime,jdbcType=INTEGER}, #{banLongtime,jdbcType=INTEGER}, 
       #{deleteTime,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, 
@@ -133,7 +133,7 @@
         #{phoneNumber,jdbcType=BIGINT},
       </if>
       <if test="schoolCode != null" >
-        #{schoolCode,jdbcType=INTEGER},
+        #{schoolCode},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -176,7 +176,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="common.model.UserShare" >
+  <update id="updateByPrimaryKeySelective" parameterType="common.query.UserShareQuery" >
     update user_share
     <set >
       <if test="userName != null" >
@@ -192,7 +192,7 @@
         phone_number = #{phoneNumber,jdbcType=BIGINT},
       </if>
       <if test="schoolCode != null" >
-        school_code = #{schoolCode,jdbcType=INTEGER},
+        school_code = #{schoolCode},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -242,7 +242,7 @@
       real_name = #{realName,jdbcType=VARCHAR},
       password = #{password,jdbcType=INTEGER},
       phone_number = #{phoneNumber,jdbcType=BIGINT},
-      school_code = #{schoolCode,jdbcType=INTEGER},
+      school_code = #{schoolCode},
       status = #{status,jdbcType=INTEGER},
       integral = #{integral,jdbcType=INTEGER},
       registered_time = #{registeredTime,jdbcType=INTEGER},
@@ -264,6 +264,9 @@
      WHERE 1=1
     <if test="phoneNumber != null" >
       AND  phone_number = #{phoneNumber,jdbcType=BIGINT}
+    </if>
+    <if test="password != null" >
+      AND  password = #{password,jdbcType=BIGINT}
     </if>
     <if test="status != null and status !=''" >
       AND  status = #{status,jdbcType=INTEGER}
@@ -294,6 +297,11 @@
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
 
   </select>
+    <select id="loginUserShare" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery" >
+        SELECT *
+        FROM user_share
+        WHERE phone_number = #{phoneNumber,jdbcType=BIGINT} AND  password = #{password,jdbcType=BIGINT}
+    </select>
   <select id="queryUserShareLists" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery"  >
     SELECT *
     FROM user_share
@@ -384,6 +392,11 @@
     </foreach>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="queryPhoneNumber" resultType="java.lang.Long" parameterType="java.lang.Long">
+    SELECT  phone_number
+    FROM user_share
+    where  phone_number = #{phoneNumber}
   </select>
     <select id="getIdByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
         SELECT  id

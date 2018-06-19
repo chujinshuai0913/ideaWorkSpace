@@ -67,9 +67,9 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <table tableName="permissions_set" domainObjectName="PermissionsSet"
-                                    enableCountByExample="false" enableUpdateByExample="false"
-                                    enableDeleteByExample="false" enableSelectByExample="false"
-                                    selectByExampleQueryId="false">
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
         </table>
 
 

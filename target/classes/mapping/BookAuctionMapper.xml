@@ -49,7 +49,19 @@
   <select id="selectBookAuctionById" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery" >
     select *
     from book_auction
-    where id = #{id,jdbcType=INTEGER} AND status=#{status}
+    where id = #{id,jdbcType=INTEGER}
+     AND status  in
+    <foreach collection="statusList" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
+  <select id="selectBookAuctionByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from book_auction
+    where  status  in
+    <foreach collection="statusList" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_auction
@@ -384,8 +396,7 @@
     SELECT count(*)
     FROM book_auction
     WHERE 1=1
-    <if test="status!=null" >   AND status=#{status}   </if>
-      <if test="auctionName!=null and auctionName !=''" >   <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
+    <if test="auctionName!=null and auctionName !=''" >   <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
     <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
     <if test="sellerIds != null" >
@@ -397,6 +408,13 @@
     <if test="sellerId != null" >
       AND  seller_id =#{sellerId}
     </if>
+    <if test="statusList != null" >
+      AND status  in
+      <foreach collection="statusList" item="item" index="index" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+
   </select>
   <select id="queryBookAuctionCountByIds" resultType="java.lang.Integer" parameterType="common.query.BookAuctionQuery">
     SELECT count(*)
@@ -414,14 +432,30 @@
       #{item}
     </foreach>
   </select>
+  <select id="queryBookAuction" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
+    SELECT *
+    FROM book_auction
+    WHERE 1=1
+    <if test="buyerId != null" >
+      AND  buyer_id =#{buyerId}
+    </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+
   <select id="queryBookAuctionList" resultMap="BaseResultMap" parameterType="common.query.BookAuctionQuery">
     SELECT *
     FROM book_auction
     WHERE 1=1
-    <if test="status!=null" >   AND status=#{status}   </if>
+    <if test="statusList != null" >
+      AND status  in
+      <foreach collection="statusList" item="item" index="index" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
     <if test="endTime != null  ">   <![CDATA[ AND end_time >= #{endTime} ]]> </if>
     <if test="bookId != null" >   AND  book_id = #{bookId}   </if>
-      <if test="auctionName!=null and auctionName !=''" >  <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
+    <if test="auctionName!=null and auctionName !=''" >  <![CDATA[	AND auction_name LIKE CONCAT(CONCAT('%',#{auctionName}),'%')	]]> </if>
     <if test="sellerIds != null" >
       AND  seller_id
       <foreach collection="sellerIds" index="index" item="item" open="(" close=")" separator=",">
@@ -437,6 +471,16 @@
   <update id="updateBookAuctionStatus" >
     update book_auction
     set status = #{status},c_u = #{userId}, c_t = #{cTime}
+    where id = #{id}
+  </update>
+  <update id="updateAuctionStatus" >
+    update book_auction
+    set status = #{status}
+    where id = #{id}
+  </update>
+  <update id="updateBookAuction" >
+    update book_auction
+    set status = #{status},deal_price=#{price},buyer_id=#{buyerId}
     where id = #{id}
   </update>
 </mapper>

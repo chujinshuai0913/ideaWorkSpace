@@ -12,13 +12,13 @@ import java.util.List;
 public interface UserManagerMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(UserManager record);
+    int insert(UserManagerQuery record);
 
     int insertSelective(UserManager record);
 
     UserManager selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(UserManager record);
+    int updateByPrimaryKeySelective(UserManagerQuery record);
 
     int updateByPrimaryKey(UserManager record);
 
@@ -26,6 +26,8 @@ public interface UserManagerMapper {
 
     /*查询网站管理用户*/
     UserManager queryUserShareManager(UserManagerQuery userManagerQuery);
+    int  queryUserShareManagerCount(UserManagerQuery userManagerQuery);
+    UserManager loginUserManager(UserManagerQuery userManagerQuery);
 
     /*查询网站管理用户列表*/
     List<UserManager>  queryUserShareManagerLists(UserManagerQuery userManagerQuery);

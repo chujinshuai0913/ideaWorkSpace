@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="common.model.StudentTeacherList" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="id_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="id_number" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="st_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="professional1" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="professional2" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -24,6 +24,12 @@
     from student_teacher_list
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectBySchoolCode" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select *
+    from student_teacher_list
+    where id_number = #{idNum,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student_teacher_list
     where id = #{id,jdbcType=INTEGER}
@@ -33,7 +39,7 @@
       professional1, professional2, professional1_name, 
       professional2_name, grade, time
       )
-    values (#{id,jdbcType=INTEGER}, #{idNumber,jdbcType=INTEGER}, #{stName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{idNumber}, #{stName,jdbcType=VARCHAR},
       #{professional1,jdbcType=INTEGER}, #{professional2,jdbcType=INTEGER}, #{professional1Name,jdbcType=VARCHAR}, 
       #{professional2Name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}
       )
@@ -74,7 +80,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="idNumber != null" >
-        #{idNumber,jdbcType=INTEGER},
+        #{idNumber},
       </if>
       <if test="stName != null" >
         #{stName,jdbcType=VARCHAR},
@@ -103,7 +109,7 @@
     update student_teacher_list
     <set >
       <if test="idNumber != null" >
-        id_number = #{idNumber,jdbcType=INTEGER},
+        id_number = #{idNumber},
       </if>
       <if test="stName != null" >
         st_name = #{stName,jdbcType=VARCHAR},
@@ -131,7 +137,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="common.model.StudentTeacherList" >
     update student_teacher_list
-    set id_number = #{idNumber,jdbcType=INTEGER},
+    set id_number = #{idNumber},
       st_name = #{stName,jdbcType=VARCHAR},
       professional1 = #{professional1,jdbcType=INTEGER},
       professional2 = #{professional2,jdbcType=INTEGER},
@@ -141,7 +147,7 @@
       time = #{time,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getStudentTeacherList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getStudentTeacherList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
     from student_teacher_list
@@ -153,7 +159,7 @@
     FROM student_teacher_list
     WHERE 1=1
     <if test="idNumber != null" >
-      AND  id_number = #{idNumber,jdbcType=BIGINT}
+      AND  id_number = #{idNumber}
     </if>
     <if test="time != null" >
       AND  time = #{time,jdbcType=INTEGER}
@@ -168,7 +174,7 @@
     FROM student_teacher_list
     WHERE 1=1
     <if test="idNumber != null" >
-      AND  id_number = #{idNumber,jdbcType=BIGINT}
+      AND  id_number = #{idNumber}
     </if>
     <if test="time != null" >
       AND  time = #{time,jdbcType=INTEGER}

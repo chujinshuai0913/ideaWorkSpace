@@ -124,7 +124,7 @@
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>
-  <select id="getRecordAuctionCount" parameterType="common.query.RecordSellingQuery"  resultType="java.lang.Integer">
+  <select id="getRecordAuctionCount" parameterType="common.query.RecordAuctionQuery"  resultType="java.lang.Integer">
     select count(*)
     from record_aucticon
     where  1=1
@@ -140,7 +140,19 @@
     </if>
     <if test=" id!= null" >   AND  id = #{id} </if>
   </select>
-
+  <select id="getRecordAuctiontMaxPridce" parameterType="common.query.RecordAuctionQuery" resultType="java.math.BigDecimal">
+    select price
+    from record_aucticon
+     WHERE 1=1
+     <if test="userId != null"  >
+       AND user_id =#{userId}
+     </if>
+    <if test=" auctionId!= null" >
+      AND  auction_id = #{auctionId}
+    </if>
+      ORDER BY price DESC
+      limit 1
+  </select>
   <select id="getRecordAuctionIds" parameterType="common.query.RecordAuctionQuery" resultType="java.lang.Integer">
     select DISTINCT auction_id FROM record_aucticon
     WHERE user_id=#{userId}

@@ -14,12 +14,13 @@ public interface StudentTeacherListMapper {
     int insertSelective(StudentTeacherList record);
 
     StudentTeacherList selectByPrimaryKey(Integer id);
+    StudentTeacherList selectBySchoolCode(@Param("idNum") Long idNum);
 
     int updateByPrimaryKeySelective(StudentTeacherList record);
 
     int updateByPrimaryKey(StudentTeacherList record);
 
-    StudentTeacherList getStudentTeacherList(@Param("schoolCode") Integer schoolCode);
+    StudentTeacherList getStudentTeacherList(@Param("schoolCode") Long schoolCode);
 
     List<StudentTeacherList> getStudentTeacherLists(StudentTeacherQuery query);
    int getStudentTeacherListCount(StudentTeacherQuery query);

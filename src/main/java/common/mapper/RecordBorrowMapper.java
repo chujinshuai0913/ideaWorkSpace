@@ -14,5 +14,8 @@ public interface RecordBorrowMapper {
 
     List<RecordBorrow> getRecordBorrowList(RecordBorrowQuery query);
 
+    RecordBorrow getRecordBorrowById(RecordBorrowQuery query);
+    int updateRecordBorrowBlack(RecordBorrowQuery query);
+
     int getRecordBorrowCount(RecordBorrowQuery query);
 }

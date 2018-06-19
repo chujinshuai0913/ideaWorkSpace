@@ -21,13 +21,14 @@ import sun.security.util.Password;
  * @since 1.0.0
  */
 public class UserLogin {
+
     private Integer userId;
 
     private String userName;
 
     private  String realUserName;
 
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private Integer password;
 
@@ -42,11 +43,20 @@ public class UserLogin {
 
 
     //学号/学校认证的id
-    private  Integer studentCode;
+    private  Long studentCode;
 
     //是否可用 被禁号
     private  Integer status;
 
+    private  Integer grade;
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -72,11 +82,11 @@ public class UserLogin {
         this.realUserName = realUserName;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -112,11 +122,11 @@ public class UserLogin {
         this.professionalName2 = professionalName2;
     }
 
-    public Integer getStudentCode() {
+    public Long getStudentCode() {
         return studentCode;
     }
 
-    public void setStudentCode(Integer studentCode) {
+    public void setStudentCode(Long studentCode) {
         this.studentCode = studentCode;
     }
 

@@ -12,7 +12,7 @@ package common.query;
 public class StudentTeacherQuery extends QueryParam {
     private Integer id;
 
-    private Integer idNumber;
+    private Long idNumber;
 
     private String stName;
 
@@ -30,8 +30,8 @@ public class StudentTeacherQuery extends QueryParam {
 
     private String strTime;
 
-    private Integer schoolCode;
-    private Integer workId;
+    private Long schoolCode;
+    private Long workId;
 
     public Integer getId() {
         return id;
@@ -41,11 +41,11 @@ public class StudentTeacherQuery extends QueryParam {
         this.id = id;
     }
 
-    public Integer getIdNumber() {
+    public Long getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(Integer idNumber) {
+    public void setIdNumber(Long idNumber) {
         this.idNumber = idNumber;
     }
 
@@ -105,19 +105,19 @@ public class StudentTeacherQuery extends QueryParam {
         this.time = time;
     }
 
-    public Integer getSchoolCode() {
+    public Long getSchoolCode() {
         return schoolCode;
     }
 
-    public void setSchoolCode(Integer schoolCode) {
+    public void setSchoolCode(Long schoolCode) {
         this.schoolCode = schoolCode;
     }
 
-    public Integer getWorkId() {
+    public Long getWorkId() {
         return workId;
     }
 
-    public void setWorkId(Integer workId) {
+    public void setWorkId(Long workId) {
         this.workId = workId;
     }
 

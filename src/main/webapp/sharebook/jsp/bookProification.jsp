@@ -26,14 +26,19 @@
 			  <div class="headPage">
 				<div class="headPagehead">
 					<div class="headPagehead_text_one">
-						<font color="grey">你好，欢迎访问燕鸣书屋 !</font>
 					</div>
-					<div class="headPagehead_text_two">
-						<span style="color: red; cursor:pointer">请登录</span>
-						<span style="cursor:pointer">，免费注册</span>
-						<span style="padding-left: 2px;font-size: 14px; ">|</span>
-						<span style=" cursor:pointer">微信小程序</span>
-					</div>
+					<c:if test='${sessionScope.userLogin.userName!= null}'>
+						<div class="headPagehead_text_two" style="margin-right: 200px;">
+							<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+
+						</div>
+					</c:if>
+					<c:if test='${sessionScope.userLogin.userName== null}'>
+						<div class="headPagehead_text_two">
+							<a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+							<a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+						</div>
+					</c:if>
 				</div>
 				<div class="headPagebody">
 					<div class="headPagebody_left">
@@ -76,8 +81,7 @@
 								<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 								<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
 								<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
-								<li><a href="# ">书籍竞拍</a></li>
-								<li><a href="# ">资料共享</a></li>
+								<li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
 								</ul>					
 						</div>
 					</div>
@@ -99,7 +103,11 @@
 			</div>
 		</div>
 		<div style="width: 100%;height: 1px; clear: both;"></div>
-		<div id="bottom" class="footerPage "></div>
+			<div id="bottom" class="footerPage" style="margin-top: 10px;padding-top: 20px;">
+				<div style="width: 40%;margin: auto;height: 40px; font-size: 20px; text-align: center; color: #fff;   opacity: 0.8;  line-height: 20px;filter:alpha(opacity=80);">
+					Copyright © 2018-2020  燕鸣书屋 ysu.sharebook.com 版权所有
+				</div>
+			</div>
 		</div>
 	</body>
 <script>

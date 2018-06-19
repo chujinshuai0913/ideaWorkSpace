@@ -30,6 +30,26 @@ public class RecordAuctionQuery extends QueryParam {
 
     private BigDecimal price;
 
+    private Integer auctionTime;
+
+    private String pricingunit;
+
+    public Integer getAuctionTime() {
+        return auctionTime;
+    }
+
+    public void setAuctionTime(Integer auctionTime) {
+        this.auctionTime = auctionTime;
+    }
+
+    public String getPricingunit() {
+        return pricingunit;
+    }
+
+    public void setPricingunit(String pricingunit) {
+        this.pricingunit = pricingunit;
+    }
+
     public Integer getUserId() {
         return userId;
     }

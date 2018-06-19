@@ -28,15 +28,19 @@
 	<div class="headPage">
 		<div class="headPagehead">
 			<div class="headPagehead_text_one">
-				<%--	${requestScope.user.id}--%>
-				<font color="grey">你好 <span>楚金帅</span><input id="userId" type="text" type="text" style="display: none" value="1">，欢迎访问燕鸣书屋 !</font>
 			</div>
-			<div class="headPagehead_text_two">
-				<span style="color: red; cursor:pointer">请登录</span>
-				<span style="cursor:pointer">，免费注册</span>
-				<span style="padding-left: 2px;font-size: 14px; ">|</span>
-				<span style=" cursor:pointer">微信小程序</span>
-			</div>
+			<c:if test='${sessionScope.userLogin.userName!= null}'>
+				<div class="headPagehead_text_two" style="margin-right: 200px;">
+					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+					<input id="studentCode" type="text" type="text" style="display: none" value="${sessionScope.userLogin.studentCode}">
+				</div>
+			</c:if>
+			<c:if test='${sessionScope.userLogin.userName== null}'>
+				<div class="headPagehead_text_two">
+					<a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+					<a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+				</div>
+			</c:if>
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
@@ -79,8 +83,7 @@
 						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">普通分类</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
-						<li><a href="# ">书籍竞拍</a></li>
-						<li><a href="# ">资料共享</a></li>
+						<li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
 					</ul>
 				</div>
 			</div>
@@ -318,6 +321,7 @@
 								<form id="form_borrow_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
 									  onkeydown="if(event.keyCode==13){return false;}">
 									<div class="form-group" style="margin-left: 50px;">
+										<input id="auctionId" name="auctionId" style="display: none">
 										<label onclick="$(this).next().focus();">姓名</label>
 										<input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
 									</div>
@@ -333,7 +337,31 @@
 							<div class="modal-body">
 								<table id="detailTable2"></table>
 							</div>
-
+						</div>
+					</div>
+					<div id="modal_detailTableB" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+						<div class="modal-dialog" dialog-width="400px" style="width:400px">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+									<h4 class="modal-title" id="modalTitleB">归还图书</h4>
+									<form id="form_blackborrow_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
+										  onkeydown="if(event.keyCode==13){return false;}">
+										<div class="form-group" style="margin-left: 50px;margin-top: 30px;">
+											<input  id="recordBookBorrow" style="display: none" />
+											<label onclick="$(this).next().focus();">归还数量</label>
+											<input  id="returnNum" name="returnNum" type="text" class="form-control" placeholder="归还数量"/>
+										</div>
+										<div class="form-group" style="margin-left: 50px;margin-top: 30px;">
+											<label></label>
+											<button type="button" id="blackBookBorrow" class="btn btn-primary" data-style="zoom-in"
+													formaction="javascript:void(0);">归还图书
+											</button>&nbsp;&nbsp;
+											<button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -417,23 +445,43 @@
     });
     $('#insertSellBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
-        $('#modal_detailTable').modal("show");
-        $('#status').val(1);
+        if($("#studentCode").val()==""){
+            alert("您还未认证不可以上传书籍!");
+            return;
+        }else{
+            $('#modal_detailTable').modal("show");
+            $('#status').val(1);
+        }
     });
     $('#insertBorrowSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
-        $('#modal_detailTable').modal("show");
-        $('#status').val(2);
+        if($("#studentCode").val()==""){
+            alert("您还未认证不可以上传书籍!");
+            return;
+        }else{
+            $('#modal_detailTable').modal("show");
+            $('#status').val(2);
+		}
     });
     $('#insertGiftSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
-        $('#modal_detailTable').modal("show");
-        $('#status').val(3);
+        if($("#studentCode").val()==""){
+            alert("您还未认证不可以上传书籍!");
+            return;
+        }else{
+            $('#modal_detailTable').modal("show");
+            $('#status').val(3);
+        }
     });
     $('#insertAuctionSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
-        $('#modal_detailTable').modal("show");
-        $('#status').val(4);
+        if($("#studentCode").val()==""){
+            alert("您还未认证不可以上传书籍!");
+            return;
+        }else{
+            $('#modal_detailTable').modal("show");
+            $('#status').val(4);
+        }
     });
     $('#insertSearchBtn').on('click', function () {
         /*判断用户是否认正未认证不可上传并转发到认证页面*/
@@ -653,8 +701,8 @@
                 title: '押金',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if(row.price){
-                        return  row.price +  ' 元/本';
+                    if(row.depositPrice){
+                        return  row.depositPrice +  ' 元/本';
                     }
                     else{
                         return '-';
@@ -667,8 +715,8 @@
                 title: '逾期租金',
                 align: "center",
                 formatter: function (value, row, index) {
-                    if(row.price){
-                        return  row.price + ' 元/天 ';
+                    if(row.beyondPrice){
+                        return  row.beyondPrice + ' 元/天 ';
                     }
                     else{
                         return '-';
@@ -998,6 +1046,7 @@
                 title: '查看图书',
                 align: "center",
                 formatter :function(value, row, index) {
+
                     return [ "<a style='cursor:pointer;' class='record-detail'>详细</a>" ].join('');
                 },
                 events: {
@@ -1016,6 +1065,45 @@
 
         location.replace("${basePath}/bookshare/bookborrowdetail?id="+row.id+"");
     }
+    function detailBorrowBookBlack(e, value, row, index) {
+        $("#modal_detailTableB").modal("show");
+        $("#recordBookBorrow").val(row.id);
+	}
+   $("#blackBookBorrow").on('click',function () {
+        $.ajax({
+            type : "post",
+            async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : "${basePath}/bookshare/updatebookborrowblack",    //请求发送到TestServlet处
+            data: JSON.stringify($.extend(true, {}, {id:$("#recordBookBorrow").val(),auctionId:$("#auctionId").val(),returnNum:$("#returnNum").val()})),
+            contentType:"text/html;charset=utf-8",
+            dataType: "json",   //返回格式为json
+            success : function(data) {
+                try {
+                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                    if (data.resultMassage == 'ok'){
+                        alert("归还成功！");
+                        $("#modal_detailTableB").modal("hide");
+                         var auctionId= $("#auctionId").val();
+                        $('#detailTable2').bootstrapTable('refresh',{
+                            url: '/ideaWorkSpace/bookshare/recordborrow',
+                            query:{
+                                auctionId:auctionId
+                            }
+                        });
+                    }else {
+                        alert(data.resultMassage);
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }})
+    })
     function detailGiftBook(e, value, row, index) {
 
         location.replace("${basePath}/bookshare/bookgiftdetail?id="+row.id+"");
@@ -1205,6 +1293,7 @@
                 sellingId:sellingId
             }
         });
+
     }
 
     $('#formSellSearchBtn3').on('click', function () {
@@ -1317,12 +1406,30 @@
                         }
 
                     }
+                },{
+                    field: '操作',
+                    title: '操作',
+                    align: "center",
+                    formatter :function(value, row, index) {
+                        if(row.totalPrice>0){
+                           return "-";
+                        }else{
+                            return [ "<a style='cursor:pointer;' class='black-detail'>归还图书</a>" ].join('');
+						}
+                    },
+                    events: {
+                        'click .black-detail': function (e, value, row, index) {
+                            detailBorrowBookBlack(e, value, row, index);
+                        }
+                    }
+
                 }]
         });
     //弹出层
     var auctionId=0;
     function detailTableDialog2(e, value, row, index){
         $('#modal_detailTable2').modal("show");
+        $("#auctionId").val(row.id);
         auctionId=row.id;
         $('#detailTable2').bootstrapTable('refresh',{
             url: '/ideaWorkSpace/bookshare/recordborrow',

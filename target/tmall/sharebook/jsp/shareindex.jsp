@@ -27,14 +27,21 @@
 	<div class="headPage">
 		<div class="headPagehead">
 			<div class="headPagehead_text_one">
-				<font color="grey">你好，欢迎访问燕鸣书屋 !</font>
+				<a href="${basePath}/bookshare/sharemanager"><span style="color: red; cursor:pointer">管理网站</span></a>
 			</div>
-			<div class="headPagehead_text_two">
-				<span style="color: red; cursor:pointer">请登录</span>
-				<span style="cursor:pointer">，免费注册</span>
-				<span style="padding-left: 2px;font-size: 14px; ">|</span>
-				<span style=" cursor:pointer">微信小程序</span>
-			</div>
+			<c:if test='${sessionScope.userLogin.userName!= null}'>
+				<div class="headPagehead_text_two" style="margin-right: 200px;">
+					<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a> 你好，欢迎访问燕鸣书屋 !</font>
+                        <input id="professionalTypeName2" style="display: none" value="${sessionScope.userLogin.professionalName2}">
+				</div>
+			</c:if>
+			<c:if test='${sessionScope.userLogin.userName== null}'>
+				<div class="headPagehead_text_two">
+					<a href="${basePath}/sso/sharebook/login.jsp"><span style="color: red; cursor:pointer">请登录</span></a>
+					<a href="${basePath}/sso/sharebook/sign.jsp"><span style="cursor:pointer">，免费注册</span></a>
+				</div>
+			</c:if>
+
 		</div>
 		<div class="headPagebody">
 			<div class="headPagebody_left">
@@ -88,8 +95,7 @@
 						<li><a href="${basePath}/sharebook/jsp/shareindex.jsp">首页</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookClassification.jsp">按图书分类</a></li>
 						<li><a href="${basePath}/sharebook/jsp/bookProification.jsp">按专业分类</a></li>
-						<li><a href="# ">书籍竞拍</a></li>
-						<li><a href="# ">资料共享</a></li>
+						<li><a href="${basePath}/bookshare/auctionresult">书籍竞拍</a></li>
 					</ul>
 				</div>
 			</div>
@@ -175,7 +181,7 @@
 				<div class="bodyPagethreehead_nav ">
 					<ul id="FB">
 						<li class="bodyPagethree_nav_li1 "> 软件工程</li>
-						<li class="bodyPagethree_nav_li2 "> 电气自动化</li>
+						<li class="bodyPagethree_nav_li2 "> 电力电子</li>
 						<li class="bodyPagethree_nav_li3 "> 通信工程</li>
 						<li class="bodyPagethree_nav_li4 "> 马克思</li>
 						<li class="bodyPagethree_nav_li5 "> 光电子信息</li>
@@ -210,12 +216,14 @@
 	<a href="#2F">专业推荐</a>
 	<a href="#bottom">到达底部</a>
 </div>
-<div id="bottom" class="footerPage" style="margin-top: 10px;"></div>
+<div id="bottom" class="footerPage" style="margin-top: 10px;padding-top: 20px;">
+    <div style="width: 40%;margin: auto;height: 40px; font-size: 20px; text-align: center; color: #fff;   opacity: 0.8;  line-height: 20px;filter:alpha(opacity=80);">
+        Copyright © 2018-2020  燕鸣书屋 ysu.sharebook.com 版权所有
+    </div>
+</div>
 </body>
 <script type="text/javascript ">
     $(function () {
-
-
         //轮播图
         // imgCycleOnload();
         $.ajax({
@@ -315,7 +323,7 @@
             }})
 
         //所在专业书籍推荐
-        var professionalTypeName2="";
+        var professionalTypeName2=$("#professionalTypeName2").val();
         var list=[];
         /*获取当前用户的专业*/
         proBookTopUser(professionalTypeName2);
@@ -488,7 +496,7 @@
                             if(list.length>0){
                                 $(".flright").find("a").remove();
                                 list.forEach(function (item) {
-                                    $(".flright").find("dd").append("<a href='javascript:;'>"+item.className2+"<span class='class2_value' style='display: none'>"+item.id+"</span></a>");
+                                    $(".flright").find("dd").append("<a href='${basePath}/bookshare/classResult?bookTypeName2="+item.className2+"'>"+item.className2+"<span class='class2_value' style='display: none'>"+item.id+"</span></a>");
                                 })
                             }
                         }

@@ -56,4 +56,6 @@ public interface ShareManagerService {
 
     ServiceResult<Integer> getShareAnnouncementBySrc(String src);
     ServiceResult<Integer> getShareActivityByActivityRoom(String activityRoom,Integer activityTime);
+
+
 }

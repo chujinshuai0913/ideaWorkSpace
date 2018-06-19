@@ -5,6 +5,7 @@ import common.model.RecordSelling;
 import common.query.RecordAuctionQuery;
 import common.query.RecordSellingQuery;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface RecordAuctionMapper {
@@ -23,6 +24,8 @@ public interface RecordAuctionMapper {
     List<RecordAuction> getRecordAuctionList(RecordAuctionQuery query);
 
     int getRecordAuctionCount(RecordAuctionQuery query);
+
+    BigDecimal getRecordAuctiontMaxPridce(RecordAuctionQuery query);
 
     List<Integer> getRecordAuctionIds(RecordAuctionQuery query);
 }

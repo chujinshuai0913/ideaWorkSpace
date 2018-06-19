@@ -67,7 +67,6 @@
          <url-pattern>*.json</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>sharebookmanager/jsp/managerindex.jsp</welcome-file>
     <welcome-file>sharebook/jsp/shareindex.jsp</welcome-file>
   </welcome-file-list>
 

@@ -58,8 +58,8 @@
                     name="username" type="text" class="form-control" placeholder="姓名模糊查询"/>
             </div>
             <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">手机号</label> <input
-                    name="phoneNumber" type="text" class="form-control" placeholder="手机号"/>
+                <label onclick="$(this).next().focus();">手机号</label>
+                <input name="phoneNumber" type="text" class="form-control" placeholder="手机号"/>
             </div>
             <div class="form-group" style="margin-left: 50px;">
                 <label onclick="$(this).next().focus();">学号/工号</label> <input
@@ -67,11 +67,8 @@
             </div>
             <div class="form-group" style="margin-left: 50px;">
                 <label onclick="$(this).next().focus();">角色</label>
-                <select  name="roleId" type="text" class="form-control">
+                <select  id="roleId" name="roleId" type="text" class="form-control">
                     <option value="">全部</option>
-                    <option value="1"> 超级管理员</option>
-                    <option value="2"> 运营管理员</option>
-                    <option value="3"> 业务管理员</option>
                 </select>
             </div>
             <div class="form-group" style="margin-left: 50px;">
@@ -99,7 +96,9 @@
                         formaction="javascript:void(0);">查询
                 </button>&nbsp;&nbsp;
                 <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" id="exportBtn">导出</button>
+                <button type="button" id="insertUserManager" class="btn btn-success" data-style="zoom-in"
+                        formaction="javascript:void(0);">注册新用户
+                </button>&nbsp;&nbsp;
             </div>
         </form>
     </div>
@@ -117,6 +116,77 @@
             <div class="modal-body">
                 <table id="detailTable"></table>
             </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="modal_detailTable1" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="400px" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle1">授予角色</h4>
+            </div>
+            <form id="form_updateRole_q" >
+                <div class="modal-body">
+
+                    <table class="table table-add-or-update" style="margin-top: 30px;" border="0">
+                        <input type="text" id="userId" name="id" value="" hidden="hidden"/>
+                        <tbody>
+                        <tr class="has-success">
+                            <td class="control-label" style="width: 100px;border: 0;">角色</td>
+                            <td class="control-label" style="border: 0;">
+                                <select id="roleId1" name="roleId" type="text" class="form-control">
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="form-group" style="margin-left: 250px;">
+
+                    <label></label>
+                    <button type="button" id="updatRole" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">确认
+                    </button>&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="modal_detailTable2" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="400px" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle2">注册新用户</h4>
+            </div>
+            <form id="form_insertUser_q" >
+                <div class="modal-body">
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">姓名</label>
+                        <input name="username" type="text" style="margin-left:30px;display: inline;" class="form-control" placeholder="姓名"/>
+                    </div>
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">手机号</label>
+                        <input name="phoneNumber" type="text" style="margin-left:20px;display: inline;" class="form-control" placeholder="手机号"/>
+                    </div>
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">学号</label>
+                        <input name="workId" type="text" style="margin-left:30px;display: inline;" class="form-control" placeholder="学号"/>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 250px;">
+                    <label></label>
+                    <button type="button" id="insertUser" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">确认
+                    </button>&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -197,7 +267,6 @@
                 field: 'username',
                 title: '姓名',
                 align: "center",
-                class:'W30',
                 formatter: formatterToValue
 
             },
@@ -205,7 +274,6 @@
                 field: 'phoneNumber',
                 title: '电话',
                 align: "center",
-                class:'W30',
                 formatter: formatterToValue
 
             }
@@ -214,7 +282,6 @@
                 field: 'workId',
                 title: '学号/工号',
                 align: "center",
-                class:'W30',
                 formatter :function(value, row, index) {
                     if(value>0){
                         return [ "<a  class='record-detail'>",''+value+'','</a>' ].join('');
@@ -232,40 +299,49 @@
                 field: 'lTime',
                 title: '上次登录时间',
                 align: "center",
-                class:'W30',
                 formatter: formatterToValue
 
-            },{
+            }/*,{
                 field: 'loginNum',
                 title: '登录次数',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
 
-            },
+            }*/,
             {
                 field: 'role',
                 title: '角色',
                 align: "center",
-                class:'W30',
-                formatter: formatterToValue
+                formatter :function(value, row, index) {
+                    if(row.roleId>0){
+                        return [ "<a  class='record-detail'>",''+value+'','</a>' ].join('');
+                    }else{
+                        return value;
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog1(e, value, row, index);
+                    }
+                }
+
 
             },
             {
                 field: 'sTime',
                 title: '注册时间',
                 align: "center",
-                class:'W30',
                 formatter: formatterToValue
 
-            },{
+            }/*,{
                 field: 'dTime',
                 title: '注销时间',
                 align: "center",
                 class:'W30',
                 formatter: formatterToValue
 
-            }
+            }*/
         ]
     });
     $("#detailTable").bootstrapTable(
@@ -341,6 +417,13 @@
             }
         });
     }
+    function detailTableDialog1(e, value, row, index){
+        $('#modal_detailTable1').modal("show");
+        $('#userId').val(row.id);
+    }
+   $("#insertUserManager").on('click',function () {
+       $('#modal_detailTable2').modal("show");
+   })
     function convertSerializeArrayToObject(array) {
         var obj = {};
         for(var i = 0, length = array.length; i<length; i++){
@@ -356,50 +439,107 @@
         }
         return value;
     }
-    //导出
-    $('#exportBtn').on('click', function () {
-        // 1. 未勾选时导出全部
-        var selectedRecords = $('#mainTable').bootstrapTable("getSelections");
-        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
-        if(dataNum===0){
-            return true;
-        }else{
-            if (selectedRecords.length === 0) {
-                $.confirm({
-                    title: '导出确认',
-                    confirmButton: "确认",
-                    cancelButton: "取消",
-                    content: '你未勾选记录，将会导出全部?',
-                    confirm: function(){
-                        var $form = $('#form_sharebookuser_q').clone();
-                        $form.attr({'action':'/usershare/exportShareUserAll',"method":"post"});
-                        $('body').append($form);
-                        $form.hide();
-                        $form.submit();
-                        $form.remove();
-                        return true;
+
+    $('#updatRole').on('click', function () {
+        var params = convertSerializeArrayToObject($("#form_updateRole_q").serializeArray());
+        $.ajax({
+            url: "/ideaWorkSpace/usersharemanager/updaterole",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            data: JSON.stringify(params),    //参数值
+            type: "POST",   //请求方式
+            contentType:"text/html;charset=utf-8",
+            beforeSend: function() {
+            },
+            success: function(data) {
+                try {
+                    console.log(JSON.stringify(data));
+                    if(data){
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        if(jsonData.resultMassage == 'ok'){
+                            $('#modal_detailTable1').modal("hide");
+                            $('#mainTable').bootstrapTable('refresh');
+                        }else{
+                             alert(data.resultMassage);
+                        }
                     }
-                });
-                return true;
-            }else{
-                // 勾选时按勾选的导出
-                var $exportForm = $("<form></form>");
-                $exportForm.attr({
-                    "style":"display:none",
-                    "action":"/usershare/exportShareUser",
-                    "method":"post",
-                });
-                var reportJson = JSON.stringify($table.bootstrapTable('getSelections'));
-                var $idCheckbox = $("<input type='text' name='reportJson' value='"+reportJson+"'/>")
-                $idCheckbox.appendTo($exportForm);
-                console.log($exportForm);
-                $(document.body).append($exportForm);
-                $exportForm.submit();
-                $exportForm.remove();
+                } catch (e){
+                    console.log(e.message);
+                }
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
             }
+        });
+    });
+    $.ajax({
+        url: "/ideaWorkSpace/usersharemanager/rolelistData",    //请求的url地址
+        dataType: "json",   //返回格式为json
+        data: JSON.stringify({id:1}),    //参数值
+        type: "POST",   //请求方式
+        contentType:"text/html;charset=utf-8",
+        beforeSend: function() {
+        },
+        success: function(data) {
+            try {
+                if (data.error_code == 0){
+                    list = JSON.parse(JSON.stringify(data.data));
+                    if(list.length>0){
+                        list.forEach(function (item) {
+                            $("#roleId").append("<option value='"+item.id+"'>"+item.role+"</option>");
+                            $("#roleId1").append("<option value='"+item.id+"'>"+item.role+"</option>");
+                        })
+                    }
+                }
+            } catch (e){
+                console.log(e.message);
+            }
+        },
+        complete: function() {
+        },
+        error: function(error) {
+            console.log(error);
         }
     });
 
+    $("#insertUser").on('click',function () {
+        var params = convertSerializeArrayToObject($("#form_insertUser_q").serializeArray());
+        $.ajax({
+            url: "/ideaWorkSpace/usersharemanager/insertusermanager",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            data: JSON.stringify(params),    //参数值
+            type: "POST",   //请求方式
+            contentType:"text/html;charset=utf-8",
+            beforeSend: function() {
+            },
+            success: function(data) {
+                try {
+                    console.log(JSON.stringify(data));
+                    if(data){
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        if(jsonData.resultMassage == 'ok'){
+                            alert("新建成功，默认权限业务管理员，默认密码1234567，请尽快修改密码！");
+                            $('#modal_detailTable2').modal("hide");
+                            $('#mainTable').bootstrapTable('refresh');
+                            $("#form_insertUser_q")[0].reset();
+                        }else{
+                            alert(data.resultMassage);
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+
+    })
 </script>
 </body>
 </html>

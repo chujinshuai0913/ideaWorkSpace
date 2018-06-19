@@ -9,13 +9,13 @@
         "nodes": [
           {
             "text": "用户信息",
-            "href": "sharebookmanager/jsp/sharebookuser.jsp",
+            "href": "/ideaWorkSpace/usershare/sharebookuser",
             "nodes": [
             ]
           },
            {
             "text": "异常用户查询",
-            "href": "sharebookmanager/jsp/abnormalsharebookuser.jsp",
+            "href": "/ideaWorkSpace/usershare/abnormalsharebookuser",
             "nodes": [
             ]
           }
@@ -27,17 +27,17 @@
         "nodes": [
           {
             "text": "用户信息",
-            "href": "sharebookmanager/jsp/usermanager.jsp",
+            "href": "/ideaWorkSpace/usersharemanager/usermanager1",
             "nodes": [
             ]
           },{
             "text": "角色管理",
-            "href": "sharebookmanager/jsp/sharerole.jsp",
+            "href": "/ideaWorkSpace/usersharemanager/sharerole1",
             "nodes": [
             ]
           },{
             "text": "权限管理",
-            "href": "",
+            "href": "/ideaWorkSpace/usersharemanager/permissionsset",
             "nodes": [
             ]
           }
@@ -49,34 +49,34 @@
         "nodes": [
           {
             "text": "书籍信息",
-            "href": "sharebookmanager/jsp/book.jsp",
+            "href": "/ideaWorkSpace/book/bookList",
             "nodes": [
             ]
           },{
             "text": "售卖书籍",
-            "href": "sharebookmanager/jsp/bookselling.jsp",
+            "href": "/ideaWorkSpace/book/books",
             "nodes": [
             ]
           }
-          ,{
+        ,{
             "text": "租借书籍",
-            "href": "sharebookmanager/jsp/bookborrow.jsp",
+            "href": "/ideaWorkSpace/book/bookb",
             "nodes": [
             ]
           }
-           ,{
+        ,{
             "text": "赠予书籍",
-            "href": "sharebookmanager/jsp/bookgift.jsp",
+            "href": "/ideaWorkSpace/book/bookg",
             "nodes": [
             ]
           } ,{
             "text": "竞拍书籍",
-            "href": "sharebookmanager/jsp/bookauction.jsp",
+            "href": "/ideaWorkSpace/book/booka",
             "nodes": [
             ]
           },{
             "text": "回收书籍",
-            "href": "sharebookmanager/jsp/bookgiftrec.jsp",
+            "href": "/ideaWorkSpace/book/bookrec",
             "nodes": [
             ]
           }
@@ -88,22 +88,22 @@
         "nodes": [
          {
             "text": "学生/教师信息",
-            "href": "sharebookmanager/jsp/studenteacher.jsp",
+            "href": "/ideaWorkSpace/usersharemanager/studenteacher",
             "nodes": [
             ]
           },{
             "text": "专业信息",
-            "href": "sharebookmanager/jsp/professionalclass.jsp",
+            "href": "/ideaWorkSpace/book/bookpro12",
             "nodes": [
             ]
           },{
             "text": "书单信息",
-            "href": "sharebookmanager/jsp/booklist.jsp",
+            "href": "/ideaWorkSpace/book/bookprofessionalList1",
             "nodes": [
             ]
           },{
             "text": "图书分类",
-            "href": "sharebookmanager/jsp/bookclass.jsp",
+            "href": "/ideaWorkSpace/book/bookclass12",
             "nodes": [
             ]
           }
@@ -115,12 +115,12 @@
         "nodes": [
           {
             "text": "活动规划",
-            "href": "sharebookmanager/jsp/shareactivity.jsp",
+            "href": "/ideaWorkSpace/share/shareactivitylist1",
             "nodes": [
             ]
           },{
             "text": "信息发布",
-            "href": "sharebookmanager/jsp/shareannouncement.jsp",
+            "href": "/ideaWorkSpace/share/shareannouncementlist1",
             "nodes": [
             ]
           }
@@ -131,23 +131,8 @@
         "href": "",
         "nodes": [
          {
-            "text": "交易量统计",
-            "href": "sharebookmanager/jsp/tradestatistics.jsp",
-            "nodes": [
-            ]
-          },{
-            "text": "交易时间统计",
-            "href": "sharebookmanager/jsp/tradestatistics.jsp",
-            "nodes": [
-            ]
-          },{
             "text": "畅销图书统计",
-            "href": "sharebookmanager/jsp/booktenstatistics.jsp",
-            "nodes": [
-            ]
-          },{
-            "text": "专业最喜爱图书统计",
-            "href": "sharebookmanager/jsp/tradestatistics.jsp",
+            "href": "/ideaWorkSpace/dataReport/bookten1",
             "nodes": [
             ]
           }

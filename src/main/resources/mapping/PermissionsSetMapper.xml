@@ -1,30 +1,112 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="common.mapper.PermissionsSetMapper" >
-  <resultMap id="BaseResultMap" type="common.model.PermissionsSet" >
-    <constructor >
-      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common.mapper.PermissionsSetMapper">
+  <resultMap id="BaseResultMap" type="common.model.PermissionsSet">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="group_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permissions_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <sql id="Base_Column_List">
+    id, role_id, group_name, permissions_id, status
+  </sql>
+  <insert id="insert" parameterType="common.query.PermissionsSetQuery">
+    insert into permissions_set (id, role_id, group_name, 
+      permissions_id, status)
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR}, 
+      #{permissionsId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="common.model.PermissionsSet">
+    insert into permissions_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="permissionsId != null">
+        permissions_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionsId != null">
+        #{permissionsId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="common.model.PermissionsSet">
+    update permissions_set
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionsId != null">
+        permissions_id = #{permissionsId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="common.model.PermissionsSet">
+    update permissions_set
+    set role_id = #{roleId,jdbcType=INTEGER},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      permissions_id = #{permissionsId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select *
+    from permissions_set
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getPermissionsSetList" parameterType="common.query.PermissionsSetQuery" resultMap="BaseResultMap">
+    select *
+    from permissions_set
+    where 1=1
+    <if test="groupName != null and groupName !=''">
+       <![CDATA[	AND group_name LIKE CONCAT(CONCAT('%',#{groupName}),'%')	]]>
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from permissions_set
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="common.model.PermissionsSet" >
-    insert into permissions_set (id)
-    values (#{id,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="common.model.PermissionsSet" >
-    insert into permissions_set
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
+    <delete id="deleteByPermissionsId" parameterType="java.lang.Integer">
+        delete from permissions_set
+        where permissions_id = #{permissionsId}
+    </delete>
+  <select id="getPermissionsSetIds" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select  permissions_id
+    from permissions_set
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
 </mapper>

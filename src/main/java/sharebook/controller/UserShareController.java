@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import common.constant.ConstantsUtils;
 import common.model.Abnormal;
 import common.model.StudentTeacherList;
+import common.model.UserManagerLogin;
 import common.query.StudentTeacherQuery;
 import common.query.UserShareQuery;
 import common.service.UserService;
@@ -25,8 +26,13 @@ import common.vo.UserShareVo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /**
@@ -46,6 +52,47 @@ public class UserShareController{
         @Autowired
         private UserService userService;
 
+
+
+
+    @RequestMapping(value = "/sharebookuser", method = RequestMethod.GET)
+    public ModelAndView shareactivitylist1() {
+        logger.info("UserShareController.sharebookuser------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/sharebookuser.jsp");
+
+    }
+    @RequestMapping(value = "/abnormalsharebookuser", method = RequestMethod.GET)
+    public ModelAndView abnormalsharebookuser() {
+        logger.info("UserShareController.abnormalsharebookuser------->");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        String uri="";
+        if(userManagerLogin==null){
+            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+        }
+        String url=request.getServletPath();
+        int count=userService.isTrue(url,userManagerLogin.getRoleId());
+        if(count<1){
+            return new ModelAndView("redirect:/sso/ssono/no_per.jsp");
+        }
+        return new ModelAndView("redirect:/sharebookmanager/jsp/abnormalsharebookuser.jsp");
+
+    }
     /***
      *
      * @param response
@@ -112,8 +159,8 @@ public class UserShareController{
                StudentTeacherList studentTeacherList=new StudentTeacherList();
                 List<StudentTeacherList> lists=new ArrayList<>();
             ServiceResult<StudentTeacherList> result=new ServiceResult<>();
-                Integer schoolCode=query.getSchoolCode();
-                Integer workId=query.getWorkId();
+                Long schoolCode=query.getSchoolCode();
+                Long workId=query.getWorkId();
                 if(schoolCode!=null&&schoolCode>0){
                     result = userService.getStudentTeacherList(schoolCode);
                 }

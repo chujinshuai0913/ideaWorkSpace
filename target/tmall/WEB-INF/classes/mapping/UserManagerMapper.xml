@@ -10,9 +10,9 @@
       <arg column="login_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="login_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="work_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="work_id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="delete_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="phone_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phone_number" jdbcType="BIGINT" javaType="java.lang.Long" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -29,15 +29,15 @@
     delete from user_manager
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="common.model.UserManager" >
+  <insert id="insert" parameterType="common.query.UserManagerQuery" >
     insert into user_manager (id, username, password, 
       sign_time, login_time, login_num, 
       role_id, work_id, delete_time, 
       phone_number)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=INTEGER}, 
       #{signTime,jdbcType=INTEGER}, #{loginTime,jdbcType=INTEGER}, #{loginNum,jdbcType=INTEGER}, 
-      #{roleId,jdbcType=INTEGER}, #{workId,jdbcType=INTEGER}, #{deleteTime,jdbcType=INTEGER}, 
-      #{phoneNumber,jdbcType=INTEGER})
+      #{roleId,jdbcType=INTEGER}, #{workId}, #{deleteTime,jdbcType=INTEGER},
+      #{phoneNumber})
   </insert>
   <insert id="insertSelective" parameterType="common.model.UserManager" >
     insert into user_manager
@@ -96,17 +96,17 @@
         #{roleId,jdbcType=INTEGER},
       </if>
       <if test="workId != null" >
-        #{workId,jdbcType=INTEGER},
+        #{workId},
       </if>
       <if test="deleteTime != null" >
         #{deleteTime,jdbcType=INTEGER},
       </if>
       <if test="phoneNumber != null" >
-        #{phoneNumber,jdbcType=INTEGER},
+        #{phoneNumber},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="common.model.UserManager" >
+  <update id="updateByPrimaryKeySelective" parameterType="common.query.UserManagerQuery" >
     update user_manager
     <set >
       <if test="username != null" >
@@ -128,13 +128,13 @@
         role_id = #{roleId,jdbcType=INTEGER},
       </if>
       <if test="workId != null" >
-        work_id = #{workId,jdbcType=INTEGER},
+        work_id = #{workId},
       </if>
       <if test="deleteTime != null" >
         delete_time = #{deleteTime,jdbcType=INTEGER},
       </if>
       <if test="phoneNumber != null" >
-        phone_number = #{phoneNumber,jdbcType=INTEGER},
+        phone_number = #{phoneNumber},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -147,9 +147,9 @@
       login_time = #{loginTime,jdbcType=INTEGER},
       login_num = #{loginNum,jdbcType=INTEGER},
       role_id = #{roleId,jdbcType=INTEGER},
-      work_id = #{workId,jdbcType=INTEGER},
+      work_id = #{workId},
       delete_time = #{deleteTime,jdbcType=INTEGER},
-      phone_number = #{phoneNumber,jdbcType=INTEGER}
+      phone_number = #{phoneNumber}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="getUserNameById" parameterType="java.lang.Integer" resultType="java.lang.String" >
@@ -162,21 +162,32 @@
     FROM user_manager
     WHERE 1=1
     <if test="phoneNumber != null" >
-      AND  phone_number = #{phoneNumber,jdbcType=BIGINT}
+      AND  phone_number = #{phoneNumber}
     </if>
-    <if test="sSignDate != null and sSignDate>0">    AND sign_time >= #{sSignDate}        </if>
-    <if test="eSignDate != null and sSignDate>0 ">   <![CDATA[ AND sign_time <= #{eSignDate} ]]> </if>
     <if test="workId != null" >
       AND  work_id = #{workId}
     </if>
-    <if test="roleId != null" >
-      AND  role_id = #{roleId}
-    </if>
-    <if test="username != null and username !=''">  <![CDATA[	AND username LIKE CONCAT(CONCAT('%',#{username}),'%')	]]> </if>
-    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
-    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
-
+    <if test="username != null and username !=''">  AND username = #{username})</if>
   </select>
+  <select id="queryUserShareManagerCount" resultType="java.lang.Integer" parameterType="common.query.UserManagerQuery" >
+    SELECT count(*)
+    FROM user_manager
+    WHERE 1=1
+    <if test="phoneNumber != null" >
+      AND  phone_number = #{phoneNumber}
+    </if>
+    <if test="workId != null" >
+      AND  work_id = #{workId}
+    </if>
+    <if test="username != null and username !=''">  AND username = #{username}</if>
+  </select>
+  <select id="loginUserManager" resultMap="BaseResultMap" parameterType="common.query.UserManagerQuery" >
+  SELECT *
+  FROM user_manager
+  WHERE  phone_number = #{phoneNumber} AND password=#{password}
+
+</select>
+
   <select id="queryUserShareManagerById" resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
     SELECT *
     FROM user_manager
@@ -187,7 +198,7 @@
     FROM user_manager
     WHERE 1=1
     <if test="phoneNumber != null" >
-      AND  phone_number = #{phoneNumber,jdbcType=BIGINT}
+      AND  phone_number = #{phoneNumber}
     </if>
     <if test="sSignDate != null and sSignDate>0">    AND sign_time >= #{sSignDate}        </if>
     <if test="eSignDate != null and sSignDate>0 ">   <![CDATA[ AND sign_time <= #{eSignDate} ]]> </if>
@@ -207,7 +218,7 @@
     FROM user_manager
     WHERE 1=1
     <if test="phoneNumber != null" >
-      AND  phone_number = #{phoneNumber,jdbcType=BIGINT}
+      AND  phone_number = #{phoneNumber}
     </if>
     <if test="sSignDate != null and sSignDate>0">    AND sign_time >= #{sSignDate}        </if>
     <if test="eSignDate != null and sSignDate>0 ">   <![CDATA[ AND sign_time <= #{eSignDate} ]]> </if>

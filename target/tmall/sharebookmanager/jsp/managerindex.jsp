@@ -52,26 +52,26 @@
                     <div class="user-info-wrap">
                         <div class="admin-user-info toggle-show">
                             <div class="user-info">
-                                <span class="user-name">楚金帅</span>
-                                <span class="user-role">(超级管理员)</span>
+                                <span class="user-name">${sessionScope.userManagerLogin.username}</span>
+                                <span class="user-role">(${sessionScope.userManagerLogin.role})</span>
                             </div>
                             <div class="toggle-show-info-block">
                                 <div class="user-detail">
                                     <dl>
                                         <dt class="field">电话:</dt>
-                                        <dd class="value">15010691715</dd>
+                                        <dd class="value">${sessionScope.userManagerLogin.phoneNumber}</dd>
                                     </dl>
                                     <dl>
                                         <dt class="field">最后登录:</dt>
-                                        <dd class="value">2016-12-12 11:06:12 周一</dd>
+                                        <dd class="value">${sessionScope.userManagerLogin.loginTime}</dd>
                                     </dl>
                                 </div>
                                 <div class="login-handle">
                                     <div class="handle-item">
-                                        <a href="#" class="handle-href"><i class="fa fa-lock icon"></i>修改密码</a>
+                                        <a href="${basePath}/sso/sharemanager/updatepassword.jsp" class="handle-href"><i class="fa fa-lock icon"></i>修改密码</a>
                                     </div>
                                     <div class="handle-item">
-                                        <a href="#" class="handle-href"><i class="fa fa-power-off icon"></i>退出登录</a>
+                                        <a href="${basePath}/loginmanager/loginout" class="handle-href"><i class="fa fa-power-off icon"></i>退出登录</a>
                                     </div>
                                 </div>
                             </div>

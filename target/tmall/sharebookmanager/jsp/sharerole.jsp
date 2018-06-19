@@ -51,33 +51,11 @@
     <div>
         <form id="form_sharebookuser_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
               onkeydown="if(event.keyCode==13){return false;}">
-
-
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">姓名</label> <input
-                    name="username" type="text" class="form-control" placeholder="姓名模糊查询"/>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">学号/工号</label> <input
-                    name="workId" type="text" class="form-control" placeholder="学号/工号"/>
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">角色</label>
-                <select  name="roleId" type="text" class="form-control">
-                    <option value="">全部</option>
-                    <option value="1"> 超级管理员</option>
-                    <option value="2"> 运营管理员</option>
-                    <option value="3"> 业务管理员</option>
-                </select>
-            </div>
-            <div class="form-group" style="margin-left: 30px;">
-
+            <div class="form-group" style="margin-left: 500px;">
                 <label></label>
-                <button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
-                        formaction="javascript:void(0);">查询
+                <button type="button" id="insertRole" class="btn btn-primary" data-style="zoom-in"
+                        formaction="javascript:void(0);">新增角色
                 </button>&nbsp;&nbsp;
-                <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" id="exportBtn">导出</button>
             </div>
         </form>
     </div>
@@ -90,41 +68,69 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                <h4 class="modal-title" id="modalTitle">修改角色</h4>
+                <h4 class="modal-title" id="modalTitle">添加角色</h4>
             </div>
             <form id="form_updateRole_q" >
             <div class="modal-body">
-
-                        <table class="table table-add-or-update" style="margin-top: 30px;" border="0">
-                            <input type="text" id="userId" name="id" value="" hidden="hidden"/>
-                            <tbody>
-                              <tr class="has-success">
-                                <td class="control-label" style="width: 100px;border: 0;">角色</td>
-                                <td class="control-label" style="border: 0;">
-                                    <select id="roleId" name="roleId" type="text" class="form-control">
-                                        <option value="">全部</option>
-                                        <option value="1"> 超级管理员</option>
-                                        <option value="2"> 运营管理员</option>
-                                        <option value="3"> 业务管理员</option>
-                                    </select>
-                                </td>
-                              </tr>
-                            </tbody>
-                        </table>
-
+                <div class="form-group" style="margin-left: 50px;">
+                    <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">名称</label>
+                    <input name="role" type="text" style="margin-left:20px;display: inline;" class="form-control" placeholder="名称"/>
+                </div>
              </div>
             <div class="form-group" style="margin-left: 250px;">
-
-            <label></label>
-            <button type="button" id="updatRole" class="btn btn-primary" data-style="zoom-in"
-                    formaction="javascript:void(0);">确认
-            </button>&nbsp;&nbsp;
-            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-        </div>
+                <label></label>
+                <button type="button" id="updatRole" class="btn btn-primary" data-style="zoom-in"
+                        formaction="javascript:void(0);">确认
+                </button>&nbsp;&nbsp;
+                <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+            </div>
             </form>
         </div>
     </div>
 </div>
+<div id="modal_detailTable1" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="900px" style="width:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle1">权限</h4>
+                <form id="form_insertPer_q" >
+                    <input id="roleId" name="roleId" type="text" style="display: none;" >
+                    <div class="form-group" style="margin-left: 550px;">
+                        <label></label>
+                        <button type="button" id="insertPerSet" class="btn btn-primary" data-style="zoom-in"
+                                formaction="javascript:void(0);">添加新权限
+                        </button>&nbsp;&nbsp;
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body">
+                <table id="detailTable"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal_detailTable2" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="900px" style="width:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle2">权限</h4>
+                <form id="form_insertPer_q2" >
+                    <input id="roleId2" name="roleId" type="text" style="display: none;" >
+                    <div class="form-group" style="margin-left: 550px;">
+                        <label></label>
+                        <button type="button" id="deletePerSet" class="btn btn-primary" data-style="zoom-in"
+                                formaction="javascript:void(0);">解除权限
+                        </button>&nbsp;&nbsp;
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body">
+                <table id="detailTable2"></table>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
 
@@ -134,7 +140,7 @@
     var $table = $("#mainTable");
     $table.bootstrapTable({
         toolbar: "#toolbar_sharebookuser",
-        url: '/ideaWorkSpace/usersharemanager/userRolelistData',
+        url: '/ideaWorkSpace/usersharemanager/rolelistData',
         showColumns: false,
         method:'post',
         dataType: "json",
@@ -152,69 +158,44 @@
             newParams = $.extend(true, {}, params, newParams);
             return newParams;
         },
-        columns: [ {
-            checkbox: true
-        },
+        columns: [
             {
                 field: 'id',
                 title: 'id',
                 align: "center",
-                visible:false,
-
-            },
-            {
-                field: 'roleId',
-                title: 'roleId',
-                align: "center",
-                visible:false,
-
-            },
-            {
-                field: 'username',
-                title: '姓名',
-                align: "center",
                 formatter: formatterToValue
-
-            },
-            {
-                field: 'workId',
-                title: '学号/工号',
-                align: "center",
-                formatter :function(value, row, index) {
-                    if(value>0){
-                        return value
-                    }else{
-                        return '-';
-                    }
-                }
 
             },
             {
                 field: 'role',
                 title: '角色',
                 align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: '操作',
+                title: '操作',
+                align: "center",
                 formatter :function(value, row, index) {
-                    if(row.roleId>0){
-                        return [ "<a  class='record-detail'>",''+value+'','</a>' ].join('');
-                    }else{
-                        return value;
-                    }
+                    return [ "[<a  class='record-detail'>授予权限</a>]  [<a class='delete-detail'>解除权限</a>]" ].join('');
                 },
                 events: {
                     'click .record-detail': function (e, value, row, index) {
                         detailTableDialog(e, value, row, index);
+                    },
+                    'click .delete-detail': function (e, value, row, index) {
+                        detailTableDialog1(e, value, row, index);
                     }
                 }
+
 
             }
         ]
     });
-    //弹出层
-
-    function detailTableDialog(e, value, row, index){
-        $('#modal_detailTable').modal("show");
-        $('#userId').val(row.id);
-    }
+$("#insertRole").on('click',function () {
+    $('#modal_detailTable').modal("show");
+ })
     function convertSerializeArrayToObject(array) {
         var obj = {};
         for(var i = 0, length = array.length; i<length; i++){
@@ -230,53 +211,10 @@
         }
         return value;
     }
-    //导出
-    $('#exportBtn').on('click', function () {
-        // 1. 未勾选时导出全部
-        var selectedRecords = $('#mainTable').bootstrapTable("getSelections");
-        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
-        if(dataNum===0){
-            return true;
-        }else{
-            if (selectedRecords.length === 0) {
-                $.confirm({
-                    title: '导出确认',
-                    confirmButton: "确认",
-                    cancelButton: "取消",
-                    content: '你未勾选记录，将会导出全部?',
-                    confirm: function(){
-                        var $form = $('#form_sharebookuser_q').clone();
-                        $form.attr({'action':'/usershare/exportShareUserAll',"method":"post"});
-                        $('body').append($form);
-                        $form.hide();
-                        $form.submit();
-                        $form.remove();
-                        return true;
-                    }
-                });
-                return true;
-            }else{
-                // 勾选时按勾选的导出
-                var $exportForm = $("<form></form>");
-                $exportForm.attr({
-                    "style":"display:none",
-                    "action":"/usershare/exportShareUser",
-                    "method":"post",
-                });
-                var reportJson = JSON.stringify($table.bootstrapTable('getSelections'));
-                var $idCheckbox = $("<input type='text' name='reportJson' value='"+reportJson+"'/>")
-                $idCheckbox.appendTo($exportForm);
-                console.log($exportForm);
-                $(document.body).append($exportForm);
-                $exportForm.submit();
-                $exportForm.remove();
-            }
-        }
-    });
     $('#updatRole').on('click', function () {
           var params = convertSerializeArrayToObject($("#form_updateRole_q").serializeArray());
             $.ajax({
-                url: "/ideaWorkSpace/usersharemanager/updaterole",    //请求的url地址
+                url: "/ideaWorkSpace/usersharemanager/insertrole",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 data: JSON.stringify(params),    //参数值
                 type: "POST",   //请求方式
@@ -292,7 +230,7 @@
                                 $('#modal_detailTable').modal("hide");
                                 $('#mainTable').bootstrapTable('refresh');
                             }else{
-                                alert("修改失败！");
+                                alert(data.resultMassage);
                             }
                         }
                     } catch (e){
@@ -306,8 +244,198 @@
                 }
             });
          });
+    function detailTableDialog(e, value, row, index){
+        $('#modal_detailTable1').modal("show");
+        $('#roleId').val(row.id);
+        $('#detailTable').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/usersharemanager/getpermissionurlno'
+        });
+    }
+    function detailTableDialog1(e, value, row, index){
+        $('#modal_detailTable2').modal("show");
+        $('#roleId2').val(row.id);
+        $('#detailTable2').bootstrapTable('refresh',{
+            url: '/ideaWorkSpace/usersharemanager/getpermissionurl'
+        });
+    }
+    $("#detailTable").bootstrapTable(
+        {
+            toolbar: "#toolbar_sharebookuserDetail",
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var newParams = $.extend(true,{},convertSerializeArrayToObject($("#form_insertPer_q").serializeArray()));
+                return newParams;
+            },
+            columns : [
+                {
+                    checkbox: true
+                },
+                {
+                    align: "center",
+                    field : 'url',
+                    title : 'url',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'urlName',
+                    title : '路径名称',
+                    formatter: formatterToValue
+                }]
+        });
+    $("#detailTable2").bootstrapTable(
+        {
+            toolbar: "#toolbar_sharebookuserDetail",
+            method:'post',
+            dataType: "json",
+            sidePagination : "server",
+            pagination : true,
+            queryParamsType : "page",
+            pageList : [5,10,15,20,'all'],
+            pageNumber:1,
+            pageSize :5,
+            totalField : "total_records",
+            dataField: 'data',
+            queryParams: function (params) {
+                var newParams = $.extend(true,{},convertSerializeArrayToObject($("#form_insertPer_q2").serializeArray()));
+                return newParams;
+            },
+            columns : [
+                {
+                    checkbox: true
+                },
+                {
+                    align: "center",
+                    field : 'url',
+                    title : 'url',
+                    formatter: formatterToValue
+                },
+                {
+                    align: "center",
+                    field : 'urlName',
+                    title : '路径名称',
+                    formatter: formatterToValue
+                }]
+        });
+
+    //添加权限
+    $("#insertPerSet").on('click',function () {
+        var roleId=$("#roleId").val();
+        var selected = $('#detailTable').bootstrapTable("getSelections");
+        var dataNum=$('#detailTable').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+                ids[index] = item.id;
+        });
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {roleId:roleId,ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/usersharemanager/insertperset",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#detailTable').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
 
 
+
+    //解除权限
+    $("#deletePerSet").on('click',function () {
+        var roleId=$("#roleId2").val();
+        var selected = $('#detailTable2').bootstrapTable("getSelections");
+        var dataNum=$('#detailTable2').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+            ids[index] = item.id;
+        });
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {roleId:roleId,ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/usersharemanager/deleteperset",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#detailTable2').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
 </script>
 </body>
 </html>
