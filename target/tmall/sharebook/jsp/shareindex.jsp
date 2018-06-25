@@ -125,7 +125,6 @@
 					</div>
 					<div class="bodyPagefirst_none_down_body ">
 						<div id="booktop" class="mhn-slide owl-carousel ">
-
 						</div>
 					</div>
 				</div>
@@ -135,7 +134,6 @@
 					<img src="${basePath}/sharebook/img/勋章.png " /><p>近期热销榜</p>
 				</div>
 				<div class="bodyPagefirst_right_content ">
-
 				</div>
 			</div>
 		</div>

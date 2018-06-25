@@ -82,7 +82,7 @@
                     <option value="9">博士</option>
                 </select>
             </div>
-            <div class="form-group" style="margin-left: 50px;">
+           <%-- <div class="form-group" style="margin-left: 50px;">
                 <label onclick="$(this).next().focus();">学期</label>
                 <select type="text" name="semester"  class="form-control" >
                     <option value="">全部</option>
@@ -90,7 +90,7 @@
                     <option value="1">上学期</option>
                     <option value="2">下学期</option>
                 </select>
-            </div>
+            </div>--%>
             <div class="form-group" style="margin-left: 30px;">
                 <label></label>
                 <button type="button" id="formSearchBtn" class="btn btn-primary" data-style="zoom-in"
@@ -101,7 +101,7 @@
             </div>
             <div class="form-group" style="margin-left: 30px;">
                 <button type="button" class="btn btn-success" onclick="deleteBookList()">删除</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" onclick="insertBookList()">增加</button>
+                <button type="button" id="importExcel" class="btn btn-success">导入</button>
             </div>
         </form>
     </div>
@@ -110,35 +110,68 @@
     </div>
 </div>
 <div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
-    <div class="modal-dialog" dialog-width="900px" style="width:900px">
+    <div class="modal-dialog" dialog-width="400px" style="width:400px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
-                <h4 class="modal-title" id="modalTitle">借书人</h4>
-                <form id="form_sell_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
-                      onkeydown="if(event.keyCode==13){return false;}">
-                        <div class="form-group" style="margin-left: 50px;">
-                            <label onclick="$(this).next().focus();">姓名</label>
-                            <input  name="userName" type="text" class="form-control" placeholder="姓名查询"/>
-                        </div>
-                        <div class="form-group" style="margin-left: 30px;">
-                            <label></label>
-                            <button type="button" id="formSellSearchBtn" class="btn btn-primary" data-style="zoom-in"
-                                    formaction="javascript:void(0);">查询
-                            </button>&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                        </div>
-                </form>
+                <h4 class="modal-title" id="modalTitle">导入</h4>
             </div>
-            <div class="modal-body">
-                <table id="detailTable"></table>
-            </div>
+            <form id="formId" enctype="multipart/form-data">
 
+                <input type="file" id="uploadEventFile" name="upfile" style="margin-top: 40px;margin-left: 100px;" size="50" />
+                <br />
+                <div class="form-group" style="margin-left: 100px;">
+                    <button type="button" id="importExcelSure" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">确认
+                    </button>&nbsp;&nbsp;
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
+    $("#importExcel").on('click',function () {
+        $('#modal_detailTable').modal("show");
+    })
 
+    $('#importExcelSure').on('click', function () {
+        var uploadEventFile = $("#uploadEventFile").val();
+        if (uploadEventFile == '') {
+            alert("请选择excel,再上传");
+        } else if (uploadEventFile.lastIndexOf(".xls") < 0) {//可判断以.xls和.xlsx结尾的excel
+            alert("只能上传Excel文件");importExcelSure
+        } else {
+            var formData = new FormData($('#formId')[0]);
+            $.ajax({
+                url: "/ideaWorkSpace/usersharemanager/importBookList",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: formData,    //参数值
+                type: "POST",   //请求方式
+                contentType:false ,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if (data) {
+                            $('#modal_detailTable').modal("hide");
+                            $('#mainTable').bootstrapTable('refresh');
+                            alert(data.resultMassage)
+                        }
+                    } catch (e) {
+                        console.log(e.message);
+                    }
+                },
+                complete: function () {
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
     $('#formSearchBtn').on('click', function () {
         $('#mainTable').bootstrapTable('refresh');
     });
@@ -203,12 +236,12 @@
                 title: '年级',
                 align: "center",
                 formatter :formatterToValue
-            },{
+            }/*,{
                 field: 'semesterName',
                 title: '学期',
                 align: "center",
                 formatter :formatterToValue
-            },{
+            }*/,{
                 field: 'iUser',
                 title: '导入人',
                 align: "center",

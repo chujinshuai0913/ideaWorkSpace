@@ -3,34 +3,34 @@
 <mapper namespace="common.mapper.UserShareMapper" >
   <resultMap id="BaseResultMap" type="common.model.UserShare" >
     <constructor >
-    <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-    <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-    <arg column="password" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="phone_number" jdbcType="BIGINT" javaType="java.lang.Long" />
-    <arg column="school_code" jdbcType="BIGINT" javaType="java.lang.Long" />
-    <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="integral" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="registered_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="login_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="ban_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="ban_longtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="delete_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="print_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="print_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="export_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    <arg column="export_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phone_number" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="school_code" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="integral" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="registered_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="login_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ban_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ban_longtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="delete_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_u" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="c_t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="print_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="export_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
-</resultMap>
+  </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, real_name, password, phone_number, school_code, status, integral, 
-    registered_time, login_time, ban_time, ban_longtime, delete_time, c_u, c_t, print_user, 
+    id, user_name, real_name, password, phone_number, school_code, status, integral,
+    registered_time, login_time, ban_time, ban_longtime, delete_time, c_u, c_t, print_user,
     print_time, export_user, export_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from user_share
     where id = #{id,jdbcType=INTEGER}
@@ -40,20 +40,20 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="common.query.UserShareQuery" >
-    insert into user_share (id, user_name, real_name, 
-      password, phone_number, school_code, 
-      status, integral, registered_time, 
-      login_time, ban_time, ban_longtime, 
-      delete_time, c_u, c_t, 
-      print_user, print_time, export_user, 
-      export_time)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=INTEGER}, #{phoneNumber,jdbcType=BIGINT}, #{schoolCode},
-      #{status,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{registeredTime,jdbcType=INTEGER}, 
-      #{loginTime,jdbcType=INTEGER}, #{banTime,jdbcType=INTEGER}, #{banLongtime,jdbcType=INTEGER}, 
-      #{deleteTime,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, 
-      #{printUser,jdbcType=INTEGER}, #{printTime,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER}, 
-      #{exportTime,jdbcType=INTEGER})
+    insert into user_share (id, user_name, real_name,
+    password, phone_number, school_code,
+    status, integral, registered_time,
+    login_time, ban_time, ban_longtime,
+    delete_time, c_u, c_t,
+    print_user, print_time, export_user,
+    export_time)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+    #{password,jdbcType=INTEGER}, #{phoneNumber,jdbcType=BIGINT}, #{schoolCode},
+    #{status,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{registeredTime,jdbcType=INTEGER},
+    #{loginTime,jdbcType=INTEGER}, #{banTime,jdbcType=INTEGER}, #{banLongtime,jdbcType=INTEGER},
+    #{deleteTime,jdbcType=INTEGER}, #{cU,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER},
+    #{printUser,jdbcType=INTEGER}, #{printTime,jdbcType=INTEGER}, #{exportUser,jdbcType=INTEGER},
+    #{exportTime,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="common.model.UserShare" >
     insert into user_share
@@ -239,29 +239,29 @@
   <update id="updateByPrimaryKey" parameterType="common.model.UserShare" >
     update user_share
     set user_name = #{userName,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=INTEGER},
-      phone_number = #{phoneNumber,jdbcType=BIGINT},
-      school_code = #{schoolCode},
-      status = #{status,jdbcType=INTEGER},
-      integral = #{integral,jdbcType=INTEGER},
-      registered_time = #{registeredTime,jdbcType=INTEGER},
-      login_time = #{loginTime,jdbcType=INTEGER},
-      ban_time = #{banTime,jdbcType=INTEGER},
-      ban_longtime = #{banLongtime,jdbcType=INTEGER},
-      delete_time = #{deleteTime,jdbcType=INTEGER},
-      c_u = #{cU,jdbcType=INTEGER},
-      c_t = #{cT,jdbcType=INTEGER},
-      print_user = #{printUser,jdbcType=INTEGER},
-      print_time = #{printTime,jdbcType=INTEGER},
-      export_user = #{exportUser,jdbcType=INTEGER},
-      export_time = #{exportTime,jdbcType=INTEGER}
+    real_name = #{realName,jdbcType=VARCHAR},
+    password = #{password,jdbcType=INTEGER},
+    phone_number = #{phoneNumber,jdbcType=BIGINT},
+    school_code = #{schoolCode},
+    status = #{status,jdbcType=INTEGER},
+    integral = #{integral,jdbcType=INTEGER},
+    registered_time = #{registeredTime,jdbcType=INTEGER},
+    login_time = #{loginTime,jdbcType=INTEGER},
+    ban_time = #{banTime,jdbcType=INTEGER},
+    ban_longtime = #{banLongtime,jdbcType=INTEGER},
+    delete_time = #{deleteTime,jdbcType=INTEGER},
+    c_u = #{cU,jdbcType=INTEGER},
+    c_t = #{cT,jdbcType=INTEGER},
+    print_user = #{printUser,jdbcType=INTEGER},
+    print_time = #{printTime,jdbcType=INTEGER},
+    export_user = #{exportUser,jdbcType=INTEGER},
+    export_time = #{exportTime,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="queryUserShare" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery" >
-     SELECT *
-     FROM user_share
-     WHERE 1=1
+    SELECT *
+    FROM user_share
+    WHERE 1=1
     <if test="phoneNumber != null" >
       AND  phone_number = #{phoneNumber,jdbcType=BIGINT}
     </if>
@@ -297,11 +297,11 @@
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
 
   </select>
-    <select id="loginUserShare" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery" >
-        SELECT *
-        FROM user_share
-        WHERE phone_number = #{phoneNumber,jdbcType=BIGINT} AND  password = #{password,jdbcType=BIGINT}
-    </select>
+  <select id="loginUserShare" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery" >
+    SELECT *
+    FROM user_share
+    WHERE phone_number = #{phoneNumber,jdbcType=BIGINT} AND  password = #{password,jdbcType=BIGINT} AND status in(1,3)
+  </select>
   <select id="queryUserShareLists" resultMap="BaseResultMap" parameterType="common.query.UserShareQuery"  >
     SELECT *
     FROM user_share
@@ -377,7 +377,7 @@
     FROM user_share
     where  1=1
     <if test="status != null" >
-    AND  status = #{status,jdbcType=BIGINT}
+      AND  status = #{status,jdbcType=BIGINT}
     </if>
     <if test="userName != null and userName !=''">  <![CDATA[	AND user_name LIKE CONCAT(CONCAT('%',#{userName}),'%')	]]> </if>
     <if test="phoneNumber != null" >
@@ -388,7 +388,7 @@
     </if>
     and id in
     <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
-        #{item}
+      #{item}
     </foreach>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
@@ -398,14 +398,32 @@
     FROM user_share
     where  phone_number = #{phoneNumber}
   </select>
-    <select id="getIdByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        SELECT  id
-        FROM user_share
-        where  <if test="userName != null and userName !=''">  <![CDATA[	user_name LIKE CONCAT(CONCAT('%',#{userName}),'%')	]]> </if>
-    </select>
-    <select id="getUserShareNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT  *
-        FROM user_share
-        where id=#{id}
-    </select>
+  <select id="getIdByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT  id
+    FROM user_share
+    where  <if test="userName != null and userName !=''">  <![CDATA[	user_name LIKE CONCAT(CONCAT('%',#{userName}),'%')	]]> </if>
+  </select>
+  <select id="getUserShareNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT  *
+    FROM user_share
+    where id=#{id}
+  </select>
+  <update id="updateUserShareStaus"  parameterType="common.query.UserShareQuery">
+    update user_share
+    set status = #{status}
+    <if test="banTime != null" >
+      ,ban_time = #{banTime}
+    </if>
+    <if test="cU != null" >
+      ,c_u = #{cU}
+    </if>
+    <if test="cT != null" >
+      ,c_t = #{cT}
+    </if>
+    where id in
+    <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </update>
 </mapper>
+

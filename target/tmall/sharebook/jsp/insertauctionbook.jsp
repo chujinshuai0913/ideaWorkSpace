@@ -65,7 +65,7 @@
                 </div>
                 <c:if test='${sessionScope.userLogin.userName!= null}'>
                     <div class="headPagehead_text_two" style="margin-right: 200px;">
-                        <font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+                        <font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
                     </div>
                 </c:if>
@@ -151,11 +151,8 @@
                                                  装帧:<span>${requestScope.book.binding}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                  页数：<span>${requestScope.book.pageNumber}页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                  出版社:<span>${requestScope.book.press}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                 出版时间:<span>
-                                                             <jsp:useBean id="Timestamp" class="java.util.Date"/>
-                                                            <c:set target="${Timestamp}" property="time" value="${requestScope.book.pressTime}"/>
-                                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${Timestamp}" type="both"/>
-                                                        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 出版时间:<span class="presstime"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 <input id="presstime" style="display: none;" value = "${requestScope.book.pressTime}">
                                              </p>
                                                 <p style="margin-left: 20px;margin-top: 20px">
                                                   标签:<span>${requestScope.book.tag}</span>
@@ -296,6 +293,27 @@
     </div>
     </body>
     <script>
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).Format("yyyy-MM-dd");
+        }
+        Date.prototype.Format = function(fmt) {//author: meizz
+            var o = {
+                "M+" : this.getMonth() + 1, //月份
+                "d+" : this.getDate(), //日
+                "h+" : this.getHours(), //小时
+                "m+" : this.getMinutes(), //分
+                "s+" : this.getSeconds(), //秒
+                "q+" : Math.floor((this.getMonth() + 3) / 3), //季度
+                "S" : this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt))
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        $(".presstime").text(getLocalTime($("#presstime").val()))
         //时间初始化
         $('#sTime') .datetimepicker();
         $('#eTime') .datetimepicker();

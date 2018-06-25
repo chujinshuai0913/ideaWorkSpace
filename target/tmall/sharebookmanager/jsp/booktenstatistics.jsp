@@ -73,21 +73,21 @@
                     name="press" type="text" class="form-control" placeholder="出版社模糊查询"/>
             </div>
 
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">学院</label>
-                <input type="text" name="professionalType1"  class="form-control" placeholder="学院"/>
+            <%--<div class="form-group" style="margin-left: 50px;">--%>
+                <%--<label onclick="$(this).next().focus();">学院</label>--%>
+                <%--<input type="text" name="professionalType1"  class="form-control" placeholder="学院"/>--%>
 
-            </div>
-            <div class="form-group" style="margin-left: 50px;">
-                <label onclick="$(this).next().focus();">专业</label>
-                <input type="text" name="professionalType2"  class="form-control" placeholder="专业"/>
+            <%--</div>--%>
+            <%--<div class="form-group" style="margin-left: 50px;">--%>
+                <%--<label onclick="$(this).next().focus();">专业</label>--%>
+                <%--<input type="text" name="professionalType2"  class="form-control" placeholder="专业"/>--%>
 
-                <%-- <select  name="status" type="text" class="form-control" placeholder="专业">
-                        <option value="">全部</option>
-                        <option value="1"> 可用</option>
-                        <option value="2"> 不可用</option>
-                    </select>--%>
-            </div>
+                <%--&lt;%&ndash; <select  name="status" type="text" class="form-control" placeholder="专业">--%>
+                        <%--<option value="">全部</option>--%>
+                        <%--<option value="1"> 可用</option>--%>
+                        <%--<option value="2"> 不可用</option>--%>
+                    <%--</select>&ndash;%&gt;--%>
+            <%--</div>--%>
 
             <div class="form-group" style="margin-left: 30px;">
 
@@ -96,7 +96,6 @@
                         formaction="javascript:void(0);">查询
                 </button>&nbsp;&nbsp;
                 <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" id="exportBtn">导出</button>
             </div>
         </form>
     </div>

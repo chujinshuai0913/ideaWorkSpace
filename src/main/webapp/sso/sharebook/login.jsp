@@ -15,7 +15,7 @@
 </head>
 <body>
 <header>
-	<a href="#" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
+	<a href="${basePath}/sharebook/jsp/shareindex.jsp" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
 	<div class="desc">欢迎登陆</div>
 	<div class="desc1">还没有账户? <a href="${basePath}/sso/sharebook/sign.jsp" style="color: red;">立刻创建</a></div>
 </header>

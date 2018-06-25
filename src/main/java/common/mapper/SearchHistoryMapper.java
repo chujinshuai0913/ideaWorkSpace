@@ -19,6 +19,6 @@ public interface SearchHistoryMapper {
 
     List<SearchHistory> getSearchHistoryList(SearchHistory record);
 
-
+    int getSearchHistoryListCount(SearchHistory record);
 
 }

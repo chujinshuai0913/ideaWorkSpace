@@ -17,12 +17,19 @@ import common.model.*;
 import common.query.*;
 import common.service.BookService;
 import common.util.DateUtils;
+import common.util.ExcelUtilPOl;
 import common.util.ServiceResult;
 import common.vo.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +92,8 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookGiftRecMapper bookGiftRecMapper;
+    @Autowired
+    private  StudentTeacherListMapper studentTeacherListMapper;
 
     @Override
     public ServiceResult<List<BookVo>> queryBookList(BookQuery bookQuery) {
@@ -320,10 +329,7 @@ public class BookServiceImpl implements BookService {
                }
            }
            if (book.getcU()!=null&&book.getcU()>0){
-               ServiceResult<UserManager> result=new ServiceResult<>(userManagerMapper.queryUserShareManagerById(book.getcU()));
-               if(result.getSuccess()&&result.getBody()!=null){
-                   bookVo.setcName(result.getBody().getUsername());
-               }
+                   bookVo.setcName(userManagerMapper.getUserNameById(book.getcU()));
            }
            if (book.getImportUser()!=null&&book.getImportUser()>0){
                ServiceResult<UserManager> result=new ServiceResult<>(userManagerMapper.queryUserShareManagerById(book.getImportUser()));
@@ -863,26 +869,17 @@ public class BookServiceImpl implements BookService {
             bookProfessionalListVo.setiUser("");
 
             if (bookProfessionalList.getImportUser()!=null&&bookProfessionalList.getImportUser()>0){
-                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookProfessionalList.getImportUser()));
-                if(result.getSuccess()&&result.getBody()!=null){
-                    bookProfessionalListVo.setiUser(result.getBody().getUserName());
-                }
+                    bookProfessionalListVo.setiUser(userManagerMapper.getUserNameById(bookProfessionalList.getImportUser()));
             }if (bookProfessionalList.getExportUser()!=null&&bookProfessionalList.getExportUser()>0){
-                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookProfessionalList.getExportUser()));
-                if(result.getSuccess()&&result.getBody()!=null){
-                    bookProfessionalListVo.seteUser(result.getBody().getUserName());
-                }
+                    bookProfessionalListVo.seteUser(userManagerMapper.getUserNameById(bookProfessionalList.getImportUser()));
             }
             if (bookProfessionalList.getcU()!=null&&bookProfessionalList.getcU()>0){
-                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookProfessionalList.getcU()));
-                if(result.getSuccess()&&result.getBody()!=null){
-                    bookProfessionalListVo.setcName(result.getBody().getUserName());
-                }
+                    bookProfessionalListVo.setcName(userManagerMapper.getUserNameById(bookProfessionalList.getImportUser()));
             }
             if (bookProfessionalList.getPrintUser()!=null&&bookProfessionalList.getPrintUser()>0){
                 ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookProfessionalList.getPrintUser()));
                 if(result.getSuccess()&&result.getBody()!=null){
-                    bookProfessionalListVo.setpUser(result.getBody().getUserName());
+                    bookProfessionalListVo.setpUser(userManagerMapper.getUserNameById(bookProfessionalList.getImportUser()));
                 }
             }
             if(bookProfessionalList.getExportTime()!=null&&bookProfessionalList.getExportTime()>0)
@@ -943,10 +940,7 @@ public class BookServiceImpl implements BookService {
             }
             if(bookGiftRec.getCu()!=null&&bookGiftRec.getCu()>0)
             {
-                ServiceResult<UserShare> result=new ServiceResult<>(userShareMapper.getUserShareNameById(bookGiftRec.getCu()));
-                if(result.getSuccess()&&result.getBody()!=null){
-                    bookGiftRecVo.setcName(result.getBody().getUserName());
-                }
+                    bookGiftRecVo.setcName(userManagerMapper.getUserNameById(bookGiftRec.getCu()));
             }
             if(bookGiftRec.getCt()!=null&&bookGiftRec.getCt()>0)
             {
@@ -1147,6 +1141,15 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
+    public  ServiceResult<Integer> updateBookBorrowUseNum(BookBorrowQuery bookBorrowQuery){
+        try {
+            return new ServiceResult<>(bookBorrowMapper.updateBookBorrowUseNum(bookBorrowQuery));
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
     @Override
     public ServiceResult<Integer> queryBookGiftCount(BookGiftQuery bookGiftQuery) {
         return new ServiceResult<>(bookGiftMapper.queryBookGiftCount(bookGiftQuery));
@@ -1425,10 +1428,88 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public ServiceResult<BookGiftRecVo> queryBookGiftRecById(BookGiftRecQuery query) {
+        try {
+            List<BookGiftRecVo> bookGiftRecVos=new ArrayList<>();
+            ServiceResult<BookGiftRec> serviceResult=new ServiceResult<>(bookGiftRecMapper.selectByPrimaryKey(query.getId()));
+                    BookGiftRecVo bookGiftRecVo= new BookGiftRecVo();
+            return new ServiceResult<>(this.getBookGiftRecVo(serviceResult.getBody(),bookGiftRecVo));
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public ServiceResult<Integer> updateBookGiftRecById(BookGiftRecQuery query) {
+        try {
+
+            return new ServiceResult<>(bookGiftRecMapper.updateByPrimaryKeySelective(query)) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+    @Override
     public ServiceResult<BookVo> queryBookListTopTen(BookQuery query){
         List<Book> bookList = bookMapper.queryBookListTopTen(query);
         BookVo bookVo=new BookVo();
         bookVo.setList(bookList);
         return new ServiceResult<>(bookVo);
+    }
+    @Override
+    public void importExcelInfo(InputStream in, MultipartFile file) {
+        try {
+            List<List<Object>> listob = ExcelUtilPOl.getBankListByExcel(in,file.getOriginalFilename());
+            List<StudentTeacherList> studentTeacherLists = new ArrayList<StudentTeacherList>();
+
+            //遍历listob数据，把数据放到List中
+            for (int i = 0; i < listob.size(); i++) {
+                List<Object> ob = listob.get(i);
+                StudentTeacherList studentTeacherList = new StudentTeacherList();
+                //设置编号
+                //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载
+                studentTeacherList.setIdNumber(Long.valueOf(String.valueOf(ob.get(1))).longValue());
+                studentTeacherList.setStName(String.valueOf(ob.get(2)));
+                studentTeacherList.setProfessional1Name(String.valueOf(ob.get(3)));
+                studentTeacherList.setProfessional2Name(String.valueOf(ob.get(4)));
+                studentTeacherList.setGrade(String.valueOf(ob.get(5)));
+                studentTeacherListMapper.insertSelective(studentTeacherList);
+                studentTeacherLists.add(studentTeacherList);
+            }
+            //批量插入
+            /*studentTeacherListMapper.insertStudentTeacherListBatch(studentTeacherLists);*/
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
+    }
+    @Override
+    public void importBookListExcelInfo(InputStream in, MultipartFile file) {
+        try {
+            List<List<Object>> listob = ExcelUtilPOl.getBankListByExcel(in,file.getOriginalFilename());
+            //遍历listob数据，把数据放到List中
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+            for (int i = 0; i < listob.size(); i++) {
+                List<Object> ob = listob.get(i);
+                BookProfessionalList bookProfessionalList = new BookProfessionalList();
+                //设置编号
+                //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载
+                bookProfessionalList.setBookName(String.valueOf(ob.get(1)));
+                bookProfessionalList.setIsbn(Long.valueOf(String.valueOf(ob.get(2))).longValue());
+                bookProfessionalList.setTypeProfessionalname1(String.valueOf(ob.get(3)));
+                bookProfessionalList.setTypeProfessionalname2(String.valueOf(ob.get(4)));
+                bookProfessionalList.setGrade(Integer.parseInt(String.valueOf(ob.get(5))));
+                bookProfessionalList.setImportUser(userManagerLogin.getId());
+                bookProfessionalList.setImportTime(DateUtils.getNowTimeStamp());
+                bookProfessionalList.setcU(userManagerLogin.getId());
+                bookProfessionalList.setcT(DateUtils.getNowTimeStamp());
+                bookProfessionalList.setIsDelete(0);
+                bookProfessionalListMapper.insertSelective(bookProfessionalList);
+            }
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
     }
 }

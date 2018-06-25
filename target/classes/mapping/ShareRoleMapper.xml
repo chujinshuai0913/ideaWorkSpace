@@ -21,7 +21,13 @@
   <select id="getUserRoleList" resultMap="BaseResultMap" parameterType="common.query.ShareRoleQuery" >
     select *
     from share_role
+      <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+      <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>
+    <select id="queryUserRoleCount" resultType="java.lang.Integer" parameterType="common.query.ShareRoleQuery" >
+        select count(*)
+        from share_role
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from share_role
     where id = #{id,jdbcType=INTEGER}

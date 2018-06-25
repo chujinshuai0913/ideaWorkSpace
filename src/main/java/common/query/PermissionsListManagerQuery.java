@@ -1,7 +1,11 @@
 package common.query;
 
+import java.util.List;
+
 public class PermissionsListManagerQuery extends QueryParam {
     private Integer id;
+
+    private List<Integer> ids;
 
     private String url;
 
@@ -9,11 +13,13 @@ public class PermissionsListManagerQuery extends QueryParam {
 
     private Integer status;
 
-    public PermissionsListManagerQuery(Integer id, String url, String urlName, Integer status) {
-        this.id = id;
-        this.url = url;
-        this.urlName = urlName;
-        this.status = status;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
     }
 
     public PermissionsListManagerQuery() {

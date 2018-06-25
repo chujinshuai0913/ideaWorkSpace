@@ -90,7 +90,6 @@
                         formaction="javascript:void(0);">查询
                 </button>&nbsp;&nbsp;
                 <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" id="exportBtn">导出</button>
             </div>
         </form>
     </div>
@@ -167,9 +166,9 @@
             newParams = $.extend(true, {}, params, newParams);
             return newParams;
         },
-        columns: [ {
+        columns: [ /*{
             checkbox: true
-        },
+        },*/
             {
                 field: 'id',
                 title: 'id',
@@ -307,7 +306,7 @@
                 align: "center",
                 formatter: formatterToValue
 
-            },{
+            }/*,{
                 field: 'cName',
                 title: '操作人',
                 align: "center",
@@ -319,7 +318,7 @@
                 align: "center",
                 formatter: formatterToValue
 
-            }
+            }*/
         ]
     });
     $("#detailTable1").bootstrapTable(
@@ -380,13 +379,8 @@
                     field : 'useNum',
                     title : '交易量',
                     formatter: formatterToValue
-                },
-                {
-                    align: "center",
-                    field : 'dTime',
-                    title : '上一次交易时间',
-                    formatter: formatterToValue
-                }]
+                }
+               ]
         });
     $("#detailTable2").bootstrapTable(
         {

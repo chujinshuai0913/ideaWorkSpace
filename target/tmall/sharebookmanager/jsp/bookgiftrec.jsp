@@ -74,6 +74,37 @@
         <table  id="mainTable"></table>
     </div>
 </div>
+<div id="modal_detailTable" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="400px" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle">回收书籍处理</h4>
+            </div>
+            <form id="form_inserPer_q" >
+                <div class="modal-body">
+                    <input id="recnum"style="display: none"/>
+                    <input id="recId" name="id" style="display: none"/>
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">处理数量</label>
+                        <input id="success" name="success" type="text" style="margin-left:20px;display: inline;" class="form-control" placeholder="处理数量"/>
+                    </div>
+                    <div class="form-group" style="margin-left: 50px;">
+                        <label onclick="$(this).next().focus();" style="width: 90px;display: inline;">去向说明</label>
+                        <input name="remark" type="text" style="margin-left:20px;display: inline;" class="form-control" placeholder="去向说明"/>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 150px;">
+                    <label></label>
+                    <button type="button" id="insertPermission" class="btn btn-primary" data-style="zoom-in"
+                            formaction="javascript:void(0);">确认
+                    </button>&nbsp;&nbsp;
+                    <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 <script type="text/javascript">
 
@@ -149,8 +180,7 @@
                 field: 'phoneNumber',
                 title: '电话',
                 align: "center",
-                visible:false,
-
+               formatter: formatterToValue
             },
             {
                 field: 'gTime',
@@ -187,6 +217,31 @@
                 align: "center",
                 formatter: formatterToValue
 
+            },{
+                field: 'cTime',
+                title: '处理时间',
+                align: "center",
+                formatter: formatterToValue
+
+            },
+            {
+                field: '操作',
+                title: '处理时间',
+                align: "center",
+                formatter :function(value, row, index) {
+                    if(row.num!=row.success){
+                        return [ "<a style='cursor: pointer;' class='record-detail'>待处理</a>"].join('');
+                    }
+                    else {
+                        return "已完成";
+                    }
+                },
+                events: {
+                    'click .record-detail': function (e, value, row, index) {
+                        detailTableDialog(e, value, row, index);
+                    }
+                }
+
             }
         ]
     });
@@ -205,6 +260,51 @@
         }
         return value;
     }
+    //修改状态
+    function detailTableDialog(e, value, row, index){
+        $('#modal_detailTable').modal("show");
+        var recnum=row.num-row.success;
+        $("#recnum").val(recnum);
+        $("#recId").val(row.id);
+
+    }
+    $("#insertPermission").on('click',function () {
+         if($("#recnum").val()<$("#success").val()){
+             alert("处理量大于剩余量了");
+             return;
+         }
+
+        $.ajax({
+            url: "/ideaWorkSpace/book/resolveBook",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            data: JSON.stringify(convertSerializeArrayToObject($("#form_inserPer_q").serializeArray())),    //参数值
+            type: "POST",   //请求方式
+            contentType:"text/html;charset=utf-8",
+            beforeSend: function() {
+            },
+            success: function(data) {
+                try {
+                    if(data){
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        if(jsonData.resultMassage == 'ok'){
+                            alert("处理成功!");
+                            $('#modal_detailTable').modal("hide");
+                            $('#mainTable').bootstrapTable('refresh');
+                        }else{
+                            alert(data.resultMassage);
+                        }
+                    }
+                } catch (e){
+                    console.log(e.message);
+                }
+            },
+            complete: function() {
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    })
 
 </script>
 </body>

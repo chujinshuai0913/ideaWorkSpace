@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<header>
-			<a href="#" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
+			<a href="${basePath}/sharebook/jsp/shareindex.jsp" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
 			<div class="desc">燕鸣书屋</div>
 		</header>
 		<section>

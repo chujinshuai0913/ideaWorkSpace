@@ -57,39 +57,54 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
 
-  <!--  &lt;!&ndash; job的定义 &ndash;&gt;
-    <bean name="myJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="common.util.AuctionProcessQuartz" />
-        &lt;!&ndash; 回调参数的定义 &ndash;&gt;
-        <property name="jobDataAsMap">
-            <map>
-                <entry key="name" value="AuctionProcessQuartz" />
-            </map>
+<!--异常用户及书籍回收-->
+
+
+         <bean id="myJob2" class="common.util.AuctionProcessQuartz"></bean>
+         <bean id="myJob2Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+             <property name="targetObject">
+                 <ref bean="myJob2" />
+             </property>
+             <property name="targetMethod">
+                 <value>AuctionQuartz</value>
+             </property>
+         </bean>
+         <bean id="myJob2Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+             <property name="jobDetail">
+                 <ref bean="myJob2Detail" />
+             </property>
+             <property name="cronExpression">
+                 <value>*/1 * * * * ?</value>
+             </property>
+         </bean>
+    <bean id="myJob1" class="common.util.AbnormalQuartz" />
+    <bean id="myJob1Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="myJob1" />
+        </property>
+        <!-- 指向方法,这里的value是方法名称 -->
+        <property name="targetMethod">
+            <value>AbnormalAndRec</value>
+        </property>
+    </bean>
+    <bean id="myJob1Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="myJob1Detail" />
+        </property>
+        <!-- 多久执行,这里表示每天凌晨执行 -->
+        <property name="cronExpression">
+            <value>0 0 1 ? * L</value>
         </property>
     </bean>
 
-    &lt;!&ndash; SimpleTrigger 触发器 &ndash;&gt;
-    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
-        <property name="jobDetail" ref="myJob" />
-        <property name="startDelay" value="0" />&lt;!&ndash; 调度工厂实例化后，经过0秒开始执行调度 &ndash;&gt;
-        <property name="repeatInterval" value="2000" />&lt;!&ndash; 每2秒调度一次 &ndash;&gt;
-    </bean>
-
-    &lt;!&ndash; CronTriggerBean 触发器 &ndash;&gt;
-    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="myJob" />
-        &lt;!&ndash; 每3秒执行一次 &ndash;&gt;
-        <property name="cronExpression" value="0/600 * * * * ?" />
-    </bean>
-
-    &lt;!&ndash; 配置调度工厂 &ndash;&gt;
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list>
-                <ref bean="simpleTrigger" />
-                <ref bean="cronTrigger" />
-            </list>
-        </property>
-    </bean>-->
-
-</beans>
+    <!-- 启动触发器的配置开始 -->
+         <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+             <property name="triggers">
+                 <list>
+                    <!-- <ref bean="myJob2Trigger" />-->
+                     <ref bean="myJob1Trigger" />
+                 </list>
+             </property>
+         </bean>
+         <!-- 启动触发器的配置结束 -->
+     </beans>

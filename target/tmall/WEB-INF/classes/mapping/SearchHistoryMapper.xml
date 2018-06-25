@@ -101,4 +101,11 @@
      ORDER BY search_time desc,num desc
     limit 100
   </select>
+  <select id="getSearchHistoryListCount" resultType="java.lang.Integer" parameterType="common.model.SearchHistory" >
+    select count(*)
+    from search_history
+    where  1=1
+    <if test="userId != null">AND user_id= #{userId} </if>
+    <if test="bookId != null">  AND book_id= #{bookId} </if>
+  </select>
 </mapper>

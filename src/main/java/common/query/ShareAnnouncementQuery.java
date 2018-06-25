@@ -32,8 +32,11 @@ public class ShareAnnouncementQuery extends QueryParam {
 
     private Integer uploadTime;
 
+    private Integer upTime;
+
     private Integer endTime;
 
+    private Integer enTime;
     private Integer isDelete;
 
     private Integer cu;
@@ -48,6 +51,22 @@ public class ShareAnnouncementQuery extends QueryParam {
 
     private Integer fTime;
     private Integer status;
+
+    public Integer getEnTime() {
+        return enTime;
+    }
+
+    public void setEnTime(Integer enTime) {
+        this.enTime = enTime;
+    }
+
+    public Integer getUpTime() {
+        return upTime;
+    }
+
+    public void setUpTime(Integer upTime) {
+        this.upTime = upTime;
+    }
 
     public Integer getStatus() {
         return status;

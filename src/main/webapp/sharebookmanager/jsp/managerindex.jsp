@@ -51,29 +51,36 @@
                 <div class="cell user-info-cell scrollbar scrollbar-mini">
                     <div class="user-info-wrap">
                         <div class="admin-user-info toggle-show">
-                            <div class="user-info">
-                                <span class="user-name">${sessionScope.userManagerLogin.username}</span>
-                                <span class="user-role">(${sessionScope.userManagerLogin.role})</span>
-                            </div>
-                            <div class="toggle-show-info-block">
-                                <div class="user-detail">
-                                    <dl>
-                                        <dt class="field">电话:</dt>
-                                        <dd class="value">${sessionScope.userManagerLogin.phoneNumber}</dd>
-                                    </dl>
-                                    <dl>
-                                        <dt class="field">最后登录:</dt>
-                                        <dd class="value">${sessionScope.userManagerLogin.loginTime}</dd>
-                                    </dl>
+                            <c:if test='${sessionScope.userManagerLogin.username!= null}'>
+                                <div class="user-info">
+                                    <span class="user-name">${sessionScope.userManagerLogin.username}</span>
+                                    <span class="user-role">(${sessionScope.userManagerLogin.role})</span>
                                 </div>
-                                <div class="login-handle">
-                                    <div class="handle-item">
-                                        <a href="${basePath}/sso/sharemanager/updatepassword.jsp" class="handle-href"><i class="fa fa-lock icon"></i>修改密码</a>
+                                <div class="toggle-show-info-block">
+                                    <div class="user-detail">
+                                        <dl>
+                                            <dt class="field">电话:</dt>
+                                            <dd class="value">${sessionScope.userManagerLogin.phoneNumber}</dd>
+                                        </dl>
+                                        <dl>
+                                            <dt class="field">最后登录:</dt>
+                                            <dd class="value">${sessionScope.userManagerLogin.loginTime}</dd>
+                                        </dl>
                                     </div>
-                                    <div class="handle-item">
-                                        <a href="${basePath}/loginmanager/loginout" class="handle-href"><i class="fa fa-power-off icon"></i>退出登录</a>
+                                    <div class="login-handle">
+                                        <div class="handle-item">
+                                            <a href="${basePath}/sso/sharemanager/updatepassword.jsp" class="handle-href"><i class="fa fa-lock icon"></i>修改密码</a>
+                                        </div>
+                                        <div class="handle-item">
+                                            <a href="${basePath}/loginmanager/loginout" class="handle-href"><i class="fa fa-power-off icon"></i>退出登录</a>
+                                        </div>
                                     </div>
-                                </div>
+                                    </c:if>
+                                    <c:if test='${sessionScope.userManagerLogin.username== null}'>
+                                    <div class="user-info">
+                                        <a href="${basePath}/sso/sharemanager/login.jsp" class="handle-href"><span class="user-name">请登录！  </span></a>
+                                    </div>
+                                    </c:if>
                             </div>
                         </div>
                         <%--<div class="admin-select-city">--%>

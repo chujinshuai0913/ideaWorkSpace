@@ -66,7 +66,7 @@ public class ShareManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -130,7 +130,7 @@ public class ShareManagerController {
         UserManagerLogin userManagerLogin = (UserManagerLogin) session.getAttribute("userManagerLogin");
         String uri = "";
         if (userManagerLogin == null) {
-            return new ModelAndView(request.getContextPath() + "/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url = request.getServletPath();
         int count = userService.isTrue(url, userManagerLogin.getRoleId());

@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="common.model.BookGiftRec">
+  <update id="updateByPrimaryKeySelective" parameterType="common.query.BookGiftRecQuery">
     update book_gift_rec
     <set>
       <if test="giftId != null">
@@ -131,7 +131,7 @@
       SELECT *
       FROM book_gift_rec
       WHERE 1=1
-    <if test="giftTime != null" >   AND  gift_time = #{giftTime}   </if>
+    <if test="giftTime != null" >   AND  gift_time &gt;#{giftTime}  AND  gift_time &lt;#{giftTime}+86400 </if>
     <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
     <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>
@@ -139,6 +139,6 @@
     SELECT count(*)
     FROM book_gift_rec
     WHERE 1=1
-    <if test="giftTime != null" >   AND  gift_time = #{giftTime}   </if>
+    <if test="giftTime != null" >   AND  gift_time &gt;#{giftTime}  AND  gift_time &lt;#{giftTime}+86400  </if>
   </select>
 </mapper>

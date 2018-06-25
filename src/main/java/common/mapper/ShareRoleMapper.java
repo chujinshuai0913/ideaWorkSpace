@@ -24,5 +24,6 @@ public interface ShareRoleMapper {
     int getRolePermissionsId(@Param("id") int id);
 
     List<ShareRole> getUserRoleList(ShareRoleQuery query);
+    int queryUserRoleCount(ShareRoleQuery query);
 
 }

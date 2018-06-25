@@ -102,11 +102,14 @@ public class GetBookDetailByIsbn {
             Map<String, String> map=null;
             try {
                 book=getBookByMap(toMap(y));
+                return  book;
             } catch (JSONException e) {
                 e.printStackTrace();
+                return  new Book();
             }
         }
-        return  book;
+        return  new Book();
+
     }
 
     public static Book getBookByMap(Map<String, String> map) {

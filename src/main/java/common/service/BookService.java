@@ -15,7 +15,9 @@ import common.query.*;
 import common.util.ServiceResult;
 import common.vo.*;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -187,6 +189,9 @@ public interface BookService {
     ServiceResult<List<BookBorrowVo>> queryBookBorrowVoList(BookBorrowQuery bookBorrowQuery);
 
     ServiceResult<BookBorrow> queryBookBorrowById(BookBorrowQuery bookBorrowQuery);
+
+    ServiceResult<Integer> updateBookBorrowUseNum(BookBorrowQuery bookBorrowQuery);
+
     /*
      * 查询书籍总数count
      */
@@ -270,5 +275,14 @@ public interface BookService {
 
     ServiceResult<List<BookGiftRecVo>> queryBookGiftRecList(BookGiftRecQuery query);
 
+    ServiceResult<BookGiftRecVo> queryBookGiftRecById(BookGiftRecQuery query);
+
+    ServiceResult<Integer> updateBookGiftRecById(BookGiftRecQuery query);
+
     ServiceResult<BookVo> queryBookListTopTen(BookQuery query);
+
+     void importExcelInfo(InputStream in, MultipartFile file);
+     void importBookListExcelInfo(InputStream in, MultipartFile file);
+
+
 }

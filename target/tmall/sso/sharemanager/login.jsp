@@ -86,20 +86,16 @@ $(function () {
         }
         //	验证码验证
         $('input').eq(2).blur(function(){
-            alert("000");
             if($(this).val().length==0){
                 $(this).parent().next().next("div").text("");
                 $(this).parent().next().next("div").css("color",'#ccc');
-                alert("1");
                 return ;
             }else if($(this).val().toUpperCase()!=$("#code").text().toUpperCase()){
                 $(this).parent().next().next("div").text("验证码不正确");
                 $(this).parent().next().next("div").css("color",'red');
-                alert("2");
                 return ;
             }else{
                 $(this).parent().next().next("div").text("");
-                alert("3");
             }
         })
         login();

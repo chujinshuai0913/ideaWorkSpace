@@ -31,7 +31,7 @@
 </style>
 <body>
 <header>
-	<a href="#" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
+	<a href="${basePath}/sharebook/jsp/shareindex.jsp" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
 	<div class="desc">个人中心</div>
 	<div class="desc2"><a href="${basePath}/login/loginout" style="color: grey;">注销</a></div>
 	<div class="desc1"><a href="${basePath}/login/updatepass" style="color: grey;">修改密码</a></div>
@@ -97,26 +97,17 @@
 				<input type="text" name="typeProfessionalname2" style="display: none"  class="form-control" value="${sessionScope.userLogin.professionalName2}"/>
 				<div class="form-group" style="margin-left: 20px;">
 					<label onclick="$(this).next().focus();">年级</label>
-					<select type="text" name="grade"  class="form-control" >
+					<select type="text" style="margin-left: 20px;" name="grade"  class="form-control" >
 						<option value="">全部</option>
 						<option value="0">通用</option>
 						<option value="1">大一</option>
-						<option value="3">大二</option>
-						<option value="4">大三</option>
-						<option value="5">大四</option>
-						<option value="6">研一</option>
-						<option value="7">研二</option>
-						<option value="8">研三</option>
-						<option value="9">博士</option>
-					</select>
-				</div>
-				<div class="form-group" style="margin-left: 50px;">
-					<label onclick="$(this).next().focus();">学期</label>
-					<select type="text" name="semester"  class="form-control" >
-						<option value="">全部</option>
-						<option value="0">通用</option>
-						<option value="1">上学期</option>
-						<option value="2">下学期</option>
+						<option value="2">大二</option>
+						<option value="3">大三</option>
+						<option value="4">大四</option>
+						<option value="5">研一</option>
+						<option value="6">研二</option>
+						<option value="7">研三</option>
+						<option value="8">博士</option>
 					</select>
 				</div>
 				<div class="form-group" style="margin-left: 700px;">
@@ -186,11 +177,6 @@
             {
                 field: 'gradeName',
                 title: '年级',
-                align: "center",
-                formatter :formatterToValue
-            },{
-                field: 'semesterName',
-                title: '学期',
                 align: "center",
                 formatter :formatterToValue
             }

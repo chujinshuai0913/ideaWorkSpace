@@ -223,7 +223,13 @@
                 field: 'status',
                 title: '状态',
                 align: "center",
-                visible:false,
+                formatter: function(value, row, index) {
+                    if(value==1){
+                        return "可用";
+                    }else{
+                        return "不可用";
+                    }
+                }
 
             },
             {
@@ -289,7 +295,13 @@
                     field: 'status',
                     title: '状态',
                     align: "center",
-                    visible:false,
+                    formatter: function(value, row, index) {
+                        if(value==1){
+                            return "可用";
+                        }else{
+                            return "不可用";
+                        }
+                    }
 
                 },
                 {
@@ -599,7 +611,6 @@
                         console.log(jsonData.resultMassage );
                         if(jsonData.resultMassage == 'ok'){
                             alert("插入成功!")
-                            $("#form_insertClass1_q")[0].reset();
                             $('#modal_insertSearchBtn').modal("hide");
                             $('#mainTable').bootstrapTable('refresh');
                         }else{
@@ -634,7 +645,6 @@
                         console.log(jsonData.resultMassage );
                         if(jsonData.resultMassage == 'ok'){
                             alert("插入成功!")
-                            $("#form_insertClass2_q")[0].reset();
                             $('#modal_insertClass2').modal("hide");
                             $('#detailTable').bootstrapTable('refresh',{
                                 url: '/ideaWorkSpace/book/bookclass2'

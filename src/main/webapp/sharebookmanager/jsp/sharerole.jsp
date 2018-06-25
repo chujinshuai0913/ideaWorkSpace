@@ -273,6 +273,7 @@ $("#insertRole").on('click',function () {
             dataField: 'data',
             queryParams: function (params) {
                 var newParams = $.extend(true,{},convertSerializeArrayToObject($("#form_insertPer_q").serializeArray()));
+                newParams = $.extend(true, {}, params, newParams);
                 return newParams;
             },
             columns : [
@@ -307,6 +308,7 @@ $("#insertRole").on('click',function () {
             dataField: 'data',
             queryParams: function (params) {
                 var newParams = $.extend(true,{},convertSerializeArrayToObject($("#form_insertPer_q2").serializeArray()));
+                newParams = $.extend(true, {}, params, newParams);
                 return newParams;
             },
             columns : [

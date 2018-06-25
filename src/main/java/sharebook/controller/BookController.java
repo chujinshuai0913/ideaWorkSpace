@@ -88,7 +88,7 @@ public class BookController {
                           }
                       }
                     shareAnnouncementQuery.setPageSize(total);
-                      shareAnnouncementQuery.setStartRecord(1);
+                    shareAnnouncementQuery.setStartRecord(1);
                     ServiceResult<List<ShareAnnouncement>> result = shareManagerService.getShareAnnouncementImgList(shareAnnouncementQuery);
                     if(result.getSuccess()){
                         shareAnnouncements=result.getBody();
@@ -520,11 +520,16 @@ public class BookController {
         logger.info("BookController.bookclass12information------->");
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            //用户
+            UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
             List<BookVo> list=new ArrayList<>();
             List<Integer> ids=new ArrayList<>();
             List<SearchHistory> searchHistoryList=new ArrayList<>();
-            searchHistory.setUserId(1);
-
+            if(userLogin!=null){
+                searchHistory.setUserId(userLogin.getUserId());
+            }
             ServiceResult<List<SearchHistory>> listServiceResult=classTypeService.getSearchHistoryList(searchHistory);
             if(listServiceResult.getSuccess()){
                 searchHistoryList=listServiceResult.getBody();
@@ -740,12 +745,34 @@ public class BookController {
     public ModelAndView bookdetail(int id) {
         logger.info("BookController.searchResult------->");
         ModelAndView mv = new ModelAndView();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
+        if(userLogin!=null){
+            SearchHistory searchHistory=new SearchHistory();
+            searchHistory.setUserId(userLogin.getUserId());
+            searchHistory.setBookId(id+"");
+            int num =1;
+            ServiceResult<Integer> result=classTypeService.getSearchHistoryListCount(searchHistory);
+            if(result.getSuccess()&&result.getBody()>0){
+                ServiceResult<List<SearchHistory>> listServiceResult=classTypeService.getSearchHistoryList(searchHistory);
+                if(listServiceResult.getSuccess()&&listServiceResult.getBody()!=null){
+                    num=num+listServiceResult.getBody().get(0).getNum();
+                }
+            }
+            searchHistory.setNum(num);
+            searchHistory.setSearchTime(DateUtils.getNowTimeStamp());
+            classTypeService.insertSearchHistoryList(searchHistory);
+
+        }
         BookSellingQuery query=new BookSellingQuery();
         BookVo bookVo =new BookVo();
         List<BookSellingVo> bookSellingVos =new ArrayList<>();
         query.setSkuId(id);
         query.setSortName("use_num");
         query.setSortOrder("desc");
+
         ServiceResult<BookVo> result=bookService.queryBookByBookId(id);
         if(result.getSuccess()&&result.getBody()!=null){
             bookVo=result.getBody();
@@ -996,8 +1023,13 @@ public class BookController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
        //用户
-        UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
         ModelAndView mv = new ModelAndView();
+        UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
+        if(userLogin==null){
+            mv.setViewName("sso/sharebook/login");
+            return mv;
+        }
+
         BookAuctionQuery query=new BookAuctionQuery();
         query.setId(id);
         List<Integer> statusList=new ArrayList<>();
@@ -1041,7 +1073,6 @@ public class BookController {
             BookVo books=new BookVo();
             query.setPageSize(ConstantsUtils.BookTop.BookDetailTopProNum);
             //获取当前用户所在专业
-            query.setProfessionalTypeName2("");
             query.setSortName("use_num");
             query.setSortOrder("DESC");
             ServiceResult<BookVo> result = bookService.queryBookListTopTen(query);
@@ -1332,7 +1363,7 @@ public class BookController {
         }
         try{
                Integer userid=query.getState();
-               query.setState(null);
+                query.setState(null);
                 RecordAuctionQuery recordAuctionQuery=new RecordAuctionQuery();
                 recordAuctionQuery.setUserId(userLogin.getUserId());
                 List<Integer> ids=bookService.getRecordAuctionIds(recordAuctionQuery);
@@ -1340,48 +1371,43 @@ public class BookController {
                 ServiceResult<Integer> countRes = bookService.queryBookAuctionCountByIds(query);
                 List<BookAuctionVo> list  = new ArrayList<>();
                 long total = 0;
+                 ListResult results=null;
                 if(countRes.getSuccess()  && countRes.getBody() > 0) {
                     total = countRes.getBody();
                     query.setSortName("end_time");
                     query.setSortOrder("desc");
                     ServiceResult<List<BookAuctionVo>> result = bookService.queryBookAutionVoListByIds(query);
-                    if (result.getSuccess()) {
+                    if (result.getSuccess()&&result.getBody()!=null) {
                         list = result.getBody();
+                        List<BookAuctionVo> bookAuctionVoList=new ArrayList<>();
                         if(userid!=null){
                             if(userid==1){
-                                Iterator<BookAuctionVo> it = list.iterator();
-                                while(it.hasNext()){
-                                    BookAuctionVo bookAuctionVo = it.next();
-                                    if(bookAuctionVo.getBuyerId()!=userid){
-                                        it.remove();
+                                for(BookAuctionVo bookAuctionVo:list){
+                                    if(bookAuctionVo.getBuyerId()==userLogin.getUserId()){
+                                        bookAuctionVoList.add(bookAuctionVo);
                                     }
                                 }
                             }
                             if(userid==0){
-                                    Iterator<BookAuctionVo> it = list.iterator();
-                                    while(it.hasNext()){
-                                        BookAuctionVo bookAuctionVo = it.next();
-                                        if(bookAuctionVo.getBuyerId()!=null){
-                                            it.remove();
-                                        }
+                                for(BookAuctionVo bookAuctionVo:list){
+                                    if(bookAuctionVo.getBuyerId()==null){
+                                        bookAuctionVoList.add(bookAuctionVo);
                                     }
                                 }
+                                }
                             if(userid==-1){
-                                Iterator<BookAuctionVo> it = list.iterator();
-                                while(it.hasNext()){
-                                    BookAuctionVo bookAuctionVo = it.next();
-                                    if(bookAuctionVo.getBuyerId()==userLogin.getUserId()){
-                                        it.remove();
+                                for(BookAuctionVo bookAuctionVo:list){
+                                    if(bookAuctionVo.getBuyerId()!=null&&bookAuctionVo.getBuyerId()!=userLogin.getUserId()){
+                                        bookAuctionVoList.add(bookAuctionVo);
                                     }
                                 }
                             }
-                       }
-                    } else {
-                        successMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
-                        return successMap;
+                            results = new ListResult(0, bookAuctionVoList.size(), query.getPageSize(), query.getPageNumber(), bookAuctionVoList);
+                       }else{
+                            results = new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
+                        }
                     }
                 }
-              ListResult results = new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
              return results.toMap();
         }catch(Exception e){
             logger.error("BookController.mycatauctiondetail---------->",e);
@@ -1575,13 +1601,19 @@ public class BookController {
                 }
                 query1.setId(query.getId());
                 query1.setRealEndTime(DateUtils.getNowTimeStamp());
-                query1.setReturnNum(query.getReturnNum());
+                if(recordBorrow.getReturnNum()!=null&&recordBorrow.getReturnNum()>0){
+                    query1.setReturnNum(query.getReturnNum()+recordBorrow.getReturnNum());
+                }else{
+                    query1.setReturnNum(query.getReturnNum());
+                }
                 BookBorrow bookBorrow=new BookBorrow();
                 BookBorrowQuery bookBorrowQuery=new BookBorrowQuery();
                 bookBorrowQuery.setId(recordBorrow.getAuctionId());
                 ServiceResult<BookBorrow> bookBorrowServiceResult=bookService.queryBookBorrowById(bookBorrowQuery);
                 if(bookBorrowServiceResult.getSuccess()&&bookBorrowServiceResult.getBody()!=null){
                     bookBorrow=bookBorrowServiceResult.getBody();
+                    bookBorrowQuery.setUseNum(bookBorrow.getUseNum()-query.getReturnNum());
+                    bookService.updateBookBorrowUseNum(bookBorrowQuery);
                     query1.setReturnDeposit(new BigDecimal(query.getReturnNum()).multiply(bookBorrow.getDepositPrice()));
                 }
                 BigDecimal totalPrice=new BigDecimal(0);
@@ -1787,14 +1819,14 @@ public class BookController {
             }
             query.setSellerId(userLogin.getUserId());
           /*  query.setEndTime(DateUtils.getNowTimeStamp());*/
-          /*  List<Integer> statusList=new ArrayList<>();
-            statusList.add(ConstantsUtils.BookAuditCode.AUDIT_NOT);
+            List<Integer> statusList=new ArrayList<>();
+            /*statusList.add(ConstantsUtils.BookAuditCode.AUDIT_NOT);
             statusList.add(ConstantsUtils.BookAuditCode.AUDIT);
             statusList.add(ConstantsUtils.BookAuditCode.STOP);
             statusList.add(ConstantsUtils.BookAuditCode.AUCTION_START);
-            statusList.add(ConstantsUtils.BookAuditCode.AUCTION_SUCCESS);
-            statusList.add(ConstantsUtils.BookAuditCode.AUCTION_FAIL);
-            query.setStatusList(statusList);*/
+            statusList.add(ConstantsUtils.BookAuditCode.AUCTION_SUCCESS);*/
+            statusList.add(query.getStatus());
+            query.setStatusList(statusList);
             ServiceResult<Integer> countRes = bookService.queryBookAuctionCount(query);
             List<BookAuctionVo> list  = new ArrayList<BookAuctionVo>();
             long total = 0;
@@ -1897,13 +1929,20 @@ public class BookController {
                 mv.setViewName(url);
             }else{
                 Book book=new Book();
-                book=GetBookDetailByIsbn.getBook(isbn+"");
-                if(book!=null){
-                    mv.addObject("book",book);
-                    mv.setViewName(url);
-                }else{
+                try{
+                    book=GetBookDetailByIsbn.getBook(isbn+"");
+                    if(null==book){
+                        mv.setViewName(blankUrl);
+                    }else if(book!=null&&book.getIsbn()>0){
+                        mv.addObject("book",book);
+                        mv.setViewName(url);
+                    }
+                }catch (Exception e){
                     mv.setViewName(blankUrl);
+                    e.printStackTrace();
+                    return mv;
                 }
+
             }
         }
         return mv;
@@ -1927,6 +1966,14 @@ public class BookController {
         }
         if(userLogin.getStudentCode()==null){
             successMap.put("resultMassage", "您还未认证不可以上传书籍!");
+            return successMap;
+        }
+        if(query.getUseableNum()==null||query.getUseableNum().equals("")){
+            successMap.put("resultMassage", "数量不能为空!");
+            return successMap;
+        }
+        if(query.getPrice()==null||query.getPrice().equals("")){
+            successMap.put("resultMassage", "价格不能为空!");
             return successMap;
         }
         try{
@@ -2035,6 +2082,22 @@ public class BookController {
             successMap.put("resultMassage", "您还未认证不可以上传书籍!");
             return successMap;
         }
+        if(query.getUseableNum()==null||query.getUseableNum().equals("")){
+            successMap.put("resultMassage", "数量不能为空!");
+            return successMap;
+        }
+        if(query.getPrice()==null||query.getPrice().equals("")){
+            successMap.put("resultMassage", "租金不能为空!");
+            return successMap;
+        }
+        if(query.getDepositPrice()==null||query.getDepositPrice().equals("")){
+            successMap.put("resultMassage", "押金不能为空!");
+            return successMap;
+        }
+        if(query.getBeyondPrice()==null||query.getBeyondPrice().equals("")){
+            successMap.put("resultMassage", "逾期租金不能为空!");
+            return successMap;
+        }
         try{
             query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
             //用户id
@@ -2141,6 +2204,12 @@ public class BookController {
             successMap.put("resultMassage", "您还未认证不可以上传书籍!");
             return successMap;
         }
+
+        if(query.getUseableNum()==null||query.getUseableNum().equals("")){
+            successMap.put("resultMassage", "数量不能为空!");
+            return successMap;
+        }
+
         try{
             query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
             //用户id
@@ -2245,6 +2314,7 @@ public class BookController {
             successMap.put("resultMassage", "您还未认证不可以上传书籍!");
             return successMap;
         }
+
         try{
             query.setBookTypeName1(classTypeService.queryTypeBook1ById(Integer.parseInt(query.getBookTypeName1())));
             //用户id
@@ -2259,6 +2329,10 @@ public class BookController {
             query.setProfessionalTypeName2(userLogin.getProfessionalName2());
             query.setState(4);
             query.setPricingunit("元");
+            if(query.getPrice()==null||query.getPrice().equals("")){
+                successMap.put("resultMassage", "起拍价格不能为空!");
+                return successMap;
+            }
             if(StringUtils.isEmpty(query.getStrTime())){
                 successMap.put("resultMassage", "开始时间不能为空！");
                 return successMap;
@@ -2363,6 +2437,10 @@ public class BookController {
             UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
             if(userLogin==null){
                 successMap.put("resultMassage", "您还没有登陆!");
+                return successMap;
+            }
+            if(query.getUserId()==userLogin.getUserId()){
+                successMap.put("resultMassage", "这是自己的书哦!");
                 return successMap;
             }
              BookAuctionQuery bookAuctionQuery=new BookAuctionQuery();

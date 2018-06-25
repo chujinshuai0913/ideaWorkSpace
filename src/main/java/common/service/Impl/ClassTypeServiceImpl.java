@@ -57,8 +57,21 @@ public class ClassTypeServiceImpl implements ClassTypeService {
     }
 
     @Override
+    public ServiceResult<Integer> getSearchHistoryListCount(SearchHistory query) {
+        return new ServiceResult<>(searchHistoryMapper.getSearchHistoryListCount(query));
+    }
+    @Override
     public ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query) {
         return new ServiceResult<>(typeBook1Mapper.queryTypeBook1List(query));
+    }
+    @Override
+    public   ServiceResult<Integer> insertSearchHistoryList(SearchHistory query) {
+        try {
+            return new ServiceResult<>(searchHistoryMapper.insertSelective(query));
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
     }
 
     @Override

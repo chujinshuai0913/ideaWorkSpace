@@ -19,6 +19,9 @@ public interface BookGiftMapper {
 
     BookGift selectBookGiftById(@Param("id")  Integer id,@Param("status") Integer status);
 
+    /*查询一周为回收的书籍*/
+    List<BookGift> getBookGiftList();
+
 
     int updateByPrimaryKeySelective(BookGift record);
 
@@ -31,7 +34,9 @@ public interface BookGiftMapper {
     /*书籍审核*/
     int updateBookGiftStatus(@Param("id") int id, @Param("status")  int status,@Param("userId") int userId,@Param("cTime") int cTime);
 
-  int upateBookGiftUserNumRed(BookGiftQuery query);
+    int upateBookGiftUserNumRed(BookGiftQuery query);
 
-   int upateBookGiftUserNumAdd(BookGiftQuery query);
+    int upateBookGiftUserNumAdd(BookGiftQuery query);
+
+
 }

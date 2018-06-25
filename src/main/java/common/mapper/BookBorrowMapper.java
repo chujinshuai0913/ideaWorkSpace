@@ -13,6 +13,7 @@ public interface BookBorrowMapper {
 
     int insertSelective(BookBorrow record);
 
+    int updateBookBorrowUseNum(BookBorrowQuery bookBorrowQuery);
     BookBorrow selectByPrimaryKey(Integer id);
 
     BookBorrow selectBookBorrowById(@Param("id")  Integer id,@Param("status") Integer status);

@@ -165,7 +165,7 @@
     from share_announcement
     where  1=1
     <if test="isDelete != null  ">    AND is_delete = #{isDelete}        </if>
-      <if test="status != null  ">    AND status = #{status}        </if>
+    <if test="status != null  ">    AND status = #{status}        </if>
     <if test="sTime != null  ">    AND upload_time >= #{sTime}        </if>
     <if test="fTime != null  ">   <![CDATA[ AND upload_time <= #{fTime} ]]> </if>
     <if test="activityId != null and activityId !=''">  AND activity_id= #{activityId} </if>
@@ -178,27 +178,31 @@
     where id = #{id}
   </update>
 
-
-  <select id="getShareAnnouncementBySrc" parameterType="common.query.ShareAnnouncementQuery" resultType="java.lang.Integer">
-    select count(*)
-    from share_announcement
-    where  src=#{src}
-  </select>
-
+  <update id="updateShareAnnouncementStatusI" >
+    update share_announcement
+    set status = #{status}
+    where id = #{id}
+  </update>
   <select id="getShareAnnouncementImgList" parameterType="common.query.ShareAnnouncementQuery" resultMap="BaseResultMap">
     select *
     from share_announcement
-    where is_delete = 2 AND  unix_timestamp() &lt;end_time
-    ORDER BY upload_time,end_time ASC, cT ASC
+    where is_delete = 2 AND  unix_timestamp()&lt;end_time AND unix_timestamp()&gt;upload_time
+    ORDER BY end_time ASC, cT ASC
     limit #{pageSize}
   </select>
   <select id="getShareAnnouncementImgCount" parameterType="common.query.ShareAnnouncementQuery" resultType="java.lang.Integer">
     select count(*)
     from share_announcement
-    where is_delete = 2 AND  unix_timestamp()&lt;end_time
+    where is_delete = 2  AND  unix_timestamp()&lt;end_time AND unix_timestamp()&gt;upload_time
     GROUP BY upload_time
     ORDER BY upload_time ASC
     limit #{pageSize}
+  </select>
+
+  <select id="getShareAnnouncementBySrc" parameterType="common.query.ShareAnnouncementQuery" resultType="java.lang.Integer">
+    select count(*)
+    from share_announcement
+    where  src=#{src}
   </select>
 
 </mapper>

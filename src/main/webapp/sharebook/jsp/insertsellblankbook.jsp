@@ -60,7 +60,7 @@
             </div>
             <c:if test='${sessionScope.userLogin.userName!= null}'>
                 <div class="headPagehead_text_two" style="margin-right: 200px;">
-                    <font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+                    <font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
                 </div>
             </c:if>
@@ -414,6 +414,8 @@
                     //请求成功时执行该函数内容，result即为服务器返回的json对象
                     if (data.error_code == 0){
                         alert("添加成功！")
+                    }else{
+                        alert(data.resultMassage);
                     }
                 } catch (e){
                     console.log(e.message);

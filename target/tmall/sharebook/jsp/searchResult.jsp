@@ -24,7 +24,7 @@
 			</div>
 			<c:if test='${sessionScope.userLogin.userName!= null}'>
 				<div class="headPagehead_text_two" style="margin-right: 200px;">
-					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+					<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
 				</div>
 			</c:if>
@@ -120,7 +120,6 @@
 							<p class="searchResult_booktext"> 作者:<span class="author">${s.author}</span> &nbsp;&nbsp;&nbsp;&nbsp; 价格：<span class="moneyRed ">${s.pricing}￥</span> &nbsp;&nbsp;&nbsp;&nbsp;ISBN<span >${s.isbn}</span> &nbsp;&nbsp;&nbsp;&nbsp; 可用库存：<span>${s.userableNum}本</span></p>
 							<p class="searchResult_introduction">简介：<span>${s.introduce}</span></p>
 							<p class="searchResult_booktext_seller">
-								售卖人:<a href="#"><span class="seller">王刚</span></a>/<a href="#"><span class="seller">王刚</span></a>/<a href="#"><span class="seller">王刚</span></a>/<a href="#"><span class="seller">王刚</span></a>
 							</p>
 						</div>
 					</div>
@@ -129,7 +128,6 @@
 		</div>
 	</div>
 	<div style="width: 100%;height: 1px; clear: both;"></div>
-	<div id="bottom" class="footerPage "></div>
 </div>
 </body>
 <script>

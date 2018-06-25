@@ -26,6 +26,8 @@ public interface ShareAnnouncementMapper {
 
     int updateShareAnnouncementStatus(@Param("id") int id, @Param("isDelete")  int isDelete, @Param("cU") int cU, @Param("cTime") int cTime);
 
+    int updateShareAnnouncementStatusI(@Param("id") int id, @Param("status")  int status);
+
     int getShareAnnouncementBySrc( @Param("src") String src);
 
     List<ShareAnnouncement> getShareAnnouncementImgList(ShareAnnouncementQuery query);

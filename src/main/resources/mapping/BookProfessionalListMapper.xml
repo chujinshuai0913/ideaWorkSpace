@@ -5,7 +5,7 @@
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="book_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="ISBN" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ISBN" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="type_professional1" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="type_professionalname1" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="type_professional2" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -46,7 +46,7 @@
       print_time, import_user, import_time, 
       export_user, export_time, c_u, 
       c_t, is_delete)
-    values (#{id,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{isbn,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{isbn},
       #{typeProfessional1,jdbcType=INTEGER}, #{typeProfessionalname1,jdbcType=VARCHAR}, 
       #{typeProfessional2,jdbcType=INTEGER}, #{typeProfessionalname2,jdbcType=VARCHAR}, 
       #{grade,jdbcType=INTEGER}, #{semester,jdbcType=INTEGER}, #{printUser,jdbcType=INTEGER}, 
@@ -120,7 +120,7 @@
         #{bookName,jdbcType=VARCHAR},
       </if>
       <if test="isbn != null" >
-        #{isbn,jdbcType=INTEGER},
+        #{isbn},
       </if>
       <if test="typeProfessional1 != null" >
         #{typeProfessional1,jdbcType=INTEGER},
@@ -176,7 +176,7 @@
         book_name = #{bookName,jdbcType=VARCHAR},
       </if>
       <if test="isbn != null" >
-        ISBN = #{isbn,jdbcType=INTEGER},
+        ISBN = #{isbn},
       </if>
       <if test="typeProfessional1 != null" >
         type_professional1 = #{typeProfessional1,jdbcType=INTEGER},
@@ -229,7 +229,7 @@
   <update id="updateByPrimaryKey" parameterType="common.model.BookProfessionalList" >
     update book_professional_list
     set book_name = #{bookName,jdbcType=VARCHAR},
-      ISBN = #{isbn,jdbcType=INTEGER},
+      ISBN = #{isbn},
       type_professional1 = #{typeProfessional1,jdbcType=INTEGER},
       type_professionalname1 = #{typeProfessionalname1,jdbcType=VARCHAR},
       type_professional2 = #{typeProfessional2,jdbcType=INTEGER},
@@ -254,7 +254,7 @@
       <if test="bookName != null and bookName !=''">  <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
       <if test="typeProfessionalname1 != null and typeProfessionalname1 !=''">  <![CDATA[	AND type_professionalname1 LIKE CONCAT(CONCAT('%',#{typeProfessionalname1}),'%')	]]> </if>
       <if test="typeProfessionalname2 != null and typeProfessionalname2 !=''">  <![CDATA[	AND type_professionalname2 LIKE CONCAT(CONCAT('%',#{typeProfessionalname2}),'%')	]]> </if>
-      <if test="isbn != null" > AND ISBN = #{isbn,jdbcType=INTEGER}  </if>
+      <if test="isbn != null" > AND ISBN = #{isbn}  </if>
       <if test="grade != null" >  AND grade = #{grade,jdbcType=INTEGER} </if>
       <if test="semester != null" > AND semester = #{semester,jdbcType=INTEGER}  </if>
   </select>
@@ -265,7 +265,7 @@
       <if test="bookName != null and bookName !=''">  <![CDATA[	AND book_name LIKE CONCAT(CONCAT('%',#{bookName}),'%')	]]> </if>
       <if test="typeProfessionalname1 != null and typeProfessionalname1 !=''">  <![CDATA[	AND type_professionalname1 LIKE CONCAT(CONCAT('%',#{typeProfessionalname1}),'%')	]]> </if>
       <if test="typeProfessionalname2 != null and typeProfessionalname2 !=''">  <![CDATA[	AND type_professionalname2 LIKE CONCAT(CONCAT('%',#{typeProfessionalname2}),'%')	]]> </if>
-      <if test="isbn != null" > AND ISBN = #{isbn,jdbcType=INTEGER}  </if>
+      <if test="isbn != null" > AND ISBN = #{isbn}  </if>
       <if test="grade != null" >  AND grade = #{grade,jdbcType=INTEGER} </if>
       <if test="semester != null" > AND semester = #{semester,jdbcType=INTEGER}  </if>
       <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
@@ -278,7 +278,7 @@
         book_name = #{bookName,jdbcType=VARCHAR},
       </if>
       <if test="isbn != null" >
-        ISBN = #{isbn,jdbcType=INTEGER},
+        ISBN = #{isbn},
       </if>
       <if test="typeProfessional1 != null" >
         type_professional1 = #{typeProfessional1,jdbcType=INTEGER},

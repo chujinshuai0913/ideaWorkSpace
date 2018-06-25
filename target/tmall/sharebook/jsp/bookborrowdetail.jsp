@@ -24,7 +24,7 @@
 			</div>
 			<c:if test='${sessionScope.userLogin.userName!= null}'>
 				<div class="headPagehead_text_two" style="margin-right: 200px;">
-					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+					<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
 				</div>
 			</c:if>
@@ -163,6 +163,9 @@
 			Copyright © 2018-2020  燕鸣书屋 ysu.sharebook.com 版权所有
 		</div>
 	</div>
+	<input id="bookTypeName2" style="display: none" value="${requestScope.bookVo.bookTypeName2}"/>
+	<input id="professionalTypeName2" style="display: none" value="${requestScope.bookVo.professionalTypeName2}"/>
+
 </div>
 </body>
 <script>
@@ -238,7 +241,7 @@
             type : "post",
             async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
             url : "/ideaWorkSpace/bookshare/bookuserselftop",    //请求发送到TestServlet处
-            data: JSON.stringify($.extend(true, {},{bookTypeName2:""})),
+            data: JSON.stringify($.extend(true, {},{professionalTypeName2:$("#professionalTypeName2").val()})),
             contentType:"text/html;charset=utf-8",
             dataType: "json",   //返回格式为json
             success : function(data) {

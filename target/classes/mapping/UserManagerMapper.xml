@@ -229,8 +229,6 @@
       AND  role_id = #{roleId}
     </if>
     <if test="username != null and username !=''">  <![CDATA[	AND username LIKE CONCAT(CONCAT('%',#{username}),'%')	]]> </if>
-    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
-    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
   </select>
   <update id="updateRole" parameterType="common.model.UserManager" >
     update user_manager

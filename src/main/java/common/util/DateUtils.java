@@ -19,9 +19,6 @@ public class DateUtils {
 
 	/**
      * 根据传入的时间字符串，获得unix对应的时间戳格式
-     * 
-     * @author liuqiang(liuqang@meicai.cn) 
-     * 2016年3月12日
      * @param day
      * @return
      */
@@ -41,8 +38,6 @@ public class DateUtils {
     }
     /**
      * 将日期转换为 时间戳
-     * @author yangweiqiang 2016.12.01
-     * @param date
      * @return
      */
     public static Integer getDayUnixTimeStamp(Date date){
@@ -53,9 +48,6 @@ public class DateUtils {
 
     /**
      * 获取当天日期的unix时间戳
-     * 
-     * @author liuqiang(liuqiang@meicai.cn) 
-     * 2016年3月12日
      * @return
      */
     public static Integer getTodayUnixTimeStamp() {
@@ -75,10 +67,6 @@ public class DateUtils {
 
     /**
      * 描述: 将秒转换为指定格式化的日期
-     * @author yangweiqiang
-     * @param timeStamp 秒数
-     * @param format 格式化 yyyy-MM-dd等
-     * @date   2016/8/15
      */
     public static String getFormatDate(Integer timeStamp,SimpleDateFormat format){
         return format.format(new Date(timeStamp * 1000L));
@@ -86,8 +74,6 @@ public class DateUtils {
 
     /**
      * 获取某月最大的天数
-     * @param time 日期
-     * @param format 日期格式化类型
      * @return 实际最大天数
      */
     public static int getMaxDayOfMonth(String time,SimpleDateFormat format){

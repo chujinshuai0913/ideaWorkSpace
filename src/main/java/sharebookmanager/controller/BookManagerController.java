@@ -39,6 +39,7 @@ public class BookManagerController {
     private ClassTypeService classTypeService;
 
 
+
     @RequestMapping(value = "/bookList", method = RequestMethod.GET)
     public ModelAndView sharemanager() {
         logger.info("BookController.bookList------->");
@@ -48,7 +49,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -120,7 +121,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -240,7 +241,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -350,7 +351,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -462,7 +463,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -572,7 +573,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -636,7 +637,10 @@ public class BookManagerController {
         BookSellingQuery query = JSONObject.parseObject(strJson,BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         Map<Integer,Integer> bookMap=new HashMap<>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
             List<Integer> ids=new ArrayList<>();
             ServiceResult<List<BookSelling>> serviceResult1=bookService.queryBookSellingByIds(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT_NOT);
@@ -655,7 +659,7 @@ public class BookManagerController {
                 }else{
                     successMap.put("resultMassage", "请刷新查看，书籍已被其他人审核");
                 }
-                ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(ids,ConstantsUtils.BookAuditCode.AUDIT,id,DateUtils.getNowTimeStamp());
+                ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(ids,ConstantsUtils.BookAuditCode.AUDIT,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
                 if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                     successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
                      BookQuery  bookQuery=new BookQuery();
@@ -691,7 +695,10 @@ public class BookManagerController {
         logger.info("BookManagerController.auditNotBookSelling---------->"+strJson);
         BookSellingQuery query = JSONObject.parseObject(strJson,BookSellingQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
             List<Integer> ids=new ArrayList<>();
             ServiceResult<List<BookSelling>> serviceResult1=bookService.queryBookSellingByIds(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT_NOT);
@@ -703,8 +710,7 @@ public class BookManagerController {
                 }else{
                     successMap.put("resultMassage", "请刷新查看，书籍已被其他人审核");
                 }
-                int userId=1;
-                ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(ids,ConstantsUtils.BookAuditCode.STOP,userId,DateUtils.getNowTimeStamp());
+                ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(ids,ConstantsUtils.BookAuditCode.STOP,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
                 if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                     successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
                 } else {
@@ -734,9 +740,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditBookBorrow---------->"+strJson);
         BookBorrowQuery query = JSONObject.parseObject(strJson,BookBorrowQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;//审核人
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-            ServiceResult<Integer> serviceResult = bookService.updateBookBorrowStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,id,DateUtils.getNowTimeStamp());
+            ServiceResult<Integer> serviceResult = bookService.updateBookBorrowStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                 successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
             } else {
@@ -762,9 +771,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditNotBookSelling---------->"+strJson);
         BookBorrowQuery query = JSONObject.parseObject(strJson,BookBorrowQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-            ServiceResult<Integer> serviceResult = bookService.updateBookSellingStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,id,DateUtils.getNowTimeStamp());
+            ServiceResult<Integer> serviceResult = bookService.updateBookBorrowStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                 successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
             } else {
@@ -791,9 +803,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditBookGift---------->"+strJson);
         BookGiftQuery query = JSONObject.parseObject(strJson,BookGiftQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-                ServiceResult<Integer> serviceResult = bookService.updateBookGiftStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,id,DateUtils.getNowTimeStamp());
+                ServiceResult<Integer> serviceResult = bookService.updateBookGiftStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
                 if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                     successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
                 } else {
@@ -819,9 +834,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditNotBookGift---------->"+strJson);
         BookGiftQuery query = JSONObject.parseObject(strJson,BookGiftQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-            ServiceResult<Integer> serviceResult = bookService.updateBookGiftStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,id,DateUtils.getNowTimeStamp());
+            ServiceResult<Integer> serviceResult = bookService.updateBookGiftStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                     successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
             } else {
@@ -847,9 +865,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditBookGift---------->"+strJson);
         BookAuctionQuery query = JSONObject.parseObject(strJson,BookAuctionQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-            ServiceResult<Integer> serviceResult = bookService.updateBooAuctionStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,id,DateUtils.getNowTimeStamp());
+            ServiceResult<Integer> serviceResult = bookService.updateBooAuctionStatus(query.getIds(),ConstantsUtils.BookAuditCode.AUDIT,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                 successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
             } else {
@@ -875,9 +896,12 @@ public class BookManagerController {
         logger.info("BookManagerController.auditNotBookAuction---------->"+strJson);
         BookAuctionQuery query = JSONObject.parseObject(strJson,BookAuctionQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
-        int id=1;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         try{
-            ServiceResult<Integer> serviceResult = bookService.updateBooAuctionStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,id,DateUtils.getNowTimeStamp());
+            ServiceResult<Integer> serviceResult = bookService.updateBooAuctionStatus(query.getIds(),ConstantsUtils.BookAuditCode.STOP,userManagerLogin.getId(),DateUtils.getNowTimeStamp());
             if(serviceResult.getSuccess()  && serviceResult.getBody() ==1 ){
                 successMap.put("resultMassage", "ok");//"获取书籍信息异常，请稍后重试!");
             } else {
@@ -933,7 +957,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -954,7 +978,7 @@ public class BookManagerController {
     public Map<String, ?> bookgiftrecData(HttpServletResponse response, @RequestBody String strJson) {
 
 
-        logger.info("BookManagerController.bookgiftrecData---------->"+strJson);
+        logger.info("BookController.bookgiftrecData---------->"+strJson);
         BookGiftRecQuery query = JSONObject.parseObject(strJson, BookGiftRecQuery.class);
         Map<String,Object> successMap = new HashMap<String,Object>();
         try{
@@ -988,7 +1012,47 @@ public class BookManagerController {
             return successMap;
         }
     }
+    @RequestMapping(value = "/resolveBook", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,?> resolveBook(HttpServletResponse respone,@RequestBody String strJson){
+        logger.info("BookController.resolveBook---------->"+strJson);
+        BookGiftRecQuery query = JSONObject.parseObject(strJson,BookGiftRecQuery.class);
+        Map<String,Object> succMap = new HashMap<String,Object>();
+        try{
+               HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+               HttpSession session = request.getSession();
+              //用户
+                UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+                BookGiftRecVo bookGiftRecVo=new BookGiftRecVo();
+                ServiceResult<BookGiftRecVo> recVoServiceResult=bookService.queryBookGiftRecById(query);
+                if(recVoServiceResult.getSuccess()&&recVoServiceResult.getBody()!=null){
+                    bookGiftRecVo=recVoServiceResult.getBody();
+                }
+                if(bookGiftRecVo.getSuccess()!=null){
+                    query.setSuccess(query.getSuccess()+bookGiftRecVo.getSuccess());
 
+                }else {
+                    query.setSuccess(query.getSuccess());
+                }
+                if(query.getRemark()!=null&&query.getRemark().equals("")){
+                    if(bookGiftRecVo.getRemark()!=null&&!bookGiftRecVo.getRemark().equals("")){
+                        query.setRemark(query.getRemark()+"/"+bookGiftRecVo.getRemark());
+                    }else{
+                        query.setRemark(query.getRemark());
+                    }
+
+                }
+                query.setCt(DateUtils.getNowTimeStamp());
+                query.setCu(userManagerLogin.getId());
+                ServiceResult<Integer> result2 =bookService.updateBookGiftRecById(query);
+                succMap.put("resultMassage", result2.getSuccess()?"ok":result2.getMessage());
+                 return succMap;
+        }catch(Exception e){
+            logger.error("处理失败", e);
+            succMap.put("resultMassage", "处理失败");
+            return succMap;
+        }
+    }
     @RequestMapping(value = "/bookclass12", method = RequestMethod.GET)
     public ModelAndView bookclass12() {
         logger.info("BookController.bookclass12------->");
@@ -998,7 +1062,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -1298,7 +1362,7 @@ public class BookManagerController {
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());

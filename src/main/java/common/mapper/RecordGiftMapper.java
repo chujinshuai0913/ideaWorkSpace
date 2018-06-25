@@ -12,7 +12,7 @@ public interface RecordGiftMapper {
 
     int insert(RecordGiftQuery record);
 
-    int insertSelective(RecordGift record);
+    int insertSelective(RecordGiftQuery record);
 
     RecordGift selectByPrimaryKey(Integer id);
 

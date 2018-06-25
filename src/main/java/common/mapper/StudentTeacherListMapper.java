@@ -13,10 +13,13 @@ public interface StudentTeacherListMapper {
 
     int insertSelective(StudentTeacherList record);
 
+    int insertStudentTeacherListBatch(@Param("list") List<StudentTeacherList> list);
     StudentTeacherList selectByPrimaryKey(Integer id);
     StudentTeacherList selectBySchoolCode(@Param("idNum") Long idNum);
 
     int updateByPrimaryKeySelective(StudentTeacherList record);
+
+    int updateStudentTeacherList(@Param("schoolCode") Long schoolCode,@Param("time") int time);
 
     int updateByPrimaryKey(StudentTeacherList record);
 

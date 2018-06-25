@@ -44,6 +44,12 @@
       #{professional2Name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}
       )
   </insert>
+  <insert id="insertStudentTeacherListBatch" parameterType="java.util.List">
+    insert into student_teacher_list (id_number, st_name, professional1_name, professional2_name, grade)
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{idNumber}, #{stName,jdbcType=VARCHAR}, #{professional1Name,jdbcType=VARCHAR},#{professional2Name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
   <insert id="insertSelective" parameterType="common.model.StudentTeacherList" >
     insert into student_teacher_list
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -134,6 +140,11 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateStudentTeacherList">
+    update student_teacher_list
+    set   time = #{time}
+    where id_number = #{schoolCode}
   </update>
   <update id="updateByPrimaryKey" parameterType="common.model.StudentTeacherList" >
     update student_teacher_list

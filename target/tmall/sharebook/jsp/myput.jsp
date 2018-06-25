@@ -31,7 +31,7 @@
 			</div>
 			<c:if test='${sessionScope.userLogin.userName!= null}'>
 				<div class="headPagehead_text_two" style="margin-right: 200px;">
-					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+					<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 					<input id="studentCode" type="text" type="text" style="display: none" value="${sessionScope.userLogin.studentCode}">
 				</div>
 			</c:if>
@@ -621,13 +621,13 @@
 
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 
@@ -780,13 +780,13 @@
 
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 
@@ -904,13 +904,13 @@
 
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 
@@ -1031,13 +1031,13 @@
                 }
             },{
                 field: 'cName',
-                title: '审核人',
+                title: '操作人',
                 align: "center",
                 formatter: formatterToValue
 
             },{
                 field: 'cTime',
-                title: '审核时间',
+                title: '操作时间',
                 align: "center",
                 formatter: formatterToValue
 
@@ -1090,6 +1090,7 @@
                                 auctionId:auctionId
                             }
                         });
+                        $('#mainTable2').bootstrapTable('refresh');
                     }else {
                         alert(data.resultMassage);
                     }

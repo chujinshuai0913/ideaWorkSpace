@@ -57,6 +57,12 @@
         from book_gift
         where id = #{id,jdbcType=INTEGER} AND status=#{status}
     </select>
+  <select id="getBookGiftList" resultMap="BaseResultMap" parameterType="common.query.BookGiftQuery" >
+    select *
+    from book_gift
+    where status=2 AND upload_time&lt; unix_timestamp()-604800 AND useable_num&gt;0
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_gift
     where id = #{id,jdbcType=INTEGER}

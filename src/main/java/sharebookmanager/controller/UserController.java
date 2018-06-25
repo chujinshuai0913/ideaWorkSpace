@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import common.constant.ConstantsUtils;
 import common.model.*;
 import common.query.*;
+import common.service.BookService;
 import common.service.UserService;
 import common.util.DateUtils;
 import common.util.ListResult;
@@ -25,11 +26,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -49,7 +53,8 @@ public class UserController {
         private static  final Logger logger = Logger.getLogger(UserController.class);
         @Autowired
         private UserService userService;
-
+       @Autowired
+       private BookService bookService;
 
         @RequestMapping(value = "/usermanager1", method = RequestMethod.GET)
         public ModelAndView userlistData1() {
@@ -60,7 +65,7 @@ public class UserController {
                 UserManagerLogin userManagerLogin = (UserManagerLogin) session.getAttribute("userManagerLogin");
                 String uri = "";
                 if (userManagerLogin == null) {
-                        return new ModelAndView(request.getContextPath() + "/sso/sharemanager/login.jsp");
+                    return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
                 }
                 String url = request.getServletPath();
                 int count = userService.isTrue(url, userManagerLogin.getRoleId());
@@ -157,7 +162,7 @@ public class UserController {
                 UserManagerLogin userManagerLogin = (UserManagerLogin) session.getAttribute("userManagerLogin");
                 String uri = "";
                if (userManagerLogin == null) {
-                        return new ModelAndView(request.getContextPath() + "/sso/sharemanager/login.jsp");
+                   return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
                 }
                 String url = request.getServletPath();
                 int count = userService.isTrue(url, userManagerLogin.getRoleId());
@@ -181,11 +186,16 @@ public class UserController {
                 ShareRole shareRole=new ShareRole();
                 try{
                         List<ShareRole> list=new ArrayList<>();
+                        ServiceResult<Integer> serviceResult =userService.queryUserRoleCount(query);
+                    int total=0;
+                    if(serviceResult.getSuccess()&&serviceResult.getBody()>0){
+                        total=serviceResult.getBody();
+                    }
                         ServiceResult<List<ShareRole>> result = userService.queryUserRole(query);
                        if(result.getSuccess()&&result.getBody()!=null){
                                list=result.getBody();
                        }
-                        ListResult results= new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
+                        ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
                         return results.toMap();
 
                 }catch(Exception e){
@@ -249,7 +259,7 @@ public class UserController {
                 UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
                 String uri="";
                 if(userManagerLogin==null){
-                        return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+                    return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
                 }
                 String url=request.getServletPath();
                 int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -274,11 +284,6 @@ public class UserController {
                 StudentTeacherQuery query = JSONObject.parseObject(strJson, StudentTeacherQuery.class);
                 Map<String,Object> successMap = new HashMap<String,Object>();
                 try{
-                        if(StringUtils.isNotEmpty(query.getStrTime())){
-                                query.setTime(DateUtils.getAppointedTimeIntValue(query.getStrTime(), DateUtils.YMD));
-                        }else{
-                                query.setTime(DateUtils.getTimesmorning(new Date()));
-                        }
                         ServiceResult<Integer> countRes = userService.queryStudenteacherCount(query);
                         List<StudenteacherVo> list  = new ArrayList<>();
                         long total = 0;
@@ -317,7 +322,7 @@ public class UserController {
                 UserManagerLogin userManagerLogin = (UserManagerLogin) session.getAttribute("userManagerLogin");
                 String uri = "";
                if (userManagerLogin == null) {
-                        return new ModelAndView(request.getContextPath() + "/sso/sharemanager/login.jsp");
+                   return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
                 }
                 String url = request.getServletPath();
                 int count = userService.isTrue(url, userManagerLogin.getRoleId());
@@ -334,6 +339,11 @@ public class UserController {
                 Map<String,Object> succMap = new HashMap<String,Object>();
                 List<PermissionsListManager> list  = new ArrayList<>();
                 try{
+                    ServiceResult<Integer> serviceResult =userService.getPermissionsListManagerListCount(query);
+                    int total=0;
+                    if(serviceResult.getSuccess()&&serviceResult.getBody()>0){
+                        total=serviceResult.getBody();
+                    }
                         ServiceResult<List<PermissionsListManager>> result =userService.getPermissionsListManagerList(query);
                         if(result.getSuccess()  && result.getBody() !=null){
                                 list = result.getBody();
@@ -342,7 +352,7 @@ public class UserController {
                                 succMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
                                 return succMap;
                         }
-                        ListResult results= new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
+                        ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
                         return results.toMap();
                 }catch(Exception e){
                         logger.error("查询失败", e);
@@ -407,28 +417,27 @@ public class UserController {
                 List<PermissionsSet> listSet  = new ArrayList<>();
                 List<Integer> persmissionIds=new ArrayList<>();
                 try{
-                        PermissionsListManagerQuery query1=new PermissionsListManagerQuery();
-                        query1.setStatus(1);
-                        ServiceResult<List<PermissionsListManager>> result =userService.getPermissionsListManagerList(query1);
+                    persmissionIds =userService.getPermissionsSetIds(query.getRoleId());
+                    PermissionsListManagerQuery query1=new PermissionsListManagerQuery();
+                    query1.setStatus(1);
+                    query1.setPageNumber(query.getPageNumber());
+                    query1.setPageSize(query.getPageSize());
+                    query1.setSortName(query.getSortName());
+                    query1.setSortOrder(query.getSortOrder());
+                    query1.setIds(persmissionIds);
+                    ServiceResult<Integer> serviceResult =userService.getNotPermissionsListManagerListCount(query1);
+                    int total=0;
+                    if(serviceResult.getSuccess()&&serviceResult.getBody()>0){
+                        total=serviceResult.getBody();
+                    }
+                        ServiceResult<List<PermissionsListManager>> result =userService.getNotPermissionsListManagerList(query1);
                         if(result.getSuccess()  && result.getBody() !=null){
                                 list = result.getBody();
-                                persmissionIds =userService.getPermissionsSetIds(query.getRoleId());
-                                if(persmissionIds.size()>0){
-                                    for(int i=0;i<persmissionIds.size();i++){
-                                        int count=list.size();
-                                        for(int j=0;j<count;j++){
-                                            if(list.get(j).getId()== persmissionIds.get(i)){
-                                                list.remove(j);
-                                                count=count-1;
-                                            }
-                                        }
-                                    }
-                                    }
                         }else {
                                 succMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
                                 return succMap;
                         }
-                        ListResult results= new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
+                        ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
                         return results.toMap();
                 }catch(Exception e){
                         logger.error("查询失败", e);
@@ -447,24 +456,27 @@ public class UserController {
         List<Integer> persmissionIds=new ArrayList<>();
         try{
             PermissionsListManagerQuery query1=new PermissionsListManagerQuery();
+            persmissionIds =userService.getPermissionsSetIds(query.getRoleId());
             query1.setStatus(1);
+            query1.setPageNumber(query.getPageNumber());
+            query1.setPageSize(query.getPageSize());
+            query1.setSortName(query.getSortName());
+            query1.setSortOrder(query.getSortOrder());
+            query1.setIds(persmissionIds);
+            ServiceResult<Integer> serviceResult =userService.getPermissionsListManagerListCount(query1);
+            int total=0;
+            if(serviceResult.getSuccess()&&serviceResult.getBody()>0){
+                total=serviceResult.getBody();
+
             ServiceResult<List<PermissionsListManager>> result =userService.getPermissionsListManagerList(query1);
             if(result.getSuccess()&& result.getBody() !=null){
-                persmissionIds =userService.getPermissionsSetIds(query.getRoleId());
-                if(persmissionIds.size()>0){
-                 for(int id:persmissionIds){
-                    for(PermissionsListManager permissionsListManager:result.getBody()){
-                        if(id==permissionsListManager.getId()){
-                           list.add(permissionsListManager);
-                        }
-                    }
-                 }
-                }
+                   list=result.getBody();
             }else {
                 succMap.put("resultMassage", result.getMessage());//"获取书籍信息异常，请稍后重试!");
                 return succMap;
             }
-            ListResult results= new ListResult(0, list.size(), query.getPageSize(), query.getPageNumber(), list);
+            }
+            ListResult results= new ListResult(0, total, query.getPageSize(), query.getPageNumber(), list);
             return results.toMap();
         }catch(Exception e){
             logger.error("查询失败", e);
@@ -583,5 +595,46 @@ public class UserController {
             return succMap;
         }
     }
-
+    /*导入学生教师信息*/
+    @RequestMapping(value = "/importStudent", method = RequestMethod.POST)
+    @ResponseBody
+    public  Map<String,?> importStudent( HttpServletRequest request){
+        Map<String,Object> succMap = new HashMap<String,Object>();
+        try{
+            //获取上传的文件
+            MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
+            MultipartFile file = multipart.getFile("upfile");
+            InputStream in = file.getInputStream();
+            //数据导入
+            bookService.importExcelInfo(in,file);
+            in.close();
+            succMap.put("resultMassage", "导入成功");
+            return succMap;
+        }catch(Exception e){
+            logger.error("导入失败", e);
+            succMap.put("resultMassage", "导入失败");
+            return succMap;
+        }
+    }
+    /*倒入书单*/
+    @RequestMapping(value = "/importBookList", method = RequestMethod.POST)
+    @ResponseBody
+    public  Map<String,?> importBookList( HttpServletRequest request){
+        Map<String,Object> succMap = new HashMap<String,Object>();
+        try{
+            //获取上传的文件
+            MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
+            MultipartFile file = multipart.getFile("upfile");
+            InputStream in = file.getInputStream();
+            //数据导入
+            bookService.importBookListExcelInfo(in,file);
+            in.close();
+            succMap.put("resultMassage", "导入成功");
+            return succMap;
+        }catch(Exception e){
+            logger.error("导入失败", e);
+            succMap.put("resultMassage", "导入失败");
+            return succMap;
+        }
+    }
 }

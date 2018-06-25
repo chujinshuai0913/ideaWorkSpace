@@ -25,5 +25,12 @@ public interface PermissionsListManagerMapper {
 
     List<PermissionsListManager> getPermissionsListManagerList(PermissionsListManagerQuery query);
 
+   int getPermissionsListManagerListCount(PermissionsListManagerQuery query);
+
+
+    List<PermissionsListManager> getNotPermissionsListManagerList(PermissionsListManagerQuery query);
+
+
+    int getNotPermissionsListManagerListCount(PermissionsListManagerQuery query);
 
 }

@@ -132,7 +132,7 @@ public class UserShareLoginController {
         //用户
         UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
         if(userLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharebook/login.jsp");
+            return new ModelAndView("redirect:/sso/sharebook/login.jsp");
         }else {
             return new ModelAndView("redirect:/sharebook/jsp/mybookshare.jsp");
         }
@@ -146,7 +146,7 @@ public class UserShareLoginController {
         //用户
         UserLogin userLogin=(UserLogin)session.getAttribute("userLogin");
         if(userLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharebook/login.jsp");
+            return new ModelAndView("redirect:/sso/sharebook/login.jsp");
         }else {
             return new ModelAndView("redirect:/sso/sharebook/updatepassword.jsp");
         }
@@ -236,6 +236,7 @@ public class UserShareLoginController {
             }
             query1.setId(userLogin.getUserId());
             ServiceResult<Integer> result =userService.updateUserShare(query1);
+            ServiceResult<Integer> result1 =userService.updateStudentTeacherList(query.getSchoolCode());
             succMap.put("resultMassage", result.getSuccess()?"ok":result.getMessage());
             return succMap;
         }catch(Exception e){

@@ -2,15 +2,6 @@ package common.util;
 
 import java.io.Serializable;
 
-/**
- * Title: <br>
- * Description: <br>
- * Copyright: Copyright (c) 2017<br>
- * Company: 北京云杉世界信息技术有限公司<br>
- *
- * @author :chujinshuai
- * @time :2018/4/13 23:41 星期五
- */
 public class ServiceResult<T> implements Serializable {
     private Boolean success = true;
     private int errorCode;

@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService{
                     }
                     if (userShare.getBanTime()!=null&&userShare.getBanTime() > 0) {
                         userShareVo.setbTime(DateUtils.getDateStringByTimeStamp(userShare.getBanTime(), DateUtils.YMDHMS));
-                        userShareVo.setStime(DateUtils.getDateStringByTimeStamp(userShare.getBanTime() - userShareVo.getBanLongtime(), DateUtils.YMDHMS));
+                       /* userShareVo.setStime(DateUtils.getDateStringByTimeStamp(userShare.getBanTime() - userShareVo.getBanLongtime(), DateUtils.YMDHMS));*/
                     }
                     if (userShare.getLoginTime()!=null&&userShare.getLoginTime() > 0) {
                         userShareVo.setlTime(DateUtils.getDateStringByTimeStamp(userShare.getLoginTime(), DateUtils.YMDHMS));
@@ -251,6 +251,10 @@ public class UserServiceImpl implements UserService{
     public ServiceResult<Integer> updateUserShare(UserShareQuery userShareQuery) {
         return new ServiceResult<>(userShareMapper.updateByPrimaryKeySelective(userShareQuery));
     }
+    @Override
+    public ServiceResult<Integer> updateUserShareStaus(UserShareQuery userShareQuery) {
+        return new ServiceResult<>(userShareMapper.updateUserShareStaus(userShareQuery));
+    }
 
     @Override
     public ServiceResult<Integer> updateUserManager(UserManagerQuery query) {
@@ -265,6 +269,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public ServiceResult<List<ShareRole>> queryUserRole(ShareRoleQuery query) {
         return new ServiceResult<>(shareRoleMapper.getUserRoleList(query));
+    }
+    @Override
+    public  ServiceResult<Integer> queryUserRoleCount(ShareRoleQuery query) {
+        return new ServiceResult<>(shareRoleMapper.queryUserRoleCount(query));
     }
 
     @Override
@@ -324,10 +332,13 @@ public class UserServiceImpl implements UserService{
     public  ServiceResult<StudentTeacherList>  getStudentTeacherList(Long schoolCode) {
         return new ServiceResult<>(studentTeacherListMapper.getStudentTeacherList(schoolCode));
     }
+    @Override
+    public  ServiceResult<Integer> updateStudentTeacherList(Long schoolCode){
+        return new ServiceResult<>(studentTeacherListMapper.updateStudentTeacherList(schoolCode,DateUtils.getNowTimeStamp()));
+    }
 
     @Override
     public void insertAbnormal() {
-        List<Abnormal> abnormalList=new ArrayList<>();
         Integer endTime=DateUtils.getTodayUnixTimeStamp();
         Integer starTime=endTime-86400 *6;
         int count=0;
@@ -340,13 +351,8 @@ public class UserServiceImpl implements UserService{
             Abnormal abnormal =new Abnormal();
             abnormal.setUserId(recordSelling.getBuyer());
             abnormal.setNum(recordSelling.getTotal());
-            abnormalList.add(abnormal);
+            abnormalMapper.insertSelective(abnormal);
         }
-        if(count==0){
-          count = abnormalMapper.batchInsertAbnormal(abnormalList);
-        }
-
-
     }
 
     @Override
@@ -565,6 +571,34 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public     ServiceResult<Integer>  getPermissionsListManagerListCount(PermissionsListManagerQuery query) {
+        try {
+            return new ServiceResult<>(permissionsListManagerMapper.getPermissionsListManagerListCount(query)) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+    @Override
+    public ServiceResult<List<PermissionsListManager>> getNotPermissionsListManagerList(PermissionsListManagerQuery query) {
+        try {
+            return new ServiceResult<>(permissionsListManagerMapper.getNotPermissionsListManagerList(query)) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
+
+    @Override
+    public     ServiceResult<Integer>  getNotPermissionsListManagerListCount(PermissionsListManagerQuery query) {
+        try {
+            return new ServiceResult<>(permissionsListManagerMapper.getNotPermissionsListManagerListCount(query)) ;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            return new ServiceResult<>(11,e.getMessage());
+        }
+    }
     @Override
     public ServiceResult<Integer> updatePermissionsListManagerStatus(PermissionsListManager query) {
         return new ServiceResult<>(permissionsListManagerMapper.updatePermissionsListManagerStatus(query));

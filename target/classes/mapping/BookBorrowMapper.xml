@@ -305,6 +305,9 @@
       </if>
     </trim>
   </insert>
+  <update id="updateBookBorrowUseNum">
+    UPDATE book_borrow SET  use_num=#{useNum} where id=#{id}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="common.model.BookBorrow" >
     update book_borrow
     <set >

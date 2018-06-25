@@ -28,6 +28,9 @@ public interface ClassTypeService {
    /*浏览历史*/
    ServiceResult<List<SearchHistory>> getSearchHistoryList(SearchHistory query);
 
+  ServiceResult<Integer> getSearchHistoryListCount(SearchHistory query);
+
+  ServiceResult<Integer> insertSearchHistoryList(SearchHistory query);
   /*  查询图书一级分类列表*/
   ServiceResult<List<TypeBook1>> queryTypeBook1List(TypeBook1Query query);
 

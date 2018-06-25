@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<header>
-			<a href="#" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
+			<a href="${basePath}/sharebook/jsp/shareindex.jsp" class="logo"><img style="height: 50px;width: 160px" src="${basePath}/sso/img/燕鸣书屋.png" ></a>
 			<div class="desc">欢迎注册</div>
 			<div class="desc1">已有账号？<a href="${basePath}/sso/sharebook/login.jsp" style="color: red;">欢迎登入</a></div>
 		</header>

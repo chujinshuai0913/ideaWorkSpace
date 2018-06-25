@@ -48,7 +48,7 @@
 			</div>
 			<c:if test='${sessionScope.userLogin.userName!= null}'>
 				<div class="headPagehead_text_two" style="margin-right: 200px;">
-					<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+					<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
 				</div>
 			</c:if>
@@ -140,7 +140,6 @@
 						<p class="bodyPage_body_bookdetail_up_left_text_detail">
 							<input id="bookId" type="text" type="text" style="display: none" value="${requestScope.bookAuctionVo.id}">
 							<span class="span_1">出拍人:<a href="#"><span>${requestScope.bookAuctionVo.sellerName}</span></a> </span>
-
 							<span class="span_1"> 开始时间： <span>${requestScope.bookAuctionVo.sTime} </span></span>
 							<span class="span_1"> 结束时间：<span>${requestScope.bookAuctionVo.eTime} </span></span>
 							<input type="text" id="priceN" style="display: none" value="${requestScope.bookAuctionVo.price}">
@@ -191,7 +190,7 @@
 												<form id="form_auction_q" class="form-inline" role="form" style="width: 95%;margin: auto;"
 														 onkeydown="if(event.keyCode==13){return false;}">
                                               <div class="form-group" style="margin-top: 20px;">
-												  	<input name="sellerId" type="text" type="text" style="display: none" value="${requestScope.bookAuctionVo.sellerId}">
+												  	<input name="userId" type="text" type="text" style="display: none" value="${requestScope.bookAuctionVo.sellerId}">
 													<input type="text" name="price" style="text-align: center"  class="input"  placeholder="元">
 												  <input type="text" name="auctionId" style="display: none;" value="${requestScope.bookAuctionVo.id}" >
 												  	<button type="button" id="auctionprice" class="btn btn-primary" data-style="zoom-in" style="background-color:red;border:white;width: 60px;display: inline;margin-left: 10px;line-height: 20px;"
@@ -310,7 +309,7 @@
             type : "post",
             async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
             url : "/ideaWorkSpace/bookshare/bookuserselftop",    //请求发送到TestServlet处
-            data: JSON.stringify($.extend(true, {},{professionalTypeName2:""})),
+            data: JSON.stringify($.extend(true, {},{professionalTypeName2:$("#professionalTypeName2").val()})),
             contentType:"text/html;charset=utf-8",
             dataType: "json",   //返回格式为json
             success : function(data) {

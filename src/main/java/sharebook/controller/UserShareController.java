@@ -64,7 +64,7 @@ public class UserShareController{
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+            return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -83,7 +83,7 @@ public class UserShareController{
         UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
         String uri="";
         if(userManagerLogin==null){
-            return new ModelAndView(request.getContextPath()+"/sso/sharemanager/login.jsp");
+             return new ModelAndView("redirect:/sso/sharemanager/gotologin.jsp");
         }
         String url=request.getServletPath();
         int count=userService.isTrue(url,userManagerLogin.getRoleId());
@@ -202,8 +202,8 @@ public class UserShareController{
             ServiceResult<List<Abnormal>> result=userService.getAbnormal();
             if(result.getSuccess()&&result.getBody()!=null){
                 abnormalList=result.getBody();
-                for ( Abnormal abnormal:abnormalList) {
-                   userIds.add(abnormal.getUserId());
+                for (Abnormal abnormal:abnormalList) {
+                    userIds.add(abnormal.getUserId());
                 }
                 query.setIds(userIds);
                 ServiceResult<List<UserShareVo>> serviceResult = userService.queryUserShareByIds(query);
@@ -229,6 +229,55 @@ public class UserShareController{
             logger.error("UserShareController.abnormallistData---------->",e);
             successMap.put("resultMassage", "获取信息异常，请稍后重试!");
             return successMap;
+        }
+    }
+    //禁号
+    @RequestMapping(value = "/stopuse", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,?> stopuse(HttpServletResponse respone,@RequestBody String strJson){
+        logger.info("UserController.insertperset---------->"+strJson);
+        UserShareQuery query = JSONObject.parseObject(strJson,UserShareQuery.class);
+        Map<String,Object> succMap = new HashMap<String,Object>();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        query.setStatus(ConstantsUtils.UserShareCode.STATUS_NOT);
+        query.setcT(DateUtils.getNowTimeStamp());
+        query.setcU(userManagerLogin.getId());
+        query.setBanTime(DateUtils.getNowTimeStamp());
+        try{
+            ServiceResult<Integer> result =userService.updateUserShareStaus(query);
+            succMap.put("resultMassage", result.getSuccess()?"ok":result.getMessage());
+            return succMap;
+        }catch(Exception e){
+            logger.error("操作失败", e);
+            succMap.put("resultMassage", "操作失败");
+            return succMap;
+        }
+    }
+    //启用
+    @RequestMapping(value = "/startuse", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,?> startuse(HttpServletResponse respone,@RequestBody String strJson){
+        logger.info("UserController.insertperset---------->"+strJson);
+        UserShareQuery query = JSONObject.parseObject(strJson,UserShareQuery.class);
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        //用户
+        UserManagerLogin userManagerLogin=(UserManagerLogin)session.getAttribute("userManagerLogin");
+        Map<String,Object> succMap = new HashMap<String,Object>();
+        query.setStatus(ConstantsUtils.UserShareCode.STATUS);
+        query.setcT(DateUtils.getNowTimeStamp());
+        query.setcU(userManagerLogin.getId());
+        try{
+            ServiceResult<Integer> result =userService.updateUserShareStaus(query);
+            succMap.put("resultMassage", result.getSuccess()?"ok":result.getMessage());
+            return succMap;
+        }catch(Exception e){
+            logger.error("操作失败", e);
+            succMap.put("resultMassage", "操作失败");
+            return succMap;
         }
     }
 }

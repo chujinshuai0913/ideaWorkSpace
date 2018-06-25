@@ -14,7 +14,7 @@ public interface BookGiftRecMapper {
 
     BookGiftRec selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(BookGiftRec record);
+    int updateByPrimaryKeySelective(BookGiftRecQuery record);
 
     int updateByPrimaryKey(BookGiftRec record);
 

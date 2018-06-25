@@ -72,7 +72,8 @@
                         formaction="javascript:void(0);">查询
                 </button>&nbsp;&nbsp;
                 <button type="reset" class="btn btn-warning">重置</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-success" id="exportBtn">导出</button>
+                <button type="button" class="btn btn-success" id="stopUse">禁号</button>
+                <button type="button" class="btn btn-success" id="startUse">启用</button>
             </div>
         </form>
     </div>
@@ -265,7 +266,123 @@
         }
         return value;
     }
-
+    //禁号
+    $("#stopUse").on('click',function () {
+        var selected = $('#mainTable').bootstrapTable("getSelections");
+        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+            if(item.status != 1){
+                alert("只能操作未禁用的数据！")
+                flag = false;
+                return false;
+            }else{
+                ids[index] = item.id;
+            }
+        });
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/usershare/stopuse",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#mainTable').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
+    //启用
+    $("#startUse").on('click',function () {
+        var selected = $('#mainTable').bootstrapTable("getSelections");
+        var dataNum=$('#mainTable').bootstrapTable("getOptions").data.length;
+        if (dataNum == 0) {
+            alert("没有要操作的数据！")
+            return false;
+        }
+        var ids = [];
+        var flag = true;
+        $.each(selected,function(index,item){
+            if(item.status != 2){
+                alert()
+                alert("只能操作禁用的数据！")
+                flag = false;
+                return false;
+            }else{
+                ids[index] = item.id;
+            }
+        });
+        if(flag){
+            if(ids.length == 0){
+                alert("最少要有一条数据！")
+                flag = false;
+                return false;
+            }
+            var params = {ids:ids};
+            $.ajax({
+                url: "/ideaWorkSpace/usershare/startuse",    //请求的url地址
+                dataType: "json",   //返回格式为json
+                data: JSON.stringify(params),    //参数值
+                type: "POST",   //请求方式
+                contentType:"text/html;charset=utf-8",
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    try {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            var jsonData = JSON.parse(JSON.stringify(data));
+                            if(jsonData.resultMassage == 'ok'){
+                                alert("操作成功!");
+                                $('#mainTable').bootstrapTable('refresh');
+                            }else{
+                                alert(jsonData.resultMassage);
+                            }
+                        }
+                    } catch (e){
+                        console.log(e.message);
+                    }
+                },
+                complete: function() {
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
 
 </script>
 </body>

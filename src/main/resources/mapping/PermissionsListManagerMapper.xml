@@ -22,7 +22,46 @@
   select *
   from permissions_list_manager
   where 1=1
+      <if test="ids != null ">
+       AND id  in
+      <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+      </if>
     <if test="url != null and url !=''">  <![CDATA[	AND url LIKE CONCAT(CONCAT('%',#{url}),'%')	]]> </if>
+    <if test="status != null and status !=''"> AND status =#{status} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getPermissionsListManagerListCount" resultType="java.lang.Integer"  parameterType="common.query.PermissionsListManagerQuery">
+    select count(*)
+    from permissions_list_manager
+    where 1=1
+      <if test="ids != null ">
+      AND id  in
+      <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </if>
+  </select>
+  <select id="getNotPermissionsListManagerList" resultMap="BaseResultMap" parameterType="common.query.PermissionsListManagerQuery">
+    select *
+    from permissions_list_manager
+    where id Not IN
+    <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+    <if test="status != null and status !=''"> AND status =#{status} </if>
+    <if test="sortName != null  ">        ORDER BY ${sortName} ${sortOrder} </if>
+    <if test="pageNumber &gt;0 ">         limit #{startRecord} , #{pageSize} </if>
+  </select>
+  <select id="getNotPermissionsListManagerListCount" resultType="java.lang.Integer"  parameterType="common.query.PermissionsListManagerQuery">
+    select count(*)
+    from permissions_list_manager
+    where id  Not IN
+    <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
     <if test="status != null and status !=''"> AND status =#{status} </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

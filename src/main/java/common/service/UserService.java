@@ -1,16 +1,12 @@
 package common.service;
 
 
-import common.mapper.PermissionsListManagerMapper;
 import common.model.*;
 import common.query.*;
 import common.util.ServiceResult;
-import common.vo.PermissionsSetVo;
 import common.vo.StudenteacherVo;
 import common.vo.UserManagerVo;
 import common.vo.UserShareVo;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 public interface UserService {
@@ -28,13 +24,14 @@ public interface UserService {
     /*修改网站用户*/
     ServiceResult<Integer> updateUserShare(UserShareQuery userShareQuery);
 
+    ServiceResult<Integer> updateUserShareStaus(UserShareQuery userShareQuery);
 
  /*修改网站用户*/
    ServiceResult<Integer> updateUserManager(UserManagerQuery query);
 
    ServiceResult<Integer> insertUserManager(UserManagerQuery query);
     ServiceResult<List<ShareRole>> queryUserRole(ShareRoleQuery query);
-
+    ServiceResult<Integer> queryUserRoleCount(ShareRoleQuery query);
     ServiceResult<Integer> insertPerrmissionSet(PermissionsSetQuery query);
 
     ServiceResult<Integer> deletePerrmissionSet(PermissionsSetQuery query);
@@ -53,7 +50,10 @@ public interface UserService {
 
     ServiceResult<StudentTeacherList> getStudentTeacherList(Long schoolCode);
 
-    /*每周六执行查询本周的异常用户存入异常用户表*/
+
+    ServiceResult<Integer> updateStudentTeacherList(Long schoolCode);
+
+    /*每周天23点执行查询本周的异常用户存入异常用户表*/
 
     void insertAbnormal();
     /*查询异常用户*/
@@ -103,6 +103,9 @@ public interface UserService {
 
     /*查询权限*/
     ServiceResult<List<PermissionsListManager>>  getPermissionsListManagerList(PermissionsListManagerQuery query);
+    ServiceResult<Integer>  getPermissionsListManagerListCount(PermissionsListManagerQuery query);
+    ServiceResult<List<PermissionsListManager>>  getNotPermissionsListManagerList(PermissionsListManagerQuery query);
+    ServiceResult<Integer>  getNotPermissionsListManagerListCount(PermissionsListManagerQuery query);
 
     /*修改权限的状态*/
     ServiceResult<Integer>  updatePermissionsListManagerStatus(PermissionsListManager query);

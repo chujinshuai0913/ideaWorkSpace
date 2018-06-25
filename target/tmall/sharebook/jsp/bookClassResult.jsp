@@ -32,7 +32,7 @@
 					</div>
 					<c:if test='${sessionScope.userLogin.userName!= null}'>
 						<div class="headPagehead_text_two" style="margin-right: 200px;">
-							<font color="grey"><a href="#" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
+							<font color="grey"><a href="${basePath}/login/mybookshare" style="cursor:pointer">${sessionScope.userLogin.userName}</a><input id="userId" type="text" type="text" style="display: none" value="${sessionScope.userLogin.userId}"> 你好，欢迎访问燕鸣书屋 !</font>
 
 						</div>
 					</c:if>
@@ -133,11 +133,7 @@
 			</div>
 		</div>
 			<div style="width: 100%;height:95px; clear: both;margin-bottom: 0px;"></div>
-			<div id="bottom" class="footerPage" style="margin-top: 10px;padding-top: 20px;">
-				<div style="width: 40%;margin: auto;height: 40px; font-size: 20px; text-align: center; color: #fff;   opacity: 0.8;  line-height: 20px;filter:alpha(opacity=80);">
-					Copyright © 2018-2020  燕鸣书屋 ysu.sharebook.com 版权所有
-				</div>
-			</div>
+		</div>
 	</body>
 <script>
     //浏览历史

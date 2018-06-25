@@ -41,19 +41,15 @@ import java.util.List;
  * @create 2018/6/10
  * @since 1.0.0
  */
-  public class AuctionProcessQuartz extends QuartzJobBean {
+  public class AuctionProcessQuartz  {
     private static final Logger logger = Logger.getLogger(BookServiceImpl.class);
 
-    @Override
-    protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        ApplicationContext context = new FileSystemXmlApplicationContext( new String []{"classpath:spring-mybatis.xml","classpath:spring-mvc.xml"});
-        BookAuctionMapper bookAuctionMapper = context.getBean(BookAuctionMapper.class);
-        RecordAuctionMapper recordAuctionMapper=context.getBean(RecordAuctionMapper.class);
+    @Autowired
+    private  BookAuctionMapper bookAuctionMapper;
+    @Autowired
+    private RecordAuctionMapper recordAuctionMapper;
 
-        // 获取参数
-       /* JobDataMap mergedJobDataMap = jobExecutionContext.getMergedJobDataMap();
-        String name = (String) mergedJobDataMap.get("name");
-        System.out.println(new Date().toLocaleString() + "定时任务执行中 ......" + "传递的参数为" + name);*/
+    public void AuctionQuartz(){
 
         List<Integer> statusList=new ArrayList<>();
         statusList.add(ConstantsUtils.BookAuditCode.AUDIT);
@@ -62,7 +58,7 @@ import java.util.List;
             List<BookAuction> bookAuctions = bookAuctionMapper.selectBookAuctionByStatus(statusList);
             if (bookAuctions.size() > 0) {
                 for (BookAuction bookAuction : bookAuctions) {
-                    if (bookAuction.getStartTime() <= DateUtils.getNowTimeStamp()) {
+                    if (bookAuction.getStartTime() <= DateUtils.getNowTimeStamp()&&bookAuction.getEndTime() >= DateUtils.getNowTimeStamp()) {
                         bookAuctionMapper.updateAuctionStatus(bookAuction.getId(), ConstantsUtils.BookAuditCode.AUCTION_START);
                     }
                     if (bookAuction.getEndTime() <= DateUtils.getNowTimeStamp()) {

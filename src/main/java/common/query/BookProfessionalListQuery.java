@@ -9,7 +9,7 @@ public class BookProfessionalListQuery extends QueryParam {
 
     private String bookName;
 
-    private Integer isbn;
+    private Long isbn;
 
     private Integer typeProfessional1;
 
@@ -57,7 +57,7 @@ public class BookProfessionalListQuery extends QueryParam {
         this.ids = ids;
     }
 
-    public BookProfessionalListQuery(Integer id, String bookName, Integer isbn, Integer typeProfessional1, String typeProfessionalname1, Integer typeProfessional2, String typeProfessionalname2, Integer grade, Integer semester, Integer printUser, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, Integer cU, Integer cT) {
+    public BookProfessionalListQuery(Integer id, String bookName, Long isbn, Integer typeProfessional1, String typeProfessionalname1, Integer typeProfessional2, String typeProfessionalname2, Integer grade, Integer semester, Integer printUser, Integer printTime, Integer importUser, Integer importTime, Integer exportUser, Integer exportTime, Integer cU, Integer cT) {
         this.id = id;
         this.bookName = bookName;
         this.isbn = isbn;
@@ -97,11 +97,11 @@ public class BookProfessionalListQuery extends QueryParam {
         this.bookName = bookName == null ? null : bookName.trim();
     }
 
-    public Integer getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 

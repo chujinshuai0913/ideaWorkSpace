@@ -158,9 +158,9 @@
   from record_selling
   where  status=2
   <if test="scompleteTime != null ">    AND complete_time &gt;= #{scompleteTime}        </if>
-  <if test="ecompleteTime != null  ">   <![CDATA[ AND registered_time <= #{ecompleteTime} ]]> </if>
+  <if test="ecompleteTime != null  ">   <![CDATA[ AND complete_time <= #{ecompleteTime} ]]> </if>
   GROUP BY  buyer
-  HAVING sum(total)&gt;10
+  HAVING sum(total)&gt;#{num}
 </select>
   <select id="getRecordsellingList" parameterType="common.query.RecordSellingQuery" resultMap="BaseResultMap">
     select *
